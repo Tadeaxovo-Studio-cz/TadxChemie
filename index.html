@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>TadxChemie</title>
 <style>
 :root{--bg:#090b1c;--card:rgba(255,255,255,.055);--line:rgba(255,255,255,.1);--tx:#eceffd;--mut:#9aa3c7;--a:#7c5cff;--b:#2ee6d6;--ok:#38e08a;--no:#ff5c7a;--r:18px}
@@ -161,23 +162,93 @@ html.rm *{animation:none!important;transition:none!important}
 .tvw{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:16px 0 0;cursor:pointer;transition:.2s;background:rgba(255,255,255,.03)}
 .tvw:hover{border-color:var(--b)}.tvw.ok{border-color:var(--ok);cursor:default}.tvw .tvk{display:grid;place-items:center;font-size:1.1rem}
 .tvw.ok .tvk{border:0;color:var(--ok)}.tvw.ok .tvk svg{animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+
+/* desktop onboarding */
+.obw{padding:0}.obL{display:none}.obR{padding:40px 24px;text-align:center}.obX{display:none}.obE{margin-bottom:10px}
+.obBt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+@media(min-width:900px){
+#onb{width:min(1080px,94vw);position:relative;left:50%;margin-left:calc(min(1080px,94vw) / -2)}
+.obw{display:grid;grid-template-columns:400px 1fr;min-height:580px;overflow:hidden;margin-top:10px}
+.obL{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:34px;background:linear-gradient(160deg,rgba(124,92,255,.38),rgba(46,230,214,.12));border-right:1px solid var(--line)}
+.obR{padding:56px 60px;text-align:left;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.obR .ob{font-size:3rem;display:none}.obR h1{font-size:2.9rem;margin:6px 0 12px}.obR .m{font-size:1.1rem;max-width:520px;margin:0}
+.obX{display:block;list-style:none;padding:0;margin:22px 0 4px}
+.obX li{display:flex;gap:12px;align-items:center;margin:11px 0;font-size:1.05rem;animation:sl .55s cubic-bezier(.2,.8,.2,1) both}.obX li svg{color:var(--ok);font-size:1.3rem}
+.obR .dots{margin:22px 0}.obBt{justify-content:flex-start}
+}
+.obV{position:relative;width:240px;height:240px;margin:6px auto 0}
+.orbit{position:absolute;inset:0;border:1px dashed rgba(255,255,255,.28);border-radius:50%;animation:spin 18s linear infinite}
+.orbit::after{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--b);box-shadow:0 0 14px var(--b)}
+.o2{inset:30px;animation-duration:12s;animation-direction:reverse}.o2::after{background:#ff9fc4;box-shadow:0 0 14px #ff9fc4}
+.o3{inset:60px;animation-duration:7s}.o3::after{background:#ffd166;box-shadow:0 0 14px #ffd166}
+.nuc{position:absolute;inset:86px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#fff;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.55),var(--a));box-shadow:0 0 44px var(--a);animation:br 3s ease-in-out infinite}
+.nuc svg{animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+.obS{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+.obS li{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:12px;cursor:pointer;color:var(--mut);transition:.25s}
+.obS li b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;border:1px solid var(--line);flex:none}
+.obS li.on{background:rgba(255,255,255,.12);color:var(--tx)}.obS li.on b{background:var(--b);border-color:var(--b);color:#06201c}
+.obS li.dn b{background:var(--ok);border-color:var(--ok);color:#052}.obS li:hover{background:rgba(255,255,255,.08)}
+.obK{font-size:.8rem;color:var(--mut)}
+@keyframes br{50%{transform:scale(1.08);box-shadow:0 0 60px var(--b)}}
+/* LunaAI */
+.orb{width:46px;height:46px;border-radius:50%;flex:none;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),#7c5cff 45%,#2ee6d6);box-shadow:0 0 24px rgba(124,92,255,.7);animation:br 3s ease-in-out infinite}
+.orb.sm{width:30px;height:30px;box-shadow:0 0 14px rgba(124,92,255,.6)}.orb.think{animation-duration:.9s}
+.lunaC{display:flex;align-items:center;gap:16px;cursor:pointer;position:relative;overflow:hidden;border-color:rgba(124,92,255,.55);transition:transform .3s}
+.lunaC:hover{transform:translateY(-3px)}
+.lunaC::before{content:'';position:absolute;inset:-80%;background:conic-gradient(from 0deg,transparent,rgba(124,92,255,.45),transparent 40%,rgba(46,230,214,.4),transparent);animation:spin 9s linear infinite}
+.lunaC::after{content:'';position:absolute;inset:1px;border-radius:calc(var(--r) - 1px);background:var(--bg);opacity:.9}
+.lunaC>*{position:relative;z-index:1}
+.lw{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:rgba(10,12,32,.55);backdrop-filter:blur(16px);height:calc(100vh - 150px);height:calc(100dvh - 150px);min-height:480px;display:flex;flex-direction:column}
+html.light .lw{background:rgba(255,255,255,.6)}
+.la{position:absolute;inset:0;pointer-events:none}.la i{position:absolute;width:60%;height:60%;border-radius:50%;filter:blur(80px);opacity:.32;animation:au 14s ease-in-out infinite alternate}
+.la i:nth-child(1){background:#7c5cff;top:-20%;left:-10%}.la i:nth-child(2){background:#2ee6d6;bottom:-25%;right:-10%;animation-delay:-5s}.la i:nth-child(3){background:#ff5c9d;top:30%;left:35%;opacity:.18;animation-delay:-9s}
+@keyframes au{to{transform:translate(28%,18%) scale(1.3)}}
+.lh{position:relative;display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.lh .tag.lon{background:rgba(56,224,138,.25)}
+.lm{position:relative;flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.mr{display:flex;gap:10px;align-items:flex-end;animation:mi .45s cubic-bezier(.2,1.4,.4,1)}.mr.mu{justify-content:flex-end}
+.mb{max-width:80%;padding:12px 16px;border-radius:20px;line-height:1.5;overflow-wrap:anywhere}
+.ma .mb{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:6px;backdrop-filter:blur(8px)}
+.mu .mb{background:linear-gradient(135deg,var(--a),#4f8cff);color:#fff;border-bottom-right-radius:6px}
+.mb ul{margin:6px 0 0 18px;padding:0}.mb code{background:rgba(0,0,0,.3);padding:1px 6px;border-radius:6px}
+@keyframes mi{from{opacity:0;transform:translateY(16px) scale(.95)}}
+.dts{display:inline-flex;gap:5px;padding:4px 2px}.dts i{width:8px;height:8px;border-radius:50%;background:var(--b);animation:bn 1s infinite ease-in-out}.dts i:nth-child(2){animation-delay:.15s}.dts i:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-7px);opacity:1}}
+.lc{position:relative;display:flex;gap:8px;overflow-x:auto;padding:4px 18px 10px;scrollbar-width:none}.lc button{white-space:nowrap;border-radius:20px;padding:7px 14px;font-size:.88rem}
+.lf{position:relative;display:flex;gap:10px;align-items:flex-end;padding:12px 18px 16px;border-top:1px solid var(--line)}
+.lf textarea{margin:0;resize:none;max-height:120px;border-radius:18px;padding:12px 16px}.lf textarea:focus{box-shadow:0 0 0 3px rgba(46,230,214,.18)}
+.lf .pri{width:46px;height:46px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:1.2rem;flex:none}
+.terms{max-height:250px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:6px 16px 6px 30px;font-size:.9rem;color:var(--mut)}.terms li{margin:8px 0}
+.sig{text-align:center;padding:14px 0}
+.sgw{position:relative;display:inline-block;padding:6px 20px 12px;margin:14px 0 4px}
+.sgt{display:inline-block;white-space:nowrap;font-family:"Segoe Script","Lucida Handwriting","Brush Script MT","Snell Roundhand","Bradley Hand","Comic Sans MS",cursive;font-size:2.6rem;color:#cbd6ff;text-shadow:0 0 18px rgba(124,92,255,.6);clip-path:inset(-30% 100% -30% 0);animation:hw var(--d) cubic-bezier(.45,.05,.55,.95) .3s forwards}
+html.light .sgt{color:#2b2f78}
+@keyframes hw{to{clip-path:inset(-30% 0 -30% 0)}}
+.pen{position:absolute;top:8px;left:16px;font-size:1.5rem;color:var(--b);animation:pn var(--d) cubic-bezier(.45,.05,.55,.95) .3s forwards,pf .4s ease calc(var(--d) + .3s) forwards}
+@keyframes pn{to{left:calc(100% - 12px)}}@keyframes pf{to{opacity:0}}
+.sgl{width:min(300px,80%);height:24px;display:block;margin:0 auto}.sgl path{fill:none;stroke:var(--b);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dr .9s ease forwards}
+@media(prefers-reduced-motion:reduce){.sgt{clip-path:none}.sgl path{stroke-dashoffset:0}}
+html.rm .sgt{clip-path:none!important}html.rm .sgl path{stroke-dashoffset:0}
+/* performance */
+.qc,#glL .card{content-visibility:auto;contain-intrinsic-size:auto 150px}
+html.eco .glow,html.eco #bg,html.eco .la i,html.eco .lunaC::before{display:none}
+html.eco *{backdrop-filter:none!important}
 </style>
 </head>
 <body>
-<div id="splash"><div class="spw"><svg viewBox="0 0 24 24" class="sf" aria-hidden="true"><defs><clipPath id="cp"><path d="M10 9.5L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5L14 9.5z"/></clipPath></defs><g clip-path="url(#cp)"><rect class="liq" x="0" y="9" width="24" height="16"/><circle class="bb" cx="10" cy="19" r=".8"/><circle class="bb b2" cx="13.5" cy="20" r=".6"/><circle class="bb b3" cx="12" cy="21" r=".5"/></g><path pathLength="1" class="fl" d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path pathLength="1" class="fl" d="M8.5 2h7"/></svg><div class="ring"></div></div><div class="sn" id="sn" aria-label="TadxChemie"></div><p class="ss">Tvůj chemický parťák · v5.1</p><div class="sb"><i></i></div></div>
+<div id="splash"><div class="spw"><svg viewBox="0 0 24 24" class="sf" aria-hidden="true"><defs><clipPath id="cp"><path d="M10 9.5L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5L14 9.5z"/></clipPath></defs><g clip-path="url(#cp)"><rect class="liq" x="0" y="9" width="24" height="16"/><circle class="bb" cx="10" cy="19" r=".8"/><circle class="bb b2" cx="13.5" cy="20" r=".6"/><circle class="bb b3" cx="12" cy="21" r=".5"/></g><path pathLength="1" class="fl" d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path pathLength="1" class="fl" d="M8.5 2h7"/></svg><div class="ring"></div></div><div class="sn" id="sn" aria-label="TadxChemie"></div><p class="ss">Tvůj chemický parťák · v6.0</p><div class="sb"><i></i></div></div>
 <canvas id="bg"></canvas><div class="glow g1"></div><div class="glow g2"></div>
 <header><div class="logo" onclick="go('home')">Tadx<b>Chemie</b></div><nav id="nav"></nav></header>
 <main>
 
-<section class="view" id="onb"><div class="card" style="text-align:center;padding:48px 24px">
-<div class="ob" id="obI"></div><h1 id="obT"></h1><p class="m" id="obD" style="max-width:480px;margin:0 auto"></p>
-<div class="dots" style="justify-content:center" id="obDots"></div>
-<button id="obB">Zpět</button> <button class="pri" id="obN">Další</button> <button onclick="endOb()">Přeskočit</button></div></section>
-
+<section class="view" id="onb"><div class="card obw">
+<aside class="obL"><div class="obV"><div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="nuc" id="obC"></div></div><ol class="obS" id="obS"></ol><p class="obK">Šipky ← → přepínají kroky · Enter pokračuje · Esc přeskočí</p></aside>
+<div class="obR"><div class="ob" id="obI"></div><span class="tag obE" id="obE"></span><h1 id="obT"></h1><p class="m" id="obD" style="max-width:480px;margin:0 auto"></p><ul class="obX" id="obX"></ul>
+<div class="dots" id="obDots"></div><div class="obBt"><button id="obB">Zpět</button> <button class="pri" id="obN">Další</button> <button onclick="endOb()">Přeskočit</button></div></div></div></section>
 <section class="view" id="auth"><div class="gc" id="gc"><div id="gL"></div><h2 id="gT"></h2><p class="m" id="gS"></p><div id="gB"></div></div></section>
 
 <section class="view" id="home"><h1 id="hi"></h1><p class="m" style="margin-bottom:16px">Vyber kvíz a ukaž, co z chemie umíš.</p>
-<div class="note" id="note"></div><div class="card" id="dly"></div><input id="qs" placeholder="Hledat kvíz…" oninput="qf()"><div class="grid" id="qlist"></div>
+<div class="note" id="note"></div><div class="card" id="dly"></div><div class="card lunaC" id="lunaH" onclick="go('luna')"><div class="orb"></div><div style="flex:1"><h2 style="margin:0;font-size:1.2rem">LunaAI</h2><p class="m">Tvoje přátelská AI parťačka pro chemii. Zeptej se na cokoli, nech se zkoušet, nebo si jen popovídej.</p></div><button class="pri">Popovídat si</button></div><input id="qs" placeholder="Hledat kvíz…" oninput="qf()"><div class="grid" id="qlist"></div>
 <h2 style="margin-top:28px" id="lbh"></h2><div class="card wrap"><select id="lbq"></select><div id="board"></div></div></section>
 
 <section class="view" id="quiz"><div class="card">
@@ -203,10 +274,11 @@ html.rm *{animation:none!important;transition:none!important}
 <section class="view" id="prof"><h1>Profil</h1><div class="card"><div class="row" style="gap:16px"><div id="pAv"></div><div style="flex:1"><h2 id="pN" style="margin:0"></h2><p class="m" id="pL"></p><p id="pBio" style="margin:2px 0 0"></p><div class="bar" style="margin:8px 0 0"><i id="pX" style="transform:scaleX(0);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)"></i></div></div></div></div>
 <div class="grid" id="pS"></div><h2 style="margin-top:22px">Odznaky</h2><div class="grid" id="pB"></div><h2 style="margin-top:22px">Moje slabiny</h2><p class="m" id="pWc" style="margin-bottom:10px"></p><div class="grid" id="pW"></div>
 <h2 style="margin-top:22px">Výsledky a certifikáty</h2><div class="card wrap" id="pR"></div>
+<h2 style="margin-top:22px">Zabezpečení účtu</h2><div class="card" id="pSec"></div>
 <h2 style="margin-top:22px">Vzhled a přístupnost</h2><div class="card" id="pU"></div>
 <h2 style="margin-top:22px">Přizpůsobit profil</h2><div class="card" id="pE"></div><h2 style="margin-top:22px">Barva motivu</h2><div class="card row" id="pC" style="flex-wrap:wrap"></div></section>
 
-<section class="view" id="log"><h1>Novinky</h1><div class="card" style="padding:0;overflow:hidden"><div id="lgB"></div><div style="padding:20px 24px"><h2 style="margin:0">TadxChemie v5.1 – Bezpečnostní aktualizace</h2><p class="m">Největší update od vydání aplikace.</p></div></div><div id="lgL"></div></section>
+<section class="view" id="log"><h1>Novinky</h1><div class="card" style="padding:0;overflow:hidden"><div id="lgB"></div><div style="padding:20px 24px"><h2 style="margin:0">TadxChemie v6.0 – Luna aktualizace</h2><p class="m">Největší update od vydání aplikace.</p></div></div><div id="lgL"></div></section>
 
 <section class="view" id="lab"><h1>Laboratoř</h1><p class="m" style="margin-bottom:16px">Nástroje a hry, které ti pomůžou chemii pochopit.</p><div class="grid" id="labG"></div></section>
 <section class="view" id="pt"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h1 style="margin:0">Periodická tabulka</h1><div class="row"><button id="ptB" onclick="ptGame()">Hra: Najdi prvek</button><button onclick="go('lab')">Zpět</button></div></div><p class="m" id="ptQ" style="margin:10px 0;min-height:1.5em"></p><div class="card wrap" style="padding:14px"><div class="pt" id="ptG"></div><div id="ptL"></div></div><div class="card" id="ptD"></div></section>
@@ -217,6 +289,13 @@ html.rm *{animation:none!important;transition:none!important}
 <div class="card"><h2>Vztahy (ρ, c, w)</h2><select id="cr" onchange="crSet()"><option value="0">Hustota ρ = m / V</option><option value="1">Látková koncentrace c = n / V</option><option value="2">Hmotnostní zlomek w = m látky / m roztoku</option></select><div class="grid"><input id="crA"><input id="crB"><input id="crC"></div><p class="m" style="margin:6px 0 12px">Vyplň dvě pole, třetí se dopočítá.</p><button class="pri" onclick="cRel()">Dopočítat</button><p id="crR" style="margin-top:12px"></p></div></section>
 <section class="view" id="duel"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Souboj</h1><button onclick="go('lab')">Zpět</button></div><div id="duB" style="margin-top:14px"></div></section>
 <section class="view" id="notif"><h1>Upozornění</h1><p class="m" style="margin-bottom:16px">Zadání, termíny, denní výzva a opakování.</p><div id="ntL"></div></section>
+<section class="view" id="luna"><div class="lw"><div class="la"><i></i><i></i><i></i></div>
+<div class="lh"><div class="orb" id="lOrb"></div><div style="flex:1"><b style="font-size:1.15rem">LunaAI</b><br><span class="tag" id="lSt"></span></div><button class="ib" onclick="lTerms()" aria-label="Podmínky"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></button><button class="ib" onclick="lSetT()" aria-label="Nastavení"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></svg></button><button class="ib" onclick="lClear()" aria-label="Smazat chat"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>'};
+const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
+const OB=[["flask-conical","Vítej v TadxChemie","Opakuj chemii 1. ročníku SŠ rychle, přehledně a bez nudy.",['Kvízy z celé chemie 1. ročníku SŠ</svg></button></div>
+<div class="lm" id="lM" aria-live="polite"></div><div class="lc" id="lC"></div>
+<div class="lf"><textarea id="lI" rows="1" maxlength="800" placeholder="Napiš Luně…" onkeydown="lk(event)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea><button class="pri" id="lS" onclick="lunaSend($('#lI').value)" aria-label="Odeslat"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button></div></div>
+<div class="card" id="lSet" style="display:none;margin-top:14px"></div></section>
 <section class="view" id="pr"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Početní příklady</h1><button onclick="go('lab')">Zpět</button></div><p class="m" id="prT" style="margin:10px 0"></p><div class="card"><h2 id="prQ" style="font-size:1.25rem"></h2><div class="row" style="margin:14px 0"><input id="prA" inputmode="decimal" placeholder="Tvoje odpověď" style="margin:0;max-width:220px" onkeydown="if(event.key=='Enter')prCheck()"><b id="prU"></b></div><div id="prF" style="min-height:28px"></div><div id="prS" class="m"></div><div class="row" style="flex-wrap:wrap;margin-top:12px"><button class="pri" onclick="prCheck()">Zkontrolovat</button><button onclick="prSol()">Zobrazit řešení</button><button onclick="prR()">Další příklad</button></div></div></section>
 <section class="view" id="gl"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Slovníček pojmů</h1><button onclick="go('lab')">Zpět</button></div><input id="glq" placeholder="Hledat pojem…" oninput="glF()" style="margin:14px 0"><div id="glL"></div></section>
 <section class="view" id="cls"><h1>Učebna</h1><p class="m" id="clsS" style="margin-bottom:16px"></p><div class="card" id="clsF"></div><div class="grid" id="clsL"></div></section>
@@ -258,9 +337,9 @@ let me=DB.g('me',null),RL='s',ob=0,Q=null,cur=0,pick=-1,score=0,vio=0,ans=[],tmr
 
 /* BACKGROUND */
 let CA='#7c5cff',CB='#2ee6d6';const cv=$('#bg'),cx=cv.getContext('2d');let W,H,P=[];
-function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(70,W/18|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:2+Math.random()*3}))}
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min((navigator.hardwareConcurrency||8)<=4?35:70,W/18|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:2+Math.random()*3}))}
 addEventListener('resize',rs);rs();
-(function d(){cx.clearRect(0,0,W,H);P.forEach((a,i)=>{a.x=(a.x+a.vx+W)%W;a.y=(a.y+a.vy+H)%H;
+let lastF=0;(function d(ts){const H0=document.documentElement.classList;if(document.hidden||H0.contains('eco')||H0.contains('rm')||ts-lastF<30){requestAnimationFrame(d);return}lastF=ts;cx.clearRect(0,0,W,H);P.forEach((a,i)=>{a.x=(a.x+a.vx+W)%W;a.y=(a.y+a.vy+H)%H;
 P.slice(i+1).forEach(b=>{const dx=a.x-b.x,dy=a.y-b.y,q=Math.hypot(dx,dy);if(q<130){cx.globalAlpha=.35*(1-q/130);cx.strokeStyle=CA;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();cx.globalAlpha=1}});
 cx.fillStyle=a.r>3.5?CB:CA;cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill()});requestAnimationFrame(d)})();
 
@@ -268,8 +347,8 @@ cx.fillStyle=a.r>3.5?CB:CA;cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fill()});re
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),3200)}
 function show(id){const o=document.querySelector('.view.on');if(o&&o.id!==id){o.classList.add('out');setTimeout(()=>{o.classList.remove('on','out');$('#'+id).classList.add('on')},280)}else $('#'+id).classList.add('on')}
 function go(id){if(active&&id!=='quiz'){if(!confirm('Opustit kvíz? Bude vyhodnocen jako nedokončený.'))return;finish(true)}
-if(!me&&id!=='auth'&&id!=='onb'){id='auth'}nav();show(id);if(id==='home')home();if(id==='studio')studio();if(id==='teach')teach();if(id==='admin')admin();if(id==='auth')authInit();if(id==='prof')prof();if(id==='log')log();if(id==='cls')cls();if(id==='cd')cdr();if(id==='lab')labR();if(id==='pt')ptR();if(id==='eq')eqR();if(id==='calc')crSet();if(id==='duel')duS();if(id==='notif')ntR();if(id==='pr')prR();if(id==='gl')glR()}
-function nav(){$('#nav').innerHTML=me?`<button onclick="go('home')">Kvízy</button><button onclick="go('lab')">Laboratoř</button><button onclick="go('cls')">Učebna</button><button onclick="go('prof')">Profil</button><button onclick="go('studio')">QuizStudio</button>${me.role!=='s'?'<button onclick="go(\'teach\')">Učitel</button>':''}${me.role==='a'?'<button onclick="go(\'admin\')">'+ic('shield-check')+' Admin</button>':''}<button onclick="go('notif')" aria-label="Upozornění">${ic('bell')}${nb()?`<span class="bdg">${nb()}</span>`:''}</button><button onclick="go('log')" aria-label="Novinky">${ic('sparkles')}</button><button onclick="tm()" aria-label="Zvuk">${ic(DB.g('mute',0)?'volume-x':'volume-2')}</button><button onclick="out()">Odhlásit (${esc(me.name)})</button>`:''}
+if(!me&&id!=='auth'&&id!=='onb'){id='auth'}nav();show(id);if(id==='home')home();if(id==='studio')studio();if(id==='teach')teach();if(id==='admin')admin();if(id==='auth')authInit();if(id==='prof')prof();if(id==='log')log();if(id==='cls')cls();if(id==='cd')cdr();if(id==='lab')labR();if(id==='pt')ptR();if(id==='eq')eqR();if(id==='calc')crSet();if(id==='duel')duS();if(id==='notif')ntR();if(id==='pr')prR();if(id==='gl')glR();if(id==='luna')lunaR()}
+function nav(){$('#nav').innerHTML=me?`<button onclick="go('home')">Kvízy</button><button onclick="go('luna')">${ic('moon')} LunaAI</button><button onclick="go('lab')">Laboratoř</button><button onclick="go('cls')">Učebna</button><button onclick="go('prof')">Profil</button><button onclick="go('studio')">QuizStudio</button>${me.role!=='s'?'<button onclick="go(\'teach\')">Učitel</button>':''}${me.role==='a'?'<button onclick="go(\'admin\')">'+ic('shield-check')+' Admin</button>':''}<button onclick="go('notif')" aria-label="Upozornění">${ic('bell')}${nb()?`<span class="bdg">${nb()}</span>`:''}</button><button onclick="go('log')" aria-label="Novinky">${ic('sparkles')}</button><button onclick="tm()" aria-label="Zvuk">${ic(DB.g('mute',0)?'volume-x':'volume-2')}</button><button onclick="out()">Odhlásit (${esc(me.name)})</button>`:''}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 /* ONBOARDING */
@@ -293,6 +372,11 @@ const IC={
 'moon':'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
 'heart':'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
 'users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+'send':'<path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/>',
+'sliders':'<path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/>',
+'file-text':'<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+'pen-line':'<path d="M13 21h8"/><path d="m15 5 4 4"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
+'lock':'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
 'chevron-up':'<path d="m18 15-6-6-6 6"/>',
 'bell':'<path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>',
 'calendar':'<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
@@ -307,11 +391,22 @@ const IC={
 'trophy':'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
 'trash-2':'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>'};
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
-const OB=[["flask-conical","Vítej v TadxChemie","Opakuj chemii 1. ročníku SŠ rychle, přehledně a bez nudy."],["trophy","Známka a žebříček","Za každý pokus dostaneš známku 1 až 5 a body do žebříčku."],["shield-check","Fér hra","Během testu nepřepínej okno ani kartu. Po opakovaném porušení pravidel se test ukončí."],["test-tube-diagonal","QuizStudio","Vytvoř vlastní kvíz pro sebe nebo pro celou třídu."],["upload","Kvíz ze souboru","Nahraj .txt, .csv nebo .json a TadxChemie z něj udělá otázky."],["users","Učebna","Učitel zadává kvízy, žáci se připojí kódem a vidí termíny i známky."]];
-function obR(){const o=OB[ob],c=$('#onb .card');c.classList.remove('sw');void c.offsetWidth;c.classList.add('sw');$('#obI').innerHTML=ic(o[0]);$('#obT').textContent=o[1];$('#obD').textContent=o[2];$('#obDots').innerHTML=OB.map((_,i)=>`<i class="${i==ob?'on':''}"></i>`).join('');$('#obN').textContent=ob==OB.length-1?'Začít':'Další';$('#obB').style.visibility=ob?'visible':'hidden'}
+const OB=[["flask-conical","Vítej v TadxChemie","Opakuj chemii 1. ročníku SŠ rychle, přehledně a bez nudy.",['Kvízy z celé chemie 1. ročníku SŠ','Laboratoř s tabulkou prvků, rovnicemi a kalkulačkou','LunaAI – přátelská studijní parťačka']],
+["trophy","Známka a žebříček","Za každý pokus dostaneš známku 1 až 5 a body do žebříčku.",['Známka podle procent: 90, 75, 55 a 40 %','XP, levely a 13 odznaků','Denní výzva, týdenní cíl a žebříček']],
+["shield-check","Fér hra","Během testu nepřepínej okno ani kartu. Po opakovaném porušení pravidel se test ukončí.",['Anti-cheat hlídá okno i celou obrazovku','Procvičování bez časomíry a bez stresu','TadxVerify chrání přihlášení i registraci']],
+["test-tube-diagonal","QuizStudio","Vytvoř vlastní kvíz pro sebe nebo pro celou třídu.",['Pět typů otázek včetně párů a seřazení','Sdílení kvízů kódem nebo souborem','Úprava a mazání kdykoli']],
+["upload","Kvíz ze souboru","Nahraj .txt, .csv nebo .json a TadxChemie z něj udělá otázky.",['Přetáhni soubor a otázky vzniknou samy','Před uložením je zkontroluješ v editoru','Funguje i pro celou třídu']],
+["users","Učebna","Učitel zadává kvízy, žáci se připojí kódem a vidí termíny i známky.",['Učebny s kódem a nástěnkou','Zadání s termíny a upozorněním','Přehled výsledků a nejčastějších chyb']],
+["moon","LunaAI","Přátelská AI parťačka, která ti vysvětlí chemii a nechá se zkoušet.",['Online s tvým API klíčem, nebo offline bez něj','Odpoví na desítky otázek z chemie i z aplikace','Počítá, vyvažuje rovnice a zkouší tě otázkami']]];
+function obR(){const o=OB[ob],c=$('#onb .card');c.classList.remove('sw');void c.offsetWidth;c.classList.add('sw');
+$('#obI').innerHTML=ic(o[0]);$('#obC').innerHTML=ic(o[0]);$('#obE').textContent='Krok '+(ob+1)+' z '+OB.length;$('#obT').textContent=o[1];$('#obD').textContent=o[2];
+$('#obX').innerHTML=o[3].map((x,i)=>`<li style="animation-delay:${.15+i*.1}s">${ic('circle-check')}<span>${esc(x)}</span></li>`).join('');
+$('#obS').innerHTML=OB.map((s,i)=>`<li class="${i==ob?'on':i<ob?'dn':''}" onclick="obJ(${i})"><b>${i<ob?ic('check'):i+1}</b><span>${esc(s[1])}</span></li>`).join('');
+$('#obDots').innerHTML=OB.map((_,i)=>`<i class="${i==ob?'on':''}"></i>`).join('');$('#obN').textContent=ob==OB.length-1?'Začít':'Další';$('#obB').style.visibility=ob?'visible':'hidden'}
+function obJ(i){ob=i;obR()}
 $('#obN').onclick=()=>{ob<OB.length-1?(ob++,obR()):endOb()};
 $('#obB').onclick=()=>{if(ob){ob--;obR()}};
-addEventListener('keydown',e=>{if($('#onb').classList.contains('on')){if(e.key=='ArrowRight')$('#obN').click();if(e.key=='ArrowLeft')$('#obB').click()}});
+addEventListener('keydown',e=>{if($('#onb').classList.contains('on')){if(e.key=='ArrowRight'||e.key=='Enter'){e.preventDefault();$('#obN').click()}if(e.key=='ArrowLeft')$('#obB').click();if(e.key=='Escape')endOb()}});
 function endOb(){DB.s('ob',1);go(me?'home':'auth')}
 
 /* AUTH */
@@ -333,6 +428,8 @@ else if(s=='id'){T.textContent='Přihlášení';S.innerHTML=tg+'Pokračuj do Tad
 h=fld('gi','E-mail nebo jméno',A.id,'text','username')+er+`<p style="margin:12px 0 26px"><a class="lk" onclick="forgot()">Zapomenuté heslo?</a></p><div class="row" style="justify-content:space-between"><button class="lkb" onclick="aUp()">Vytvořit účet</button><button class="pri" onclick="aNext()">Další</button></div><p style="margin-top:24px;text-align:center"><a class="lk" onclick="aT()">${A.teacher?'Přihlášení žáka':'Teacher login'}</a></p>`}
 else if(s=='pw'){T.textContent='Vítej';S.innerHTML=tg+chip(A.u.name,A.u.email||A.u.name,"A.step='id';aR(-1)");
 h=fld('gp','Heslo','','password','current-password')+(A.u.email?'':fld('gm','Doplň e-mail ke svému účtu','','email','email'))+er+ck(['gp'])+tvw()+`<p style="margin:14px 0 26px"><a class="lk" onclick="forgot()">Zapomenuté heslo?</a></p><div class="row" style="justify-content:flex-end"><button class="pri" onclick="aNext()">Další</button></div>`}
+else if(s=='fp'){T.textContent='Obnovení hesla';S.textContent='Zadej záchranný kód, který sis uložil/a při registraci.';
+h=fld('fu','E-mail nebo jméno',A.id,'text','username')+fld('fr','Záchranný kód',A.rc||'','text','off')+fld('fp1','Nové heslo (min. 6 znaků)','','password','new-password')+fld('fp2','Potvrzení nového hesla','','password','new-password')+er+ck(['fp1','fp2'])+tvw()+`<div class="row" style="justify-content:space-between;margin-top:20px"><button class="lkb" onclick="A.step='id';aR(-1)">Zpět</button><button class="pri" onclick="fpGo()">Obnovit heslo</button></div><p style="margin-top:18px;text-align:center"><a class="lk" onclick="fpReq()">Nemám kód – požádat admina o reset</a></p>`}
 else if(s=='u1'){T.textContent='Vytvořit účet';S.textContent='Začni s TadxChemie';
 h=fld('gn','Jméno (uvidíš ho v žebříčku)',A.name,'text','nickname')+fld('ge','E-mail',A.email,'email','email')+er+`<p class="m" style="margin:16px 0 6px;font-size:.9rem">Jsem</p><div class="tabs"><button id="rS" class="${A.role=='s'?'on':''}" onclick="sr('s')">Žák</button><button id="rT" class="${A.role=='t'?'on':''}" onclick="sr('t')">Učitel</button></div><div class="row" style="justify-content:space-between;margin-top:22px"><button class="lkb" onclick="A.step='id';aR(-1)">Přihlásit se</button><button class="pri" onclick="aNext()">Další</button></div>`}
 else{T.textContent='Vytvořit účet';S.innerHTML=chip(A.name,A.email,"A.step='u1';aR(-1)");
@@ -344,7 +441,7 @@ function aGo(fn){const c=$('#gc');c.classList.add('ld');setTimeout(()=>{c.classL
 function sr(r){A.role=r;$('#rS').classList.toggle('on',r=='s');$('#rT').classList.toggle('on',r=='t')}
 function aUp(){if(!SET().reg)return toast('Registrace je dočasně vypnutá. Kontaktuj admina.');A.step='u1';aR(1)}
 function aT(){A.teacher=!A.teacher;A.step='id';aR(0)}
-function forgot(){toast('Heslo ti může resetovat učitel nebo admin v sekci Admin. Odkaz e-mailem zatím poslat nejde.')}
+function forgot(){A.id=($('#gi')?$('#gi').value.trim():A.id)||(A.u?A.u.name:'');A.step='fp';aR(1)}
 function aPick(i){const r=RC()[i],u=aFind(r.email);if(!u){DB.s('recent',RC().filter((_,k)=>k!=i));A.step='id';return aE('Tento účet už neexistuje.','gi')}
 A.teacher=u.role=='t';A.u=u;aGo(()=>{A.step='pw';aR(1)})}
 function aNext(){const s=A.step;
@@ -358,13 +455,13 @@ const e=A.email,p=$('#gp').value,p2=$('#gp2').value,c=$('#gk')?$('#gk').value.tr
 if(p.length<6||!/[A-Za-z]/.test(p)||!/\d/.test(p))return aE('Heslo: min. 6 znaků, písmeno i číslice.','gp');if(p!==p2)return aE('Hesla se neshodují.','gp2');
 const adm=e===ADMIN_EMAIL;if(!adm&&A.role=='t'&&c!==SET().tcode)return aE('Neplatný kód učitele.','gk');
 return aReg(e,p)}
-function aDone(u,isNew){me={name:u.name,role:u.role,email:u.email};DB.s('me',me);audit(isNew?'reg':'login',u.name);idle();TVOK=0;
+function aDone(u,isNew){me={name:u.name,role:u.role,email:u.email};DB.s('me',me);audit(isNew?'reg':'login',u.name);idle();TVOK=0;if(u.must)setTimeout(()=>{toast('Máš dočasné heslo – změň si ho prosím v Profilu.');go('prof')},900);
 DB.s('recent',[{name:u.name,email:u.email||u.name},...RC().filter(r=>r.email!=(u.email||u.name))].slice(0,3));
 toast(isNew?(u.role=='a'?'Vítej, admine.':'Účet vytvořen.'):'Vítej zpět, '+u.name);go('home')}
 function out(){me=null;DB.s('me',null);go('auth')}
 
 /* HOME */
-const SET=()=>({strikes:3,secs:30,count:10,idle:30,tcode:TEACHER_CODE,reg:true,maint:false,hidden:[],...DB.g('set',{})});
+const SET=()=>({strikes:3,secs:30,count:10,idle:30,tcode:TEACHER_CODE,reg:true,maint:false,hidden:[],luna:true,lunaOnline:true,...DB.g('set',{})});
 const E1='H|vodík;He|helium;Li|lithium;C|uhlík;N|dusík;O|kyslík;F|fluor;Ne|neon;Na|sodík;Mg|hořčík;Al|hliník;Si|křemík;P|fosfor;S|síra;Cl|chlor',
 E2='K|draslík;Ca|vápník;Fe|železo;Cu|měď;Zn|zinek;Ag|stříbro;Au|zlato;Hg|rtuť;Pb|olovo;Sn|cín;I|jod;Br|brom;Ba|baryum;Mn|mangan;Ni|nikl';
 const GQ=[
@@ -403,7 +500,7 @@ const GQ=[
 const GENQ=GQ.map((g,i)=>({id:'g'+i,title:g[0],tpl:g[1],rev:g[2],pairs:g[3],builtin:true,desc:g[3].split(';').length+' otázek v bance'}));
 const build=g=>{const P=g.pairs.split(';').map(s=>s.split('|'));if(g.rev)P.forEach(p=>p.reverse());const A=[...new Set(P.map(p=>p[1]))];return P.map(p=>[g.tpl.replace('{q}',p[0]),[p[1],...sh(A.filter(a=>a!=p[1])).slice(0,3)],0])};
 const allQ=all=>[BASE,NEWQ,dailyQ(),...GENQ.map(g=>({...g,q:build(g)})),...DB.g('quizzes',[])].filter(q=>all||!(SET().hidden||[]).includes(q.id));
-function home(){$('#hi').textContent='Ahoj, '+me.name;dly();if(DB.g('seen','')!=VER){DB.s('seen',VER);setTimeout(()=>go('log'),500)}const n=DB.g('note','');$('#note').style.display=n?'block':'none';$('#note').innerHTML=ic('megaphone')+' '+esc(n);$('#lbh').innerHTML=ic('trophy')+' Žebříček';
+function home(){$('#hi').textContent='Ahoj, '+me.name;dly();$('#lunaH').style.display=SET().luna===false?'none':'flex';if(DB.g('seen','')!=VER){DB.s('seen',VER);setTimeout(()=>go('log'),500)}const n=DB.g('note','');$('#note').style.display=n?'block':'none';$('#note').innerHTML=ic('megaphone')+' '+esc(n);$('#lbh').innerHTML=ic('trophy')+' Žebříček';
 const A=allQ();$('#qlist').innerHTML=A.filter(q=>!q.daily).sort((a,b)=>fv(b.id)-fv(a.id)).map(q=>`<div class="card qc" data-t="${esc(q.title.toLowerCase())}" onclick="start('${q.id}')"><div class="row" style="justify-content:space-between"><span class="tag">${q.builtin?'oficiální':'od '+esc(q.by)}</span><button style="border:0;background:none;padding:2px;color:${fv(q.id)?'var(--b)':'var(--mut)'}" aria-label="Oblíbené" onclick="favT('${q.id}',event)">${ic('star').replace('class="ic ','style="fill:'+(fv(q.id)?'currentColor':'none')+'" class="ic ')}</button></div><h2 style="margin-top:8px;font-size:1.2rem">${esc(q.title)}</h2><p class="m">${esc(q.desc||q.q.length+' otázek')}</p><div class="row" style="margin-top:12px"><button onclick="event.stopPropagation();start('${q.id}',1)">Procvičit</button>${q.pairs?`<button onclick="event.stopPropagation();cards('${q.id}')">Kartičky</button>`:''}</div></div>`).join('');
 const sel=$('#lbq'),v=sel.value||'*';sel.innerHTML='<option value="*">Celkově (všechny kvízy)</option><option value="#w">Tento týden (všechny kvízy)</option>'+A.map(q=>`<option>${esc(q.title)}</option>`).join('');sel.value=v;sel.onchange=board;board()}
 function board(){const f=$('#lbq').value,W=wkKey(),all=f=='*'||f=='#w',R=DB.g('results',[]).filter(r=>!r.dq&&(f=='*'||(f=='#w'?(r.date||'').slice(0,10)>=W:r.quiz==f))),b={};
@@ -491,8 +588,9 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='5.1';let LL=2,CD=null,AC=null,NB=0;
-const CL=[['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
+const VER='6.0';let LL=2,CD=null,AC=null,NB=0;
+const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
+['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
 ['4.0','Gigantická aktualizace','22. 10. 2026',['Laboratoř: interaktivní periodická tabulka (prvky 1–36) s hrou „Najdi prvek“','Vyvažování rovnic: 30 rovnic od lehkých po těžké s nápovědou a kontrolou podle počtu atomů','Chemická kalkulačka: molární hmotnost a složení, převody mezi g, mol, dm³ a částicemi, vztahy ρ, c a w s postupem','Nové typy otázek: pravda/nepravda, textová odpověď, přiřazování párů a seřazení (i v QuizStudiu a při importu)','Denní výzva s bonusem XP a sérií dní','Moje slabiny a kartičky s opakováním podle zapomínání (Leitner)','Souboj dvou hráčů na jednom zařízení','Centrum upozornění se zadáními, termíny a odznakem v liště','Certifikát k tisku nebo uložení do PDF, export třídy do CSV a tisk tabulky výsledků','Sdílení kvízů kódem nebo souborem','Světlý motiv, velikost písma, čitelné písmo pro dyslexii, omezení animací a klávesové zkratky']],
 ['3.0','Mega aktualizace','',['Učebna: učitel vytvoří třídu s kódem, žáci se připojí, nástěnka s příspěvky a zadávání kvízů s termíny','Přehled výsledků třídy pro učitele a stav zadání, známky a termíny pro žáky','Přizpůsobení profilu: ikona avataru, barva, titul z odznaků a text „O mně“','TadxVerify: vlastní ověření „nejsi robot“ (opis znaků nebo řazení prvků podle protonového čísla)','Bezpečnější hesla: PBKDF2 se solí, zámek účtu po 5 chybách, odhlášení po nečinnosti, kontrola síly hesla','Kontrolní podpis výsledků, který odhalí ruční úpravy dat','Rozšířený admin: statistiky s grafy, blokování uživatelů, správa učeben a kvízů, audit log, režim údržby, vypnutí registrace a změna kódu učitele']],
@@ -506,7 +604,7 @@ const BN=`<svg class="bn" viewBox="0 0 800 300" role="img" aria-label="TadxChemi
 <g fill="#2ee6d6"><circle class="nd" cx="560" cy="40" r="6"/><circle class="nd" cx="640" cy="90" r="9"/><circle class="nd" cx="740" cy="50" r="5"/><circle class="nd" cx="700" cy="240" r="7"/><circle class="nd" cx="580" cy="262" r="5"/><circle class="nd" cx="260" cy="40" r="5"/><circle class="nd" cx="380" cy="26" r="7"/><circle class="nd" cx="470" cy="60" r="5"/></g>
 <g transform="translate(52,50) scale(8)"><g clip-path="url(#bc)"><rect x="0" y="12" width="24" height="12" fill="rgba(124,92,255,.85)"/><circle class="bu" cx="10.5" cy="19" r=".8" fill="#fff"/><circle class="bu" cx="13.5" cy="20" r=".6" fill="#fff"/><circle class="bu" cx="12" cy="21" r=".5" fill="#fff"/></g><g fill="none" stroke="url(#bg1)" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/></g></g>
 <text x="285" y="165" font-family="Segoe UI,system-ui,sans-serif" font-size="78" font-weight="800" letter-spacing="-3" fill="#eceffd">Tadx<tspan fill="url(#bg1)">Chemie</tspan></text>
-<text x="289" y="212" font-family="Segoe UI,system-ui,sans-serif" font-size="22" fill="#9aa3c7" letter-spacing="1">v5.1 · Bezpečnostní aktualizace</text></svg>`;
+<text x="289" y="212" font-family="Segoe UI,system-ui,sans-serif" font-size="22" fill="#9aa3c7" letter-spacing="1">v6.0 · Luna aktualizace</text></svg>`;
 function log(){$('#lgB').innerHTML=BN;$('#lgL').innerHTML=CL.map((c,i)=>`<div class="card" style="animation:sl .5s ${i*.08}s both"><div class="row" style="justify-content:space-between"><h2 style="margin:0">v${c[0]} · ${esc(c[1])}</h2>${i==0?'<span class="tag">nové</span>':''}</div><p class="m" style="margin:4px 0 10px">${c[2]}</p><ul style="padding-left:20px">${c[3].map(x=>`<li style="margin:4px 0">${esc(x)}</li>`).join('')}</ul></div>`).join('')}
 
 function snd(k){if(DB.g('mute',0))return;try{AC=AC||new AudioContext();const f={ok:[660,880],no:[220,160],win:[523,659,784,1046],badge:[784,988],tick:[500]}[k],t0=AC.currentTime;
@@ -531,7 +629,7 @@ if(Q.id=='daily'&&!dq&&!Q.practice){const D=DB.g('daily',{});if(!(D[me.name]&&D[
 x+=dx;addXP(x);goalChk();LASTI=DB.g('results',[]).length-1;$('#rcb').style.display=(!dq&&!Q.practice&&g<=3)?'inline-block':'none';if(dx)$('#rd').textContent+=` · denní výzva +${dx} XP`;
 $('#rd').textContent+=` · +${x} XP`+(Q.practice?' · procvičování (mimo žebříček)':'');if(!dq&&g<=2){confetti();snd('win')}}
 function prof(){const p=PF(),L=lvl(p.xp),lo=50*(L-1)**2,hi=50*L**2,s=stats();
-$('#pAv').innerHTML=avh(me.name,64);pEd();weak();pRes();pUi();const tt=BD.find(b=>b[0]==p.title);$('#pBio').textContent=(tt?tt[2]+(p.bio?' · ':''):'')+(p.bio||'');$('#pN').textContent=me.name;$('#pL').textContent=`Level ${L} · ${p.xp} XP (${hi-p.xp} XP do dalšího levelu)`;
+$('#pAv').innerHTML=avh(me.name,64);pEd();weak();pRes();pUi();pSecR();const tt=BD.find(b=>b[0]==p.title);$('#pBio').textContent=(tt?tt[2]+(p.bio?' · ':''):'')+(p.bio||'');$('#pN').textContent=me.name;$('#pL').textContent=`Level ${L} · ${p.xp} XP (${hi-p.xp} XP do dalšího levelu)`;
 $('#pX').style.transform='scaleX(0)';setTimeout(()=>$('#pX').style.transform=`scaleX(${(p.xp-lo)/(hi-lo)})`,150);
 const R=DB.g('results',[]).filter(r=>r.user==me.name&&!r.dq),avg=R.length?(R.reduce((a,r)=>a+r.grade,0)/R.length).toFixed(2):'–';
 $('#pS').innerHTML=[['flame','Série dní',p.streak],['zap','XP celkem',p.xp],['star','Testů',s.n],['award','Průměrná známka',avg]].map(x=>`<div class="card" style="text-align:center;margin:0"><div style="font-size:1.8rem;color:var(--b)">${ic(x[0])}</div><h2 style="margin:4px 0">${x[2]}</h2><span class="m">${x[1]}</span></div>`).join('');
@@ -554,10 +652,11 @@ h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math
 const sig=r=>cy([r.user,r.quiz,r.score,r.n,r.pct,r.grade,r.vio,r.dq?1:0,r.date,'tx3'].join('|'));
 const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 const HAS=()=>typeof crypto!=='undefined'&&crypto.subtle&&typeof TextEncoder!=='undefined';
-async function pbk(p,salt){const e=new TextEncoder(),k=await crypto.subtle.importKey('raw',e.encode(p),'PBKDF2',false,['deriveBits']);return hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:e.encode(salt),iterations:100000},k,256))}
-async function mkpw(p){if(!HAS())return{pw:hs(p)};const s=hex(crypto.getRandomValues(new Uint8Array(12)));return{salt:s,ph:await pbk(p,s)}}
-async function chk(u,p){if(u.salt&&HAS())return(await pbk(p,u.salt))===u.ph;return u.pw==hs(p)}
-async function upg(u,p){if(!HAS()||u.salt)return;const U=DB.g('users',[]),k=U.findIndex(x=>x.name==u.name);if(k<0)return;const h=await mkpw(p);delete U[k].pw;Object.assign(U[k],h);DB.s('users',U);delete u.pw;Object.assign(u,h)}
+const ITER=210000;
+async function pbk(p,salt,it){const e=new TextEncoder(),k=await crypto.subtle.importKey('raw',e.encode(p),'PBKDF2',false,['deriveBits']);return hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:e.encode(salt),iterations:it||100000},k,256))}
+async function mkpw(p){if(!HAS())return{pw:hs(p)};const s=hex(crypto.getRandomValues(new Uint8Array(12)));return{salt:s,it:ITER,ph:await pbk(p,s,ITER)}}
+async function chk(u,p){if(u.salt&&HAS())return(await pbk(p,u.salt,u.it||100000))===u.ph;return u.pw==hs(p)}
+async function upg(u,p){if(!HAS()||(u.salt&&(u.it||100000)>=ITER))return;const U=DB.g('users',[]),k=U.findIndex(x=>x.name==u.name);if(k<0)return;const h=await mkpw(p);delete U[k].pw;Object.assign(U[k],h);DB.s('users',U);delete u.pw;Object.assign(u,h)}
 function audit(a,who,x){const L=DB.g('audit',[]);L.unshift({t:new Date().toISOString().slice(0,19).replace('T',' '),a,who:who||'',x:x||'',by:me?me.name:''});DB.s('audit',L.slice(0,300))}
 async function aPw(){const u=A.u,pw=$('#gp').value,L=DB.g('lock',{}),k=u.name.toLowerCase(),l=L[k]||{n:0,until:0};
 if(l.until>Date.now())return aE('Účet je dočasně zamčený. Zkus to za '+Math.ceil((l.until-Date.now())/60000)+' min.','gp');
@@ -569,8 +668,8 @@ delete L[k];DB.s('lock',L);
 let w=u;if(!w.email){const m=($('#gm')||{value:''}).value.trim().toLowerCase();if(!/^\S+@\S+\.\S+$/.test(m))return aE('Zadej platný e-mail.','gm');if(aFind(m))return aE('Tento e-mail už je zaregistrovaný.','gm');
 const U=DB.g('users',[]),i=U.findIndex(x=>x.name==u.name);U[i].email=m;if(m===ADMIN_EMAIL)U[i].role='a';DB.s('users',U);w=U[i]}
 await upg(w,pw);A.u=w;aGo(()=>aDone(w))}
-async function aReg(e,p){if(!tvOk()&&!(await tvAsk()))return;const U=DB.g('users',[]),h=await mkpw(p),u={name:A.name,email:e,role:e===ADMIN_EMAIL?'a':A.role,created:Date.now(),...h};
-if(U.some(x=>x.name.toLowerCase()==u.name.toLowerCase()||x.email==e))return aE('Jméno nebo e-mail mezitím někdo použil.','ge');U.push(u);DB.s('users',U);aGo(()=>aDone(u,1))}
+async function aReg(e,p){if(!tvOk()&&!(await tvAsk()))return;const U=DB.g('users',[]),h=await mkpw(p),u={name:A.name,email:e,role:e===ADMIN_EMAIL?'a':A.role,created:Date.now(),...h,...(RC0=await rcMake()).h};
+if(U.some(x=>x.name.toLowerCase()==u.name.toLowerCase()||x.email==e))return aE('Jméno nebo e-mail mezitím někdo použil.','ge');U.push(u);DB.s('users',U);await rcShow(RC0.code);aGo(()=>aDone(u,1))}
 function pm(v){let s=0;if(v.length>=6)s++;if(v.length>=10)s++;if(/[a-z]/.test(v)&&/[A-Z]/.test(v))s++;if(/\d/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;const i=$('#pmI');if(i){i.style.width=s*20+'%';i.style.background=['#ff5c7a','#ff5c7a','#ffb86b','#ffd166','#38e08a','#38e08a'][s]}}
 let idleT;function idle(){clearTimeout(idleT);if(me&&!active)idleT=setTimeout(()=>{if(me&&!active){toast('Byl jsi odhlášen pro nečinnost.');out()}},SET().idle*60000)}
 ['pointerdown','keydown'].forEach(e=>addEventListener(e,idle));
@@ -662,30 +761,30 @@ const days=[...Array(7)].map((_,i)=>new Date(Date.now()-(6-i)*864e5).toISOString
 return`<div class="grid" style="margin-bottom:16px">${K.map(k=>`<div class="card" style="text-align:center;margin:0"><div style="font-size:1.6rem;color:var(--b)">${ic(k[0])}</div><h2 style="margin:4px 0">${k[2]}</h2><span class="m">${k[1]}</span></div>`).join('')}</div>
 <div class="card"><h2>Testy za posledních 7 dní</h2>${bars(days.map(d=>A0.filter(r=>(r.date||'').slice(0,10)==d).length),days.map(d=>d.slice(8)+'.'+d.slice(5,7)+'.'))}</div>
 <div class="card"><h2>Rozložení známek</h2>${bars([1,2,3,4,5].map(g=>R.filter(r=>r.grade==g).length),['1','2','3','4','5'])}</div>${missH([],1)}`}
-function adU(){const U=DB.g('users',[]);return`<div class="card wrap"><input id="aus" placeholder="Hledat uživatele…" oninput="auf()">${tb(['Uživatel','E-mail','Role','Stav',''],U.map((u,i)=>`<tr data-t="${esc((u.name+' '+(u.email||'')).toLowerCase())}"><td><span class="row">${avh(u.name,28)}<b>${esc(u.name)}</b></span></td><td>${esc(u.email||'–')}</td><td><select onchange="setR(${i},this.value)" style="margin:0">${[['s','Žák'],['t','Učitel'],['a','Admin']].map(r=>`<option value="${r[0]}" ${u.role==r[0]?'selected':''}>${r[1]}</option>`).join('')}</select></td><td>${u.ban?'<span class="warn">zablokován</span>':'aktivní'}</td><td><button onclick="ban(${i})">${u.ban?'Odblokovat':'Blokovat'}</button> <button onclick="rp(${i})">Reset hesla</button> <button class="dng" aria-label="Smazat uživatele" onclick="du(${i})">${ic('trash-2')}</button></td></tr>`))}</div>`}
+function adU(){const U=DB.g('users',[]);return`<div class="card wrap"><input id="aus" placeholder="Hledat uživatele…" oninput="auf()">${tb(['Uživatel','E-mail','Role','Stav',''],U.map((u,i)=>`<tr data-t="${esc((u.name+' '+(u.email||'')).toLowerCase())}"><td><span class="row">${avh(u.name,28)}<b>${esc(u.name)}</b></span></td><td>${esc(u.email||'–')}</td><td><select onchange="setR(${i},this.value)" style="margin:0">${[['s','Žák'],['t','Učitel'],['a','Admin']].map(r=>`<option value="${r[0]}" ${u.role==r[0]?'selected':''}>${r[1]}</option>`).join('')}</select></td><td>${u.ban?'<span class="warn">zablokován</span>':'aktivní'}</td><td><button onclick="ban(${i})">${u.ban?'Odblokovat':'Blokovat'}</button> <button onclick="rp(${i})">Reset hesla</button> <button onclick="adRc(${i})">Záchranný kód</button> <button class="dng" aria-label="Smazat uživatele" onclick="du(${i})">${ic('trash-2')}</button></td></tr>`))}</div>`}
 function auf(){const v=$('#aus').value.toLowerCase();document.querySelectorAll('#adC tr[data-t]').forEach(r=>r.style.display=r.dataset.t.includes(v)?'':'none')}
 function adC(){return`<div class="card wrap">${tb(['Učebna','Kód','Učitel','Žáků','Zadání',''],CLS().map(c=>`<tr><td>${esc(c.name)}</td><td>${c.code}</td><td>${esc(c.owner)}</td><td>${c.members.length}</td><td>${c.asg.length}</td><td><button onclick="CC='${c.id}';go('cd')">Otevřít</button> <button class="dng" aria-label="Smazat učebnu" onclick="CC='${c.id}';delC();admin()">${ic('trash-2')}</button></td></tr>`))}</div>`}
 function adQ(){const H=SET().hidden||[];return`<div class="card wrap">${tb(['Kvíz','Autor','Otázek',''],allQ(1).filter(q=>!q.daily).map(q=>`<tr><td>${esc(q.title)}</td><td>${q.builtin?'oficiální':esc(q.by)}</td><td>${q.q.length}</td><td><button onclick="hideQ('${q.id}')">${H.includes(q.id)?'Zobrazit':'Skrýt'}</button>${q.builtin?'':` <button class="dng" aria-label="Smazat kvíz" onclick="delQa('${q.id}')">${ic('trash-2')}</button>`}</td></tr>`))}</div>`}
 function adS(){const L=DB.g('lock',{}),lk=Object.entries(L).filter(([k,v])=>v.until>Date.now()),R=DB.g('results',[]).filter(r=>r.sig&&sig(r)!=r.sig),AU=DB.g('audit',[]).slice(0,80);
-return`<div class="card wrap"><h2>Zamčené účty</h2>${tb(['Účet','Zbývá',''],lk.map(([k,v])=>`<tr><td>${esc(k)}</td><td>${Math.ceil((v.until-Date.now())/60000)} min</td><td><button onclick="unl('${esc(k)}')">Odemknout</button></td></tr>`))}</div>
+return`${rrH()}<div class="card wrap"><h2>Zamčené účty</h2>${tb(['Účet','Zbývá',''],lk.map(([k,v])=>`<tr><td>${esc(k)}</td><td>${Math.ceil((v.until-Date.now())/60000)} min</td><td><button onclick="unl('${esc(k)}')">Odemknout</button></td></tr>`))}</div>
 <div class="card wrap"><h2>Podezřelé výsledky (nesedí podpis)</h2>${tb(['Žák','Kvíz','Skóre','Datum'],R.map(r=>`<tr><td>${esc(r.user)}</td><td>${esc(r.quiz)}</td><td>${r.score}/${r.n}</td><td>${r.date}</td></tr>`))}</div>
 <div class="card wrap"><div class="row" style="justify-content:space-between"><h2 style="margin:0">Audit log</h2><button class="dng" onclick="clrA()">Vymazat</button></div>${tb(['Čas','Akce','Koho','Provedl','Detail'],AU.map(a=>`<tr><td>${a.t}</td><td>${esc(a.a)}</td><td>${esc(a.who)}</td><td>${esc(a.by)}</td><td>${esc(a.x)}</td></tr>`))}</div>`}
 function adN2(){const S=SET();return`<div class="card"><h2>Oznámení a limity</h2><label class="m">Oznámení na úvodní stránce</label><textarea id="anote" rows="2">${esc(DB.g('note',''))}</textarea>
 <div class="grid"><div><label class="m">Max. porušení anti-cheatu</label><input id="sk" type="number" min="1" max="10" value="${S.strikes}"></div><div><label class="m">Sekund na otázku</label><input id="sc" type="number" min="5" max="300" value="${S.secs}"></div><div><label class="m">Otázek v testu</label><input id="cn" type="number" min="3" max="30" value="${S.count}"></div><div><label class="m">Odhlášení po nečinnosti (min)</label><input id="si" type="number" min="1" max="240" value="${S.idle}"></div></div>
 <label class="m">Kód pro registraci učitelů</label><input id="stc" value="${esc(S.tcode)}">
-<label class="ck"><input type="checkbox" id="sr" ${S.reg?'checked':''}> Povolit novou registraci</label><label class="ck" style="margin-bottom:16px"><input type="checkbox" id="sm" ${S.maint?'checked':''}> Režim údržby (přihlásí se jen admin)</label><button class="pri" onclick="saveAd()">Uložit nastavení</button></div>
+<label class="ck"><input type="checkbox" id="sr" ${S.reg?'checked':''}> Povolit novou registraci</label><label class="ck" style="margin-bottom:16px"><input type="checkbox" id="sm" ${S.maint?'checked':''}> Režim údržby (přihlásí se jen admin)</label><label class="ck"><input type="checkbox" id="sl" ${S.luna!==false?'checked':''}> Povolit LunaAI</label><label class="ck" style="margin-bottom:16px"><input type="checkbox" id="slo" ${S.lunaOnline!==false?'checked':''}> Povolit online režim LunaAI (vlastní API klíč uživatele)</label><button class="pri" onclick="saveAd()">Uložit nastavení</button></div>
 <div class="card"><h2>Data</h2><div class="row" style="flex-wrap:wrap"><button onclick="exp()">Záloha databáze</button><button onclick="$('#bk').click()">Obnovit ze zálohy</button><input id="bk" type="file" accept=".json" hidden onchange="imp(this.files[0])"><button class="dng" onclick="wipe()">Smazat všechny výsledky</button></div></div>`}
 function setR(i,r){const U=DB.g('users',[]);U[i].role=r;DB.s('users',U);audit('role',U[i].name,r);if(U[i].name==me.name){me.role=r;DB.s('me',me);nav()}toast('Role změněna.')}
 function ban(i){const U=DB.g('users',[]);if(U[i].name==me.name)return toast('Nemůžeš zablokovat sám sebe.');U[i].ban=!U[i].ban;DB.s('users',U);audit(U[i].ban?'ban':'unban',U[i].name);admin()}
-function rp(i){const U=DB.g('users',[]),tp='Tadx'+Math.random().toString(36).slice(2,8)+'1';delete U[i].salt;delete U[i].ph;U[i].pw=hs(tp);DB.s('users',U);audit('pwreset',U[i].name);alert('Dočasné heslo pro '+U[i].name+': '+tp+'\nPředej mu ho a poraď, ať si ho změní.')}
+function rp(i){const U=DB.g('users',[]),tp='Tadx'+(typeof crypto!=='undefined'&&crypto.getRandomValues?hex(crypto.getRandomValues(new Uint8Array(4))):Math.random().toString(36).slice(2,10))+'1';delete U[i].salt;delete U[i].ph;delete U[i].it;U[i].must=1;U[i].pw=hs(tp);DB.s('users',U);const RR=DB.g('resets',[]);RR.forEach(r=>{if(r.user==U[i].name&&r.st=='pending')r.st='done'});DB.s('resets',RR);audit('pwreset',U[i].name);alert('Dočasné heslo pro '+U[i].name+': '+tp+'\nPředej mu ho a poraď, ať si ho změní.')}
 function du(i){const U=DB.g('users',[]);if(U[i].name==me.name)return toast('Nemůžeš smazat sám sebe.');if(!confirm('Smazat uživatele '+U[i].name+'?'))return;audit('userdel',U[i].name);U.splice(i,1);DB.s('users',U);admin()}
 function unl(k){const L=DB.g('lock',{});delete L[k];DB.s('lock',L);audit('unlock',k);admin()}
 function clrA(){if(confirm('Vymazat audit log?')){DB.s('audit',[]);admin()}}
 function hideQ(id){const S=DB.g('set',{}),H=new Set(S.hidden||[]);H.has(id)?H.delete(id):H.add(id);S.hidden=[...H];DB.s('set',S);audit('quiz-vis',id);admin()}
 function delQa(id){if(!confirm('Smazat kvíz?'))return;DB.s('quizzes',DB.g('quizzes',[]).filter(q=>q.id!=id));audit('quizdel',id);admin()}
-function saveAd(){DB.s('note',$('#anote').value.trim());DB.s('set',{...DB.g('set',{}),strikes:+$('#sk').value||3,secs:+$('#sc').value||30,count:+$('#cn').value||10,idle:+$('#si').value||30,tcode:$('#stc').value.trim()||TEACHER_CODE,reg:$('#sr').checked,maint:$('#sm').checked});audit('settings','');idle();toast('Uloženo.')}
-function exp(){const o={};Object.keys(localStorage).filter(k=>k.startsWith('tc_')&&k!='tc_me').forEach(k=>o[k]=localStorage[k]);dl(new Blob([JSON.stringify(o)],{type:'application/json'}),'tadxchemie-zaloha.json')}
-function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{Object.entries(JSON.parse(r.result)).forEach(([k,v])=>k.startsWith('tc_')&&k!='tc_me'&&localStorage.setItem(k,v));toast('Záloha obnovena.');setTimeout(()=>location.reload(),900)}catch(e){toast('Neplatná záloha.')}};r.readAsText(f)}
+function saveAd(){DB.s('note',$('#anote').value.trim());DB.s('set',{...DB.g('set',{}),strikes:+$('#sk').value||3,secs:+$('#sc').value||30,count:+$('#cn').value||10,idle:+$('#si').value||30,tcode:$('#stc').value.trim()||TEACHER_CODE,reg:$('#sr').checked,maint:$('#sm').checked,luna:$('#sl').checked,lunaOnline:$('#slo').checked});audit('settings','');idle();toast('Uloženo.')}
+function exp(){const o={};Object.keys(localStorage).filter(k=>k.startsWith('tc_')&&k!='tc_me'&&k!='tc_lk').forEach(k=>o[k]=localStorage[k]);dl(new Blob([JSON.stringify(o)],{type:'application/json'}),'tadxchemie-zaloha.json')}
+function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{Object.entries(JSON.parse(r.result)).forEach(([k,v])=>k.startsWith('tc_')&&k!='tc_me'&&k!='tc_lk'&&localStorage.setItem(k,v));toast('Záloha obnovena.');setTimeout(()=>location.reload(),900)}catch(e){toast('Neplatná záloha.')}};r.readAsText(f)}
 function wipe(){if(confirm('Opravdu smazat všechny výsledky a žebříček?')){DB.s('results',[]);audit('wipe','');toast('Výsledky smazány.')}}
 
 /* V4: TYPY OTAZEK */
@@ -712,8 +811,8 @@ const NEWQ={id:'newtypes',title:'Mix: nové typy otázek',desc:'Pravda/nepravda,
 
 /* V4: DENNI VYZVA */
 const rng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let x=Math.imul(a^a>>>15,1|a);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296};
-function dailyQ(){const pool=[];GENQ.forEach(g=>build(g).forEach(q=>pool.push(q)));NQ.forEach(q=>pool.push(q));const r=rng(parseInt(cy(today()),36)>>>0),idx=[...pool.keys()];
-for(let i=idx.length-1;i>0;i--){const j=r()*(i+1)|0;[idx[i],idx[j]]=[idx[j],idx[i]]}return{id:'daily',title:'Denní výzva',desc:'5 otázek dne',builtin:true,daily:true,q:idx.slice(0,5).map(i=>pool[i])}}
+let DQC=null;function dailyQ(){const T0=today();if(DQC&&DQC.d==T0)return DQC.v;const pool=[];GENQ.forEach(g=>build(g).forEach(q=>pool.push(q)));NQ.forEach(q=>pool.push(q));const r=rng(parseInt(cy(today()),36)>>>0),idx=[...pool.keys()];
+for(let i=idx.length-1;i>0;i--){const j=r()*(i+1)|0;[idx[i],idx[j]]=[idx[j],idx[i]]}const v={id:'daily',title:'Denní výzva',desc:'5 otázek dne',builtin:true,daily:true,q:idx.slice(0,5).map(i=>pool[i])};DQC={d:T0,v};return v}
 function dly0(){const D=DB.g('daily',{})[me.name],done=D&&D.d==today();$('#dly').innerHTML=`<div class="row" style="justify-content:space-between;flex-wrap:wrap"><div class="row" style="gap:14px"><span style="font-size:2rem;color:var(--b)">${ic('flame')}</span><div><h2 style="margin:0;font-size:1.2rem">Denní výzva</h2><p class="m">${done?'Splněno dnes ('+D.pct+' %). Zítra bude nová.':'5 otázek dne · bonus XP · série dní: '+PF().streak}</p></div></div><button class="pri" onclick="start('daily')">${done?'Zkusit znovu':'Spustit'}</button></div>`}
 
 /* V4: LEITNER + SLABINY */
@@ -742,25 +841,25 @@ function impCode(){const v=$('#qc').value.trim();if(!v.startsWith('TXQ1:'))retur
 if([...document.querySelectorAll('.qq')].every(x=>!x.value))$('#sQ').innerHTML='';if(!$('#sT').value)$('#sT').value=o.t||'';o.q.forEach(addQ);$('#qc').value='';toast('Kvíz načten. Zkontroluj ho a ulož.')}catch(e){toast('Kód nelze načíst.')}}
 
 /* V4: VZHLED A PRISTUPNOST */
-const UI=()=>({mode:'dark',fs:1,dys:false,rm:false,...DB.g('ui',{})});
-function applyUI(){const u=UI(),h=document.documentElement;h.classList.toggle('light',u.mode=='light');h.classList.toggle('dys',!!u.dys);h.classList.toggle('rm',!!u.rm);h.style.setProperty('--fs',u.fs)}
+const UI=()=>({mode:'dark',fs:1,dys:false,rm:false,eco:(navigator.deviceMemory||8)<=2||(navigator.hardwareConcurrency||8)<=2,...DB.g('ui',{})});
+function applyUI(){const u=UI(),h=document.documentElement;h.classList.toggle('light',u.mode=='light');h.classList.toggle('dys',!!u.dys);h.classList.toggle('rm',!!u.rm);h.classList.toggle('eco',!!u.eco);h.style.setProperty('--fs',u.fs)}
 function setUI(k,v){const u=UI();u[k]=v;DB.s('ui',u);applyUI();pUi()}
-function pUi(){const u=UI();$('#pU').innerHTML=`<p class="m">Režim</p><div class="tabs"><button class="${u.mode=='dark'?'on':''}" onclick="setUI('mode','dark')">Tmavý</button><button class="${u.mode=='light'?'on':''}" onclick="setUI('mode','light')">Světlý</button></div><p class="m">Velikost písma</p><div class="tabs">${[[1,'Normální'],[1.15,'Větší'],[1.3,'Velké']].map(f=>`<button class="${u.fs==f[0]?'on':''}" onclick="setUI('fs',${f[0]})">${f[1]}</button>`).join('')}</div><label class="ck"><input type="checkbox" ${u.dys?'checked':''} onchange="setUI('dys',this.checked)"> Čitelné písmo se zvětšenými mezerami (vhodné při dyslexii)</label><label class="ck"><input type="checkbox" ${u.rm?'checked':''} onchange="setUI('rm',this.checked)"> Omezit animace</label><button style="margin-top:12px" onclick="keys()">Klávesové zkratky</button>`}
+function pUi(){const u=UI();$('#pU').innerHTML=`<p class="m">Režim</p><div class="tabs"><button class="${u.mode=='dark'?'on':''}" onclick="setUI('mode','dark')">Tmavý</button><button class="${u.mode=='light'?'on':''}" onclick="setUI('mode','light')">Světlý</button></div><p class="m">Velikost písma</p><div class="tabs">${[[1,'Normální'],[1.15,'Větší'],[1.3,'Velké']].map(f=>`<button class="${u.fs==f[0]?'on':''}" onclick="setUI('fs',${f[0]})">${f[1]}</button>`).join('')}</div><label class="ck"><input type="checkbox" ${u.dys?'checked':''} onchange="setUI('dys',this.checked)"> Čitelné písmo se zvětšenými mezerami (vhodné při dyslexii)</label><label class="ck"><input type="checkbox" ${u.rm?'checked':''} onchange="setUI('rm',this.checked)"> Omezit animace</label><label class="ck"><input type="checkbox" ${u.eco?'checked':''} onchange="setUI('eco',this.checked)"> Úsporný režim (méně efektů, rychlejší na slabších zařízeních)</label><button style="margin-top:12px" onclick="keys()">Klávesové zkratky</button>`}
 function keys(){toast('Zkratky: 1–4 výběr odpovědi · Enter potvrdit / další · H nápověda 50:50 (procvičování)')}
 addEventListener('keydown',e=>{if(!$('#quiz').classList.contains('on')||['INPUT','TEXTAREA','SELECT'].includes((e.target||{}).tagName))return;
 if(/^[1-9]$/.test(e.key)){const b=document.querySelectorAll('.opt')[+e.key-1];if(b&&!locked)b.click()}else if(e.key=='Enter'){e.preventDefault();$('#qnext').click()}else if((e.key=='h'||e.key=='H')&&Q&&Q.practice)fifty()});
 
 /* V4: UPOZORNENI */
-function notes(){const L=[],T=today(),n=me.name,D=DB.g('daily',{})[n],R=DB.g('results',[]);
+function notes(){const L=[],T=today(),n=me.name,D=DB.g('daily',{})[n],R=DB.g('results',[]);if(me.role=='a'){const k=DB.g('resets',[]).filter(r=>r.st=='pending').length;if(k)L.push(['lock','Žádosti o reset hesla: '+k,'Otevři Admin → Bezpečnost','adm',1])}
 if(!(D&&D.d==T))L.push(['flame','Denní výzva čeká','Splň dnešních 5 otázek a získej bonus XP.','daily',1]);
 CLS().filter(c=>c.members.includes(n)).forEach(c=>c.asg.forEach(a=>{if(R.some(r=>r.asg==a.id&&r.user==n&&!r.dq))return;const d=a.due;
 if(d&&d<T)L.push(['circle-alert','Po termínu: '+a.title,c.name+' · termín byl '+d,'c:'+c.id,1]);else if(d&&d<=addD(T,2))L.push(['calendar','Blíží se termín: '+a.title,c.name+' · do '+d,'c:'+c.id,1]);else L.push(['clipboard-list','Nové zadání: '+a.title,c.name+(d?' · do '+d:''),'c:'+c.id,0])}));
 const dc=dueCards();if(dc)L.push(['book-open','K opakování čeká '+dc+' kartiček','Zopakuj si, co ti nejde (opakování podle zapomínání).','weak',1]);
 if(me.role!='s')CLS().filter(c=>c.owner==n).forEach(c=>c.asg.forEach(a=>{const k=new Set(R.filter(r=>r.asg==a.id&&!r.dq).map(r=>r.user)).size;L.push(['users',a.title+': odevzdalo '+k+' z '+c.members.length,c.name,'c:'+c.id,0])}));
 return L}
-const nb=()=>notes().filter(x=>x[4]).length;
+let _nb=[0,0];const nb=()=>{if(Date.now()-_nb[0]>2000)_nb=[Date.now(),notes().filter(x=>x[4]).length];return _nb[1]};
 function ntR(){const L=notes();$('#ntL').innerHTML=L.length?L.map(n=>`<div class="card qc" onclick="ntGo('${n[3]}')" style="display:flex;gap:14px;align-items:center"><span style="font-size:1.6rem;color:${n[4]?'var(--no)':'var(--b)'}">${ic(n[0])}</span><div><b>${esc(n[1])}</b><p class="m">${esc(n[2])}</p></div></div>`).join(''):'<p class="m">Žádná upozornění. Skvělá práce!</p>'}
-function ntGo(t){if(t=='daily')start('daily');else if(t=='weak')go('prof');else if(t.startsWith('c:'))oc(t.slice(2))}
+function ntGo(t){if(t=='daily')start('daily');else if(t=='adm'){AT=4;go('admin')}else if(t=='weak')go('prof');else if(t.startsWith('c:'))oc(t.slice(2))}
 
 /* V4: LABORATOR */
 function labR(){$('#labG').innerHTML=[['atom','Periodická tabulka','Všech 118 prvků s detailem a hrou „Najdi prvek“','pt'],['flask-conical','Vyvažování rovnic','30 rovnic od lehkých po těžké','eq'],['zap','Chemická kalkulačka','Molární hmotnost, mol, ρ, c, w s postupem','calc'],['users','Souboj dvou hráčů','Na jednom zařízení, kdo ví víc','duel'],['clipboard-list','Početní příklady','Generátor úloh s postupem řešení','pr'],['book-open','Slovníček pojmů','Přes 50 pojmů s hledáním','gl']].map(x=>`<div class="card qc" onclick="go('${x[3]}')"><div style="font-size:2rem;color:var(--b)">${ic(x[0])}</div><h2 style="margin-top:8px;font-size:1.2rem">${x[1]}</h2><p class="m">${x[2]}</p></div>`).join('')}
@@ -875,6 +974,237 @@ function prSol(){PRC.done=true;$('#prS').innerHTML=PRC.st.map(s=>`<p>${s}</p>`).
 const GL='atom|nejmenší částice prvku, která si zachovává jeho chemické vlastnosti~molekula|částice složená ze dvou nebo více atomů spojených vazbou~ion|atom nebo skupina atomů s elektrickým nábojem~kation|kladně nabitý iont (atom odevzdal elektrony)~anion|záporně nabitý iont (atom získal elektrony)~izotopy|atomy téhož prvku s různým počtem neutronů~protonové číslo|počet protonů v jádře, podle něj se určuje prvek~nukleonové číslo|počet protonů a neutronů v jádře~relativní atomová hmotnost|hmotnost atomu vztažená k 1/12 hmotnosti atomu uhlíku ¹²C~látkové množství|veličina n s jednotkou mol, udává počet částic látky~mol|množství látky, které obsahuje 6,022·10²³ částic~Avogadrova konstanta|počet částic v jednom molu: 6,022·10²³ 1/mol~molární hmotnost|hmotnost jednoho molu látky v g/mol~molární objem|objem jednoho molu plynu, za normálních podmínek 22,4 dm³/mol~hustota|hmotnost látky v jednotce objemu (ρ = m/V)~roztok|stejnorodá směs dvou nebo více látek~rozpustnost|největší množství látky, které se rozpustí ve 100 g rozpouštědla~látková koncentrace|látkové množství rozpuštěné látky v 1 dm³ roztoku~hmotnostní zlomek|podíl hmotnosti látky a hmotnosti celé směsi~kyselina|látka, která ve vodě odštěpuje kationty vodíku H⁺~hydroxid|sloučenina kovu s hydroxidovým aniontem OH⁻, vodný roztok je zásaditý~sůl|sloučenina vzniklá náhradou vodíku v kyselině kovem~oxid|sloučenina kyslíku s jiným prvkem~pH|číslo vyjadřující kyselost nebo zásaditost roztoku~indikátor|látka, která mění barvu podle pH~neutralizace|reakce kyseliny s hydroxidem za vzniku soli a vody~oxidace|děj, při kterém atom odevzdává elektrony (oxidační číslo roste)~redukce|děj, při kterém atom přijímá elektrony (oxidační číslo klesá)~katalyzátor|látka, která urychluje reakci a sama se přitom nespotřebovává~exotermní reakce|reakce, při které se teplo uvolňuje~endotermní reakce|reakce, při které se teplo spotřebovává~alotropie|existence prvku v několika formách, např. diamant a grafit~slitina|směs kovů, případně kovu a nekovu~směs|soustava nejméně dvou látek, které lze fyzikálně oddělit~sloučenina|látka složená z atomů dvou nebo více prvků chemicky vázaných~prvek|látka složená z atomů se stejným protonovým číslem~iontová vazba|vazba mezi opačně nabitými ionty~kovalentní vazba|vazba vzniklá sdílením elektronových párů~elektronegativita|schopnost atomu přitahovat vazebné elektrony~valenční elektrony|elektrony ve vnější vrstvě obalu, které tvoří vazby~oxidační číslo|náboj, který by atom měl, kdyby byly všechny vazby čistě iontové~periodická soustava|uspořádání prvků podle rostoucího protonového čísla~halogeny|prvky 17. skupiny: F, Cl, Br, I, At~alkalické kovy|prvky 1. skupiny bez vodíku, velmi reaktivní~vzácné plyny|prvky 18. skupiny, velmi nereaktivní~sublimace|přechod pevné látky přímo na plyn~destilace|oddělování kapalin podle rozdílné teploty varu~filtrace|oddělování nerozpustné pevné látky od kapaliny~krystalizace|vylučování pevné látky z roztoku ve formě krystalů~emulze|směs dvou nemísitelných kapalin~suspenze|směs kapaliny a nerozpuštěné pevné látky'.split('~').map(s=>s.split('|')).sort((a,b)=>a[0].localeCompare(b[0],'cs'));
 function glR(){$('#glq').value='';glF()}
 function glF(){const v=norm($('#glq').value),L=GL.filter(x=>norm(x[0]+' '+x[1]).includes(v));$('#glL').innerHTML=L.length?L.map(x=>`<div class="card" style="margin-bottom:10px;padding:14px 18px"><b style="color:var(--b)">${esc(x[0])}</b><p style="margin-top:4px">${esc(x[1])}</p></div>`).join(''):'<p class="m">Nic nenalezeno.</p>'}
+
+/* V6: ZAPOMENUTE HESLO, ZABEZPECENI UCTU */
+let RC0=null;
+const RB=n=>typeof crypto!=='undefined'&&crypto.getRandomValues?crypto.getRandomValues(new Uint8Array(n)):Uint8Array.from({length:n},()=>Math.random()*256);
+async function rcMake(){const A32='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',c=[...RB(12)].map(x=>A32[x%32]).join(''),code=c.slice(0,4)+'-'+c.slice(4,8)+'-'+c.slice(8,12);
+if(!HAS())return{code,h:{rc:hs(c),rs:null}};const s=hex(RB(12));return{code,h:{rc:await pbk(c,s,ITER),rs:s,ri:ITER}}}
+async function rcChk(u,code){const c=String(code).toUpperCase().replace(/[^A-Z0-9]/g,'');if(c.length!=12||!u.rc)return false;if(u.rs&&HAS())return(await pbk(c,u.rs,u.ri||ITER))===u.rc;return u.rc==hs(c)}
+function rcShow(code,msg){return new Promise(res=>{const o=document.createElement('div');o.className='tvo';
+o.innerHTML=`<div class="tv" style="width:min(440px,94vw)"><div class="row" style="gap:10px;margin-bottom:8px"><span style="font-size:1.6rem;color:var(--b)">${ic('shield-check')}</span><b style="font-size:1.15rem">Záchranný kód</b></div><p class="m" style="margin-bottom:12px">${esc(msg||'Ulož si tento kód na bezpečné místo. Když zapomeneš heslo, obnovíš ho jen s ním. Zobrazí se pouze jednou.')}</p><div style="font:700 1.6rem/1 ui-monospace,Consolas,monospace;letter-spacing:.12em;text-align:center;padding:18px;border:1px dashed var(--b);border-radius:14px;user-select:all">${code}</div><div class="row" style="margin-top:12px;justify-content:center"><button id="rcC">Kopírovat</button><button id="rcD">Stáhnout .txt</button></div><label class="ck" style="margin-top:14px;color:var(--tx)"><input type="checkbox" id="rcK"> Kód jsem si uložil/a.</label><div class="row" style="justify-content:flex-end;margin-top:14px"><button class="pri" id="rcG" disabled>Hotovo</button></div></div>`;
+document.body.appendChild(o);const k=o.querySelector('#rcK'),g=o.querySelector('#rcG');k.onchange=()=>g.disabled=!k.checked;
+o.querySelector('#rcC').onclick=()=>{try{navigator.clipboard.writeText(code);toast('Kód zkopírován.')}catch(e){}};
+o.querySelector('#rcD').onclick=()=>dl(new Blob(['TadxChemie – záchranný kód\n'+code+'\n'],{type:'text/plain'}),'tadxchemie-zachranny-kod.txt');
+g.onclick=()=>{o.classList.add('out');setTimeout(()=>o.remove(),300);res()}})}
+async function fpGo(){const id=$('#fu').value.trim(),code=$('#fr').value,p1=$('#fp1').value,p2=$('#fp2').value;A.id=id;A.rc=code;
+if(!id)return aE('Zadej e-mail nebo jméno.','fu');const u=aFind(id);if(!u)return aE('Účet nebyl nalezen.','fu');
+if(u.ban)return aE('Tento účet je zablokovaný. Kontaktuj admina.','fu');
+if(!u.rc)return aE('Tento účet nemá záchranný kód. Použij odkaz „požádat admina o reset“.','fr');
+const L=DB.g('lock',{}),k='rc:'+u.name.toLowerCase(),l=L[k]||{n:0,until:0};
+if(l.until>Date.now())return aE('Příliš mnoho pokusů. Zkus to za '+Math.ceil((l.until-Date.now())/60000)+' min.','fr');
+if(!tvOk()&&!(await tvAsk()))return;
+if(!(await rcChk(u,code))){l.n=(l.n||0)+1;audit('rc-fail',u.name);TVOK=0;if(l.n>=5){l.until=Date.now()+900000;l.n=0;audit('rc-lock',u.name);L[k]=l;DB.s('lock',L);return aE('Příliš mnoho pokusů. Obnovení je na 15 minut zamčené.','fr')}L[k]=l;DB.s('lock',L);return aE('Záchranný kód nesedí.','fr')}
+if(p1.length<6||!/[A-Za-z]/.test(p1)||!/\d/.test(p1))return aE('Heslo: min. 6 znaků, písmeno i číslice.','fp1');if(p1!==p2)return aE('Hesla se neshodují.','fp2');
+delete L[k];delete L[u.name.toLowerCase()];DB.s('lock',L);
+const U=DB.g('users',[]),i=U.findIndex(x=>x.name==u.name),h=await mkpw(p1),R=await rcMake();['pw','salt','ph','it','must'].forEach(x=>delete U[i][x]);Object.assign(U[i],h,R.h);DB.s('users',U);audit('pwreset-self',u.name);TVOK=0;
+await rcShow(R.code,'Heslo bylo obnoveno. Tady je tvůj nový záchranný kód (starý už nefunguje).');A.step='id';A.id=u.name;aR(-1);toast('Heslo bylo obnoveno. Přihlas se novým heslem.')}
+function fpReq(){const id=($('#fu').value||A.id||'').trim(),u=id&&aFind(id);if(!u)return aE('Nejdřív zadej e-mail nebo jméno svého účtu.','fu');
+const R=DB.g('resets',[]);if(R.some(r=>r.user==u.name&&r.st=='pending'))return toast('Tvoje žádost už čeká na schválení adminem.');
+R.unshift({id:'r'+Date.now(),user:u.name,date:now16(),st:'pending'});DB.s('resets',R.slice(0,100));audit('reset-req',u.name);toast('Žádost odeslána. Admin ti nastaví dočasné heslo.')}
+function rrH(){const R=DB.g('resets',[]).slice(0,30);return`<div class="card wrap"><h2>Žádosti o reset hesla</h2>${tb(['Uživatel','Čas','Stav',''],R.map(r=>`<tr><td>${esc(r.user)}</td><td>${r.date}</td><td>${r.st=='pending'?'<span class="warn">čeká</span>':r.st=='done'?'vyřízeno':'zamítnuto'}</td><td>${r.st=='pending'?`<button class="pri" onclick="rrOk('${r.id}')">Nastavit dočasné heslo</button> <button onclick="rrNo('${r.id}')">Zamítnout</button>`:''}</td></tr>`))}</div>`}
+function rrOk(id){const r=DB.g('resets',[]).find(x=>x.id==id);if(!r)return;const i=DB.g('users',[]).findIndex(u=>u.name==r.user);if(i<0)return toast('Uživatel už neexistuje.');rp(i);admin()}
+function rrNo(id){const R=DB.g('resets',[]);R.forEach(r=>{if(r.id==id)r.st='no'});DB.s('resets',R);audit('reset-no',id);admin()}
+async function adRc(i){const U=DB.g('users',[]),R=await rcMake();Object.assign(U[i],R.h);DB.s('users',U);audit('rc-new',U[i].name);alert('Nový záchranný kód pro '+U[i].name+': '+R.code+'\nPředej mu ho bezpečně – zobrazuje se jen teď.')}
+function pSecR(){const u=aFind(me.name)||{};$('#pSec').innerHTML=`${u.must?'<p class="warn" style="margin-bottom:10px">Admin ti nastavil dočasné heslo. Změň si ho prosím na vlastní.</p>':''}<div class="grid"><div><label class="m">Současné heslo</label><input id="pwO" type="password" autocomplete="current-password"></div><div><label class="m">Nové heslo</label><input id="pwN" type="password" autocomplete="new-password"></div><div><label class="m">Potvrzení nového hesla</label><input id="pwN2" type="password" autocomplete="new-password"></div></div><div class="row" style="flex-wrap:wrap"><button class="pri" onclick="pwChange()">Změnit heslo</button><button onclick="rcNew()">${u.rc?'Nový záchranný kód':'Vytvořit záchranný kód'}</button></div><p class="m" style="font-size:.85rem;margin-top:10px">Hesla se ukládají jako PBKDF2 se solí (210 000 iterací). Záchranný kód ${u.rc?'máš vytvořený – použiješ ho při zapomenutém heslu.':'zatím nemáš – vytvoř si ho, abys mohl/a obnovit zapomenuté heslo. K vytvoření zadej současné heslo.'}</p>`}
+async function pwChange(){const o=$('#pwO').value,n1=$('#pwN').value,n2=$('#pwN2').value,U=DB.g('users',[]),i=U.findIndex(x=>x.name==me.name);if(i<0)return;
+if(!(await chk(U[i],o)))return toast('Současné heslo není správné.');
+if(n1.length<6||!/[A-Za-z]/.test(n1)||!/\d/.test(n1))return toast('Nové heslo: min. 6 znaků, písmeno i číslice.');if(n1!==n2)return toast('Nová hesla se neshodují.');if(n1===o)return toast('Nové heslo musí být jiné.');
+const h=await mkpw(n1);['pw','salt','ph','it','must'].forEach(x=>delete U[i][x]);Object.assign(U[i],h);DB.s('users',U);audit('pwchange',me.name);toast('Heslo bylo změněno.');pSecR()}
+async function rcNew(){const o=$('#pwO').value,U=DB.g('users',[]),i=U.findIndex(x=>x.name==me.name);if(i<0)return;if(!(await chk(U[i],o)))return toast('Pro vytvoření kódu zadej své současné heslo.');
+const R=await rcMake();Object.assign(U[i],R.h);DB.s('users',U);audit('rc-new',me.name);await rcShow(R.code,'Nový záchranný kód (starý už nefunguje).');pSecR()}
+setInterval(()=>{if(me){const u=aFind(me.name);if(!u||u.ban){toast('Tvůj účet byl zablokován nebo smazán.');out()}}},30000);
+
+/* V6: LUNA */
+const norm2=s=>norm(String(s).replace(/[₀-₉]/g,c=>c.charCodeAt(0)-8320)),norm3=s=>norm2(s).replace(/\s+/g,'');
+const subs=f=>f.replace(/(\D)(\d+)/g,(m,a,b)=>a+[...b].map(d=>'₀₁₂₃₄₅₆₇₈₉'[d]).join(''));
+function md(s){s=esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>');let o='',ul=false;s.split('\n').forEach(l=>{const m=l.match(/^\s*[-•]\s+(.*)/);if(m){if(!ul){o+='<ul>';ul=true}o+='<li>'+m[1]+'</li>'}else{if(ul){o+='</ul>';ul=false}o+=l+'<br>'}});if(ul)o+='</ul>';return o.replace(/(<br>)+$/,'')}
+let LBUSY=false,LQ=null;
+const LU=()=>DB.g('luna',{})[me.name]||[],LUS=a=>{const o=DB.g('luna',{});o[me.name]=a.slice(-60);DB.s('luna',o)};
+const lcfg=()=>({key:'',model:'claude-haiku-5-5',mode:'auto',...(DB.g('lk',{})[me.name]||{})});
+const rateOK=()=>(DB.g('lrate',{})[me.name]||[]).filter(x=>Date.now()-x<36e5).length<30;
+function rateMark(){const o=DB.g('lrate',{}),a=(o[me.name]||[]).filter(x=>Date.now()-x<36e5);a.push(Date.now());o[me.name]=a;DB.s('lrate',o)}
+function lunaOnline(){const c=lcfg(),S=SET();return S.luna!==false&&S.lunaOnline!==false&&c.mode!='offline'&&!!c.key&&rateOK()}
+function lStat(){const c=lcfg(),on=lunaOnline(),e=$('#lSt');e.textContent=on?'Online · '+c.model:'Offline režim';e.className='tag'+(on?' lon':'')}
+async function lunaR(){if(SET().luna===false){toast('LunaAI je dočasně vypnutá správcem.');return go('home')}
+if(!DB.g('lt',{})[me.name]){const ok=await lunaTerms();if(!ok)return go('home')}lunaInit()}
+function lunaInit(){lStat();$('#lSet').style.display='none';const H=LU(),M=$('#lM');M.innerHTML='';H.forEach(m=>lBub(m.r,m.t,0));if(!H.length)lGreet();lChips();M.scrollTop=M.scrollHeight;setTimeout(()=>{const i=$('#lI');i&&i.focus()},120)}
+function lGreet(){const h=new Date().getHours(),g=h<5?'Dobrou noc':h<10?'Dobré ráno':h<18?'Dobrý den':'Dobrý večer';lAdd('a',`${g}, ${me.name}! Jsem **Luna** a jsem moc ráda, že tě tu vidím. Můžeš se mě zeptat na chemii, nechat se zkoušet, požádat o vysvětlení pojmu, spočítat příklad, nebo si jen popovídat. Čím začneme?`,1)}
+function lChips(){$('#lC').innerHTML=['Co umíš?','Zkoušej mě','Tipy na učení','Zajímavost','H2+O2=H2O','Molární hmotnost H2SO4','Co je mol?','Co je pH?','Vtip'].map(x=>`<button onclick="lunaSend(this.textContent)">${esc(x)}</button>`).join('')}
+function lk(e){if(e.key=='Enter'&&!e.shiftKey){e.preventDefault();lunaSend($('#lI').value)}}
+function lAdd(r,t,anim){const H=LU();H.push({r,t,ts:Date.now()});LUS(H);return lBub(r,t,anim)}
+function lBub(r,t,anim){const row=document.createElement('div');row.className='mr '+(r=='u'?'mu':'ma');row.innerHTML=(r=='a'?'<div class="orb sm"></div>':'')+'<div class="mb"></div>';const b=row.querySelector('.mb'),M=$('#lM');M.appendChild(row);
+const done=()=>{b.innerHTML=r=='u'?esc(t).replace(/\n/g,'<br>'):md(t);M.scrollTop=M.scrollHeight};
+if(r=='u'||!anim||document.documentElement.classList.contains('rm')){done();return Promise.resolve()}
+const plain=t.replace(/\*\*|`/g,''),step=Math.max(2,Math.ceil(plain.length/140));let i=0;
+return new Promise(res=>{const iv=setInterval(()=>{i+=step;b.textContent=plain.slice(0,i);M.scrollTop=M.scrollHeight;if(i>=plain.length){clearInterval(iv);done();res()}},16)})}
+function lTyp(on){const M=$('#lM');let e=$('#lTy');if(on&&!e){e=document.createElement('div');e.id='lTy';e.className='mr ma';e.innerHTML='<div class="orb sm think"></div><div class="mb"><span class="dts"><i></i><i></i><i></i></span></div>';M.appendChild(e);M.scrollTop=M.scrollHeight}else if(!on&&e)e.remove();$('#lOrb').classList.toggle('think',on);$('#lS').disabled=on}
+async function lunaSend(txt){txt=String(txt||'').trim().slice(0,800);if(!txt||LBUSY)return;LBUSY=true;$('#lI').value='';$('#lI').style.height='auto';lAdd('u',txt);lTyp(1);let ans=null;
+if(lunaOnline()){try{ans=await lunaAPI()}catch(e){toast('Online režim se nepovedl ('+e.message+'). Odpovídám offline.')}}
+if(!ans){await new Promise(r=>setTimeout(r,450+Math.random()*450));try{ans=lunaOffline(txt)}catch(e){ans='Něco se mi pokazilo, {jmeno}. Zkus to prosím znovu.'.replace('{jmeno}',me.name)}}
+lTyp(0);await lAdd('a',ans,1);LBUSY=false;lStat()}
+function lClear(){if(!confirm('Smazat celou historii chatu s Lunou?'))return;LUS([]);LQ=null;lunaInit()}
+/* online */
+const lunaSys=()=>`Jsi Luna – přátelská, vřelá a povzbuzující AI asistentka v aplikaci TadxChemie (vytvořilo Tadeax Studio a Luna Studio). Mluvíš s uživatelem jménem ${me.name}, žákem nebo učitelem střední školy. Odpovídej česky (pokud uživatel nepíše jinak), srozumitelně a stručně (obvykle do 150 slov), laskavě a s pozitivním tónem. Nepoužívej emoji. Pomáhej hlavně s chemií 1. ročníku SŠ (atomy, periodická soustava, vazby, mol a výpočty, roztoky, názvosloví, reakce, rovnice), s učením a s používáním aplikace TadxChemie. Když si nejsi jistá, řekni to. Nikdy neposkytuj návody na výrobu výbušnin, drog, jedů, zbraní ani jiných nebezpečných látek – laskavě odmítni a nabídni bezpečné vysvětlení principů. Nežádej osobní údaje, hesla ani klíče. Při potížích s psychickou pohodou projev pochopení a doporuč promluvit si s někým blízkým nebo se školním poradcem. Pro formátování používej jen **tučné písmo**, odrážky začínající "- " a krátké odstavce.`;
+function lHist(){const o=[];LU().slice(-13,-1).forEach(m=>{const role=m.r=='u'?'user':'assistant';if(o.length&&o[o.length-1].role==role)o[o.length-1].content+='\n'+m.t;else o.push({role,content:m.t})});while(o.length&&o[0].role!='user')o.shift();return o}
+async function lApi(msgs,mt,cfg){const c=cfg||lcfg(),ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),30000);
+if(!/^[A-Za-z0-9._-]{3,60}$/.test(c.model))throw new Error('neplatný model');
+let r;try{r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:ctl.signal,headers:{'content-type':'application/json','x-api-key':c.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:c.model,max_tokens:mt,system:lunaSys(),messages:msgs})})}catch(e){throw new Error(e.name=='AbortError'?'vypršel čas':'bez připojení')}finally{clearTimeout(to)}
+if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(r.status==401?'neplatný klíč':r.status==429?'příliš mnoho požadavků':(e.error&&e.error.message)||('chyba '+r.status))}
+const j=await r.json(),tx=(j.content||[]).filter(b=>b.type=='text').map(b=>b.text).join('\n').trim();if(!tx)throw new Error('prázdná odpověď');return tx}
+async function lunaAPI(){const msgs=lHist(),cur=LU().slice(-1)[0].t;if(msgs.length&&msgs[msgs.length-1].role=='user')msgs[msgs.length-1].content+='\n'+cur;else msgs.push({role:'user',content:cur});const t=await lApi(msgs,700);rateMark();return t}
+/* settings, terms */
+function lSetT(force){const e=$('#lSet');if(force!==1&&e.style.display!='none'){e.style.display='none';return}const c=lcfg(),S=SET();e.style.display='block';
+e.innerHTML=`<h2 style="margin-top:0">Nastavení LunaAI</h2><label class="m">Režim</label><select id="lMode"><option value="auto" ${c.mode=='auto'?'selected':''}>Automaticky (online s klíčem, jinak offline)</option><option value="online" ${c.mode=='online'?'selected':''}>Pouze online</option><option value="offline" ${c.mode=='offline'?'selected':''}>Pouze offline</option></select><label class="m">API klíč Anthropic (uložen jen v tomto prohlížeči)</label><input id="lKey" type="password" autocomplete="off" placeholder="sk-ant-…" value="${c.key?'••••••••••••':''}"><label class="m">Model</label><input id="lModel" list="lMods" value="${esc(c.model)}"><datalist id="lMods"><option value="claude-haiku-5-5"><option value="claude-sonnet-5-5"><option value="claude-opus-5-5"></datalist><div class="row" style="flex-wrap:wrap"><button class="pri" onclick="lSave()">Uložit</button><button onclick="lTest()">Otestovat spojení</button><button class="dng" onclick="lDelKey()">Smazat klíč</button><button class="dng" onclick="lRevoke()">Odvolat souhlas</button></div><p class="m" style="font-size:.82rem;margin-top:10px">${S.lunaOnline===false?'Online režim je vypnutý správcem.':'Klíč se posílá jen na api.anthropic.com, není součástí záloh a online režim je omezený na 30 zpráv za hodinu.'}</p>`}
+function lSave(){const o=DB.g('lk',{}),c=lcfg();const k=$('#lKey').value.trim();if(k&&!/^•+$/.test(k)){if(!/^sk-[A-Za-z0-9_-]{20,}$/.test(k))return toast('Klíč nevypadá správně (začíná „sk-“).');c.key=k}
+const m=($('#lModel').value.trim()||'claude-haiku-5-5').slice(0,60);if(!/^[A-Za-z0-9._-]{3,60}$/.test(m))return toast('Neplatný název modelu.');c.model=m;c.mode=$('#lMode').value;o[me.name]=c;DB.s('lk',o);lStat();lSetT(1);toast('Nastavení uloženo.')}
+function lDelKey(){const o=DB.g('lk',{}),c=lcfg();c.key='';o[me.name]=c;DB.s('lk',o);lStat();lSetT(1);toast('Klíč byl smazán.')}
+async function lTest(){const c=lcfg();let k=$('#lKey').value.trim();if(k&&!/^•+$/.test(k))c.key=k;if(!c.key)return toast('Nejdřív vlož API klíč.');c.model=$('#lModel').value.trim()||c.model;try{toast('Zkouším spojení…');const r=await lApi([{role:'user',content:'Napiš jedno slovo: ahoj'}],20,c);toast('Spojení funguje: '+r.slice(0,40))}catch(e){toast('Test se nepovedl: '+e.message)}}
+function lRevoke(){if(!confirm('Opravdu odvolat souhlas s podmínkami? Pro další používání LunaAI bude potřeba souhlasit znovu.'))return;const t=DB.g('lt',{});delete t[me.name];DB.s('lt',t);audit('luna-revoke',me.name);go('home')}
+function lTerms(){lunaTerms(true)}
+function lunaTerms(view){return new Promise(res=>{const o=document.createElement('div');o.className='tvo';
+o.innerHTML=`<div class="tv" style="width:min(540px,94vw)"><div class="row" style="gap:10px;margin-bottom:10px"><span style="font-size:1.6rem;color:var(--b)">${ic('moon')}</span><b style="font-size:1.2rem">Podmínky používání LunaAI</b></div><div id="tcB"><ol class="terms" tabindex="0"><li>LunaAI je studijní pomocník. Odpovědi mohou obsahovat chyby, proto důležité informace ověř v učebnici nebo u učitele.</li><li>Nesdílej hesla, platební údaje ani jiné osobní údaje.</li><li>Offline režim zůstává jen v tvém zařízení. Online režim posílá tvé zprávy přes tvůj vlastní API klíč službě Anthropic.</li><li>Historie chatu a API klíč se ukládají lokálně v prohlížeči a můžeš je kdykoli smazat.</li><li>Luna neposkytuje návody na výrobu nebezpečných látek, zbraní či drog a odmítne škodlivé nebo urážlivé požadavky.</li><li>Tadeax Studio, TadxChemie ani Luna Studio neručí za škody způsobené nesprávným použitím rad. Pokusy provádějte jen pod dohledem učitele.</li><li>Souhlas můžeš kdykoli odvolat v nastavení LunaAI.</li></ol>${view?'':`<label class="ck" style="margin-top:14px;color:var(--tx)"><input type="checkbox" id="tcK"> <span>Souhlasím s podmínkami společností <b>Tadeax Studio</b>, <b>TadxChemie</b> a <b>Luna Studio</b>.</span></label>`}<p class="m" style="font-size:.75rem;margin-top:10px">Zkrácené podmínky pro výukové účely.</p><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="lkb" id="tcX">${view?'Zavřít':'Zrušit'}</button>${view?'':'<button class="pri" id="tcG" disabled>Pokračovat</button>'}</div></div></div>`;
+document.body.appendChild(o);const close=v=>{o.classList.add('out');setTimeout(()=>o.remove(),300);res(v)};o.querySelector('#tcX').onclick=()=>close(false);
+if(!view){const k=o.querySelector('#tcK'),g=o.querySelector('#tcG');k.onchange=()=>g.disabled=!k.checked;
+g.onclick=()=>{if(!k.checked)return;const nm=me.name,d=Math.max(1.8,nm.length*.2+.6);
+o.querySelector('#tcB').innerHTML=`<div class="sig"><p class="m">Děkujeme! Podepisuji tvůj souhlas…</p><div class="sgw" style="--d:${d}s"><span class="sgt">${esc(nm)}</span><span class="pen">${ic('pen-line')}</span></div><svg class="sgl" viewBox="0 0 300 24" preserveAspectRatio="none"><path pathLength="1" style="animation-delay:${d+.3}s" d="M4 16 C 50 2, 100 24, 160 10 S 250 6, 296 14"/></svg><p class="m" style="font-size:.8rem;margin-top:8px">${new Date().toLocaleDateString('cs-CZ')} · ${esc(nm)}</p></div>`;
+const t=DB.g('lt',{});t[nm]={v:1,date:now16(),sig:nm};DB.s('lt',t);audit('luna-terms',nm);setTimeout(()=>close(true),(d+1.9)*1000)}}})}
+/* offline engine */
+const LKB=[
+'nasilne,vybusin,bomb,zbran,vyrobit drog,pervitin,narkotik,otrav,zabit,jed na,navod na vyrobu|S tímhle ti bohužel nepomůžu, {jmeno} – nechci, aby se někomu něco stalo. Když tě zajímá chemie, která za tím stojí (třeba proč jsou některé látky nebezpečné), ráda ti to vysvětlím obecně a bezpečně. A pokusy dělej vždy jen pod dohledem učitele.',
+'blbec,debil,hloupa,hloupy,stupid,nenavidim,jsi k nicemu|Chápu, že chemie umí potrápit a občas to člověka naštve. Nic se neděje, {jmeno}. Dej si nádech a zkusíme to spolu znovu, malými krůčky. Jsem tu pro tebe.',
+'ahoj,cau,cus,nazdar,dobry den,dobre rano,dobry vecer,hello,servus,cav,dobre odpoledne,luno,ahoj luno|@hi',
+'jak se mas,jak se vede,jak ti je|Mám se skvěle, hlavně když si můžu povídat s někým, kdo se zajímá o chemii. A jak se máš ty, {jmeno}?¦Díky, že se ptáš! Mám se báječně a jsem plná energie. A ty?',
+'mam se dobre,jsem v pohode,jde to,skvele,fajn,mam se skvele|To mě těší! S dobrou náladou se učení rozjede mnohem líp. Na čem dnes zapracujeme?',
+'mam se spatne,jsem smutny,jsem smutna,jsem unaveny,jsem unavena,mam stres,mam strach,neni mi dobre,je mi spatne|Je mi to líto, {jmeno}. Dej si chvilku na nádech, napij se vody a nic nespěchej – učení počká. Když budeš mít chuť, začneme jen jednou malou věcí. A pokud tě něco trápí víc, určitě si o tom promluv s někým blízkým nebo se školním poradcem. Jsem tu s tebou.',
+'dekuji,dekuju,diky,dik,dekujeme,diky moc|Rádo se stalo! Jsem tu pro tebe, kdykoli budeš potřebovat.¦Nemáš za co, {jmeno}. Mám radost, že jsem mohla pomoct!',
+'nashle,nashledanou,ahoj zatim,bye,dobrou noc,uvidime se,mej se|Měj se krásně, {jmeno}! Přijď se mi pochlubit známkou. Dobrou chuť do dalšího učení!',
+'kdo jsi,jak se jmenujes,co jsi,predstav se,jsi kdo|Jsem **Luna**, tvoje přátelská studijní asistentka v TadxChemie. Pomáhám s chemií, s učením i s orientací v aplikaci. Offline mám vlastní znalosti, s API klíčem umím odpovídat i na složitější otázky.',
+'co umis,co dokazes,jak funguje luna,pomoc,napoveda,help,s cim pomuzes,co delas|Můžu ti pomoct s tímhle:\n- vysvětlit pojmy z chemie (mol, pH, vazby, názvosloví…)\n- spočítat **molární hmotnost** (napiš třeba `H2SO4`)\n- vyvážit rovnici (napiš `H2+O2=H2O`)\n- přepočítat gramy, moly a objem (např. „kolik molů je 36 g H2O“)\n- **zkoušet tě** otázkami\n- poradit s učením a s aplikací\nStačí se zeptat!',
+'kdo te vytvoril,kdo te udelal,kdo te stvoril,kdo te vyvijel,tvurce,kdo te naprogramoval|Vytvořilo mě **Luna Studio** ve spolupráci s **Tadeax Studio** pro aplikaci TadxChemie.',
+'jsi clovek,jsi robot,jsi ai,jsi skutecna,jsi zivy,jsi umela|Jsem umělá inteligence, ne člověk – ale snažím se být užitečná a laskavá. Důležité věci si vždycky ověř u učitele nebo v učebnici.',
+'mam te rad,mam te rada,miluju te,jsi skvela,jsi super,jsi nejlepsi,jsi chytra,jsi hodna|Děkuju ti, to je od tebe moc milé! Ty se taky skvěle snažíš, {jmeno}.',
+'nuda,nudim se,neco zabavneho,co delat|Pojďme to rozhýbat! Můžu tě **zkoušet**, můžeš si zahrát hru Najdi prvek v Laboratoři, vyvážit pár rovnic, nebo si dát Denní výzvu. Co z toho zní nejlíp?',
+'vtip,vtipek,rozesmej,rozesmej me|@joke',
+'zajimavost,zajimavosti,fun fact,neco zajimaveho,prekvap me,vedel jsi|@fact',
+'motivace,motivuj,nechce se mi,nemam chut,nemam motivaci,jak se namotivovat|Chápu tě, {jmeno}, někdy se prostě nechce. Zkus malý trik: slib si jen **5 minut**. Obvykle se člověk rozjede a zbytek už jde sám. A každý správný krok je vítězství – klidně začni jednou kartičkou nebo Denní výzvou. Věřím ti!',
+'kolik je hodin,jaky je datum,jaky je dnes den,kolikateho,dnesni datum|@time',
+'jak se ucit,tipy na uceni,jak se naucit,jak studovat,jak zlepsit,ucebni tipy,jak se nauceni,jak efektivne|Tady jsou osvědčené tipy:\n- **Aktivně si vybavuj** – zkoušej se sám/sama, nečti jen text\n- Používej **kartičky**, vrací se ti to, co ti nejde\n- Uč se po kratších úsecích (např. 25 minut + pauza)\n- Vymýšlej si vlastní příklady\n- Dobře se vyspi, paměť si látku upevňuje ve spánku',
+'pred testem,pisemka,pisemku,pisemky,test zitra,pripravit na test,priprava na test,zkouseni|Plán před testem:\n- 1. Projdi **Slovníček** a pojmy, které neznáš\n- 2. Zkus **Procvičování** u tématu testu\n- 3. V Profilu → **Moje slabiny** najdeš, co ti nejde\n- 4. Dej si **Denní výzvu**\n- 5. Večer si dej pauzu a pořádně se vyspi\nDržím ti palce!',
+'trema,bojim se testu,stres z testu,nervozni,nervozita,uzkost|Trocha nervozity je normální, {jmeno}. Zkus pomalý nádech na 4 doby a výdech na 6. Připomeň si, že test je jen informace o tom, co ještě procvičit – ne hodnocení tebe jako člověka. Zvládneš to.',
+'nerozumim chemii,chemie mi nejde,je to tezke,nechapu,nemuzu pochopit,nechapu to|To je v pořádku, {jmeno}, chemie je na začátku opravdu nová řeč. Pojďme na to postupně: napiš mi, co přesně ti dělá potíže (třeba mol, názvosloví, rovnice), a vysvětlím to jednoduše, krok za krokem. Nikam nespěcháme.',
+'pomodoro,jak dlouho se ucit,pauzy,delka uceni|Funguje technika **Pomodoro**: 25 minut soustředěného učení, 5 minut pauza. Po čtyřech kolech si dej delší pauzu (15–30 minut). Při pauze se protáhni a napij se vody, ne scrolluj telefon.',
+'poznamky,zapisky,vypisky,jak delat poznamky,jak psat poznamky|Dobré poznámky jsou krátké a přehledné:\n- piš vlastními slovy\n- důležité pojmy zvýrazni\n- k pojmům dopiš příklad\n- na konec stránky napiš 3 otázky, na které se můžeš sám/sama zkoušet',
+'zapamatovat,zapamatuju,pametni,mnemotech,jak si pamatovat,naucit nazpamet,nazpamet|Zkus **mnemotechniky**: z prvních písmen prvků si vymysli větu. Příklad, který jsem vymyslela pro halogeny (F, Cl, Br, I, At): „Fialová Chobotnice Bruslí Ivanem Autem“. Čím je věta bláznivější, tím líp se pamatuje. A opakuj s odstupem – k tomu jsou kartičky.',
+'zkousej me,zkousej,otestuj me,otestovat me,kviz mi,pta se me,zeptej se me,chci se zkouset,zkouseni|@quiz',
+'quizstudio,vlastni kviz,vytvorit kviz,udelat kviz,vytvor kviz,tvorba kvizu|V **QuizStudiu** (horní lišta) si vytvoříš vlastní kvíz: napiš název, přidej otázky (výběr, pravda/nepravda, text, páry, seřazení) a ulož. Můžeš ho i sdílet kódem, nebo otázky nahrát ze souboru .txt, .csv či .json.',
+'ucebna,ucebny,kod ucebny,pripojit se do tridy,zadani od ucitele,jak se pripojit|**Učebna**: učitel ji vytvoří a dostane 6znakový kód. Žák ho zadá v sekci Učebna a uvidí nástěnku i zadané kvízy s termíny. Učitel pak vidí výsledky celé třídy.',
+'zebricek,leaderboard,poradi,nejlepsi hraci|**Žebříček** je na úvodní stránce. Počítá se tvůj nejlepší výsledek v každém kvízu. Můžeš ho přepnout na konkrétní kvíz nebo na **tento týden**.',
+'xp,level,uroven,body za,zkusenosti,zkusenostni|**XP**: v testu dostaneš 10 XP za správnou odpověď, bonus 50 XP za známku 1 a 20 XP za známku 2. Procvičování dává 3 XP za správnou odpověď. Level L začíná na 50·(L−1)² XP.',
+'odznak,odznaky,achievement,ocenovani|**Odznaky** (13) najdeš v Profilu, třeba První test, Perfektní skóre, Fér hráč, Tři dny v řadě, Rovnicový mág či Týdenní cíl. Jeden z nich si můžeš vybrat jako svůj titul.',
+'denni vyzva,denni vyzvu,vyzva dne|**Denní výzva** jsou 4–5 otázek dne, stejné pro všechny. Za splnění dostaneš bonus XP a prodlužuješ sérii dní v řadě.',
+'karticky,leitner,flashcard,opakovani,opakovat|**Kartičky** (u kvízů s pojmy) se otáčejí kliknutím. Co neumíš, se ti vrací dřív, co umíš, později (1, 2, 4, 8 a 16 dní). Tak se učení opravdu usadí v paměti.',
+'laborator,laboratori,nastroje v aplikaci|V **Laboratoři** najdeš periodickou tabulku všech 118 prvků, vyvažování rovnic, chemickou kalkulačku, početní příklady, slovníček pojmů a souboj dvou hráčů.',
+'certifikat,diplom,potvrzeni o,pdf vysledku|**Certifikát** dostaneš za výsledek se známkou 1 až 3 – tlačítko je na obrazovce výsledku i v Profilu. Otevře se tisk, kde zvolíš „Uložit jako PDF“.',
+'tadxverify,captcha,nejsem robot,overeni|**TadxVerify** je naše vlastní ověření, že nejsi robot. Při přihlášení a registraci klikneš na „Nejsem robot“ a opíšeš znaky nebo seřadíš prvky podle protonového čísla.',
+'heslo,zapomenute heslo,zapomnel jsem heslo,zapomnela jsem heslo,zmenit heslo,obnovit heslo,zachranny kod|**Heslo**: změníš ho v Profilu → Zabezpečení účtu. Když ho zapomeneš, klikni při přihlášení na „Zapomenuté heslo?“ a zadej svůj **záchranný kód** (dostaneš ho při registraci). Nemáš ho? Požádej admina o reset.',
+'anti-cheat,anticheat,anti cheat,podvadet,opisovat,opisuji,vyloucen,vyloucili,hlida|V testu hlídá **anti-cheat** přepnutí karty či okna a opuštění celé obrazovky. Po několika porušeních se test ukončí. V **procvičování** žádný anti-cheat není, tam se můžeš učit bez stresu.',
+'znamka,znamkovani,jak se pocita znamka,hodnoceni,jaka znamka|**Známka** podle procent: od 90 % je 1, od 75 % je 2, od 55 % je 3, od 40 % je 4, níž je 5.',
+'teacher login,ucitel,kod ucitele,jak se stat ucitelem,prihlaseni ucitele|Učitelský účet vytvoříš v registraci volbou „Učitel“ a zadáním **kódu učitele**, který ti dá škola nebo správce aplikace. Přihlašuje se přes odkaz **Teacher login**.',
+'admin,spravce,administrator|Sekce **Admin** je jen pro správce aplikace. Spravuje uživatele, nastavení, učebny, kvízy i zabezpečení.',
+'svetly rezim,tmavy rezim,velikost pisma,dyslexie,pristupnost,usporny rezim,zpomaluje,laguje,pomale,seka se|V Profilu → **Vzhled a přístupnost** přepneš světlý/tmavý režim, velikost písma, čitelné písmo pro dyslexii, omezení animací a **úsporný režim** – ten pomůže, když ti aplikace běží pomalu.',
+'api klic,api key,online rezim,offline rezim,bez internetu,jak funguje online,klic|Jsem v **offline režimu** (vlastní znalosti) nebo **online** (s tvým API klíčem Anthropic, pak umím odpovědět skoro na cokoli). Klíč vložíš v nastavení LunaAI (ikona posuvníků nahoře). Je uložený jen v tvém prohlížeči.',
+'zvuk,ztlumit,hudba,zvuky|Zvuky vypneš ikonou **reproduktoru** v horní liště.',
+'zaloha,export dat,import dat,smazat data,ztratil jsem data,ztratila jsem data|Data se ukládají v prohlížeči. Admin je může zálohovat a obnovit v **Admin → Nastavení → Data**. Když vymažeš data prohlížeče, ztratí se, proto zálohuj.',
+'novinky,changelog,nova verze,co je noveho,aktualizace|Novinky najdeš pod ikonou **jiskřiček** v horní liště. Je tam celá historie verzí.',
+'nefunguje,chyba,bug,zasekla,zasekl,neotevre,spadlo|Zkus stránku obnovit (F5). Když to pomůže jen na chvíli, zapni v Profilu **úsporný režim** a dej vědět adminovi, ať se na to podívá.',
+'atom,stavba atomu,proton,neutron,elektron,jadro,elektronovy obal|**Atom** tvoří **jádro** (protony kladné, neutrony bez náboje) a **elektronový obal** (elektrony záporné). Počet protonů = protonové číslo = počet elektronů v neutrálním atomu. Nukleonové číslo = protony + neutrony.',
+'ion,ionty,kation,anion,iontovy|**Ion** je nabitá částice. **Kation** (kladný) vznikne, když atom elektrony odevzdá, **anion** (záporný), když je přijme. Například Na → Na⁺ + e⁻ a Cl + e⁻ → Cl⁻.',
+'izotop,izotopy|**Izotopy** jsou atomy téhož prvku (stejné protonové číslo) s různým počtem neutronů, třeba vodík ¹H, deuterium ²H a tritium ³H.',
+'mol,molu,moly,latkove mnozstvi,avogadro,avogadrova,avogadruv|**Mol** je jednotka látkového množství n. Jeden mol obsahuje 6,022·10²³ částic (Avogadrova konstanta).\n- n = m / M\n- N = n · N_A\n- V = n · Vm (plyny: 22,4 dm³/mol při 0 °C)\nZkus napsat třeba „kolik molů je 36 g H2O“.',
+'molarni hmotnost,molarni hmotnosti,jak spocitat molarni|**Molární hmotnost M** je hmotnost jednoho molu v g/mol. Spočítáš ji tak, že sečteš relativní atomové hmotnosti všech atomů ve vzorci. Například M(H₂O) = 2·1,008 + 15,999 ≈ 18,015 g/mol. Napiš mi vzorec a spočítám ho za tebe.',
+'hustota,hustotu,hustoty|**Hustota** ρ = m / V (v g/cm³ nebo kg/m³). Voda má při 4 °C asi 1 g/cm³. Co je hustší než voda, klesá ke dnu, co je řidší, plave.',
+'koncentrace,koncentraci,hmotnostni zlomek,roztok,roztoky,rozpustnost,rozpousteni|**Roztok** je stejnorodá směs. Složení vyjadřujeme třeba:\n- **hmotnostním zlomkem** w = m(látky) / m(roztoku)\n- **látkovou koncentrací** c = n / V (mol/dm³)\nRozpustnost je největší množství látky rozpustné ve 100 g rozpouštědla.',
+'ph,kyselost,zasaditost,indikator,lakmus,fenolftalein,indikatory|**pH** říká, jak je roztok kyselý nebo zásaditý: pH < 7 kyselý, = 7 neutrální, > 7 zásaditý (při 25 °C). Pozná se **indikátorem** – univerzální papírek mění barvu, fenolftalein je v zásaditém roztoku červenofialový.',
+'kyselina,kyseliny,kyselin|**Kyseliny** ve vodě odštěpují kationty H⁺. Příklady: HCl (chlorovodíková), H₂SO₄ (sírová), HNO₃ (dusičná), H₃PO₄ (fosforečná), H₂CO₃ (uhličitá). Bezkyslíkaté mají koncovku -ovodíková, kyslíkaté koncovky podle oxidačního čísla.',
+'hydroxid,hydroxidy,zasada,zasady,louh|**Hydroxidy** obsahují skupinu OH⁻, například NaOH (hydroxid sodný), KOH, Ca(OH)₂ (hydroxid vápenatý). Jejich vodné roztoky jsou zásadité a leptavé, pracuj s nimi opatrně.',
+'sul,soli|**Soli** vznikají neutralizací, tedy reakcí kyseliny s hydroxidem: kyselina + hydroxid → sůl + voda. Například HCl + NaOH → NaCl + H₂O. Název soli: chlorovodíková → chlorid, sírová → síran, dusičná → dusičnan, uhličitá → uhličitan.',
+'oxid,oxidy,oxidu|**Oxid** je sloučenina kyslíku s jiným prvkem (kyslík má −II). Koncovka podle oxidačního čísla prvku: I -ný, II -natý, III -itý, IV -ičitý, V -ečný (-ičný), VI -ový, VII -istý, VIII -ičelý. Například CO₂ je oxid uhličitý, Fe₂O₃ oxid železitý.',
+'nazvoslovi,koncovky,jak se jmenuje sloucenina,tvorba nazvu|**Názvosloví** si usnadníš koncovkami podle oxidačního čísla: I -ný, II -natý, III -itý, IV -ičitý, V -ečný/-ičný, VI -ový, VII -istý, VIII -ičelý. Soli kyselin: -ová → -an, -itá → -itan, -ovodíková → -id. V TadxChemie najdeš kvízy z názvosloví oxidů, kyselin, hydroxidů i solí.',
+'oxidacni cislo,oxidacni cisla,oxidacniho cisla,oxidacnich cisel|**Oxidační číslo**: prvek ve stavu prvku má 0, vodík obvykle +I, kyslík obvykle −II, fluor vždy −I, alkalické kovy +I, kovy alkalických zemin +II. Součet oxidačních čísel v neutrální molekule je 0, v iontu se rovná náboji.',
+'vazba,vazby,kovalentni,iontova vazba,elektronegativita,polarni,nepolarni|Typ vazby určuje rozdíl elektronegativit ΔEN:\n- ΔEN ≥ 1,7 → **iontová** (NaCl)\n- 0,4 až 1,7 → **polární kovalentní** (H₂O)\n- pod 0,4 → **nepolární kovalentní** (Cl₂)\nKovy tvoří **kovovou** vazbu se sdílenými elektrony.',
+'periodicka soustava,perioda,skupina,mendelejev,periodicka tabulka,tabulka prvku|**Periodická soustava** řadí prvky podle rostoucího protonového čísla. Má 7 vodorovných **period** a 18 svislých **skupin**. Prvky ve skupině mají podobné vlastnosti. Vytvořil ji Mendělejev v roce 1869. Najdeš ji interaktivně v Laboratoři.',
+'halogeny,halogen,alkalicke kovy,vzacne plyny,vzacny plyn|**Alkalické kovy** (1. skupina: Li, Na, K…) jsou velmi reaktivní. **Halogeny** (17. skupina: F, Cl, Br, I, At) tvoří soli. **Vzácné plyny** (18. skupina: He, Ne, Ar…) jsou téměř nereaktivní.',
+'skupenstvi,zmeny skupenstvi,tani,tuhnuti,vypareni,kondenzace,desublimace|Změny skupenství: **tání** (pevné → kapalné), **tuhnutí** (kapalné → pevné), **vypařování** (kapalné → plynné), **kondenzace** (plynné → kapalné), **sublimace** (pevné → plynné), **desublimace** (plynné → pevné).',
+'smes,smesi,deleni smesi,filtrace,destilace,krystalizace,chromatografie,dekantace,usazovani|**Dělení směsí**:\n- filtrace: nerozpustná pevná látka z kapaliny\n- destilace: kapaliny s různým bodem varu\n- krystalizace: pevná látka z roztoku\n- chromatografie: barviva\n- magnet: železo od jiných látek\n- dělicí nálevka: nemísitelné kapaliny',
+'chemicka reakce,reakce,rovnice,vyvazovani,vyvazit,vyvazovat,koeficienty,chemicke rovnice|Při **chemické reakci** z výchozích látek vznikají nové. Rovnici vyvažuješ tak, aby byl počet atomů každého prvku vlevo stejný jako vpravo. Postup: začni nejsložitější látkou, kyslík a vodík nech nakonec. Napiš mi rovnici třeba jako `Al+O2=Al2O3` a vyvážím ji za tebe.',
+'typy reakci,neutralizace,substituce,analyza,synteza,podvojna zamena,rozklad,slucovani|Typy reakcí: **syntéza** (slučování), **rozklad**, **substituce** (jeden prvek nahradí jiný), **podvojná záměna**, **neutralizace** (kyselina + hydroxid) a **hoření** (reakce s kyslíkem).',
+'exotermni,endotermni,teplo pri reakci,reakcni teplo|**Exotermní** reakce teplo uvolňují (hoření), **endotermní** ho spotřebovávají (rozklad CaCO₃, fotosyntéza).',
+'katalyzator,katalyza,enzym|**Katalyzátor** urychluje reakci a sám se přitom nespotřebuje. V přírodě tuto roli hrají **enzymy**.',
+'oxidace,redukce,redox,redoxni|**Oxidace** je ztráta elektronů (oxidační číslo roste), **redukce** je zisk elektronů (oxidační číslo klesá). Probíhají vždy společně – to je **redoxní** reakce.',
+'organicka,uhlovodik,uhlovodiky,alkan,alkany,alken,alkyn,organika|**Organická chemie** studuje sloučeniny uhlíku. Alkany (CₙH₂ₙ₊₂) se jmenují: methan CH₄, ethan C₂H₆, propan C₃H₈, butan C₄H₁₀, pentan C₅H₁₂, hexan C₆H₁₄. Alkeny mají dvojnou vazbu (ethen C₂H₄), alkyny trojnou (ethyn C₂H₂).',
+'bezpecnost,ochranne,bryle,plaste,pravidla v laboratori,bezpecne,bezpecnost v laboratori|**Bezpečnost v laboratoři**: ochranné brýle a plášť, žádné jídlo a pití, pracuj jen s tím, co ti zadal učitel, nikdy neochutnávej ani nečichej přímo ke zkumavce, kyselinu lij do vody (ne naopak) a každou nehodu ihned hlas učiteli.',
+'kadinka,zkumavka,pipeta,byreta,pomucky,erlenmeyer,kahan,laboratorni pomucky|**Pomůcky**: kádinka (míchání a zahřívání), zkumavka (malé reakce), Erlenmeyerova baňka (kuželová), odměrný válec (objem), pipeta (dávkování), byreta (titrace), kahan (zahřívání), třecí miska (rozmělňování).',
+'alotropie,diamant,grafit,grafen,fulleren,modifikace uhliku|**Alotropie** je existence prvku ve více formách. Uhlík tvoří třeba **diamant** (tvrdý, průhledný), **grafit** (měkký, vodivý), **grafen** a **fullereny**. Všechno je to čistý uhlík, liší se jen uspořádáním atomů.',
+'voda,vody,vodu,h2o|**Voda** (H₂O) je polární molekula. Taje při 0 °C, vře při 100 °C (101,3 kPa), nejvyšší hustotu má při 4 °C. Led je lehčí než voda, proto plave. Voda je výborné rozpouštědlo.',
+'vzduch,atmosfera,vzduchu|**Vzduch** tvoří přibližně 78 % dusíku, 21 % kyslíku, necelé 1 % argonu a asi 0,04 % oxidu uhličitého.',
+'kovy,nekovy,polokovy,kov,nekov,polokov,vlastnosti kovu|**Kovy** jsou lesklé, kujné, tažné a vedou proud i teplo (Fe, Cu, Al). **Nekovy** jsou obvykle křehké a nevodivé (S, C, O). **Polokovy** (B, Si, Ge, As) mají vlastnosti mezi nimi, proto se používají v elektronice.',
+'slitina,slitiny,ocel,mosaz,bronz|**Slitiny** jsou směsi kovů: mosaz (Cu + Zn), bronz (Cu + Sn), ocel (Fe + C), pájka (Sn + Pb), dural (Al + Mg).',
+'elektrolyza,galvanicky clanek,baterie,clanek,elektrochemie|**Elektrolýza** rozkládá látky elektrickým proudem (např. vodu na H₂ a O₂). **Galvanický článek** naopak mění chemickou energii na elektrickou (baterie).',
+'jedla soda,ocet,kuchynska sul,v domacnosti,domaci chemie,mydlo,latky v domacnosti|Chemie v kuchyni: kuchyňská sůl je NaCl, jedlá soda NaHCO₃ (hydrogenuhličitan sodný), ocet je zředěná kyselina octová CH₃COOH. Když smícháš sodu s octem, uvolňuje se oxid uhličitý a šumí to.',
+'radioaktivita,radioaktivni,zareni,polocas,rozpad jadra|**Radioaktivita** je samovolná přeměna nestabilních jader, při níž vzniká záření (α, β, γ). **Poločas přeměny** je doba, za kterou se rozpadne polovina jader.',
+'kysele desty,sklenikovy efekt,ekologie,znecisteni,ozonova,ozonova diera|**Kyselé deště** vznikají z oxidů síry a dusíku. **Skleníkový efekt** zesilují plyny jako CO₂ a CH₄. Ekologie a chemie spolu úzce souvisí – správné nakládání s odpady a emisemi chrání prostředí.',
+'plyn,plyny,molarni objem,avogadruv zakon,plynu|Za **normálních podmínek** (0 °C, 101,3 kPa) zaujímá 1 mol libovolného plynu objem asi **22,4 dm³** (molární objem Vm). Platí V = n · Vm.',
+'matematika,vypocet,vypocitat,kalkulacka,pocitani,spocitej|Počítat umím! Zkus třeba:\n- `H2SO4` → molární hmotnost a složení\n- „kolik molů je 36 g H2O“\n- „kolik gramů je 2 mol NaCl“\nSložitější věci najdeš v Laboratoři → **Chemická kalkulačka** a **Početní příklady**.',
+'priklady,pocetni priklady,procvicit priklady,uloha,ulohy|Výpočty procvičíš v **Laboratoři → Početní příklady**. Generátor ti zadá úlohu a po odpovědi ukáže celý postup. Za správnou odpověď jsou 3 XP.',
+'hodne stesti,drz mi palce,palce,preji mi|Držím ti palce, {jmeno}! Ať to dopadne skvěle. A když ne, tak se z toho něco naučíme.',
+'podminky,terms,zasady pouzivani,souhlas s podminkami|Podmínky používání LunaAI si přečteš kdykoli tlačítkem s dokumentem v záhlaví chatu. Souhlas můžeš odvolat v nastavení.',
+'soukromi,ukladas,ukladani,osobni udaje,gdpr,sledujes|Historie chatu a nastavení jsou uložené **jen v tvém prohlížeči**. V offline režimu nic nikam neodchází. V online režimu se tvoje zprávy posílají přes tvůj API klíč službě Anthropic. Obojí můžeš smazat.',
+'pocasi,fotbal,film,hry,politika,seriál,serial,hudba na posloucha|Tohle není úplně moje parketa, ale klidně si chvilku popovídáme. Pak se ale ráda vrátím k chemii – co kdybychom si dali krátké zkoušení?',
+'vlastnosti latek,fyzikalni vlastnosti,chemicke vlastnosti,fyzikalni a chemicke|**Fyzikální vlastnosti**: barva, skupenství, hustota, teplota tání a varu, rozpustnost, vodivost, tvrdost. **Chemické vlastnosti**: hořlavost, reaktivita, korozivnost, kyselost či zásaditost – projeví se při chemické reakci.',
+'chemie,co je chemie,k cemu je chemie,proc chemie|**Chemie** zkoumá složení, vlastnosti a přeměny látek. Provází nás všude – v jídle, lécích, materiálech i v těle. Pochopíš-li základy, začneš ji vidět kolem sebe.'
+].map(s=>{const i=s.indexOf('|');return{p:s.slice(0,i).split(','),r:s.slice(i+1).split('¦')}});
+const FACTS=['Voda je jedna z mála látek, jejíž pevné skupenství (led) je lehčí než kapalné – proto led plave.','z jednoho gramu zlata lze vytáhnout drát dlouhý asi dva kilometry.','lidské tělo obsahuje asi 60 % vody.','diamant i tužkový grafit jsou čistý uhlík – liší se jen uspořádáním atomů.','helium je po vodíku druhý nejběžnější prvek ve vesmíru.','brom a rtuť jsou jediné prvky, které jsou za běžných podmínek kapalné.','vzduch tvoří asi z 78 % dusík a jen z asi 21 % kyslík.','sodík reaguje s vodou tak bouřlivě, že se skladuje pod petrolejem.','prvky s protonovým číslem nad 94 se v přírodě téměř nevyskytují, vyrábějí se uměle.','jedna čajová lžička vody obsahuje řádově 10²³ molekul.','název vodík pochází z latinského hydrogenium – „tvořící vodu“.','periodickou soustavu sestavil Mendělejev v roce 1869 a předpověděl vlastnosti tehdy ještě neobjevených prvků.'];
+const JOKES=['Co řekl jeden atom druhému? „Myslím, že jsem ztratil elektron.“ – „Jsi si jistý?“ – „Jo, jsem pozitivní!“','Kyslík a draslík šli na rande. Jak to dopadlo? O + K = OK.','Nevěř atomům – oni si vymýšlejí úplně všechno!','Proč chemici milují přestávky? Protože v nich vždycky nějaká reakce probíhá.'];
+const LFB=['Hmm, tohle zatím nevím jistě, {jmeno}. Zkus to prosím jinak, nebo se zeptej třeba na **mol**, **pH**, **názvosloví**, nebo mi pošli rovnici k vyvážení (např. `H2+O2=H2O`). S API klíčem v nastavení umím odpovídat i na složitější otázky.','To je zajímavá otázka! V offline režimu mám omezené znalosti. Napiš „co umíš“, ať vidíš, s čím ti spolehlivě pomůžu.','Tomu ještě úplně nerozumím, ale nevzdávám to! Zkus to napsat jednodušeji, nebo se zeptej na konkrétní pojem z chemie.'];
+const LRX={};const lrx=p=>LRX[p]||(LRX[p]=new RegExp('(^|[^a-z0-9])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+(p.length<4?'([^a-z0-9]|$)':'')));
+const lScore=(n,e)=>e.p.reduce((s,p)=>s+(lrx(p).test(n)?p.length+2:0),0);
+function lHi(){const h=new Date().getHours(),g=h<5?'Dobrou noc':h<10?'Dobré ráno':h<18?'Dobrý den':'Dobrý večer';return `${g}, {jmeno}! Moc ráda tě vidím. S čím ti dnes můžu pomoct – s chemií, s učením, nebo s aplikací?`}
+function lTime(){const d=new Date();return 'Teď je '+d.toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'})+', '+d.toLocaleDateString('cs-CZ',{weekday:'long',day:'numeric',month:'long'})+'. Držím ti palce, ať se dnešek povede!'}
+function lSpecial(r){if(r=='@hi')return lHi();if(r=='@joke')return pn(JOKES);if(r=='@fact'){const f=pn(FACTS);return 'Víš, že… '+f}if(r=='@time')return lTime();
+if(r=='@quiz'){LQ={n:0,s:0};return 'Super, jdeme na to! Odpovídej, jak nejlíp umíš – nevadí, když se spleteš, právě tak se učíme. Napiš „nevím“ pro nápovědu nebo „konec“ pro ukončení.\n\n'+lqAsk()}return r}
+function lqAsk(){const g=pn(GENQ),P=g.pairs.split(';').map(s=>s.split('|'));if(g.rev)P.forEach(p=>p.reverse());const p=pn(P);LQ.cur={q:g.tpl.replace('{q}',p[0]),a:p[1]};return `**Otázka ${LQ.n+1} z 10:** ${LQ.cur.q}`}
+function lqEval(raw,n){if(/\?\s*$/.test(raw)&&raw.length>12){LQ=null;return null}
+if(/^(konec|stop|dost|ukonci|ukoncit)/.test(n)){const s=LQ.s,k=LQ.n;LQ=null;return `Dobře, končíme. Skóre: **${s} z ${k}**. Šlo ti to skvěle, {jmeno}! Kdykoli budeš chtít pokračovat, napiš „zkoušej mě“.`}
+if(/^(dal|dalsi|pokracuj)/.test(n))return lqAsk();
+const a=LQ.cur.a;if(/^(nevim|napoveda|pomoz|nemam tuseni)/.test(n)){return `Nápověda: odpověď začíná na **${a[0]}** a má ${a.length} znaků. Zkus to ještě jednou, nebo napiš „dál“.`}
+const x=norm3(raw),y=norm3(a),ok=x==y||(x.length>=4&&y.includes(x));LQ.n++;let fb;if(ok){LQ.s++;fb=pn(['Správně!','Přesně tak!','Skvělé, přesně tak!','Výborně, {jmeno}!'])}else fb=`Tentokrát ne, ale nevadí. Správná odpověď je **${a}**.`;
+if(LQ.n>=10){const s=LQ.s;LQ=null;return fb+`\n\nTo je 10 otázek! Skóre: **${s} / 10**. ${s>=9?'Fantastické!':s>=6?'Moc pěkné!':'Dobrý začátek, příště to bude lepší.'}`}
+return fb+'\n\n'+lqAsk()}
+function lEq(raw){if(!/=|→|->/.test(raw))return null;let s=raw.replace(/\s+/g,'').replace(/->|→|=>|⟶/g,'=');const m=s.match(/[A-Za-z0-9()₀-₉+]+=[A-Za-z0-9()₀-₉+]+/);if(!m)return null;s=m[0];const sd=s.split('='),T=[...sd[0].split('+'),...sd[1].split('+')];
+if(T.length>5||T.some(x=>!x))return 'Zadej rovnici například takto: `H2+O2=H2O` (nejvýše 5 látek).';
+try{T.forEach(x=>mmOf(x))}catch(e){return 'Něco v rovnici nepoznávám ('+e.message+'). Zkontroluj velká a malá písmena prvků.'}
+const sol=eqSol(s);if(!sol)return 'Nenašla jsem celočíselné koeficienty do 14. Zkontroluj prosím zápis, jestli jsou látky na správné straně.';
+let i=0;const side=a=>a.split('+').map(x=>{const c=sol[i++];return(c>1?c+' ':'')+subs(x)}).join(' + ');return 'Vyvážená rovnice:\n**'+side(sd[0])+' → '+side(sd[1])+'**\nV Laboratoři si to můžeš procvičit na dalších příkladech.'}
+function lFormula(raw){const re=/(?:[A-Z][a-z]?\d*|\((?:[A-Z][a-z]?\d*)+\)\d*|[₀-₉])+/g;let m;while((m=re.exec(raw))){const f=m[0];if((f.match(/[A-Z]/g)||[]).length<2&&!/\d|\(/.test(f))continue;if(f=='OK')continue;try{return{f,r:mmOf(f)}}catch(e){}}return null}
+function lFo(fo){const M=fo.r.tot;return `**${subs(fo.f)}** má molární hmotnost **${fmt(M)} g/mol**.\n`+fo.r.rows.map(r=>`- ${r[0]}: ${r[1]}× ${fmt(r[2])} → ${fmt(r[3]/M*100,1)} %`).join('\n')}
+function lMol(n,fo){const m=n.match(/(\d+(?:[.,]\d+)?)\s*(g|gram[a-z]*|mol[a-z]*|dm3|litr[a-z]*|l)(?![a-z])/);if(!m)return null;const x=parseFloat(m[1].replace(',','.')),u=m[2],M=fo.r.tot;let nn,tx;
+if(u[0]=='g'){nn=x/M;tx=`n = m / M = ${fmt(x)} / ${fmt(M)} = **${fmt(nn,4)} mol**`}else if(u.startsWith('mol')){nn=x;tx=`m = n · M = ${fmt(x)} · ${fmt(M)} = **${fmt(x*M)} g**`}else{nn=x/22.4;tx=`n = V / Vm = ${fmt(x)} / 22,4 = **${fmt(nn,4)} mol**`}
+return `Pro **${subs(fo.f)}** je M = ${fmt(M)} g/mol.\n${tx}\nPočet částic: ${(nn*6.022e23).toExponential(2)}.`}
+function lEl(raw,n){const toks=n.split(/[^a-z0-9]+/).filter(Boolean),rt=raw.split(/[^A-Za-z]+/).filter(Boolean);
+let e=ELS.find(x=>{const nm=norm(x.n);if(nm.length<4)return toks.includes(nm);const st=nm.replace(/[aeiouy]$/,'');return toks.some(t=>t===nm||(t.startsWith(st)&&/^(a|e|u|o|y|i|em|ou|ech|um|ovi)?$/.test(t.slice(st.length))))});
+if(!e&&(rt.length==1||/prvek|znack|protonov/.test(n)))e=ELS.find(x=>rt.includes(x.s));
+if(!e)return null;return `**${e.n[0].toUpperCase()+e.n.slice(1)} (${e.s})** – protonové číslo ${e.z}, relativní atomová hmotnost ${fmt(e.m)}. ${CAT[e.c][0]}, za běžných podmínek ${stOf(e)}.${e.u&&e.u!='–'?' Použití: '+e.u+'.':''}\nNajdeš ho v periodické tabulce v Laboratoři.`}
+function lGl(n){let b=null,bl=0;GL.forEach(x=>{const t=norm2(x[0]);if(t.length>=3&&lrx(t).test(n)&&t.length>bl){b=x;bl=t.length}});return b?`**${b[0]}** – ${b[1]}.`:null}
+function lunaOffline(q){const raw=q.trim(),n=norm2(raw),nm=me.name,T=s=>s.replace(/\{jmeno\}/g,nm);
+if(lScore(n,LKB[0])>=4)return T(LKB[0].r[0]);
+if(LQ){const r=lqEval(raw,n);if(r)return T(r)}
+let r=lEq(raw);if(r)return T(r);
+const fo=lFormula(raw);if(fo){const m=lMol(n,fo);if(m)return T(m);if(/molar|hmotnost|\bmr\b|slozeni|spocit|kolik vazi|vzorec|zlomek|procent/.test(n)||raw.trim()==fo.f||raw.trim().split(/\s+/).length<=2)return T(lFo(fo))}
+const el=lEl(raw,n);let best=null,bs=0;LKB.forEach((e,i)=>{if(!i)return;const s=lScore(n,e);if(s>bs){bs=s;best=e}});
+if(el&&(/prvek|znack|protonov|hmotnost|co je|kdo je|vlastnost|vypada|pouziti|vyuziti/.test(n)||n.split(/\s+/).length<=3||bs<5))return T(el);
+if(best&&bs>=4)return T(lSpecial(pn(best.r)));
+r=lGl(n);if(r)return T(r);if(el)return T(el);return T(pn(LFB))}
 
 /* INIT */
 $('#dropI').innerHTML=ic('upload');
