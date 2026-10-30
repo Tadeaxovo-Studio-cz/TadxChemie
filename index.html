@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com; base-uri 'none'; form-action 'none'; frame-src https://tadxchemie.betteruptime.com;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com; base-uri 'none'; form-action 'none';">
 <title>TadxChemie</title>
 <style>
 :root{--bg:#090b1c;--card:rgba(255,255,255,.055);--line:rgba(255,255,255,.1);--tx:#eceffd;--mut:#9aa3c7;--a:#7c5cff;--b:#2ee6d6;--ok:#38e08a;--no:#ff5c7a;--r:18px}
@@ -43,22 +43,23 @@ input:focus,select:focus,textarea:focus{border-color:var(--b)}
 .ob{font-size:4.5rem;color:var(--b);animation:bob 3s ease-in-out infinite}.ob .ic{stroke-width:1.5;filter:drop-shadow(0 0 18px rgba(46,230,214,.5))}
 .ok-i{color:var(--ok)}.no-i{color:var(--no)}
 @keyframes bob{50%{transform:translateY(-12px) rotate(6deg)}}
-.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:18px}.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--a),var(--b));transform-origin:left;animation:ld 30s linear forwards}.bar i{transform:scaleX(0)}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:18px}.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--a),var(--b));transform-origin:left;animation:ld 2.5s ease forwards}
 .opt{display:block;width:100%;text-align:left;margin-bottom:10px;padding:14px 16px}
 .opt.sel{border-color:var(--b);background:rgba(46,230,214,.12)}
 .opt.ok{border-color:var(--ok);background:rgba(56,224,138,.15)}.opt.no{border-color:var(--no);background:rgba(255,92,122,.15);animation:sh .4s}
 @keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.grade{font-size:7rem;font-weight:800;line-height:1;background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;animation:pop .8s cubic-bezier(.2,1.4,.4,1)}
+.grade{font-size:7rem;font-weight:800;line-height:1;background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;animation:pop .8s cubic-bezier(.2,1.2,.3,1)}
 @keyframes pop{from{transform:scale(0) rotate(-20deg)}}
 table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:9px 8px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}
 .wrap{overflow-x:auto}
-#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,120px);background:#1c1f3d;border:1px solid var(--b);padding:12px 20px;border-radius:14px;z-index:9;transition:.4s;max-width:90vw}#toast.on{transform:translate(-50%,0)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,120px);background:#1c1f3d;border:1px solid var(--b);padding:12px 20px;border-radius:14px;z-index:9;transition:.4s;max-width:90vw}
+#toast.on{transform:translate(-50%,0)}
 .qb{border:1px dashed var(--line);border-radius:14px;padding:14px;margin-bottom:12px;animation:sl .4s}
 .row{display:flex;gap:8px;align-items:center}.row input[type=radio]{width:auto;margin:0}
 .tag{font-size:.75rem;padding:2px 9px;border-radius:9px;background:rgba(124,92,255,.25)}
 .warn{color:var(--no);font-weight:600}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-#splash{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 40%,#171a40,#090b1c 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:.8s}
+#splash{position:fixed;inset:0;z-index:60;background:radial-gradient(circle at 50% 40%,#171a40,#090b1c 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .45s ease,transform .45s ease}
 #splash.hide{opacity:0;transform:scale(1.08);pointer-events:none}
 .spw{position:relative;width:150px;height:150px;display:grid;place-items:center}
 .sf{width:150px;height:150px;fill:none;stroke:var(--b);stroke-width:.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 10px rgba(46,230,214,.6));animation:pulse 2.4s ease-in-out infinite}
@@ -84,7 +85,7 @@ table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:9px 8px
 #dropI{font-size:2.4rem;color:var(--b)}
 .sw .ob,.sw h1,.sw p{animation:sl .5s cubic-bezier(.2,.8,.2,1) both}
 @media(prefers-reduced-motion:reduce){.sn span,.ss{opacity:1!important;transform:none!important}.fl{stroke-dashoffset:0}.sb i{width:100%}}
-.gc{position:relative;max-width:450px;margin:20px auto;padding:38px 36px 30px;border:1px solid var(--line);border-radius:28px;background:var(--card);backdrop-filter:blur(18px);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.2)}
+.gc{position:relative;max-width:450px;margin:20px auto;padding:38px 36px 30px;border:1px solid var(--line);border-radius:28px;background:var(--card);backdrop-filter:blur(18px);overflow:hidden;box-shadow:0 20px 50px -24px rgba(124,92,255,.45)}
 .gc::before{content:'';position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b))}
 .gc.ld::before{animation:ld .4s ease forwards}
 .gc h2,.gc>p,#gL{text-align:center}.gc h2{font-size:1.65rem;font-weight:600;margin:6px 0 4px}
@@ -100,7 +101,7 @@ table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:9px 8px
 .er{color:var(--no);font-size:.85rem;margin:6px 2px 0;display:flex;gap:6px;align-items:center}
 .lk{color:var(--b);cursor:pointer;font-weight:600;font-size:.9rem}.lk:hover{text-decoration:underline}
 .lkb{background:none;border:0;color:var(--b);font-weight:600}.lkb:hover{box-shadow:none;transform:none;background:rgba(46,230,214,.1)}
-.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:700;flex:none}.av.sm{width:26px;height:26px;font-size:.8rem}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:700;flex:none}.av.sm{width:26px;height:26px;font-size:.82rem}
 .chip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:20px;padding:4px 12px 4px 4px;cursor:pointer;margin-top:6px;transition:.2s}.chip:hover{border-color:var(--b)}
 .acc{display:flex;gap:12px;align-items:center;padding:12px 8px;border-bottom:1px solid var(--line);cursor:pointer;transition:.2s}.acc:hover{background:rgba(255,255,255,.06)}
 .ck{display:flex;gap:8px;align-items:center;margin-top:12px;color:var(--mut);font-size:.9rem;cursor:pointer}.ck input{width:auto;margin:0}
@@ -147,114 +148,48 @@ html.rm *{animation:none!important;transition:none!important}
 .bdg{background:var(--no);color:#fff;border-radius:10px;font-size:.7rem;padding:1px 6px;margin-left:4px}
 .fi.okf input{border-color:var(--ok)}
 .pt{display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:4px;min-width:640px;margin-bottom:12px}
-.pe{aspect-ratio:1;border-radius:8px;padding:0;font-weight:700;font-size:clamp(.6rem,1.5vw,1rem);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;border:1px solid transparent;cursor:pointer;background:rgba(255,255,255,.03)}
+.pe{aspect-ratio:1;border-radius:8px;padding:0;font-weight:700;font-size:clamp(.6rem,1.5vw,1rem);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;border:1px solid var(--line);background:var(--card)}
 .pe small{font-size:.5em;font-weight:400;opacity:.85}
 .lg{display:inline-flex;align-items:center;gap:6px;margin:0 10px 4px 0}.lg i{width:12px;height:12px;border-radius:4px;display:inline-block}
 #certP{display:none}
 .cert{max-width:880px;margin:30px auto;border:8px double #7c5cff;padding:50px;text-align:center;color:#111;font-family:Georgia,serif;background:#fff}
-.cert .ci svg{width:64px;height:64px;stroke:#7c5cff}.cert h1{font-size:3rem;margin:6px 0}.cert h2{font-size:2.2rem;margin:10px 0;color:#4a35c9}.cert h3{margin:10px 0}.cert .cb{letter-spacing:4px;font-size:.8rem;color:#7c5cff}
-@media print{body.pr>*:not(#certP){display:none!important}body.pr #certP{display:block!important}body.pr{background:#fff!important;color:#111}#certP table{width:100%;color:#111}#certP th,#certP td{border-bottom:1px solid #ccc}}
+.cert .ci svg{width:64px;height:64px;stroke:#7c5cff}.cert h1{font-size:3rem;margin:6px 0}.cert h2{font-size:2.2rem;margin:10px 0;color:#4a35c9}.cert h3{margin:10px 0}.cert .cb{letter-spacing:4px;opacity:.9}
+@media print{body.pr>*:not(#certP){display:none!important}body.pr #certP{display:block!important}body.pr{background:#fff!important;color:#111}#certP table{width:100%;color:#111}#certP th,#certP td{border-color:#ddd;padding:8px;text-align:left}#certP .cert{border:0;padding:0;margin:0}#certP .cert h1,#certP .cert h2,#certP .cert h3{color:#111}}
 .tvw{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:16px 0 0;cursor:pointer;transition:.2s;background:rgba(255,255,255,.03)}
 .tvw:hover{border-color:var(--b)}.tvw.ok{border-color:var(--ok);cursor:default}.tvw .tvk{display:grid;place-items:center;font-size:1.1rem}
 .tvw.ok .tvk{border:0;color:var(--ok)}.tvw.ok .tvk svg{animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
-.obw{padding:0}.obL{display:none}.obR{padding:40px 24px;text-align:center}.obX{display:none}.obE{margin-bottom:10px}
-.obBt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-@media(min-width:900px){
-#onb{width:min(1080px,94vw);position:relative;left:50%;margin-left:calc(min(1080px,94vw) / -2)}
-.obw{display:grid;grid-template-columns:400px 1fr;min-height:580px;overflow:hidden;margin-top:10px}
-.obL{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:34px;background:linear-gradient(160deg,rgba(124,92,255,.38),rgba(46,230,214,.12));border-right:1px solid var(--line)}
-.obR{padding:56px 60px;text-align:left;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
-.obR .ob{font-size:3rem;display:none}.obR h1{font-size:2.9rem;margin:6px 0 12px}.obR .m{font-size:1.1rem;max-width:520px;margin:0}
-.obX{display:block;list-style:none;padding:0;margin:22px 0 4px}
-.obX li{display:flex;gap:12px;align-items:center;margin:11px 0;font-size:1.05rem;animation:sl .55s cubic-bezier(.2,.8,.2,1) both}.obX li svg{color:var(--ok);font-size:1.3rem}
-.obR .dots{margin:22px 0}.obBt{justify-content:flex-start}
-}
-.obV{position:relative;width:240px;height:240px;margin:6px auto 0}
-.orbit{position:absolute;inset:0;border:1px dashed rgba(255,255,255,.28);border-radius:50%;animation:spin 18s linear infinite}
-.orbit::after{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--b);box-shadow:0 0 14px var(--b)}
-.o2{inset:30px;animation-duration:12s;animation-direction:reverse}.o2::after{background:#ff9fc4;box-shadow:0 0 14px #ff9fc4}
-.o3{inset:60px;animation-duration:7s}.o3::after{background:#ffd166;box-shadow:0 0 14px #ffd166}
-.nuc{position:absolute;inset:86px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#fff;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.55),var(--a));box-shadow:0 0 40px rgba(124,92,255,.6)}
-.nuc svg{animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
-.obS{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
-.obS li{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:12px;cursor:pointer;color:var(--mut);transition:.25s}
-.obS li b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;border:1px solid var(--line);flex:none}
-.obS li.on{background:rgba(255,255,255,.12);color:var(--tx)}.obS li.on b{background:var(--b);border-color:var(--b);color:#06201c}
-.obS li.dn b{background:var(--ok);border-color:var(--ok);color:#052}.obS li:hover{background:rgba(255,255,255,.08)}
-.obK{font-size:.8rem;color:var(--mut)}
-@keyframes br{50%{transform:scale(1.08);box-shadow:0 0 60px var(--b)}}
-.orb{width:46px;height:46px;border-radius:50%;flex:none;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),#7c5cff 45%,#2ee6d6);box-shadow:0 0 24px rgba(124,92,255,.7);animation:br 3s ease-in-out infinite}
-.orb.sm{width:30px;height:30px;box-shadow:0 0 14px rgba(124,92,255,.6)}.orb.think{animation-duration:.9s}
-.lunaC{display:flex;align-items:center;gap:16px;cursor:pointer;position:relative;overflow:hidden;border-color:rgba(124,92,255,.55);transition:transform .3s}
-.lunaC:hover{transform:translateY(-3px)}
-.lunaC::before{content:'';position:absolute;inset:-80%;background:conic-gradient(from 0deg,transparent,rgba(124,92,255,.45),transparent 40%,rgba(46,230,214,.4),transparent);animation:spin 9s linear infinite}
-.lunaC::after{content:'';position:absolute;inset:1px;border-radius:calc(var(--r) - 1px);background:var(--bg);opacity:.9}
-.lunaC>*{position:relative;z-index:1}
-.lw{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:rgba(10,12,32,.55);backdrop-filter:blur(16px);height:calc(100vh - 150px);height:calc(100dvh - 150px);min-height:540px}
-html.light .lw{background:rgba(255,255,255,.6)}
-.la{position:absolute;inset:0;pointer-events:none}.la i{position:absolute;width:60%;height:60%;border-radius:50%;filter:blur(80px);opacity:.32;animation:au 14s ease-in-out infinite alternate}
-.la i:nth-child(1){background:#7c5cff;top:-20%;left:-10%}.la i:nth-child(2){background:#2ee6d6;bottom:-25%;right:-10%;animation-delay:-5s}.la i:nth-child(3){background:#ff5c9d;top:30%;left:35%;opacity:.22}
-@keyframes au{to{transform:translate(28%,18%) scale(1.3)}}
-.lh{position:relative;display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
-.lh .tag.lon{background:rgba(56,224,138,.25)}
-.lm{position:relative;flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
-.mr{display:flex;gap:10px;align-items:flex-end;animation:mi .45s cubic-bezier(.2,1.4,.4,1)}.mr.mu{justify-content:flex-end}
-.mb{max-width:80%;padding:12px 16px;border-radius:20px;line-height:1.5;overflow-wrap:anywhere}
-.ma .mb{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:6px;backdrop-filter:blur(8px)}
-.mu .mb{background:linear-gradient(135deg,var(--a),#4f8cff);color:#fff;border-bottom-right-radius:6px}
-.mb ul{margin:6px 0 0 18px;padding:0}.mb code{background:rgba(0,0,0,.3);padding:1px 6px;border-radius:6px}
-@keyframes mi{from{opacity:0;transform:translateY(16px) scale(.95)}}
-.dts{display:inline-flex;gap:5px;padding:4px 2px}.dts i{width:8px;height:8px;border-radius:50%;background:var(--b);animation:bn 1s infinite ease-in-out}.dts i:nth-child(2){animation-delay:.15s}.dts i:nth-child(3){animation-delay:.3s}@keyframes bn{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-7px);opacity:1}}
-.lc{position:relative;display:flex;gap:8px;overflow-x:auto;padding:4px 18px 10px;scrollbar-width:none}.lc button{white-space:nowrap;border-radius:20px;padding:7px 14px;font-size:.88rem}
-.lf{position:relative;display:flex;gap:10px;align-items:flex-end;padding:12px 18px 16px;border-top:1px solid var(--line)}
-.lf textarea{margin:0;resize:none;max-height:120px;border-radius:18px;padding:12px 16px}.lf textarea:focus{box-shadow:0 0 0 3px rgba(46,230,214,.18)}
-.lf .pri{width:46px;height:46px;border-radius:50%;padding:0;display:grid;place-items:center;font-size:1.2rem;flex:none}
-.terms{max-height:250px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:6px 16px 6px 30px;font-size:.9rem;color:var(--mut)}.terms li{margin:8px 0}
-.sig{text-align:center;padding:14px 0}
-.sgw{position:relative;display:inline-block;padding:6px 20px 12px;margin:14px 0 4px}
-.sgt{display:inline-block;white-space:nowrap;font-family:"Segoe Script","Lucida Handwriting","Brush Script MT","Snell Roundhand","Bradley Hand","Comic Sans MS",cursive;font-size:2.6rem;color:#cbd6ff;text-shadow:0 0 18px rgba(124,92,255,.4)}
-html.light .sgt{color:#2b2f78}
-@keyframes hw{to{clip-path:inset(-30% 0 -30% 0)}}
-.pen{position:absolute;top:8px;left:16px;font-size:1.5rem;color:var(--b);animation:pn var(--d) cubic-bezier(.45,.05,.55,.95) .3s forwards,pf .4s ease calc(var(--d) + .3s) forwards}
-@keyframes pn{to{left:calc(100% - 12px)}}@keyframes pf{to{opacity:0}}
-.sgl{width:min(300px,80%);height:24px;display:block;margin:0 auto}.sgl path{fill:none;stroke:var(--b);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dr .9s ease forwards .2s}
-@media(prefers-reduced-motion:reduce){.sgt{clip-path:none}.sgl path{stroke-dashoffset:0}}
-html.rm .sgt{clip-path:none!important}html.rm .sgl path{stroke-dashoffset:0}
-.qc,#glL .card{content-visibility:auto;contain-intrinsic-size:auto 150px}
-html.eco .glow,html.eco #bg,html.eco .la i,html.eco .lunaC::before{display:none}
-html.eco *{backdrop-filter:none!important}
 </style>
 </head>
 <body>
-<div id="splash"><div class="spw"><svg viewBox="0 0 24 24" class="sf" aria-hidden="true"><defs><clipPath id="cp"><path d="M10 9.5L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5L14 9.5z"/></clipPath><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2ee6d6"/></linearGradient></defs><path class="fl" d="M14 9.5L10 9.5 8.5 13.7 6.5 20.5 18 20.5 15.5 13.7z" clip-path="url(#cp)" fill="none" stroke="url(#g)"/><path class="liq" d="M12 3.5c1.4 2.2 3.8 3.8 3.8 6.8A3.8 3.8 0 1 1 8.2 10.3c0-3 2.4-4.6 3.8-6.8z"/><circle class="bb b1" cx="9" cy="17.5" r="1.2"/><circle class="bb b2" cx="12" cy="18.2" r="1.1"/><circle class="bb b3" cx="15" cy="17.5" r="1.2"/></svg></div><div class="sn"><b><span>T</span></b><span>a</span><span>d</span><span>x</span><b><span>C</span></b><span>hemie</span></div><div class="sb"><i></i></div><div class="ss">Načítání laboratoře…</div></div>
+<div id="splash"><div class="spw"><svg viewBox="0 0 24 24" class="sf" aria-hidden="true"><defs><clipPath id="cp"><path d="M10 9.5L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5L14 9.5z"/></clipPath></defs><path class="fl" d="M7 14c0-3 2-7 5-7s5 4 5 7v4.5H7Z" clip-path="url(#cp)"/><path class="liq" d="M9 9.5c0-2.3 1.5-3.5 3-3.5s3 1.2 3 3.5c0 2.2-1.7 3.7-3 5.5-1.3-1.8-3-3.3-3-5.5Z"/><circle class="bb" cx="9" cy="16" r="1.3"/><circle class="bb b2" cx="12" cy="17" r="1.4"/><circle class="bb b3" cx="15" cy="16" r="1.3"/><path class="ring" d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19Z"/></svg></div><div class="sn"><span>T</span><span>a</span><span>d</span><span>x</span><b>C</b><span>hemie</span></div><div class="ss">Načítání aplikace…</div><div class="sb"><i></i></div></div>
 <canvas id="bg"></canvas><div class="glow g1"></div><div class="glow g2"></div>
 <header><div class="logo" onclick="go('home')">Tadx<b>Chemie</b></div><nav id="nav"></nav></header>
 <main>
-<section class="view" id="onb"><div class="card obw"><aside class="obL"><div class="obV"><div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="nuc" id="obC"></div></div><ol class="obS" id="obS"></ol><p class="obK">TadxChemie • Chemie pro první ročník</p></aside><div class="obR"><div class="ob" id="obI"></div><span class="tag obE" id="obE"></span><h1 id="obT"></h1><p class="m" id="obD" style="max-width:480px;margin:0 auto"></p><ul class="obX" id="obX"></ul><div class="dots" id="obDots"></div><div class="obBt"><button id="obB">Zpět</button> <button class="pri" id="obN">Další</button> <button onclick="endOb()">Přeskočit</button></div></div></div></section>
+<section class="view" id="onb"><div class="card obw"><aside class="obL"><div class="obV"><div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="nuc" id="obC"></div></div><ol class="obS" id="obS"></ol><p class="m obK">TadxChemie</p></aside><div class="obR"><div class="ob" id="obI"></div><span class="tag obE" id="obE"></span><h1 id="obT"></h1><p class="m" id="obD" style="max-width:480px;margin:0 auto"></p><ul class="obX" id="obX"></ul><div class="dots" id="obDots"></div><div class="obBt"><button id="obB">Zpět</button> <button class="pri" id="obN">Další</button> <button onclick="endOb()">Přeskočit</button></div></div></div></section>
 <section class="view" id="auth"><div class="gc" id="gc"><div id="gL"></div><h2 id="gT"></h2><p class="m" id="gS"></p><div id="gB"></div></div></section>
 <section class="view" id="home"><h1 id="hi"></h1><p class="m" style="margin-bottom:16px">Vyber kvíz a ukaž, co z chemie umíš.</p>
-<div class="note" id="note"></div><div class="card" id="dly"></div><div class="card lunaC" id="lunaH" onclick="go('luna')"><div class="orb"></div><div style="flex:1"><h2 style="margin:0;font-size:1.2rem">LunaAI</h2><p class="m" style="margin:0">Přátelská chemická asistentka</p></div><button class="ib" aria-label="Otevřít Lunu">→</button></div>
+<div class="note" id="note"></div><div class="card" id="dly"></div><div class="card lunaC" id="lunaH" onclick="go('luna')"><div class="orb"></div><div style="flex:1"><h2 style="margin:0;font-size:1.2rem">LunaAI</h2><p class="m" style="margin:4px 0 0">Máš chemickou otázku? Ptej se.</p></div><div class="tag">AI</div></div>
 <h2 style="margin-top:28px" id="lbh"></h2><div class="card wrap"><select id="lbq"></select><div id="board"></div></div>
 <iframe src="https://tadxchemie.betteruptime.com" width="1000" height="800"></iframe>
 </section>
 <section class="view" id="quiz"><div class="card"><div class="row" style="justify-content:space-between" class="m"><span id="qn" class="m"></span><span id="vio" class="warn"></span></div><div class="bar"><i id="tm"></i></div><h2 id="qt"></h2><div id="qo"></div><button id="ll" onclick="fifty()" style="display:none">50:50</button> <button class="pri" id="qnext" onclick="next()">Potvrdit</button></div></section>
 <section class="view" id="res"><div class="card" style="text-align:center"><p class="m">Tvoje známka</p><div class="grade" id="rg"></div><h2 id="rs" style="margin-top:10px"></h2><p class="m" id="rd"></p><br><button class="pri" onclick="go('home')">Zpět na přehled</button> <button id="rcb" onclick="cert(LASTI)" style="display:none">Certifikát</button></div><div class="card" id="rev"></div></section>
-<section class="view" id="studio"><h1>QuizStudio</h1><p class="m" style="margin-bottom:16px">Vytvoř vlastní kvíz. Uvidí ho všichni přihlášení.</p><div class="card" id="drop"><div id="dropI"></div><h2 style="font-size:1.2rem">Vytvoř otázky ze souboru</h2><p class="m" style="margin-bottom:12px">Přetáhni sem soubor nebo ho vyber. Podporujeme .txt, .csv, .json a .md.</p><input id="sf" type="file" accept=".txt,.csv,.json,.md" onchange="fileIn(this.files[0])"></div><div class="card"><label class="m">Název kvízu</label><input id="sT" placeholder="např. Periodická soustava"><div id="sQ"></div><div class="row"><button onclick="addQ()">+ Otázka</button><button class="pri" onclick="saveStudio()">Uložit kvíz</button></div></div><h2>Moje kvízy</h2><div class="card" id="mine"></div></section>
+<section class="view" id="studio"><h1>QuizStudio</h1><p class="m" style="margin-bottom:16px">Vytvoř vlastní kvíz. Uvidí ho všichni přihlášení.</p><div class="card" id="drop"><div id="dropI"></div><h2 style="font-size:1.2rem">Vytvoř otázky ze souboru</h2><p class="m" style="margin-bottom:12px">Přetáhni sem soubor nebo ho vyber. Podporujeme .txt, .csv a .json.</p><input type="file" id="studioFile" style="display:none" accept=".txt,.csv,.json,text/plain,application/json"><button class="pri" onclick="$('#studioFile').click()">Vybrat soubor</button></div><div class="card"><label class="m">Název kvízu</label><input id="sT" placeholder="např. Periodická soustava"><div id="sQ"></div><div class="row"><button onclick="addQ()">+ Otázka</button><button class="pri" onclick="saveStudio()">Uložit kvíz</button></div></div><h2>Moje kvízy</h2><div class="card" id="mine"></div></section>
 <section class="view" id="teach"><h1>Sekce učitele</h1><div class="card wrap"><div class="row" style="margin-bottom:12px"><button onclick="csv()">Export CSV</button><span class="m" id="tst"></span></div><div id="tbl"></div></div><h2>Kvízy</h2><div class="card" id="tq"></div></section>
-<section class="view" id="cards"><h1 id="cT"></h1><div class="fc" id="fc" onclick="flip()"><div class="fci"><div class="ff" id="cF"></div><div class="fb" id="cB"></div></div></div><p class="m" id="cN"></p><div class="row" style="justify-content:center;gap:12px"><button onclick="cm(0)">Špatně</button><button class="pri" onclick="cm(1)">Známm</button></div></section>
-<section class="view" id="prof"><h1>Profil</h1><div class="card"><div class="row" style="gap:16px"><div id="pAv"></div><div style="flex:1"><h2 id="pN" style="margin:0"></h2><p class="m" id="pL"></p><p class="m" id="pBio"></p></div></div><div class="bar" style="margin:16px 0 10px"><i id="pX" style="transform-origin:left"></i></div><div class="grid" id="pS"></div><h2 style="margin-top:22px">Odznaky</h2><div class="grid" id="pB"></div><h2 style="margin-top:22px">Moje slabiny</h2><p class="m" id="pWc" style="margin-bottom:10px"></p><div class="card" id="pW"></div><h2 style="margin-top:22px">Výsledky a certifikáty</h2><div class="card wrap" id="pR"></div><h2 style="margin-top:22px">Zabezpečení účtu</h2><div class="card" id="pSec"></div><h2 style="margin-top:22px">Vzhled a přístupnost</h2><div class="card" id="pU"></div><h2 style="margin-top:22px">Přizpůsobit profil</h2><div class="card" id="pE"></div><h2 style="margin-top:22px">Barva motivu</h2><div class="card row" id="pC" style="flex-wrap:wrap"></div></section>
-<section class="view" id="log"><h1>Novinky</h1><div class="card" style="padding:0;overflow:hidden"><div id="lgB"></div><div style="padding:20px 24px"><h2 style="margin:0">TadxChemie v6.0 – Luna aktualizace</h2><div id="lgL"></div></div></div></section>
+<section class="view" id="cards"><h1 id="cT"></h1><div class="fc" id="fc" onclick="flip()"><div class="fci"><div class="ff" id="cF"></div><div class="fb" id="cB"></div></div></div><p class="m" id="cD"></p><button class="pri" onclick="go('home')">Zpět</button></section>
+<section class="view" id="prof"><h1>Profil</h1><div class="card"><div class="row" style="gap:16px"><div id="pAv"></div><div style="flex:1"><h2 id="pN" style="margin:0"></h2><p class="m" id="pL"></p></div></div></div><div class="grid" id="pS"></div><h2 style="margin-top:22px">Odznaky</h2><div class="grid" id="pB"></div><h2 style="margin-top:22px">Moje slabiny</h2><p class="m" id="pWc" style="margin-bottom:10px"></p><h2 style="margin-top:22px">Výsledky a certifikáty</h2><div class="card wrap" id="pR"></div><h2 style="margin-top:22px">Zabezpečení účtu</h2><div class="card" id="pSec"></div><h2 style="margin-top:22px">Vzhled a přístupnost</h2><div class="card" id="pU"></div><h2 style="margin-top:22px">Přizpůsobit profil</h2><div class="card" id="pE"></div><h2 style="margin-top:22px">Barva motivu</h2><div class="card row" id="pC" style="flex-wrap:wrap"></div></section>
+<section class="view" id="log"><h1>Novinky</h1><div class="card" style="padding:0;overflow:hidden"><div id="lgB"></div><div style="padding:20px 24px"><h2 style="margin:0">TadxChemie v6.0 – LunaAI</h2><p class="m">Změny v přehlednosti, přístupnosti a procvičování.</p></div></div></section>
 <section class="view" id="lab"><h1>Laboratoř</h1><p class="m" style="margin-bottom:16px">Nástroje a hry, které ti pomůžou chemii pochopit.</p><div class="grid" id="labG"></div></section>
-<section class="view" id="pt"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h1 style="margin:0">Periodická tabulka</h1><div class="row"><button id="ptB" onclick="ptGame()">Hra: Najdi prvek</button><button onclick="go('lab')">Zpět</button></div></div><div class="card" style="margin-top:14px"><div id="ptL"></div><div id="ptG" class="pt"></div><div id="ptD"></div><div id="ptQ"></div></div></section>
-<section class="view" id="eq"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Vyvažování rovnic</h1><button onclick="go('lab')">Zpět</button></div><div class="tabs" style="margin-top:12px"><button class="on" id="eL0" onclick="eqL(0)">Lehké</button><button id="eL1" onclick="eqL(1)">Střední</button><button id="eL2" onclick="eqL(2)">Těžké</button></div><div class="card" id="eqB"></div><div id="eqF"></div><div id="eqP"></div></section>
-<section class="view" id="calc"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Chemická kalkulačka</h1><button onclick="go('lab')">Zpět</button></div><div class="card" style="margin-top:14px"><h2>Molární hmotnost a složení</h2><div class="row"><input id="cf" placeholder="Vzorec, např. H₂SO₄ nebo Ca(OH)2" style="margin:0" onkeydown="if(event.key==='Enter')cMM()"><button class="pri" onclick="cMM()">Spočítat</button></div><div id="cfR"></div></div><div class="card"><h2>Převody (látkové množství)</h2><div class="grid"><div><label class="m">Vzorec</label><input id="cv" placeholder="např. H₂O"></div><div><label class="m">Hodnota</label><input id="cx" placeholder="např. 12.5"></div><div><label class="m">Jednotka</label><select id="cu"><option value="g">g</option><option value="mol">mol</option><option value="dm">dm³ (plyn)</option></select></div><div><label class="m">Molární objem</label><input id="cvm" value="22.4"></div></div><button class="pri" onclick="cCv()">Převést</button><div id="cvR"></div></div><div class="card"><h2>Vztahy (ρ, c, w)</h2><select id="cr" onchange="crSet()"><option value="0">Hustota ρ = m / V</option><option value="1">Látková koncentrace c = n / V</option><option value="2">Hmotnostní zlomek w = m/látky / m/roztoku × 100</option></select><div class="grid"><div><label class="m" id="crA0">ρ</label><input id="crA" placeholder="g/cm³"></div><div><label class="m" id="crB0">m</label><input id="crB" placeholder="g"></div><div><label class="m" id="crC0">V</label><input id="crC" placeholder="cm³"></div></div><button class="pri" onclick="cRel()">Spočítat</button><div id="crR"></div></div></section>
-<section class="view" id="duel"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Souboj</h1><button onclick="go('lab')">Zpět</button></div><div id="duB" style="margin-top:14px"></div></section>
+<section class="view" id="pt"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h1 style="margin:0">Periodická tabulka</h1><div class="row"><button id="ptB" onclick="ptGame()">Hrát</button><button onclick="go('lab')">Zpět</button></div></div><div class="card wrap" id="ptW"></div></section>
+<section class="view" id="eq"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Vyvažování rovnic</h1><button onclick="go('lab')">Zpět</button></div><div class="tabs" id="eqTabs"></div><div class="card" id="eqB"></div></section>
+<section class="view" id="calc"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Chemická kalkulačka</h1><button onclick="go('lab')">Zpět</button></div><div class="card" style="margin-top:14px"><h2>Molární hmotnost a složení</h2><div class="row"><input id="cf" placeholder="Vzorec, např. H₂SO₄ nebo Ca(OH)2" style="margin:0" onkeydown="if(event.key==='Enter')calcFormula()"><button class="pri" onclick="calcFormula()">Spočítat</button></div><div id="cfR"></div></div><div class="card"><h2>Převody (látkové množství)</h2><div class="grid"><div><label class="m">Vzorec</label><input id="cv" placeholder="např. H₂O"></div><div><label class="m">Hodnota</label><input id="cvv" placeholder="např. 36"></div><div><label class="m">Jednotka</label><select id="cvu"><option value="g">g</option><option value="mol">mol</option><option value="l">l</option></select></div></div><button class="pri" onclick="calcAmount()">Převést</button><div id="cvR"></div></div><div class="card"><h2>Vztahy (ρ, c, w)</h2><select id="cr" onchange="crSet()"><option value="0">Hustota ρ = m / V</option><option value="1">Látková koncentrace c = n / V</option><option value="2">Hmotnostní zlomek w = m / mₛ</option></select><div id="crR"></div></div></section>
+<section class="view" id="duel"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Souboj</h1><button onclick="go('lab')">Zpět</button></div><div id="duB" style="margin-top:12px"></div></section>
 <section class="view" id="notif"><h1>Upozornění</h1><p class="m" style="margin-bottom:16px">Zadání, termíny, denní výzva a opakování.</p><div id="ntL"></div></section>
-<section class="view" id="luna"><div class="lw"><div class="la"><i></i><i></i><i></i></div><div class="lh"><div class="orb" id="lOrb"></div><div style="flex:1"><b style="font-size:1.15rem">LunaAI</b><br><span class="tag" id="lSt"></span></div><button class="ib" onclick="lTerms()" aria-label="Zobrazit podmínky">?</button></div><div class="lm" id="lM" aria-live="polite"></div><div class="lc" id="lC"></div><div class="lf"><textarea id="lI" rows="1" maxlength="800" placeholder="Napiš Luně…" onkeydown="lk(event)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea><button class="pri" onclick="sendLuna()" aria-label="Odeslat">➤</button></div></div></section>
-<section class="view" id="pr"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Početní příklady</h1><button onclick="go('lab')">Zpět</button></div><p class="m" id="prT"></p><div class="card"><p id="prQ" style="font-size:1.2rem"></p><div class="row"><input id="prA" placeholder="Zadej výsledek" onkeydown="if(event.key==='Enter')prCheck()"><button class="pri" onclick="prCheck()">Vyhodnotit</button></div><div id="prF"></div><div id="prS"></div></div></section>
-<section class="view" id="gl"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Slovníček pojmů</h1><button onclick="go('lab')">Zpět</button></div><input id="glq" placeholder="Hledat pojem…" oninput="glF()"><div id="glL"></div></section>
+<section class="view" id="luna"><div class="lw"><div class="la"><i></i><i></i><i></i></div><div class="lh"><div class="orb" id="lOrb"></div><div style="flex:1"><b style="font-size:1.15rem">LunaAI</b><br><span class="tag" id="lSt"></span></div><button class="ib" onclick="lTerms()" aria-label="Pravidla">?</button></div><div class="lm" id="lM" aria-live="polite"></div><div class="lc" id="lC"></div><div class="lf"><textarea id="lI" rows="1" maxlength="800" placeholder="Napiš Luně…" onkeydown="lk(event)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea><button class="pri" onclick="lunSend()" aria-label="Odeslat">➤</button></div></div><div class="card" id="lSet" style="display:none;margin-top:14px"></div></section>
+<section class="view" id="pr"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Početní příklady</h1><button onclick="go('lab')">Zpět</button></div><p class="m" id="prS"></p><div id="prB" class="card"></div></section>
+<section class="view" id="gl"><div class="row" style="justify-content:space-between"><h1 style="margin:0">Slovníček pojmů</h1><button onclick="go('lab')">Zpět</button></div><input id="glq" placeholder="Hledat pojem…"><div id="glB" class="card"></div></section>
 <section class="view" id="cls"><h1>Učebna</h1><p class="m" id="clsS" style="margin-bottom:16px"></p><div class="card" id="clsF"></div><div class="grid" id="clsL"></div></section>
-<section class="view" id="cd"><div class="row" style="justify-content:space-between"><h1 id="cdT" style="margin:0"></h1><button onclick="go('cls')">Zpět</button></div><p class="m" id="cdS" style="margin-bottom:16px"></p><div id="cdB"></div></section>
+<section class="view" id="cd"><div class="row" style="justify-content:space-between"><h1 id="cdT" style="margin:0"></h1><button onclick="go('cls')">Zpět</button></div><p class="m" id="cdS" style="margin-bottom:16px"></p><div class="card wrap" id="cdB"></div></section>
 <section class="view" id="admin"><h1>Admin</h1><div class="tabs" id="adTabs" style="flex-wrap:wrap"></div><div id="adC"></div></section>
 </main>
 <div id="toast"></div><div id="certP"></div>
@@ -291,12 +226,11 @@ let me=DB.g('me',null),RL='s',ob=0,Q=null,cur=0,pick=-1,score=0,vio=0,ans=[],tmr
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),3200)}
 function show(id){const o=document.querySelector('.view.on');if(o&&o.id!==id){o.classList.add('out');setTimeout(()=>{o.classList.remove('on','out');$('#'+id).classList.add('on')},280)}else $('#'+id).classList.add('on')}
 function go(id){if(active&&id!=='quiz'){if(!confirm('Opustit kvíz? Bude vyhodnocen jako nedokončený.'))return;finish(true)}if(!me&&id!=='auth'&&id!=='onb'){id='auth'}nav();show(id);if(id==='home')home();if(id==='studio')studio();if(id==='teach')teach();if(id==='admin')admin();if(id==='auth')authInit();if(id==='prof')prof();}
-function nav(){const items=me?`<button onclick="go('home')">Kvízy</button><button onclick="go('luna')">LunaAI</button><button onclick="go('lab')">Laboratoř</button><button onclick="go('prof')">Profil</button><button onclick="go('teach')">Učitel</button><button onclick="out()">Odhlásit</button>`:`<button onclick="go('auth')">Přihlásit</button>`;$('#nav').innerHTML=items;}
+function nav(){const items=me?`<button onclick="go('home')">Kvízy</button><button onclick="go('luna')">LunaAI</button><button onclick="go('lab')">Laboratoř</button><button onclick="go('prof')">Profil</button><button onclick="out()">Odhlásit</button>`:`<button onclick="go('auth')">Přihlásit</button>`;$('#nav').innerHTML=items;}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]))}
-const IC={'flask-conical':'<path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/>','circle-check':'<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>','circle-alert':'<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>','moon':'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'};
+const IC={'flask-conical':'<path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/>','moon':'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'};
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
-function authInit(){$('#gL').innerHTML=ic('flask-conical');$('#gT').textContent='Přihlášení';$('#gS').textContent='Pokračuj do TadxChemie';$('#gB').innerHTML='<div class="fi"><input id="gi" type="text" placeholder=" " autocomplete="username"><label>E-mail nebo jméno</label></div><div class="row" style="justify-content:center;margin-top:12px"><button class="pri" onclick="aNext()">Pokračovat</button></div>';
-setTimeout(()=>$('#gi').focus(),80)}
+function authInit(){$('#gL').innerHTML=ic('flask-conical');$('#gT').textContent='Přihlášení';$('#gS').textContent='Pokračuj do TadxChemie';$('#gB').innerHTML='<div class="fi"><input id="gi" type="text" placeholder=" " autocomplete="username"><label>E-mail nebo jméno</label></div><div class="row" style="justify-content:space-between"><button onclick="go(\'home\')">Demo</button><button class="pri" onclick="aNext()">Pokračovat</button></div>'}
 function aNext(){const v=$('#gi').value.trim();if(!v)return toast('Zadej e-mail nebo jméno.');me={name:v,role:'s',email:v};DB.s('me',me);toast('Vítej zpět, '+v);go('home')}
 function out(){me=null;DB.s('me',null);go('auth')}
 function home(){}
@@ -305,9 +239,13 @@ function teach(){}
 function admin(){}
 function prof(){}
 function finish(){}
-function updateOb(){const s=['Kvízy','LunaAI','Laboratoř','Profil'];$('#hi').textContent='TadxChemie';$('#lbh').textContent='Nejnovější kvízy';$('#lbq').innerHTML='<option value="base">Chemie 1. ročník SŠ</option>';} 
+function updateOb(){const s=['Kvízy','LunaAI','Laboratoř','Profil'];$('#hi').textContent='TadxChemie';$('#lbh').textContent='Nejnovější kvízy';$('#lbq').innerHTML='<option value="base">Chemie 1. ročník SŠ</option>'}
 if(me){nav();show('home');home();}else{nav();show('auth');authInit();}
 show('home');
+window.addEventListener('load',()=>{
+  const splash=document.getElementById('splash');
+  if(splash){ setTimeout(()=>splash.classList.add('hide'),1500); }
+});
 </script>
 </body>
 </html>
