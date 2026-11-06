@@ -624,7 +624,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='8.3';let LL=2,CD=null,AC=null,NB=0;
+const VER='8.5';let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -3170,7 +3170,242 @@ Elektronový obal a periodicita|Electron shell and periodicity|Електрон�
 Týmy a služby za TadxChemií|Teams and services behind TadxChemie|Команди та сервіси за TadxChemie
 Tvůrce a provozovatel TadxChemie|Creator and operator of TadxChemie|Творець і оператор TadxChemie
 Výběr z naposledy použitých účtů|Choose from recently used accounts|Вибір із нещодавно використаних акаунтів
-Zvuk při klepnutí na tlačítka|Sound when tapping buttons|Звук при натисканні кнопок`;
+Zvuk při klepnutí na tlačítka|Sound when tapping buttons|Звук при натисканні кнопок
+Začátečník|Beginner|Початківець
+Pomocník v laboratoři|Lab assistant|Помічник у лабораторії
+Experimentátor|Experimenter|Експериментатор
+Mistr reakcí|Reaction master|Майстер реакцій
+Legenda periodické tabulky|Periodic table legend|Легенда періодичної таблиці
+Týden v řadě|A week in a row|Тиждень поспіль
+Uč se 7 dní po sobě.|Study 7 days in a row.|Навчайся 7 днів поспіль.
+Měsíc v řadě|A month in a row|Місяць поспіль
+Uč se 30 dní po sobě.|Study 30 days in a row.|Навчайся 30 днів поспіль.
+Sběratel truhel|Chest collector|Збирач скринь
+Otevři 7 denních truhel.|Open 7 daily chests.|Відкрий 7 щоденних скринь.
+Detektiv prvků|Element detective|Детектив елементів
+Uhodni 5× Prvek dne nebo procvičovací prvek.|Guess the Element of the day or a practice element 5 times.|Вгадай Елемент дня або тренувальний елемент 5 разів.
+Rychlík|Speedster|Швидкісник
+Získej v Blitzu 15 a více správných odpovědí.|Get 15 or more correct answers in Blitz.|Отримай у Бліці 15 і більше правильних відповідей.
+Paměťový mistr|Memory master|Майстер пам’яті
+Dokonči Pexeso nejvýše na 12 tahů.|Finish Pexeso in 12 moves or fewer.|Заверши Мемо не більш ніж за 12 ходів.
+běžná|common|звичайна
+vzácná|rare|рідкісна
+epická|epic|епічна
+legendární|legendary|легендарна
+Dnešní truhlu už máš. Zítra čeká další.|You already have today’s chest. Another one awaits tomorrow.|Сьогоднішню скриню ти вже маєш. Завтра чекає наступна.
+Otevřít|Open|Відкрити
+vzácný plyn|noble gas|шляхетний газ
+alkalický kov|alkali metal|лужний метал
+kov alkalických zemin|alkaline earth metal|лужноземельний метал
+přechodný kov|transition metal|перехідний метал
+post-přechodný kov|post-transition metal|постперехідний метал
+uměle připravený prvek|synthetic element|штучно створений елемент
+Procvičování|Practice|Тренування
+Název nebo značka prvku|Element name or symbol|Назва або символ елемента
+Čím méně nápověd potřebuješ, tím víc XP dostaneš.|The fewer hints you need, the more XP you get.|Чим менше підказок тобі потрібно, тим більше XP отримаєш.
+To není ono. Zkus to znovu nebo si odhal další nápovědu.|Not quite. Try again or reveal another hint.|Не те. Спробуй ще раз або відкрий наступну підказку.
+Hádej prvek podle nápověd. Čím dřív, tím víc XP.|Guess the element from the hints. The sooner, the more XP.|Вгадай елемент за підказками. Чим швидше, тим більше XP.
+Hádanka s nápovědami a denní odměnou|A riddle with hints and a daily reward|Загадка з підказками та щоденною нагородою
+Učení hrou a Luna do detailu|Learning through play and Luna in detail|Навчання через гру та Луна в деталях
+Luna s pamětí, vlastní fotka a Google|Luna with memory, your own photo and Google|Луна з пам’яттю, власне фото та Google
+Přihlášení a registrace přes Google (Firebase Authentication)|Sign-in and sign-up with Google (Firebase Authentication)|Вхід і реєстрація через Google (Firebase Authentication)
+Každá aktualizace v Novinkách má vlastní obrázek|Every update in News has its own image|Кожне оновлення в Новинах має власне зображення
+Vyber soubor s obrázkem.|Choose an image file.|Вибери файл із зображенням.
+Obrázek je příliš velký (max 8 MB).|The image is too large (max 8 MB).|Зображення завелике (макс. 8 МБ).
+Soubor se nepodařilo přečíst.|The file could not be read.|Не вдалося прочитати файл.
+Obrázek se nepodařilo načíst.|The image could not be loaded.|Не вдалося завантажити зображення.
+Obrázek nahrán.|Image uploaded.|Зображення завантажено.
+Paměť vypnutá|Memory off|Пам’ять вимкнено
+Paměť zapnutá|Memory on|Пам’ять увімкнено
+Paměť není zvolena|Memory not chosen|Пам’ять не вибрано
+Paměť zapnuta.|Memory turned on.|Пам’ять увімкнено.
+Paměť vypnuta – Luna si nic neukládá.|Memory turned off – Luna saves nothing.|Пам’ять вимкнено – Луна нічого не зберігає.
+Jak se připravit na test?|How do I prepare for a test?|Як підготуватися до тесту?
+Dej mi tip na učení|Give me a study tip|Дай мені пораду щодо навчання
+Jak funguje časomíra?|How does the timer work?|Як працює таймер?
+Jak funguje tabulka prvků?|How does the periodic table work?|Як працює таблиця елементів?
+Co umí kalkulačka?|What can the calculator do?|Що вміє калькулятор?
+Vyvaž rovnici|Balance an equation|Зрівняй рівняння
+Jak získám odznaky?|How do I earn badges?|Як отримати значки?
+Jak se připojím do třídy?|How do I join a class?|Як приєднатися до класу?
+Google přihlášení: doplň Firebase konfiguraci (FB_CFG) v kódu.|Google sign-in: add the Firebase configuration (FB_CFG) in the code.|Вхід через Google: додай конфігурацію Firebase (FB_CFG) у коді.
+Google účet nemá ověřený e-mail.|The Google account has no verified email.|В облікового запису Google немає підтвердженої електронної пошти.
+Tento účet je zablokovaný.|This account is blocked.|Цей обліковий запис заблоковано.
+Registrace je dočasně vypnutá. Kontaktuj admina.|Registration is temporarily disabled. Contact the admin.|Реєстрацію тимчасово вимкнено. Зверніться до адміністратора.
+Přihlášení zrušeno.|Sign-in cancelled.|Вхід скасовано.
+Tato doména není povolená ve Firebase (Authorized domains).|This domain is not allowed in Firebase (Authorized domains).|Цей домен не дозволено у Firebase (Authorized domains).
+Prohlížeč zablokoval okno – povol vyskakovací okna.|The browser blocked the window – allow pop-ups.|Браузер заблокував вікно – дозволь спливаючі вікна.
+Google přihlášení se nezdařilo.|Google sign-in failed.|Не вдалося увійти через Google.
+Nový chat|New chat|Новий чат
+Zavřít panel|Close panel|Закрити панель
+Seznam chatů|Chat list|Список чатів
+Včera|Yesterday|Учора
+Posledních 7 dní|Previous 7 days|Останні 7 днів
+Starší|Older|Старіші
+Zatím žádné chaty. Napiš Luně první zprávu.|No chats yet. Write Luna your first message.|Чатів поки немає. Напиши Луні перше повідомлення.
+Paměť vypnutá · chaty se neukládají|Memory off · chats are not saved|Пам’ять вимкнено · чати не зберігаються
+Paměť zapnutá · chaty se ukládají|Memory on · chats are saved|Пам’ять увімкнено · чати зберігаються
+Počkej, než Luna dopíše odpověď.|Wait until Luna finishes the answer.|Зачекай, поки Луна допише відповідь.
+Název chatu:|Chat name:|Назва чату:
+Chat smazán.|Chat deleted.|Чат видалено.
+Tento chat je prázdný.|This chat is empty.|Цей чат порожній.
+Dobré ráno|Good morning|Доброго ранку
+Dobrý den|Good afternoon|Добрий день
+Dobrý večer|Good evening|Добрий вечір
+Luna teď používá paměť.|Luna is now using memory.|Луна тепер використовує пам’ять.
+Luna paměť nepoužívá.|Luna is not using memory.|Луна не використовує пам’ять.
+Chaty, povinná paměť a Luna ve stylu Gemini|Chats, mandatory memory and Gemini-style Luna|Чати, обов’язкова пам’ять і Луна в стилі Gemini
+Opraveno: vypnutá paměť už neodpojí uložený API klíč|Fixed: turning memory off no longer disconnects the saved API key|Виправлено: вимкнення пам’яті більше не від’єднує збережений ключ API
+● Luna odpověděla|● Luna replied|● Луна відповіла
+Luna odpověděla|Luna replied|Луна відповіла
+Účet|Account|Обліковий запис
+Profilová fotka|Profile photo|Фото профілю
+Obrázek nahraješ v Profilu.|You upload the image in Profile.|Зображення завантажується в Профілі.
+Celé jméno|Full name|Повне ім’я
+Jméno, pod kterým jsi přihlášený/á.|The name you are signed in with.|Ім’я, під яким ти ввійшов/ла.
+Jak ti má Luna říkat?|What should Luna call you?|Як Луні до тебе звертатися?
+Takhle tě bude oslovovat v chatu.|This is how she will address you in chat.|Так вона звертатиметься до тебе в чаті.
+Co tě nejlépe popisuje?|What describes you best?|Що тебе найкраще описує?
+Luna podle toho přizpůsobí vysvětlení.|Luna will adapt her explanations accordingly.|Луна відповідно підлаштує пояснення.
+žák základní školy|primary school student|учень початкової школи
+Žák ZŠ|Primary student|Учень ЗШ
+student střední školy|secondary school student|учень середньої школи
+Student SŠ|Secondary student|Учень СШ
+učitel|teacher|учитель
+někdo jiný|someone else|хтось інший
+Jiné|Other|Інше
+Platí pro celou aplikaci.|Applies to the whole app.|Діє для всього застосунку.
+Barevné záblesky a třpytky za chatem.|Colorful glows and sparkles behind the chat.|Кольорові відблиски й іскорки за чатом.
+Malá|Small|Мала
+Velká|Large|Велика
+Písmo odpovědí|Answer font|Шрифт відповідей
+Patkové|Serif|З засічками
+Panel chatů při otevření|Chat panel on open|Панель чатів при відкритті
+Otevřený|Open|Відкрита
+Sbalený|Collapsed|Згорнута
+Vlastní instrukce|Custom instructions|Власні інструкції
+Vysvětluj co nejjednodušeji|Explain as simply as possible|Пояснюй якомога простіше
+Používat paměť z chatů|Use memory from chats|Використовувати пам’ять із чатів
+Luna navazuje na tvoje chaty a „pamatuj si, že…“.|Luna builds on your chats and “remember that…”.|Луна спирається на твої чати та «запам’ятай, що…».
+Tvoje paměť|Your memory|Твоя пам’ять
+Zobraz, přidej nebo smaž, co si Luna pamatuje.|View, add or delete what Luna remembers.|Переглядай, додавай або видаляй те, що пам’ятає Луна.
+Po vypnutí se historie smaže při opuštění Luny.|After turning off, history is deleted when you leave Luna.|Після вимкнення історія видаляється, коли ти залишаєш Луну.
+Režim odpovědí|Answer mode|Режим відповідей
+API klíč Anthropic|Anthropic API key|Ключ API Anthropic
+Klíč je uložený v tomto prohlížeči.|The key is stored in this browser.|Ключ збережено в цьому браузері.
+Klíč je uložený jen v tomto prohlížeči.|The key is stored only in this browser.|Ключ збережено лише в цьому браузері.
+Uložit|Save|Зберегти
+Test spojení|Test connection|Перевірити з’єднання
+Pošle krátkou zkušební zprávu.|Sends a short test message.|Надсилає коротке тестове повідомлення.
+Smazat klíč|Delete key|Видалити ключ
+Zvuk po odpovědi|Sound after answer|Звук після відповіді
+Krátký tón, když Luna dopíše odpověď.|A short tone when Luna finishes an answer.|Короткий тон, коли Луна допише відповідь.
+Upozornění v záložce|Tab notification|Сповіщення на вкладці
+Když jsi na jiné záložce, v názvu se objeví ●.|When you are on another tab, ● appears in the title.|Коли ти на іншій вкладці, у назві з’являється ●.
+Systémová oznámení|System notifications|Системні сповіщення
+Soukromí|Privacy|Приватність
+Podmínky LunaAI|LunaAI terms|Умови LunaAI
+Přečti si, s čím jsi souhlasil/a.|Read what you agreed to.|Прочитай, з чим ти погодився/лась.
+Odvolat souhlas s podmínkami|Withdraw consent to the terms|Відкликати згоду з умовами
+Pro další používání Luny bude potřeba souhlasit znovu.|You will need to agree again to keep using Luna.|Щоб і надалі користуватися Луною, потрібно буде погодитися знову.
+Smazat všechny chaty|Delete all chats|Видалити всі чати
+Smazat vzpomínky Luny|Delete Luna’s memories|Видалити спогади Луни
+Položky z „pamatuj si, že…“.|Items from “remember that…”.|Записи з «запам’ятай, що…».
+Smazat vzpomínky|Delete memories|Видалити спогади
+Prohlížeč oznámení nepodporuje.|The browser does not support notifications.|Браузер не підтримує сповіщення.
+Oznámení nejsou povolená v prohlížeči.|Notifications are not allowed in the browser.|Сповіщення не дозволено в браузері.
+Neplatný název modelu.|Invalid model name.|Недійсна назва моделі.
+Vlož nový klíč.|Enter a new key.|Встав новий ключ.
+Klíč nevypadá správně (začíná „sk-“).|The key doesn’t look right (it starts with “sk-”).|Ключ виглядає неправильно (починається з «sk-»).
+Zkouším spojení…|Testing the connection…|Перевіряю з’єднання…
+Smazat všechny chaty s Lunou? Nelze vrátit zpět.|Delete all chats with Luna? This cannot be undone.|Видалити всі чати з Луною? Це неможливо скасувати.
+Chaty smazány.|Chats deleted.|Чати видалено.
+Smazat všechny vzpomínky Luny?|Delete all of Luna’s memories?|Видалити всі спогади Луни?
+Vzpomínky smazány.|Memories deleted.|Спогади видалено.
+Nastavení LunaAI|LunaAI settings|Налаштування LunaAI
+Schopnosti: režim online/offline, model, API klíč a test spojení|Features: online/offline mode, model, API key and connection test|Можливості: режим онлайн/офлайн, модель, ключ API та перевірка з’єднання
+Vypnutá paměť nově blokuje i „pamatuj si, že…“|Turned-off memory now also blocks “remember that…”|Вимкнена пам’ять тепер блокує й «запам’ятай, що…»
+Mol a výpočty|Moles and calculations|Моль і розрахунки
+Názvosloví|Nomenclature|Номенклатура
+Nízká|Low|Низька
+Vysoká|High|Висока
+Úkoly|Tasks|Завдання
+Odpočty|Countdowns|Відліки
+Hledat v poznámkách…|Search notes…|Шукати в нотатках…
+Hledat v poznámkách|Search notes|Шукати в нотатках
+První poznámka|First note|Перша нотатка
+Nový úkol, např. Zopakovat mol|New task, e.g. Review the mole|Нове завдання, напр. Повторити моль
+Nový úkol|New task|Нове завдання
+Termín|Due date|Термін
+Aktivní|Active|Активні
+Hotové|Done|Виконані
+Splněno|Completed|Виконано
+Smazat úkol|Delete task|Видалити завдання
+Tady nic není.|There is nothing here.|Тут нічого немає.
+Žádné úkoly. Přidej první a plánuj si učení.|No tasks. Add the first one and plan your studying.|Завдань немає. Додай перше й плануй навчання.
+Napiš název nebo text.|Write a title or text.|Напиши назву або текст.
+Poznámka uložena.|Note saved.|Нотатку збережено.
+Poznámka upravena.|Note updated.|Нотатку оновлено.
+Smazat tuto poznámku?|Delete this note?|Видалити цю нотатку?
+Poznámka smazána.|Note deleted.|Нотатку видалено.
+bez názvu|untitled|без назви
+Bez názvu|Untitled|Без назви
+Nemáš žádné poznámky.|You have no notes.|У тебе немає нотаток.
+Napiš úkol.|Write a task.|Напиши завдання.
+Vyplň název i datum.|Fill in both title and date.|Заповни і назву, і дату.
+Poznámky a úkoly|Notes and tasks|Нотатки та завдання
+Zápisky, úkoly s termíny a odpočty k písemkám.|Notes, tasks with due dates and countdowns to tests.|Нотатки, завдання з термінами та відліки до контрольних.
+Zápisky, úkoly s termíny a odpočty k testům|Notes, tasks with due dates and countdowns to tests|Нотатки, завдання з термінами та відліки до тестів
+Napiš 5 poznámek.|Write 5 notes.|Напиши 5 нотаток.
+Zapiš si první poznámku|Write your first note|Запиши першу нотатку
+Poznámky, úkoly a plynulé animace|Notes, tasks and smooth animations|Нотатки, завдання та плавні анімації
+U každé odpovědi Luny je nové tlačítko Do poznámek|Every Luna answer now has a To notes button|У кожної відповіді Луни є нова кнопка «До нотаток»
+Nový odznak Zapisovatel za 5 poznámek|New Note-taker badge for 5 notes|Новий значок «Записувач» за 5 нотаток
+Hlasový chat s Lunou|Voice chat with Luna|Голосовий чат з Луною
+Nové tlačítko s mikrofonem v chatu s Lunou: nadiktuješ zprávu hlasem a před odesláním ji můžeš upravit|New microphone button in the Luna chat: dictate a message and edit it before sending|Нова кнопка з мікрофоном у чаті з Луною: надиктуй повідомлення й відредагуй його перед надсиланням
+Hlasový chat na celou obrazovku: Luna tě poslouchá, odpovídá a odpověď čte nahlas, pak zase poslouchá|Full-screen voice chat: Luna listens, answers and reads the answer aloud, then listens again|Голосовий чат на весь екран: Луна слухає, відповідає, читає відповідь уголос і знову слухає
+Klepnutím na kouli můžeš Lunu přerušit a hned mluvit ty, hlas Luny jde vypnout a odpovědi se pak jen zobrazí|Tap the orb to interrupt Luna and speak right away; Luna’s voice can be muted and answers are then only shown|Торкнись кулі, щоб перервати Луну й одразу говорити; голос Луни можна вимкнути, і тоді відповіді лише показуються
+Rozpoznávání a čtení funguje česky, anglicky i ukrajinsky podle zvoleného jazyka aplikace|Recognition and reading aloud work in Czech, English and Ukrainian according to the app language|Розпізнавання й озвучення працюють чеською, англійською та українською залежно від мови застосунку
+Chemický fakt dne|Chemistry fact of the day|Хімічний факт дня
+Denní truhla|Daily chest|Щоденна скриня
+odměna:|reward:|нагорода:
+Odhalené nápovědy:|Revealed hints:|Відкриті підказки:
+Hádám|Guess|Вгадую
+Další nápověda|Next hint|Наступна підказка
+Vzdát se|Give up|Здатися
+Další prvek|Next element|Наступний елемент
+Vlastní obrázek|Custom image|Власне зображення
+Paměť|Memory|Пам’ять
+Pokračovat přes Google|Continue with Google|Продовжити через Google
+Čím začneme?|What shall we start with?|З чого почнемо?
+Nové|New|Нове
+Luna má paměť|Luna has memory|У Луни є пам’ять
+O paměti|About memory|Про пам’ять
+Použít paměť|Use memory|Використовувати пам’ять
+Nepoužívat paměť|Don’t use memory|Не використовувати пам’ять
+Pro pokračování vyber jednu z možností.|Choose one of the options to continue.|Щоб продовжити, вибери один із варіантів.
+Paměť Luny|Luna’s memory|Пам’ять Луни
+Používat|Use|Використовувати
+Nepoužívat|Don’t use|Не використовувати
+Obecné|General|Загальні
+Styl odpovědí|Answer style|Стиль відповідей
+Online režim|Online mode|Онлайн-режим
+Online režim je vypnutý správcem.|Online mode is turned off by the admin.|Онлайн-режим вимкнено адміністратором.
+Dokončené odpovědi|Completed answers|Завершені відповіді
+Zatím si nic nepamatuju.|I don’t remember anything yet.|Я поки нічого не пам’ятаю.
+Přidat vzpomínku|Add a memory|Додати спогад
+Přidat|Add|Додати
+Nová poznámka|New note|Нова нотатка
+Prázdná poznámka.|Empty note.|Порожня нотатка.
+Kopírovat|Copy|Копіювати
+Přidat odpočet|Add countdown|Додати відлік
+Přidej datum písemky nebo testu a uvidíš, kolik dní zbývá.|Add the date of a test and see how many days are left.|Додай дату контрольної чи тесту й побачиш, скільки днів залишилося.
+Do poznámek|To notes|До нотаток
+Úplný překlad do angličtiny a ukrajinštiny|Full translation into English and Ukrainian|Повний переклад англійською та українською
+Přeloženo je nově i Nastavení LunaAI, panel chatů, paměť Luny, Poznámky a úkoly, Denní truhla a Prvek dne|Now also translated: LunaAI settings, chat panel, Luna’s memory, Notes and tasks, Daily chest and Element of the day|Тепер перекладено також налаштування LunaAI, панель чатів, пам’ять Луни, нотатки й завдання, щоденну скриню та елемент дня
+Přeloženy jsou i odznaky, hlášky a chyby přihlášení přes Google|Badges, messages and Google sign-in errors are translated too|Перекладено також значки, повідомлення та помилки входу через Google
+Popisky a tipy po najetí myší se nově překládají také|Tooltips and image descriptions are now translated as well|Підказки при наведенні та описи зображень тепер теж перекладаються
+Zbylé texty se dál překládají automaticky, když je Luna online|Remaining texts are still translated automatically when Luna is online|Решта текстів і далі перекладається автоматично, коли Луна онлайн`;
 EXTRA.split('\n').forEach(r=>{const p=r.split('|');if(p.length==3){D.en[p[0]]=p[1];D.uk[p[0]]=p[2]}});
 {const C=DB.g('trc',{});['en','uk'].forEach(L=>Object.assign(D[L],C[L]||{}))}
 const REV=Object.create(null);for(const L in D)for(const k in D[L])REV[D[L][k]]=k;
@@ -3190,7 +3425,7 @@ try{const c=lcfg(),r=await fetch('https://api.anthropic.com/v1/messages',{method
 const j=await r.json(),tx=(j.content||[]).filter(b=>b.type=='text').map(b=>b.text).join(''),o=JSON.parse(tx.slice(tx.indexOf('['),tx.lastIndexOf(']')+1));
 if(Array.isArray(o)&&o.length==arr.length){const C=DB.g('trc',{});C[L]=C[L]||{};arr.forEach((k,i)=>{if(typeof o[i]=='string'&&o[i].trim()){D[L][k]=o[i];REV[o[i].trim()]=k;C[L][k]=o[i]}});DB.s('trc',C);if(LG==L)walk(document.body)}}catch(e){}finally{busy=0;if(Q.size)setTimeout(flush,1500)}}
 function walk(n){const w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT,{acceptNode:x=>/^(SCRIPT|STYLE|TEXTAREA|OPTION)$/.test(x.parentNode.nodeName)?2:1});let x;while(x=w.nextNode()){const v=tr(x.nodeValue);if(v!==x.nodeValue)x.nodeValue=v;else need(x.nodeValue)}
-n.querySelectorAll('[placeholder],[aria-label]').forEach(e=>['placeholder','aria-label'].forEach(a=>{const o=e.getAttribute(a);if(o){const v=tr(o);if(v!==o)e.setAttribute(a,v)}}))}
+n.querySelectorAll('[placeholder],[aria-label],[title],[alt]').forEach(e=>['placeholder','aria-label','title','alt'].forEach(a=>{const o=e.getAttribute(a);if(o){const v=tr(o);if(v!==o)e.setAttribute(a,v)}}))}
 window.setLang=function(l){LG=l;touched=true;DB.s('lang',l);document.documentElement.lang=l;syncSw();walk(document.body)};
 new MutationObserver(()=>{if(!touched)return;clearTimeout(tm);tm=setTimeout(()=>walk(document.body),40)}).observe(document.body,{childList:true,subtree:true,characterData:true});
 const sw=document.createElement('div');sw.id='lgSw';sw.className='lgsw';sw.innerHTML=['cs','en','uk'].map(l=>`<button data-l="${l}" aria-label="Language ${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');(document.querySelector('header')||document.body).appendChild(sw);
@@ -3583,7 +3818,7 @@ document.addEventListener('keydown',e=>{if(e.key=='Escape'){const P=Q('#lpP');if
 /* ---------- PŘIHLÁŠENÍ PŘES GOOGLE (Firebase) ---------- */
 /* Vlož údaje z Firebase konzole: Project settings → Your apps → Web app. V Authentication zapni poskytovatele „Google“
    a ve Settings → Authorized domains přidej doménu, kde appka běží. Z file:// popup nefunguje – spouštěj přes https. */
-const FB_CFG={apiKey:'AIzaSyBTLI9oy9_Wung1I-r6VWVIC7nC29DjioQ',authDomain:'tadxsystem.firebaseapp.com',projectId:'tadxsystem',appId:'1:781171750037:web:5b433e0b17d42baa48579c'};
+const FB_CFG={apiKey:'DOPLŇ_API_KEY',authDomain:'tadxchemie.firebaseapp.com',projectId:'tadxchemie',appId:'DOPLŇ_APP_ID'};
 const ldS=u=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=u;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
 const GSVG='<svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
 window.gLogin=async function(){
@@ -4374,5 +4609,121 @@ try{CL.unshift(['8.3','Poznámky, úkoly a plynulé animace','6. 11. 2026',[
 })();
 </script>
 
+<style id="vc84">/* ===== v8.4: hlasový chat s Lunou ===== */
+.vcm.rec{color:#ff5a6e!important;animation:vcP 1s ease-in-out infinite}
+@keyframes vcP{50%{box-shadow:0 0 0 7px rgba(255,90,110,.2)}}
+#vcO{position:fixed;inset:0;z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;color:#eef1ff;background:#090b1f;overflow:hidden;text-align:center}
+#vcO.on{display:flex;animation:vcIn .35s ease both}
+@keyframes vcIn{from{opacity:0}}
+#vcO .vcBg{position:absolute;inset:-20%;background:radial-gradient(40% 40% at 25% 30%,rgba(66,133,244,.45),transparent 70%),radial-gradient(38% 38% at 78% 28%,rgba(155,114,203,.42),transparent 70%),radial-gradient(45% 45% at 55% 82%,rgba(217,101,112,.32),transparent 70%);filter:blur(30px);animation:vcA 14s ease-in-out infinite alternate}
+@keyframes vcA{to{transform:translate(6%,-5%) scale(1.12) rotate(8deg)}}
+#vcO>*:not(.vcBg){position:relative}
+#vcO .vcX{position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:1.2rem;cursor:pointer;display:grid;place-items:center;padding:0}
+.vcOrbW{position:relative;width:210px;height:210px;display:grid;place-items:center}
+.vcOrb{width:140px;height:140px;border-radius:50%;cursor:pointer;background:radial-gradient(circle at 35% 30%,#fff 0,#a8c2ff 22%,#6a7bff 55%,#8f3dff 100%);box-shadow:0 0 60px rgba(106,123,255,.6);transition:filter .4s}
+.vcOrb:focus-visible{outline:3px solid #fff;outline-offset:6px}
+.vcRing{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(160,180,255,.55);opacity:0}
+#vcO[data-s=listen] .vcRing{animation:vcR 1.8s ease-out infinite}
+#vcO[data-s=listen] .vcOrb{animation:vcB 2.4s ease-in-out infinite}
+#vcO[data-s=think] .vcOrb{animation:vcK 1.1s ease-in-out infinite;filter:hue-rotate(45deg) brightness(1.1)}
+#vcO[data-s=speak] .vcOrb{animation:vcT .85s ease-in-out infinite;filter:hue-rotate(-25deg)}
+@keyframes vcR{from{transform:scale(.7);opacity:.8}to{transform:scale(1.35);opacity:0}}
+@keyframes vcB{50%{transform:scale(1.06)}}
+@keyframes vcK{0%,100%{transform:scale(.9)}50%{transform:scale(1.03)}}
+@keyframes vcT{0%,100%{transform:scale(1)}30%{transform:scale(1.12)}60%{transform:scale(.97)}}
+#vcSt{font-size:1.35rem;font-weight:650}
+#vcTx{max-width:min(640px,92vw);min-height:4.5em;max-height:30vh;overflow:auto;font-size:1.05rem;line-height:1.55;color:#d3d9ff}
+#vcH{font-size:.85rem;opacity:.6;max-width:min(420px,88vw)}
+.vcBar{display:flex;gap:10px}
+.vcBar button{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:10px 18px;cursor:pointer;font:inherit}
+@media(prefers-reduced-motion:reduce){#vcO *,#vcO{animation:none!important}}
+</style>
+<script>
+(function(){try{
+const SRc=window.SpeechRecognition||window.webkitSpeechRecognition,TTS=window.speechSynthesis;
+const q=s=>document.querySelector(s);
+const LN={cs:'cs-CZ',en:'en-US',uk:'uk-UA'};
+const L=()=>{const l=document.documentElement.lang;return LN[l]?l:'cs'};
+const S={
+cs:{vc:'Hlasový chat s Lunou',mic:'Diktovat zprávu',listen:'Poslouchám…',think:'Luna přemýšlí…',speak:'Luna mluví…',say:'Řekni něco…',tap:'Klepnutím na kouli Lunu přerušíš a začneš mluvit ty.',close:'Ukončit hlasový chat',mute:'Vypnout hlas Luny',unmute:'Zapnout hlas Luny',noSR:'Tento prohlížeč nepodporuje rozpoznávání řeči. Zkus Chrome, Edge nebo Safari.',noMic:'Mikrofon není povolený. Povol ho v nastavení prohlížeče.',busy:'Luna ještě odpovídá, chvilku počkej.'},
+en:{vc:'Voice chat with Luna',mic:'Dictate a message',listen:'Listening…',think:'Luna is thinking…',speak:'Luna is speaking…',say:'Say something…',tap:'Tap the orb to interrupt Luna and speak.',close:'End voice chat',mute:'Mute Luna’s voice',unmute:'Unmute Luna’s voice',noSR:'This browser does not support speech recognition. Try Chrome, Edge or Safari.',noMic:'Microphone access is blocked. Allow it in your browser settings.',busy:'Luna is still answering, one moment.'},
+uk:{vc:'Голосовий чат з Луною',mic:'Продиктувати повідомлення',listen:'Слухаю…',think:'Луна думає…',speak:'Луна говорить…',say:'Скажи щось…',tap:'Торкнись кулі, щоб перервати Луну і заговорити.',close:'Завершити голосовий чат',mute:'Вимкнути голос Луни',unmute:'Увімкнути голос Луни',noSR:'Цей браузер не підтримує розпізнавання мовлення. Спробуй Chrome, Edge або Safari.',noMic:'Доступ до мікрофона заблоковано. Дозволь його в налаштуваннях браузера.',busy:'Луна ще відповідає, зачекай хвилинку.'}};
+const t=k=>S[L()][k];
+let active=false,state='idle',rec=null,speakOn=true,gen=0,rt=null,errs=0,dr=null;
+try{speakOn=DB.g('vcSpeak',true)!==false}catch(e){}
+const plain=s=>String(s).replace(/```[\s\S]*?```/g,' ').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[₀-₉]/g,c=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(c)).replace(/[*_`#>~|]/g,'').replace(/^\s*[-•]\s+/gm,'').replace(/\{[^}]*\}/g,'').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu,'').replace(/\s*\n+\s*/g,'. ').replace(/\s+/g,' ').trim();
+function chunks(s){const out=[];(s.match(/[^.!?…]+[.!?…]*\s*/g)||[s]).forEach(x=>{x=x.trim();while(x.length>180){let i=x.lastIndexOf(',',180);if(i<60)i=x.lastIndexOf(' ',180);if(i<1)i=180;out.push(x.slice(0,i));x=x.slice(i+1).trim()}if(x)out.push(x)});return out}
+function pickVoice(){const v=TTS.getVoices(),l=LN[L()],p=l.slice(0,2);return v.find(x=>x.lang==l&&/natural|google|online/i.test(x.name))||v.find(x=>x.lang==l)||v.find(x=>x.lang.slice(0,2)==p)||null}
+function lastAnswer(){try{const h=LU(),m=h[h.length-1];if(m&&m.r=='a')return String(m.t)}catch(e){}
+ const rows=[...document.querySelectorAll('#lM .mr.ma')].filter(r=>r.id!='lTy'),r=rows[rows.length-1];if(!r)return'';const c=r.querySelector('.mb');if(!c)return'';const k=c.cloneNode(true);k.querySelectorAll('.lact').forEach(x=>x.remove());return(k.innerText||'').trim()}
+function setSt(s){state=s;const o=q('#vcO');if(!o)return;o.dataset.s=s;q('#vcSt').textContent=t(s=='listen'||s=='think'||s=='speak'?s:'say')}
+function stopRec(){if(rec){try{rec.abort()}catch(e){}rec=null}}
+function listen(){
+ if(!active)return;clearTimeout(rt);stopRec();
+ const my=++gen;let got=false;const r=new SRc();rec=r;
+ r.lang=LN[L()];r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+ r.onstart=()=>{if(my==gen&&active)setSt('listen')};
+ r.onresult=e=>{if(my!=gen)return;errs=0;const full=Array.from(e.results).map(x=>x[0].transcript).join(' ').trim();q('#vcTx').textContent=full;if(e.results[e.results.length-1].isFinal&&full){got=true;try{r.stop()}catch(x){}handle(full)}};
+ r.onerror=e=>{if(my!=gen)return;if(e.error=='not-allowed'||e.error=='service-not-allowed'){toast(t('noMic'));close()}else if(e.error!='aborted'&&e.error!='no-speech')errs++};
+ r.onend=()=>{if(my!=gen||!active||got)return;if(errs>=5){close();return}rt=setTimeout(listen,350)};
+ try{r.start()}catch(e){errs++;if(errs>=5)close();else rt=setTimeout(listen,600)}}
+async function handle(text){
+ if(!active)return;const my=++gen;stopRec();
+ if(typeof LBUSY!='undefined'&&LBUSY){q('#vcTx').textContent=t('busy');rt=setTimeout(listen,1200);return}
+ setSt('think');q('#vcTx').textContent=text;
+ let a='';try{await lunaSend(text);a=lastAnswer()}catch(e){}
+ if(!active||my!=gen)return;
+ if(!a){listen();return}
+ if(speakOn&&TTS)say(a,my);else{q('#vcTx').textContent=plain(a);rt=setTimeout(listen,400)}}
+function say(a,my){const parts=chunks(plain(a));if(!parts.length){listen();return}
+ try{TTS.cancel()}catch(e){}setSt('speak');let i=0;
+ const next=()=>{if(!active||my!=gen)return;if(i>=parts.length){listen();return}
+  const u=new SpeechSynthesisUtterance(parts[i]);u.lang=LN[L()];const v=pickVoice();if(v)u.voice=v;u.rate=1;u.pitch=1.05;
+  q('#vcTx').textContent=parts[i];i++;u.onend=next;u.onerror=next;TTS.speak(u)};
+ next()}
+function upMute(){const b=q('#vcM');if(b)b.textContent=speakOn?t('mute'):t('unmute')}
+function orbTap(){if(!active)return;if(state=='speak'){try{TTS.cancel()}catch(e){}listen()}else if(state=='listen')listen()}
+function build(){let o=q('#vcO');
+ if(!o){o=document.createElement('div');o.id='vcO';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');
+  o.innerHTML='<div class="vcBg"></div><button type="button" class="vcX" id="vcX">✕</button><div class="vcOrbW"><div class="vcRing"></div><div class="vcOrb" id="vcOrb" role="button" tabindex="0"></div></div><div id="vcSt" aria-live="polite"></div><div id="vcTx"></div><div id="vcH"></div><div class="vcBar"><button type="button" id="vcM"></button></div>';
+  document.body.appendChild(o);
+  q('#vcX').onclick=close;q('#vcOrb').onclick=orbTap;
+  q('#vcOrb').onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();orbTap()}};
+  q('#vcM').onclick=()=>{speakOn=!speakOn;try{DB.s('vcSpeak',speakOn)}catch(e){}if(!speakOn&&state=='speak'){try{TTS.cancel()}catch(x){}listen()}upMute()}}
+ o.setAttribute('aria-label',t('vc'));q('#vcX').setAttribute('aria-label',t('close'));q('#vcOrb').setAttribute('aria-label',t('vc'));q('#vcH').textContent=t('tap');q('#vcTx').textContent='';upMute()}
+function open(){if(!SRc){toast(t('noSR'));return}build();active=true;errs=0;q('#vcO').classList.add('on');document.body.style.overflow='hidden';const ta=q('#lI');if(ta)ta.blur();listen()}
+function close(){active=false;++gen;clearTimeout(rt);stopRec();try{TTS&&TTS.cancel()}catch(e){}const o=q('#vcO');if(o)o.classList.remove('on');document.body.style.overflow='';state='idle'}
+function dictate(){const b=q('#lVm'),ta=q('#lI');if(!SRc){toast(t('noSR'));return}
+ if(dr){try{dr.stop()}catch(e){}return}
+ const r=new SRc();dr=r;r.lang=LN[L()];r.interimResults=true;r.continuous=false;const base=ta.value?ta.value.trim()+' ':'';b.classList.add('rec');
+ r.onresult=e=>{ta.value=(base+Array.from(e.results).map(x=>x[0].transcript).join(' ')).slice(0,800);ta.dispatchEvent(new Event('input'))};
+ r.onerror=e=>{if(e.error=='not-allowed'||e.error=='service-not-allowed')toast(t('noMic'))};
+ r.onend=()=>{dr=null;b.classList.remove('rec');ta.focus()};
+ try{r.start()}catch(e){dr=null;b.classList.remove('rec')}}
+const SVM='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>';
+const SVV='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>';
+function inject(){const lf=q('#luna .lf'),s=q('#lS');if(!lf||!s)return;
+ if(!q('#lVc')){const mk=(id,svg,fn)=>{const b=document.createElement('button');b.type='button';b.id=id;b.className='ib vcm';b.innerHTML=svg;b.onclick=fn;return b};
+  lf.insertBefore(mk('lVm',SVM,dictate),s);lf.insertBefore(mk('lVc',SVV,open),s)}
+ const a=q('#lVm'),b=q('#lVc');if(a)a.setAttribute('aria-label',t('mic'));if(b)b.setAttribute('aria-label',t('vc'))}
+inject();let raf=0;
+const lu=q('#luna');if(lu)new MutationObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(inject)}).observe(lu,{childList:true,subtree:true});
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&active)close()});
+try{if(TTS)TTS.getVoices()}catch(e){}
+try{CL.unshift(['8.4','Hlasový chat s Lunou','6. 11. 2026',[
+ 'Nové tlačítko s mikrofonem v chatu s Lunou: nadiktuješ zprávu hlasem a před odesláním ji můžeš upravit',
+ 'Hlasový chat na celou obrazovku: Luna tě poslouchá, odpovídá a odpověď čte nahlas, pak zase poslouchá',
+ 'Klepnutím na kouli můžeš Lunu přerušit a hned mluvit ty, hlas Luny jde vypnout a odpovědi se pak jen zobrazí',
+ 'Rozpoznávání a čtení funguje česky, anglicky i ukrajinsky podle zvoleného jazyka aplikace'
+]])}catch(e){}
+}catch(e){console.error('v8.4 voice',e)}})();
+</script>
+
+<script id="v85">(function(){try{CL.unshift(['8.5','Úplný překlad do angličtiny a ukrajinštiny','6. 11. 2026',[
+ 'Přeloženo je nově i Nastavení LunaAI, panel chatů, paměť Luny, Poznámky a úkoly, Denní truhla a Prvek dne',
+ 'Přeloženy jsou i odznaky, hlášky a chyby přihlášení přes Google',
+ 'Popisky a tipy po najetí myší se nově překládají také',
+ 'Zbylé texty se dál překládají automaticky, když je Luna online'
+]])}catch(e){}})();</script>
 </body>
 </html>
