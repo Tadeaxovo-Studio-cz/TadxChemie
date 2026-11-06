@@ -624,7 +624,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='8.2';let LL=2,CD=null,AC=null,NB=0;
+const VER='8.3';let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -1081,7 +1081,8 @@ if(!ans){await new Promise(r=>setTimeout(r,900+Math.random()*700));try{ans=lunaO
 lTyp(0);await lAdd('a',ans,1);LBUSY=false;lStat()}
 function lClear(){if(!confirm('Smazat celou historii chatu s Lunou?'))return;LUS([]);LQ=null;lunaInit()}
 /* online */
-const lunaSys=()=>`${typeof lvNote=='function'?lvNote():''}${typeof lunaCtx=='function'?lunaCtx():''}Jsi Luna – přátelská, vřelá a povzbuzující AI asistentka v aplikaci TadxChemie (vytvořilo Tadeax Studio a Luna Studio). Mluvíš s uživatelem jménem ${me.name}, žákem základní nebo střední školy či učitelem. Odpovídej česky (pokud uživatel nepíše jinak), srozumitelně a stručně (obvykle do 150 slov), laskavě a s pozitivním tónem. Nepoužívej emoji. Pomáhej s chemií pro ZŠ i 1. ročník SŠ podle úrovně uživatele (atomy, periodická soustava, vazby, mol a výpočty, roztoky, názvosloví, reakce, rovnice), s učením a s používáním aplikace TadxChemie. Když si nejsi jistá, řekni to. Nikdy neposkytuj návody na výrobu výbušnin, drog, jedů, zbraní ani jiných nebezpečných látek – laskavě odmítni a nabídni bezpečné vysvětlení principů. Nežádej osobní údaje, hesla ani klíče. Při potížích s psychickou pohodou projev pochopení a doporuč promluvit si s někým blízkým nebo se školním poradcem. Pro formátování používej jen **tučné písmo**, odrážky začínající "- " a krátké odstavce.`;
+const lunaSys0=()=>`${typeof lvNote=='function'?lvNote():''}${typeof lunaCtx=='function'?lunaCtx():''}Jsi Luna – přátelská, vřelá a povzbuzující AI asistentka v aplikaci TadxChemie (vytvořilo Tadeax Studio a Luna Studio). Mluvíš s uživatelem jménem ${me.name}, žákem základní nebo střední školy či učitelem. Odpovídej česky (pokud uživatel nepíše jinak), srozumitelně a stručně (obvykle do 150 slov), laskavě a s pozitivním tónem. Nepoužívej emoji. Pomáhej s chemií pro ZŠ i 1. ročník SŠ podle úrovně uživatele (atomy, periodická soustava, vazby, mol a výpočty, roztoky, názvosloví, reakce, rovnice), s učením a s používáním aplikace TadxChemie. Když si nejsi jistá, řekni to. Nikdy neposkytuj návody na výrobu výbušnin, drog, jedů, zbraní ani jiných nebezpečných látek – laskavě odmítni a nabídni bezpečné vysvětlení principů. Nežádej osobní údaje, hesla ani klíče. Při potížích s psychickou pohodou projev pochopení a doporuč promluvit si s někým blízkým nebo se školním poradcem. Pro formátování používej jen **tučné písmo**, odrážky začínající "- " a krátké odstavce.`;
+const lunaSys=()=>lunaSys0()+(window.lxInstr?lxInstr():'');
 function lHist(){const o=[];LU().slice(-13,-1).forEach(m=>{const role=m.r=='u'?'user':'assistant';if(o.length&&o[o.length-1].role==role)o[o.length-1].content+='\n'+m.t;else o.push({role,content:m.t})});while(o.length&&o[0].role!='user')o.shift();return o}
 async function lApi(msgs,mt,cfg){const c=cfg||lcfg(),ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),30000);
 if(!/^[A-Za-z0-9._-]{3,60}$/.test(c.model))throw new Error('neplatný model');
@@ -1232,7 +1233,7 @@ let e=ELS.find(x=>{const nm=norm(x.n);if(nm.length<4)return toks.includes(nm);co
 if(!e&&(rt.length==1||/prvek|znack|protonov/.test(n)))e=ELS.find(x=>rt.includes(x.s));
 if(!e)return null;return `**${e.n[0].toUpperCase()+e.n.slice(1)} (${e.s})** – protonové číslo ${e.z}, relativní atomová hmotnost ${fmt(e.m)}. ${CAT[e.c][0]}, za běžných podmínek ${stOf(e)}.${e.u&&e.u!='–'?' Použití: '+e.u+'.':''}\nNajdeš ho v periodické tabulce v Laboratoři.`}
 function lGl(n){let b=null,bl=0;GL.forEach(x=>{const t=norm2(x[0]);if(t.length>=3&&lrx(t).test(n)&&t.length>bl){b=x;bl=t.length}});return b?`**${b[0]}** – ${b[1]}.`:null}
-function lunaOffline(q){const raw=q.trim(),n=norm2(raw),nm=me.name,T=s=>s.replace(/\{jmeno\}/g,nm);
+function lunaOffline(q){const raw=q.trim(),n=norm2(raw),nm=(window.lxNick?lxNick():me.name),T=s=>s.replace(/\{jmeno\}/g,nm);
 if(lScore(n,LKB[0])>=4)return T(LKB[0].r[0]);
 if(LQ){const r=lqEval(raw,n);if(r)return T(r)}
 let r=lEq(raw);if(r)return T(r);
@@ -3830,7 +3831,7 @@ lClear=function(){const c=lxCur(lxLoad());if(!c){toast('Tento chat je prázdný.
 
 /* ---------- vykreslení ---------- */
 function lxHero(){const h=new Date().getHours(),g=h<5?'Dobrou noc':h<10?'Dobré ráno':h<18?'Dobrý den':'Dobrý večer';
- return `<div class="lhero"><div class="orb lxho"></div><h2 class="lhh">${g}, <span>${esc(me.name)}</span></h2><p class="lhs">Čím začneme?</p></div>`}
+ return `<div class="lhero"><div class="orb lxho"></div><h2 class="lhh">${g}, <span>${esc(window.lxNick?lxNick():me.name)}</span></h2><p class="lhs">Čím začneme?</p></div>`}
 function lxRender(){const W=$q('#luna .lw'),M=$q('#lM'),H=LU();M.innerHTML='';W.classList.toggle('lxe',!H.length);
  if(!H.length)M.innerHTML=lxHero();else H.forEach(m=>lBub(m.r,m.t,0));
  lChips();M.scrollTop=M.scrollHeight}
@@ -3913,6 +3914,462 @@ try{CL.unshift(['8.2','Chaty, povinná paměť a Luna ve stylu Gemini','5. 11. 2
  'Nový vzhled LunaAI ve stylu Gemini: animované pozadí, uvítací obrazovka, odpovědi bez bublin a zaoblené pole pro psaní',
  'Tlačítko Paměť je nově v hlavičce chatu a paměť jde přepnout i v Nastavení LunaAI',
  'Opraveno: vypnutá paměť už neodpojí uložený API klíč'
+]])}catch(e){}
+window.lxLoad=lxLoad;window.lxSave=lxSave;window.lxHero=lxHero;window.lxRender=lxRender;window.lxSide=lxSide;
+})();
+</script>
+<style id="lx82b">/* ===== v8.2 nastavení LunaAI (jako u Claude) ===== */
+.lxst{position:fixed;inset:0;z-index:250;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);animation:lxsIn .35s cubic-bezier(.2,.9,.3,1) both}
+.lxst.out{opacity:0;transform:scale(.985);transition:.25s}
+@keyframes lxsIn{from{opacity:0;transform:scale(.985) translateY(10px)}}
+.lxsh{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line)}
+.lxsh h2{margin:0;font-size:1.15rem;font-weight:650}
+.lxsb{flex:1;display:flex;min-height:0}
+.lxsn{width:280px;flex:none;padding:16px 14px;border-right:1px solid var(--line);overflow:auto;display:flex;flex-direction:column;gap:2px}
+.lxsq{display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:12px;background:color-mix(in srgb,var(--tx) 6%,transparent);margin-bottom:12px;color:var(--mut)}
+.lxsq input{margin:0;border:0!important;background:transparent!important;box-shadow:none!important;padding:10px 0;min-width:0}
+.lxsn button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 12px;border-radius:12px;border:0;background:transparent;color:var(--tx);font-size:1rem;cursor:pointer;transition:background .2s}
+.lxsn button:hover{background:color-mix(in srgb,var(--tx) 7%,transparent)}
+.lxsn button.on{background:color-mix(in srgb,var(--tx) 11%,transparent);font-weight:600}
+.lxsn hr{border:0;border-top:1px solid var(--line);margin:10px 18px}
+.lxsn svg,.lxst .lxsi{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.lxsc{flex:1;min-width:0;overflow:auto;padding:26px clamp(18px,4vw,44px) 60px}
+.lxsc>.lxsw0{max-width:880px;margin:0 auto;animation:lxUp .45s both}
+.lxsc h3{margin:30px 0 4px;font-size:1.1rem;font-weight:650}.lxsc h3:first-child{margin-top:0}
+.lxsc .lxsp{color:var(--mut);font-size:.92rem;line-height:1.5;margin:4px 0 8px}
+.lxr{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:17px 0;border-bottom:1px solid var(--line)}
+.lxr.col{flex-direction:column;align-items:stretch;gap:10px}
+.lxrl{min-width:0}.lxrl b{display:block;font-weight:600}.lxrl small{display:block;color:var(--mut);margin-top:3px;line-height:1.45;font-size:.88rem}
+.lxrc{display:flex;align-items:center;gap:8px;flex:none;max-width:55%}
+.lxr.col .lxrc{max-width:none;flex:1}
+.lxrc input,.lxrc select{margin:0;min-width:0;width:230px;max-width:100%;border-radius:12px}
+.lxr.col textarea{margin:0;width:100%;min-height:120px;resize:vertical;border-radius:14px}
+.lxrc button,.lxsw0 .lxb{border-radius:12px;padding:9px 16px;cursor:pointer;white-space:nowrap}
+.lxb.dng{color:#d93025;border-color:color-mix(in srgb,#d93025 45%,transparent)}
+.lxsws{position:relative;width:46px;height:26px;border-radius:999px;border:0;padding:0;background:color-mix(in srgb,var(--tx) 22%,transparent);cursor:pointer;transition:background .3s;flex:none}
+.lxsws i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .3s cubic-bezier(.3,1.4,.4,1)}
+.lxsws.on{background:#1a73e8}.lxsws.on i{transform:translateX(20px)}
+.lxsg{display:inline-flex;padding:3px;border-radius:12px;background:color-mix(in srgb,var(--tx) 7%,transparent);gap:2px}
+.lxsg button{border:0!important;background:transparent;padding:8px 14px!important;border-radius:9px!important;color:var(--tx)}
+.lxsg button.on{background:color-mix(in srgb,var(--tx) 14%,var(--bg))}
+.lxmem{list-style:none;padding:0;margin:10px 0}
+.lxmem li{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;background:color-mix(in srgb,var(--tx) 5%,transparent);margin:6px 0;animation:lxIn .35s both}
+.lxmem li span{flex:1;overflow-wrap:anywhere}
+.lxmem button{border:0;background:transparent;cursor:pointer;color:var(--mut);padding:4px 8px;border-radius:8px}.lxmem button:hover{color:#d93025}
+.lxbk{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;padding:6px 10px 6px 0;margin-bottom:14px;color:var(--mut);cursor:pointer}
+.lxbk svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){
+ .lxsb{flex-direction:column}
+ .lxsn{width:auto;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px;gap:6px;scrollbar-width:none}
+ .lxsn hr,.lxsq{display:none}
+ .lxsn button{width:auto;white-space:nowrap;padding:8px 14px;border-radius:999px;font-size:.92rem}
+ .lxsn button svg{display:none}
+ .lxr{flex-wrap:wrap}.lxrc{max-width:100%;width:100%}.lxrc input,.lxrc select{width:100%}
+ .lxr:has(.lxsws),.lxr:has(.lxsg){flex-wrap:nowrap}.lxr:has(.lxsws) .lxrc,.lxr:has(.lxsg) .lxrc{width:auto}
+}
+/* použití nastavení v chatu */
+#luna .lw.lxnb .la i,#luna .lw.lxnb .la::after{display:none}
+#luna .lw.lxts-s .ma .mb,#luna .lw.lxts-s .mu .mb{font-size:.9rem}
+#luna .lw.lxts-l .ma .mb,#luna .lw.lxts-l .mu .mb{font-size:1.18rem}
+#luna .lw.lxserif .ma .mb{font-family:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif}
+#luna .lw.lxmr *,#luna .lw.lxmr *::before,#luna .lw.lxmr *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+html.rm .lxst,html.rm .lxst *{animation:none!important;transition:none!important}
+</style>
+<script>
+(function(){
+const $q=s=>document.querySelector(s);
+const SV=p=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+const IC={
+ acc:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+ app:'<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
+ you:'<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>',
+ cap:'<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+ not:'<path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>',
+ pri:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+ search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>'};
+
+/* ---------- úložiště nastavení Luny ---------- */
+const DEF={nick:'',role:'',instr:'',bg:true,tsize:'m',font:'d',snd:false,tab:false,sys:false};
+const lxsGet=()=>{try{return {...DEF,...((DB.g('lxs',{})[me.name])||{})}}catch(e){return {...DEF}}};
+function lxsPut(k,v){const o=DB.g('lxs',{});o[me.name]={...(o[me.name]||{}),[k]:v};DB.s('lxs',o)}
+window.lxNick=()=>{try{const n=(lxsGet().nick||'').trim();return n||me.name}catch(e){return me.name}};
+window.lxInstr=()=>{try{const s=lxsGet();let t='';
+ if(s.nick&&s.nick.trim())t+=` Uživatel chce, abys ho oslovovala „${s.nick.trim().slice(0,30)}“.`;
+ if(s.role)t+=` Uživatel o sobě říká: ${s.role}.`;
+ if(s.instr&&s.instr.trim())t+=` Vlastní instrukce uživatele (dodržuj je, pokud neodporují pravidlům výše): ${s.instr.trim().slice(0,600)}`;
+ return t}catch(e){return ''}};
+function lxApply(){const W=$q('#luna .lw');if(!W)return;const s=lxsGet(),u=(typeof UI=='function')?UI():{};
+ W.classList.toggle('lxnb',s.bg===false);W.classList.toggle('lxts-s',s.tsize=='s');W.classList.toggle('lxts-l',s.tsize=='l');
+ W.classList.toggle('lxserif',s.font=='s');W.classList.toggle('lxmr',!!u.rm)}
+const lI0=lunaInit;lunaInit=function(){lI0.apply(this,arguments);lxApply()};
+
+/* vypnutá paměť blokuje i „pamatuj si, že…“ */
+try{const g0=DB.g,s0=DB.s,off=()=>{try{return me&&(g0.call(DB,'lmem',{})[me.name])=='off'}catch(e){return false}};
+ DB.g=function(k,d){if(typeof k=='string'&&k.indexOf('lxm_')==0&&off())return d;return g0.apply(DB,arguments)};
+ DB.s=function(k,v){if(typeof k=='string'&&k.indexOf('lxm_')==0&&off())return;return s0.apply(DB,arguments)}}catch(e){}
+
+/* ---------- oznámení ---------- */
+let _t0='';
+function beep(){try{const A=new (window.AudioContext||window.webkitAudioContext)(),t=A.currentTime;
+ [[660,0],[880,.13]].forEach(([f,d])=>{const o=A.createOscillator(),g=A.createGain();o.type='sine';o.frequency.value=f;o.connect(g);g.connect(A.destination);
+  g.gain.setValueAtTime(0,t+d);g.gain.linearRampToValueAtTime(.18,t+d+.02);g.gain.exponentialRampToValueAtTime(.001,t+d+.35);o.start(t+d);o.stop(t+d+.4)});
+ setTimeout(()=>A.close&&A.close(),900)}catch(e){}}
+function lxDone(txt){const s=lxsGet();if(s.snd)beep();
+ if(document.hidden){
+  if(s.tab){if(!_t0)_t0=document.title;document.title='● Luna odpověděla'}
+  if(s.sys&&window.Notification&&Notification.permission=='granted'){try{new Notification('Luna odpověděla',{body:String(txt||'').replace(/\*\*|`/g,'').slice(0,120)})}catch(e){}}}}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&_t0){document.title=_t0;_t0=''}});
+const lunaSend1=lunaSend;
+lunaSend=async function(){const t0=Date.now(),r=await lunaSend1.apply(this,arguments);
+ try{const H=LU(),l=H[H.length-1];if(l&&l.r=='a'&&(l.ts||0)>=t0)lxDone(l.t)}catch(e){}return r};
+
+/* ---------- vykreslení nastavení ---------- */
+const S={sec:'acc',sub:null,q:''};
+const OPT=(a,v)=>a.map(x=>`<option value="${esc(x[0])}" ${String(x[0])==String(v)?'selected':''}>${esc(x[1])}</option>`).join('');
+const R=(t,d,c,col)=>({t,d,h:`<div class="lxr${col?' col':''}"><div class="lxrl"><b>${t}</b>${d?`<small>${d}</small>`:''}</div><div class="lxrc">${c}</div></div>`});
+const SW=(k,on)=>`<button type="button" class="lxsws ${on?'on':''}" role="switch" aria-checked="${!!on}" data-k="${k}"><i></i></button>`;
+const SEL=(k,a,v)=>`<select data-k="${k}">${OPT(a,v)}</select>`;
+const SEG=(k,a,v)=>`<div class="lxsg" role="group">${a.map(x=>`<button type="button" data-k="${k}" data-v="${x[0]}" class="${String(x[0])==String(v)?'on':''}">${x[1]}</button>`).join('')}</div>`;
+const BT=(act,l,cls)=>`<button type="button" class="${cls||''} lxb" data-act="${act}">${l}</button>`;
+function lxMemOn(){try{return DB.g('lmem',{})[me.name]=='on'}catch(e){return false}}
+function secs(){
+ const s=lxsGet(),ux=TX.UX(),ui=(typeof UI=='function')?UI():{},c=lcfg(),SE=SET(),mv=(DB.g('lmem',{})[me.name])||null;
+ const sb=DB.g('lsb',0)==1?'c':'o';
+ return[
+ {id:'acc',t:'Účet',i:IC.acc,rows:[
+  {h:'<h3>Profil</h3>'},
+  R('Profilová fotka','Obrázek nahraješ v Profilu.',`<span>${typeof avh=='function'?avh(me.name,44):''}</span>${BT('prof','Otevřít Profil')}`),
+  R('Celé jméno','Jméno, pod kterým jsi přihlášený/á.',`<input value="${esc(me.name)}" readonly aria-label="Celé jméno">`),
+  R('Jak ti má Luna říkat?','Takhle tě bude oslovovat v chatu.',`<input data-k="s:nick" maxlength="30" value="${esc(s.nick)}" placeholder="${esc(me.name)}">`),
+  R('Co tě nejlépe popisuje?','Luna podle toho přizpůsobí vysvětlení.',SEL('s:role',[['','Neuvedeno'],['žák základní školy','Žák ZŠ'],['student střední školy','Student SŠ'],['učitel','Učitel'],['někdo jiný','Jiné']],s.role))]},
+ {id:'app',t:'Vzhled',i:IC.app,rows:[
+  {h:'<h3>Obecné</h3>'},
+  R('Motiv','Platí pro celou aplikaci.',SEG('i:mode',[['dark','Tmavý'],['light','Světlý']],ui.mode)),
+  R('Omezit animace','Platí pro celou aplikaci.',SW('i:rm',ui.rm)),
+  {h:'<h3>Chat s Lunou</h3>'},
+  R('Animované pozadí','Barevné záblesky a třpytky za chatem.',SW('s:bg',s.bg!==false)),
+  R('Velikost textu v chatu','',SEL('s:tsize',[['s','Malá'],['m','Střední'],['l','Velká']],s.tsize)),
+  R('Písmo odpovědí','',SEL('s:font',[['d','Výchozí'],['s','Patkové']],s.font)),
+  R('Panel chatů při otevření','',SEL('s:sbo',[['o','Otevřený'],['c','Sbalený']],sb)),
+  R('Animace Luny','Pohyb postavy Luny.',SW('u:lAnim',ux.lAnim)),
+  R('Psaní odpovědi','',SEL('u:lType',[['n','Postupně'],['i','Okamžitě']],ux.lType))]},
+ {id:'you',t:'Tvoje Luna',i:IC.you,rows:[
+  {h:'<h3>Instrukce</h3><p class="lxsp">Luna je bude mít na paměti ve všech svých online odpovědích (v rámci pravidel bezpečnosti).</p>'},
+  R('Vlastní instrukce',`<span id="lxIc">${(s.instr||'').length}</span>/600 znaků`,`<textarea data-k="s:instr" maxlength="600" placeholder="např. vysvětluj stručně a s příkladem z běžného života">${esc(s.instr)}</textarea>`,1),
+  {h:'<h3>Styl odpovědí</h3>'},
+  R('Osobnost','',SEL('u:lPers',[['f','Přátelská'],['k','Věcná'],['h','Hravá'],['u','Učitelská']],ux.lPers)),
+  R('Délka odpovědí','',SEL('u:lLen',[['s','Stručná'],['n','Normální'],['p','Podrobná']],ux.lLen)),
+  R('Vysvětluj co nejjednodušeji','Kratší a jednodušší odpovědi.',SW('u:lSimple',ux.lSimple)),
+  {h:'<h3>Paměť</h3>'},
+  R('Používat paměť z chatů','Luna navazuje na tvoje chaty a „pamatuj si, že…“.',SW('m:on',mv=='on')),
+  R('Tvoje paměť','Zobraz, přidej nebo smaž, co si Luna pamatuje.',BT('mem','Spravovat')),
+  R('Pamatovat si chat','Po vypnutí se historie smaže při opuštění Luny.',SW('u:lHist',ux.lHist))]},
+ {id:'cap',t:'Schopnosti',i:IC.cap,rows:[
+  {h:'<h3>Online režim</h3>'+(SE.lunaOnline===false?'<p class="lxsp">Online režim je vypnutý správcem.</p>':'')},
+  R('Režim odpovědí','Automaticky = online s klíčem, jinak offline.',SEL('c:mode',[['auto','Automaticky'],['online','Pouze online'],['offline','Pouze offline']],c.mode)),
+  R('Model','',`<input data-k="c:model" list="lxMods" value="${esc(c.model)}"><datalist id="lxMods"><option value="claude-haiku-5-5"><option value="claude-sonnet-5-5"><option value="claude-opus-5-5"></datalist>`),
+  R('API klíč Anthropic',c.key?'Klíč je uložený v tomto prohlížeči.':'Klíč je uložený jen v tomto prohlížeči.',`<input id="lxKey" type="password" autocomplete="off" placeholder="sk-ant-…" value="${c.key?'••••••••••••':''}">${BT('savekey','Uložit')}`),
+  R('Test spojení','Pošle krátkou zkušební zprávu.',BT('test','Otestovat')),
+  R('Smazat klíč','',BT('delkey','Smazat klíč','dng')),
+  {h:'<p class="lxsp">Klíč se posílá jen na api.anthropic.com a online režim je omezený na 30 zpráv za hodinu.</p>'}]},
+ {id:'not',t:'Oznámení',i:IC.not,rows:[
+  {h:'<h3>Dokončené odpovědi</h3>'},
+  R('Zvuk po odpovědi','Krátký tón, když Luna dopíše odpověď.',SW('s:snd',s.snd)),
+  R('Upozornění v záložce','Když jsi na jiné záložce, v názvu se objeví ●.',SW('s:tab',s.tab)),
+  R('Systémová oznámení','Zobrazí oznámení, když jsi mimo aplikaci. Vyžaduje povolení prohlížeče.',SW('s:sys',s.sys))]},
+ {id:'pri',t:'Soukromí',i:IC.pri,rows:[
+  {h:'<h3>Soukromí</h3><p class="lxsp">Chaty, paměť i nastavení se ukládají jen v tomto prohlížeči. V online režimu se aktuální konverzace odesílá službě Anthropic přes tvůj API klíč.</p>'},
+  R('Podmínky LunaAI','Přečti si, s čím jsi souhlasil/a.',BT('terms','Zobrazit')),
+  R('Odvolat souhlas s podmínkami','Pro další používání Luny bude potřeba souhlasit znovu.',BT('revoke','Odvolat','dng')),
+  {h:'<h3>Tvoje data</h3>'},
+  R('Exportovat data','Stáhne chaty, paměť a nastavení jako soubor JSON (bez API klíče).',BT('export','Exportovat')),
+  R('Smazat všechny chaty','',BT('delchats','Smazat chaty','dng')),
+  R('Smazat vzpomínky Luny','Položky z „pamatuj si, že…“.',BT('delmem','Smazat vzpomínky','dng'))]}]}
+function subMem(){
+ const off=!!(DB.g('lmem',{})[me.name]=='off'),L=off?[]:(DB.g('lxm_'+me.name,[])||[]);
+ return `<button class="lxbk" data-act="back">${SV(IC.back)}Zpět</button><h3>Tvoje paměť</h3><p class="lxsp">${off?'Paměť je vypnutá, vzpomínky se nezobrazují ani nepoužívají. Po zapnutí jsou zase na místě.':'Tohle si Luna pamatuje. Přidat něco můžeš i v chatu: „pamatuj si, že…“.'}</p>`+
+ (off?'':`<ul class="lxmem">${L.length?L.map((x,i)=>`<li><span>${esc(x)}</span><button type="button" data-act="rm" data-i="${i}" aria-label="Smazat">✕</button></li>`).join(''):'<li><span>Zatím si nic nepamatuju.</span></li>'}</ul><div class="lxr"><div class="lxrl"><b>Přidat vzpomínku</b></div><div class="lxrc"><input id="lxAdd" maxlength="160" placeholder="např. mám rád chemii"><button type="button" class="lxb" data-act="add">Přidat</button></div></div>`)}
+function lxsRender(keepScroll){
+ const C=$q('#lxsC');if(!C)return;const top=keepScroll?C.scrollTop:0,all=secs(),q=S.q.toLowerCase().trim();let h='';
+ if(S.sub=='mem')h=subMem();
+ else if(q){all.forEach(sc=>{const r=sc.rows.filter(x=>x.t&&(x.t+' '+(x.d||'')).toLowerCase().includes(q));if(r.length)h+=`<h3>${sc.t}</h3>`+r.map(x=>x.h).join('')});if(!h)h='<p class="lxsp">Nic nenalezeno.</p>'}
+ else{const sc=all.find(x=>x.id==S.sec)||all[0];h=sc.rows.map(x=>x.h).join('')}
+ C.innerHTML=`<div class="lxsw0">${h}</div>`;C.scrollTop=top;
+ document.querySelectorAll('#lxsN button[data-s]').forEach(b=>b.classList.toggle('on',!q&&!S.sub&&b.dataset.s==S.sec||(S.sub&&b.dataset.s=='you')))}
+function lxsSet(k,v){const [t,n]=k.split(':');
+ if(t=='s'){
+  if(n=='sbo'){DB.s('lsb',v=='c'?1:0);const W=$q('#luna .lw');if(W&&!matchMedia('(max-width:760px)').matches)W.classList.toggle('lxc',v=='c');return}
+  lxsPut(n,v);lxApply();if(n=='nick'||n=='role'){const W=$q('#luna .lw');if(W&&W.classList.contains('lxe')){const M=$q('#lM');M&&(M.innerHTML=lxHero())}}
+  if(n=='sys'&&v){if(!window.Notification){toast('Prohlížeč oznámení nepodporuje.');lxsPut('sys',false);lxsRender(1);return}
+   Notification.requestPermission().then(p=>{if(p!='granted'){lxsPut('sys',false);toast('Oznámení nejsou povolená v prohlížeči.');lxsRender(1)}})}}
+ else if(t=='u'){UXs(n,v)}
+ else if(t=='i'){const u=UI();u[n]=v;DB.s('ui',u);applyUI();lxApply()}
+ else if(t=='c'){const o=DB.g('lk',{}),c=lcfg();
+  if(n=='model'){v=String(v).trim()||'claude-haiku-5-5';if(!/^[A-Za-z0-9._-]{3,60}$/.test(v)){toast('Neplatný název modelu.');lxsRender(1);return}}
+  c[n]=v;o[me.name]=c;DB.s('lk',o);lStat()}
+ else if(t=='m'){window.lxMset(v?'on':'off');toast(v?'Paměť zapnuta.':'Paměť vypnuta – Luna si nic neukládá.');
+  if((($q('.view.on')||{}).id)=='luna'){lxRender();lxSide()}}}
+function lxsAct(a,el){
+ if(a=='prof'){lxsClose();go('prof')}
+ else if(a=='mem'){S.sub='mem';lxsRender()}
+ else if(a=='back'){S.sub=null;lxsRender()}
+ else if(a=='add'){const i=$q('#lxAdd'),t=(i.value||'').trim().slice(0,160);if(!t)return;const L=DB.g('lxm_'+me.name,[])||[];L.push(t);DB.s('lxm_'+me.name,L.slice(-30));lxsRender(1)}
+ else if(a=='rm'){const L=DB.g('lxm_'+me.name,[])||[];L.splice(+el.dataset.i,1);DB.s('lxm_'+me.name,L);lxsRender(1)}
+ else if(a=='savekey'){const k=$q('#lxKey').value.trim();if(!k||/^•+$/.test(k))return toast('Vlož nový klíč.');
+  if(!/^sk-[A-Za-z0-9_-]{20,}$/.test(k))return toast('Klíč nevypadá správně (začíná „sk-“).');
+  const o=DB.g('lk',{}),c=lcfg();c.key=k;o[me.name]=c;DB.s('lk',o);lStat();toast('Klíč uložen.');lxsRender(1)}
+ else if(a=='delkey'){const o=DB.g('lk',{}),c=lcfg();c.key='';o[me.name]=c;DB.s('lk',o);lStat();toast('Klíč byl smazán.');lxsRender(1)}
+ else if(a=='test'){(async()=>{const c=lcfg(),k=($q('#lxKey')||{value:''}).value.trim();if(k&&!/^•+$/.test(k))c.key=k;if(!c.key)return toast('Nejdřív vlož API klíč.');
+  try{toast('Zkouším spojení…');const r=await lApi([{role:'user',content:'Napiš jedno slovo: ahoj'}],20,c);toast('Spojení funguje: '+r.slice(0,40))}catch(e){toast('Test se nepovedl: '+e.message)}})()}
+ else if(a=='terms'){lTerms()}
+ else if(a=='revoke'){lxsClose();lRevoke()}
+ else if(a=='export'){const st=lxLoad(),o={exportedAt:new Date().toISOString(),user:me.name,chats:st.list,memory:DB.g('lxm_'+me.name,[])||[],settings:lxsGet()};
+  const b=new Blob([JSON.stringify(o,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),A=document.createElement('a');A.href=u;A.download='luna-data.json';document.body.appendChild(A);A.click();A.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);toast('Data exportována.')}
+ else if(a=='delchats'){if(!confirm('Smazat všechny chaty s Lunou? Nelze vrátit zpět.'))return;if(typeof LBUSY!='undefined'&&LBUSY)return toast('Počkej, než Luna dopíše odpověď.');
+  const st=lxLoad();st.list=[];st.act=null;lxSave(st);LQ=null;toast('Chaty smazány.');if((($q('.view.on')||{}).id)=='luna')lunaInit()}
+ else if(a=='delmem'){if(!confirm('Smazat všechny vzpomínky Luny?'))return;DB.s('lxm_'+me.name,[]);toast('Vzpomínky smazány.');lxsRender(1)}}
+function lxsClose(){const o=$q('#lxst');if(!o)return;o.classList.add('out');document.removeEventListener('keydown',lxsKey,true);setTimeout(()=>o.remove(),260)}
+function lxsKey(e){if(e.key=='Escape'&&!document.getElementById('lxmg')&&!document.querySelector('.tvo')){e.preventDefault();e.stopPropagation();lxsClose()}}
+function lxsOpen(sec){
+ if(!me)return;if($q('#lxst')){lxsClose();return}
+ S.sec=sec||S.sec||'acc';S.sub=null;S.q='';
+ const o=document.createElement('div');o.id='lxst';o.className='lxst';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label','Nastavení LunaAI');
+ const all=secs();
+ o.innerHTML=`<div class="lxsh"><h2>Nastavení</h2><button class="ib" id="lxsX" type="button" aria-label="Zavřít">✕</button></div><div class="lxsb"><nav class="lxsn" id="lxsN"><div class="lxsq">${SV(IC.search).replace('<svg','<svg class="lxsi"')}<input id="lxsQ" placeholder="Hledat" aria-label="Hledat v nastavení" autocomplete="off"></div>${all.map((x,i)=>(i==1?'<hr>':'')+`<button type="button" data-s="${x.id}">${SV(x.i)}${x.t}</button>`).join('')}</nav><div class="lxsc" id="lxsC"></div></div>`;
+ document.body.appendChild(o);
+ document.addEventListener('keydown',lxsKey,true);
+ $q('#lxsX').onclick=lxsClose;
+ $q('#lxsQ').oninput=e=>{S.q=e.target.value;S.sub=null;lxsRender()};
+ $q('#lxsN').onclick=e=>{const b=e.target.closest('button[data-s]');if(!b)return;S.sec=b.dataset.s;S.sub=null;S.q='';$q('#lxsQ').value='';lxsRender()};
+ const C=$q('#lxsC');
+ C.onclick=e=>{const sw=e.target.closest('.lxsws');if(sw){const on=!sw.classList.contains('on');sw.classList.toggle('on',on);sw.setAttribute('aria-checked',on);lxsSet(sw.dataset.k,on);return}
+  const sg=e.target.closest('.lxsg button');if(sg){sg.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===sg));lxsSet(sg.dataset.k,sg.dataset.v);return}
+  const ac=e.target.closest('[data-act]');if(ac)lxsAct(ac.dataset.act,ac)};
+ C.onchange=e=>{const t=e.target;if(t.matches('select[data-k],input[data-k]'))lxsSet(t.dataset.k,t.value);else if(t.matches('textarea[data-k]'))lxsSet(t.dataset.k,t.value)};
+ C.oninput=e=>{const t=e.target;if(t.matches('textarea[data-k="s:instr"]')){const n=$q('#lxIc');n&&(n.textContent=t.value.length)}};
+ lxsRender();setTimeout(()=>{const b=$q('#lxsX');b&&b.focus()},60)}
+lSetT=function(){lxsOpen()};
+window.lxsOpen=lxsOpen;
+
+try{const e=CL.find(x=>x[0]=='8.2');if(e)e[3].push(
+ 'Nové celoobrazovkové Nastavení LunaAI jako u Claude, s postranním menu a hledáním: Účet, Vzhled, Tvoje Luna, Schopnosti, Oznámení a Soukromí',
+ 'Účet: vlastní oslovení a popis (žák, student, učitel), které Luna používá v odpovědích',
+ 'Vzhled: velikost textu a písmo odpovědí, animované pozadí, panel chatů a omezení animací',
+ 'Tvoje Luna: vlastní instrukce, osobnost, délka odpovědí a správa paměti (zobrazení, přidání a mazání vzpomínek)',
+ 'Schopnosti: režim online/offline, model, API klíč a test spojení',
+ 'Oznámení: zvuk, upozornění v záložce a systémová oznámení po dokončení odpovědi',
+ 'Soukromí: podmínky, odvolání souhlasu, export dat a mazání chatů, vzpomínek a klíče',
+ 'Vypnutá paměť nově blokuje i „pamatuj si, že…“')}catch(e){}
+})();
+</script>
+<style id="lx83">/* ===== v8.3 ===== */
+/* plynulé sbalitelné části všude */
+.cs>summary::after,.pcd>summary::after{display:inline-block;transition:transform .45s cubic-bezier(.3,1.5,.4,1)}
+.pcd>summary::after{content:'▾'!important;opacity:.6}
+.pcd[open]>summary::after{content:'▾'!important;transform:rotate(180deg)}
+.pcd[open].dcl>summary::after{transform:none}
+.cs[open].dcl>summary::after{transform:rotate(90deg)}
+details:not(.lgd):not(.dcl)[open]>:not(summary){animation:lxDi .5s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--n,0)*45ms)}
+@keyframes lxDi{from{opacity:0;transform:translateY(9px)}}
+details>summary{transition:background .25s}
+details>summary:hover{background:color-mix(in srgb,var(--tx) 4%,transparent)}
+html.rm details>:not(summary){animation:none!important}
+
+/* poznámky a úkoly */
+#nts .ntbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+#nts .ntbar input{margin:0;flex:1;min-width:160px}
+#nts .tabs{margin-bottom:14px}
+.ntch{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.ntch button{border-radius:999px;padding:6px 14px;font-size:.85rem;transition:transform .2s,background .25s}
+.ntch button.on{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-color:transparent}
+.ntch button:hover{transform:translateY(-1px)}
+.ntf{margin-bottom:14px;animation:lxUp .45s both}
+.ntf input,.ntf textarea,.ntf select{margin:0 0 10px;width:100%}
+.ntf textarea{min-height:150px;resize:vertical}
+.ntcl{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.ntcl button{width:26px;height:26px;border-radius:50%;padding:0;border:2px solid transparent;background:var(--c);transition:transform .25s cubic-bezier(.3,1.6,.4,1)}
+.ntcl button:hover{transform:scale(1.2)}
+.ntcl button.on{border-color:var(--tx);transform:scale(1.15)}
+.ntc{padding:0!important;margin:0 0 10px;overflow:hidden;border-left:5px solid var(--nc,var(--a));animation:cIn .45s both;animation-delay:calc(var(--i,0)*45ms)}
+.ntc>summary{padding:13px 16px;display:flex;gap:10px;align-items:center;cursor:pointer;list-style:none}
+.ntc>summary::-webkit-details-marker{display:none}
+.ntc>summary::after{content:'›';margin-left:6px;font-size:1.3rem;display:inline-block;transform:rotate(90deg);transition:transform .45s cubic-bezier(.3,1.5,.4,1);opacity:.6}
+.ntc[open]>summary::after{transform:rotate(-90deg)}.ntc[open].dcl>summary::after{transform:rotate(90deg)}
+.ntt{flex:1;min-width:0;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ntp{color:#fbbc04}.ntc summary small{color:var(--mut);white-space:nowrap}
+.ntb{padding:0 16px 8px;line-height:1.6;overflow-wrap:anywhere}
+.ntac{padding:4px 16px 14px;gap:8px}
+.ntac button{padding:7px 14px;border-radius:12px;font-size:.88rem}
+.dng{color:#d93025}
+.nte{text-align:center;padding:34px 10px;color:var(--mut);animation:lxUp .5s both}
+.tkp{height:8px;border-radius:99px;background:color-mix(in srgb,var(--tx) 10%,transparent);overflow:hidden;margin:6px 0 14px}
+.tkp i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--a),var(--b));transform-origin:left;transition:transform .7s cubic-bezier(.2,.9,.3,1)}
+.tkg{margin:16px 0 6px;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+.tkg.bad{color:#d93025}
+.tki{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:14px;margin:6px 0;background:var(--card);animation:cIn .4s both;animation-delay:calc(var(--i,0)*35ms);transition:opacity .4s,border-color .3s}
+.tki.done{opacity:.55}.tki.done .tkt b{text-decoration:line-through}
+.tki.late{border-color:color-mix(in srgb,#d93025 55%,transparent)}
+.tkc{width:26px;height:26px;border-radius:50%;padding:0;flex:none;border:2px solid color-mix(in srgb,var(--tx) 35%,transparent);background:transparent;display:grid;place-items:center;transition:background .3s,border-color .3s,transform .3s cubic-bezier(.3,1.6,.4,1)}
+.tkc svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s .1s}
+.tki.done .tkc{background:#34a853;border-color:#34a853;transform:scale(1.08)}.tki.done .tkc svg{stroke-dashoffset:0}
+.tkt{flex:1;min-width:0}.tkt b{display:block;font-weight:600;overflow-wrap:anywhere}.tkt small{color:var(--mut)}
+.tkpr{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--pc)}
+.tkx{border:0;background:transparent;color:var(--mut);padding:4px 8px;border-radius:8px}.tkx:hover{color:#d93025}
+.tkf{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.tkf input,.tkf select{margin:0}
+.tkf input[type=text]{flex:2;min-width:180px}.tkf input[type=date],.tkf select{flex:1;min-width:130px}
+.cdc{display:flex;align-items:center;gap:16px;margin-bottom:10px;animation:cIn .45s both;animation-delay:calc(var(--i,0)*45ms)}
+.cdn{min-width:84px;text-align:center;font-size:2.3rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.cdn small{display:block;font-size:.8rem;font-weight:600;-webkit-text-fill-color:var(--mut);color:var(--mut);margin-top:4px}
+.cdc.past{opacity:.5}.cdc.soon .cdn{animation:lxFloat 3s ease-in-out infinite}
+.cdc div:nth-child(2){flex:1;min-width:0}.cdc small{color:var(--mut)}
+@media(prefers-reduced-motion:reduce){.cdc.soon .cdn{animation:none}}
+</style>
+<script>
+(function(){
+const $q=s=>document.querySelector(s);
+const rm=()=>document.documentElement.classList.contains('rm')||matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- animace všech sbalitelných částí (details) ---------- */
+function dAnim(d,open){
+ if(rm()){d.open=open;d.classList.remove('dcl');return}
+ if(d._an){d._an.onfinish=null;d._an.cancel();d._an=null}
+ const bx=d.style.boxSizing,ov=d.style.overflow;d.style.boxSizing='border-box';d.style.overflow='hidden';
+ const from=d.getBoundingClientRect().height;let to;
+ if(open){d.classList.remove('dcl');d.open=true;
+  [...d.children].filter(c=>c.tagName!='SUMMARY').forEach((c,i)=>c.style.setProperty('--n',Math.min(i,8)));
+  to=d.getBoundingClientRect().height}
+ else{d.open=false;to=d.getBoundingClientRect().height;d.open=true;d.classList.add('dcl')}
+ const done=()=>{d._an=null;d.style.boxSizing=bx;d.style.overflow=ov;if(!open){d.open=false;d.classList.remove('dcl')}};
+ if(Math.abs(from-to)<2){done();return}
+ const a=d.animate([{height:from+'px'},{height:to+'px'}],{duration:open?440:340,easing:open?'cubic-bezier(.2,.9,.25,1)':'cubic-bezier(.4,0,.2,1)'});
+ d._an=a;a.onfinish=done}
+window.dAnim=dAnim;
+document.addEventListener('click',e=>{
+ const sm=e.target.closest&&e.target.closest('summary');if(!sm)return;const d=sm.parentElement;
+ if(!d||d.tagName!='DETAILS'||d.classList.contains('lgd')||d.dataset.na)return;
+ const ia=e.target.closest('a,button,input,select,textarea');if(ia&&sm.contains(ia))return;
+ e.preventDefault();dAnim(d,!d.open||d.classList.contains('dcl'))},true);
+/* Rozbalit / Sbalit vše v Nastavení s postupným efektem */
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#sOp,#sCl');if(!b)return;
+ e.stopPropagation();e.stopImmediatePropagation();const open=b.id=='sOp';
+ document.querySelectorAll('#setB details.cs').forEach((d,i)=>{if(open!==(d.open&&!d.classList.contains('dcl')))setTimeout(()=>dAnim(d,open),i*55)})},true);
+
+/* ---------- Poznámky a úkoly ---------- */
+const TOP=['Atomy','Vazby','Mol a výpočty','Roztoky','Reakce','Názvosloví','Luna','Jiné'];
+const COL=['#4285f4','#34a853','#fbbc04','#ea4335','#9b72cb','#e61363'];
+const PRI=[['l','Nízká','#34a853'],['m','Střední','#fbbc04'],['h','Vysoká','#ea4335']];
+const rid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const N=()=>TX.U('nts',[]),NS=a=>TX.S('nts',a),T=()=>TX.U('tsk',[]),TS=a=>TX.S('tsk',a),D=()=>TX.U('cdn',[]),DS=a=>TX.S('cdn',a);
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const diff=s=>Math.round((new Date(s+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5);
+const fd=s=>{const p=s.split('-');return (+p[2])+'. '+(+p[1])+'. '+p[0]};
+const fts=ts=>new Date(ts).toLocaleDateString('cs-CZ',{day:'numeric',month:'numeric'});
+const dny=n=>n==1?'den':(n>=2&&n<=4)?'dny':'dní';
+const V={tab:'n',q:'',tp:'',edit:null,col:COL[0],tf:'a'};
+const NIC=()=>(IC['check']?'':'')+'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+function ntRender(){
+ const B=$q('#ntsB');if(!B)return;
+ B.innerHTML=`<div class="tabs" role="tablist">${[['n','Poznámky'],['t','Úkoly'],['c','Odpočty']].map(x=>`<button type="button" class="${V.tab==x[0]?'on':''}" data-act="tab" data-v="${x[0]}">${x[1]}</button>`).join('')}</div><div id="ntP"></div>`;
+ ntPane()}
+function ntPane(){const P=$q('#ntP');if(!P)return;P.style.animation='none';P.offsetHeight;P.style.animation='';
+ if(V.tab=='n')ntNotes(P);else if(V.tab=='t')ntTasks(P);else ntCd(P)}
+/* --- poznámky --- */
+function ntNotes(P){
+ const topics=[...new Set(N().map(n=>n.tp).filter(Boolean))];
+ P.innerHTML=`<div class="ntbar"><input id="ntQ" placeholder="Hledat v poznámkách…" value="${esc(V.q)}" aria-label="Hledat v poznámkách"><button class="pri" data-act="new">Nová poznámka</button><button data-act="exp">Exportovat</button></div><div id="ntF"></div><div class="ntch">${['',...TOP].filter(t=>!t||topics.includes(t)||true).map(t=>`<button type="button" data-act="fl" data-v="${esc(t)}" class="${V.tp==t?'on':''}">${t||'Vše'}</button>`).join('')}</div><div id="ntL"></div>`;
+ ntForm();ntList()}
+function ntForm(){const F=$q('#ntF');if(!F)return;
+ if(!V.edit){F.innerHTML='';return}
+ const n=V.edit=='new'?{t:'',b:'',tp:'Jiné',c:V.col}:N().find(x=>x.id==V.edit)||{t:'',b:'',tp:'Jiné',c:V.col};
+ if(V.edit!='new')V.col=n.c||V.col;
+ F.innerHTML=`<div class="card ntf"><input id="ntT" maxlength="80" placeholder="Název poznámky" value="${esc(n.t)}"><textarea id="ntB" maxlength="4000" placeholder="Co sis zapsal/a? Vzorce, definice, příklady…">${esc(n.b)}</textarea><select id="ntTp" aria-label="Téma">${TOP.map(t=>`<option ${t==n.tp?'selected':''}>${t}</option>`).join('')}</select><div class="ntcl" role="group" aria-label="Barva">${COL.map(c=>`<button type="button" style="--c:${c}" data-act="cp" data-v="${c}" class="${V.col==c?'on':''}" aria-label="Barva ${c}"></button>`).join('')}</div><div class="row" style="flex-wrap:wrap;gap:8px"><button class="pri" data-act="save">Uložit</button><button data-act="cancel">Zrušit</button><span class="m" id="ntCc"></span></div></div>`;
+ const b=$q('#ntB'),cc=$q('#ntCc'),u=()=>{cc.textContent=b.value.length+' / 4000'};b.oninput=u;u();
+ setTimeout(()=>{const i=$q('#ntT');i&&i.focus()},60)}
+function ntList(){const L=$q('#ntL');if(!L)return;const q=V.q.toLowerCase().trim();
+ const open=new Set([...document.querySelectorAll('#ntL .ntc[open]')].map(x=>x.dataset.id));
+ let a=N().filter(n=>(!V.tp||n.tp==V.tp)&&(!q||(n.t+' '+n.b).toLowerCase().includes(q)));
+ a.sort((x,y)=>(y.pin?1:0)-(x.pin?1:0)||y.ts-x.ts);
+ if(!a.length){L.innerHTML=`<div class="nte">${N().length?'Nic nenalezeno.':'Zatím tu nic není. Zapiš si první poznámku, třeba vzorec nebo definici.'}</div>`;return}
+ L.innerHTML=a.map((n,i)=>`<details class="card ntc" data-id="${n.id}" style="--nc:${n.c||COL[0]};--i:${Math.min(i,10)}" ${open.has(n.id)?'open':''}><summary><span class="ntt">${n.pin?'<span class="ntp">★</span> ':''}${esc(n.t||'Bez názvu')}</span><span class="tag">${esc(n.tp||'Jiné')}</span><small>${fts(n.ts)}</small></summary><div class="ntb">${esc(n.b).replace(/\n/g,'<br>')||'<span class="m">Prázdná poznámka.</span>'}</div><div class="row ntac" style="flex-wrap:wrap"><button data-act="edit" data-id="${n.id}">Upravit</button><button data-act="pin" data-id="${n.id}">${n.pin?'Odepnout':'Připnout'}</button><button data-act="ask" data-id="${n.id}">Zeptat se Luny</button><button data-act="copy" data-id="${n.id}">Kopírovat</button><button class="dng" data-act="del" data-id="${n.id}">Smazat</button></div></details>`).join('')}
+function addNote(o){const a=N();const n={id:rid(),t:(o.t||'').trim().slice(0,80),b:(o.b||'').slice(0,4000),tp:o.tp||'Jiné',c:o.c||COL[0],pin:0,ts:Date.now()};a.unshift(n);NS(a.slice(0,200));
+ try{TX.once('ntx','first',5,'První poznámka')}catch(e){}return n}
+/* --- úkoly --- */
+function ntTasks(P){
+ const a=T(),dn=a.filter(x=>x.done).length;
+ P.innerHTML=`<div class="card"><b>Splněno ${dn} z ${a.length}</b><div class="tkp"><i style="transform:scaleX(${a.length?dn/a.length:0})"></i></div><div class="tkf"><input type="text" id="tkT" maxlength="120" placeholder="Nový úkol, např. Zopakovat mol" aria-label="Nový úkol"><input type="date" id="tkD" aria-label="Termín"><select id="tkP" aria-label="Priorita">${PRI.map(p=>`<option value="${p[0]}" ${p[0]=='m'?'selected':''}>Priorita: ${p[1].toLowerCase()}</option>`).join('')}</select><button class="pri" data-act="tadd">Přidat</button></div><div class="ntch">${[['a','Aktivní'],['d','Hotové'],['v','Vše']].map(x=>`<button type="button" data-act="tf" data-v="${x[0]}" class="${V.tf==x[0]?'on':''}">${x[1]}</button>`).join('')}</div></div><div id="tkL"></div>`;
+ tkList()}
+function tkItem(x,i,late){const p=PRI.find(z=>z[0]==x.p)||PRI[1];
+ const dd=x.due?`${fd(x.due)}${!x.done?(diff(x.due)==0?' · dnes':diff(x.due)<0?' · po termínu':' · za '+diff(x.due)+' '+dny(diff(x.due))):''}`:'Bez termínu';
+ return `<div class="tki ${x.done?'done':''} ${late?'late':''}" style="--i:${Math.min(i,12)}"><button class="tkc" data-act="ttog" data-id="${x.id}" aria-label="Splněno" aria-pressed="${!!x.done}">${NIC()}</button><div class="tkt"><b>${esc(x.t)}</b><small><span class="tkpr" style="--pc:${p[2]}"></span>${dd}</small></div><button class="tkx" data-act="tdel" data-id="${x.id}" aria-label="Smazat úkol">✕</button></div>`}
+function tkList(){const L=$q('#tkL');if(!L)return;const a=T(),t=today();let h='',i=0;
+ const act=a.filter(x=>!x.done).sort((x,y)=>(x.due||'9999').localeCompare(y.due||'9999')||PRI.findIndex(p=>p[0]==y.p)-PRI.findIndex(p=>p[0]==x.p));
+ const grp=(title,list,cls,late)=>{if(!list.length)return;h+=`<div class="tkg ${cls||''}">${title}</div>`+list.map(x=>tkItem(x,i++,late)).join('')};
+ if(V.tf!='d'){grp('Po termínu',act.filter(x=>x.due&&x.due<t),'bad',1);grp('Dnes',act.filter(x=>x.due==t));grp('Nadcházející',act.filter(x=>x.due&&x.due>t));grp('Bez termínu',act.filter(x=>!x.due))}
+ const dn=a.filter(x=>x.done);
+ if(V.tf!='a'&&dn.length)h+=`<details class="card ntc" style="--nc:#34a853" open><summary><span class="ntt">Hotové</span><small>${dn.length}</small></summary><div style="padding:0 12px 12px">${dn.map(x=>tkItem(x,i++)).join('')}</div></details>`;
+ if(!h)h=`<div class="nte">${a.length?'Tady nic není.':'Žádné úkoly. Přidej první a plánuj si učení.'}</div>`;L.innerHTML=h}
+/* --- odpočty --- */
+function ntCd(P){const a=D().slice().sort((x,y)=>x.d.localeCompare(y.d));
+ P.innerHTML=`<div class="card"><div class="tkf"><input type="text" id="cdT" maxlength="60" placeholder="Např. Písemka z chemie" aria-label="Název"><input type="date" id="cdD" aria-label="Datum"><button class="pri" data-act="cadd">Přidat odpočet</button></div></div><div style="margin-top:12px">${a.length?a.map((x,i)=>{const n=diff(x.d),past=n<0;return `<div class="card cdc ${past?'past':''} ${n>=0&&n<=3?'soon':''}" style="--i:${Math.min(i,10)}"><div class="cdn">${past?'✓':n==0?'Dnes':n}<small>${past?'proběhlo':n==0?'':dny(n)}</small></div><div><b>${esc(x.t)}</b><br><small>${fd(x.d)}</small></div><button class="tkx" data-act="cdel" data-id="${x.id}" aria-label="Smazat">✕</button></div>`}).join(''):'<div class="nte">Přidej datum písemky nebo testu a uvidíš, kolik dní zbývá.</div>'}</div>`}
+
+/* --- události --- */
+function act(a,el){const id=el&&el.dataset.id,v=el&&el.dataset.v;
+ if(a=='tab'){V.tab=v;V.edit=null;ntRender()}
+ else if(a=='new'){V.edit='new';V.col=COL[0];ntForm()}
+ else if(a=='cancel'){V.edit=null;ntForm()}
+ else if(a=='edit'){V.edit=id;ntForm();const f=$q('#ntF');f&&f.scrollIntoView({behavior:'smooth',block:'center'})}
+ else if(a=='cp'){V.col=v;document.querySelectorAll('.ntcl button').forEach(b=>b.classList.toggle('on',b.dataset.v==v))}
+ else if(a=='save'){const t=$q('#ntT').value,b=$q('#ntB').value,tp=$q('#ntTp').value;if(!t.trim()&&!b.trim())return toast('Napiš název nebo text.');
+  if(V.edit=='new'){addNote({t,b,tp,c:V.col});toast('Poznámka uložena.')}
+  else{const A=N(),n=A.find(x=>x.id==V.edit);if(n){n.t=t.trim().slice(0,80);n.b=b;n.tp=tp;n.c=V.col;n.ts=Date.now();NS(A);toast('Poznámka upravena.')}}
+  V.edit=null;ntForm();ntList()}
+ else if(a=='fl'){V.tp=v;document.querySelectorAll('#ntP .ntch button').forEach(b=>b.classList.toggle('on',b.dataset.v==v));ntList()}
+ else if(a=='pin'){const A=N(),n=A.find(x=>x.id==id);if(n){n.pin=n.pin?0:1;NS(A);ntList()}}
+ else if(a=='del'){if(!confirm('Smazat tuto poznámku?'))return;NS(N().filter(x=>x.id!=id));ntList();toast('Poznámka smazána.')}
+ else if(a=='copy'){const n=N().find(x=>x.id==id);if(n)navigator.clipboard&&navigator.clipboard.writeText((n.t?n.t+'\n\n':'')+n.b).then(()=>toast('Zkopírováno.'),()=>toast('Kopírování se nepovedlo.'))}
+ else if(a=='ask'){const n=N().find(x=>x.id==id);if(!n)return;go('luna');setTimeout(()=>{const i=$q('#lI');if(!i)return;i.value=('Vysvětli mi jednoduše moji poznámku „'+(n.t||'bez názvu')+'“: '+n.b).slice(0,780);i.dispatchEvent(new Event('input'));i.focus()},800)}
+ else if(a=='exp'){const A=N();if(!A.length)return toast('Nemáš žádné poznámky.');
+  const txt=A.map(n=>`# ${n.t||'Bez názvu'}\nTéma: ${n.tp||'Jiné'} · ${new Date(n.ts).toLocaleDateString('cs-CZ')}\n\n${n.b}\n`).join('\n---\n\n');
+  const b=new Blob([txt],{type:'text/markdown'}),u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download='poznamky-tadxchemie.md';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);toast('Poznámky exportovány.')}
+ else if(a=='tf'){V.tf=v;ntTasks($q('#ntP'))}
+ else if(a=='tadd'){const t=$q('#tkT').value.trim();if(!t)return toast('Napiš úkol.');const A=T();A.unshift({id:rid(),t:t.slice(0,120),due:$q('#tkD').value||'',p:$q('#tkP').value,done:0,ts:Date.now()});TS(A.slice(0,200));ntTasks($q('#ntP'))}
+ else if(a=='ttog'){const A=T(),x=A.find(z=>z.id==id);if(!x)return;x.done=x.done?0:1;TS(A);
+  const row=el.closest('.tki');row&&row.classList.toggle('done',!!x.done);const bar=$q('.tkp i'),dn=A.filter(z=>z.done).length;bar&&(bar.style.transform=`scaleX(${A.length?dn/A.length:0})`);
+  const bb=$q('#ntP .card b');bb&&(bb.textContent=`Splněno ${dn} z ${A.length}`);setTimeout(tkList,520)}
+ else if(a=='tdel'){TS(T().filter(x=>x.id!=id));ntTasks($q('#ntP'))}
+ else if(a=='cadd'){const t=$q('#cdT').value.trim(),d=$q('#cdD').value;if(!t||!d)return toast('Vyplň název i datum.');const A=D();A.push({id:rid(),t:t.slice(0,60),d});DS(A.slice(-30));ntCd($q('#ntP'))}
+ else if(a=='cdel'){DS(D().filter(x=>x.id!=id));ntCd($q('#ntP'))}}
+document.addEventListener('click',e=>{const el=e.target.closest&&e.target.closest('#nts [data-act]');if(el)act(el.dataset.act,el)});
+document.addEventListener('input',e=>{if(e.target&&e.target.id=='ntQ'){V.q=e.target.value;ntList()}});
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&e.target&&(e.target.id=='tkT'||e.target.id=='cdT')){e.preventDefault();act(e.target.id=='tkT'?'tadd':'cadd',e.target)}});
+
+TX.reg('nts','Poznámky a úkoly','Zápisky, úkoly s termíny a odpočty k písemkám.',ntRender);
+TX.lab.push(['book-open','Poznámky a úkoly','Zápisky, úkoly s termíny a odpočty k testům','nts']);
+TX.badge('nt5','book-open','Zapisovatel','Napiš 5 poznámek.',()=>N().length>=5);
+TX.home.push(()=>{if(!me)return'';const n=N().length,t=T().filter(x=>!x.done),late=t.filter(x=>x.due&&x.due<today()).length,c=D().filter(x=>diff(x.d)>=0).sort((x,y)=>x.d.localeCompare(y.d))[0];
+ const bits=[];bits.push(n?`${n} ${n==1?'poznámka':n<5?'poznámky':'poznámek'}`:'Zapiš si první poznámku');
+ if(t.length)bits.push(`${t.length} ${t.length==1?'otevřený úkol':t.length<5?'otevřené úkoly':'otevřených úkolů'}${late?` (${late} po termínu)`:''}`);
+ if(c){const d=diff(c.d);bits.push(`${esc(c.t)}: ${d==0?'dnes':'za '+d+' '+dny(d)}`)}
+ return `<div class="card qc" onclick="go('nts')" style="display:flex;gap:14px;align-items:center;cursor:pointer"><span style="font-size:2.2rem;color:var(--b)">${ic('book-open')}</span><div style="flex:1"><h2 style="margin:0;font-size:1.15rem">Poznámky a úkoly</h2><p class="m">${bits.join(' · ')}</p></div></div>`});
+
+/* Luna: tlačítko „Do poznámek“ u odpovědí + znalost nejbližšího termínu */
+const M=$q('#lM');
+if(M)new MutationObserver(()=>{M.querySelectorAll('.mr.ma .mb .lact').forEach(l=>{if(!l.querySelector('[data-a="n"]'))l.insertAdjacentHTML('beforeend','<button data-a="n" type="button">Do poznámek</button>')})}).observe(M,{childList:true,subtree:true});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.lact [data-a="n"]');if(!b)return;e.stopPropagation();e.preventDefault();
+ const mb=b.closest('.mb'),c=mb.cloneNode(true);c.querySelectorAll('.lact').forEach(x=>x.remove());const t=(c.innerText||c.textContent||'').trim();if(!t)return;
+ addNote({t:t.split('\n')[0].slice(0,50),b:t,tp:'Luna',c:COL[4]});toast('Uloženo do poznámek.')},true);
+const lc0=window.lunaCtx;window.lunaCtx=function(){let r='';try{r=lc0?lc0.apply(this,arguments):''}catch(e){}
+ try{const c=D().filter(x=>diff(x.d)>=0).sort((x,y)=>x.d.localeCompare(y.d))[0];if(c)r+=`Nejbližší termín uživatele: ${c.t.slice(0,40)} za ${diff(c.d)} dní. `}catch(e){}return r};
+
+try{CL.unshift(['8.3','Poznámky, úkoly a plynulé animace','6. 11. 2026',[
+ 'Nová sekce Poznámky a úkoly (v Laboratoři i na úvodní stránce) se třemi záložkami: Poznámky, Úkoly a Odpočty',
+ 'Poznámky: barvy, témata, připnutí, hledání, filtr podle tématu, export do souboru a tlačítko Zeptat se Luny',
+ 'U každé odpovědi Luny je nové tlačítko Do poznámek',
+ 'Úkoly s termínem a prioritou, ukazatelem splnění a upozorněním na úkoly po termínu',
+ 'Odpočty k písemkám a testům: kolik dní zbývá, nejbližší termín vidíš na úvodní stránce a zná ho i Luna v online režimu',
+ 'Plynulé animace u všech sbalitelných částí: sekce v Nastavení, Profil a Poznámky, otáčení šipek, postupné naskakování obsahu a Rozbalit/Sbalit vše',
+ 'Nový odznak Zapisovatel za 5 poznámek'
 ]])}catch(e){}
 })();
 </script>
