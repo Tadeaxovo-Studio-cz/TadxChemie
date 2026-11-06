@@ -1056,7 +1056,7 @@ const norm2=s=>norm(String(s).replace(/[₀-₉]/g,c=>c.charCodeAt(0)-8320)),nor
 const subs=f=>f.replace(/(\D)(\d+)/g,(m,a,b)=>a+[...b].map(d=>'₀₁₂₃₄₅₆₇₈₉'[d]).join(''));
 function md(s){s=esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>');let o='',ul=false;s.split('\n').forEach(l=>{const m=l.match(/^\s*[-•]\s+(.*)/);if(m){if(!ul){o+='<ul>';ul=true}o+='<li>'+m[1]+'</li>'}else{if(ul){o+='</ul>';ul=false}o+=l+'<br>'}});if(ul)o+='</ul>';return o.replace(/(<br>)+$/,'')}
 let LBUSY=false,LQ=null;
-const LU=()=>DB.g('luna',{})[me.name]||[],LUS=a=>{const o=DB.g('luna',{});o[me.name]=a.slice(-60);DB.s('luna',o)};
+const LU=()=>lxMsgs(),LUS=a=>lxSet(a);
 const lcfg=()=>({key:'',model:'claude-haiku-5-5',mode:'auto',...(DB.g('lk',{})[me.name]||{})});
 const rateOK=()=>(DB.g('lrate',{})[me.name]||[]).filter(x=>Date.now()-x<36e5).length<30;
 function rateMark(){const o=DB.g('lrate',{}),a=(o[me.name]||[]).filter(x=>Date.now()-x<36e5);a.push(Date.now());o[me.name]=a;DB.s('lrate',o)}
@@ -3557,26 +3557,19 @@ function pCompact(){const S=Q('#prof');if(!S||S.dataset.cw)return;S.dataset.cw=1
 const prof1=prof;prof=function(){prof1.apply(this,arguments);pCompact()};
 
 /* ---------- PAMĚŤ LUNY ---------- */
-const MK=['lk','luna'];
+const MK=['luna'];
 const mget=()=>{try{return me?(DB.g('lmem',{})[me.name]||null):null}catch(e){return null}};
 const moff=()=>mget()=='off';
 try{const g0=DB.g,s0=DB.s;
  DB.g=function(k,d){if(MK.includes(k)&&moff())return d;return g0.apply(DB,arguments)};
  DB.s=function(k,v){if(MK.includes(k)&&moff())return;return s0.apply(DB,arguments)}}catch(e){}
 function mset(v){const o=DB.g('lmem',{});o[me.name]=v;DB.s('lmem',o);mui()}
-function mcard(host,small){
- if(!host||!me||mget()||host.querySelector('.lmc'))return;
- host.insertAdjacentHTML('afterbegin',`<div class="lmc ${small?'sm':''}"><span class="lmn">Nové</span><h3>Luna používá paměť</h3><p>Luna si teď může pamatovat, co jí řekneš, a navazovat na předchozí rozhovory. Paměť zahrnuje historii tvého chatu s Lunou a věci, které si má pamatovat.</p><p>Paměť můžeš kdykoli spravovat v <a class="lmS">Nastavení LunaAI</a>.</p><button class="lmY" type="button">Použít paměť</button><button class="lmN" type="button">Nepoužívat paměť</button></div>`);
- const c=host.querySelector('.lmc');
- c.querySelector('.lmY').onclick=()=>{mset('on');c.remove();toast('Luna teď používá paměť.')};
- c.querySelector('.lmN').onclick=()=>{mset('off');c.remove();toast('Luna paměť nepoužívá.')};
- c.querySelector('.lmS').onclick=()=>{const b=document.getElementById('lSet');if(b)b.click()};
- host.scrollTop=0}
-function mui(){const b=document.getElementById('lmB');if(!b)return;const v=mget();b.textContent=v=='off'?'Paměť: vypnutá':v=='on'?'Paměť: zapnutá':'Paměť'}
-function mhead(){if(document.getElementById('lmB'))return;const s=document.getElementById('lSet');if(!s)return;
+function mcard(host,small){if(!me||mget())return;if(window.lxMemGate)window.lxMemGate()}
+function mui(){const b=document.getElementById('lmB');if(!b)return;const v=mget();b.innerHTML='<span class="lxd '+(v||'')+'"></span>Paměť';b.title=v=='off'?'Paměť vypnutá':v=='on'?'Paměť zapnutá':'Paměť není zvolena';b.setAttribute('aria-label',b.title)}
+function mhead(){if(document.getElementById('lmB'))return;const s=document.querySelector('#luna .lh button[onclick="lSetT()"]');if(!s)return;
  s.insertAdjacentHTML('beforebegin','<button class="ib" id="lmB" type="button" aria-label="Paměť Luny">Paměť</button>');
  document.getElementById('lmB').onclick=()=>{const v=mget();if(!v){const M=Q('#lM');mcard(M,false);return}mset(v=='on'?'off':'on');toast(mget()=='on'?'Paměť zapnuta.':'Paměť vypnuta – Luna si nic neukládá.')};mui()}
-const go81=go;
+window.lxMset=mset;window.lxMget=mget;const go81=go;
 go=function(id){const r=go81.apply(this,arguments);if(id=='luna'&&me)setTimeout(()=>{mhead();mcard(Q('#lM'),false)},140);return r};
 
 /* ---------- BUBLINA LUNY ---------- */
@@ -3589,7 +3582,7 @@ document.addEventListener('keydown',e=>{if(e.key=='Escape'){const P=Q('#lpP');if
 /* ---------- PŘIHLÁŠENÍ PŘES GOOGLE (Firebase) ---------- */
 /* Vlož údaje z Firebase konzole: Project settings → Your apps → Web app. V Authentication zapni poskytovatele „Google“
    a ve Settings → Authorized domains přidej doménu, kde appka běží. Z file:// popup nefunguje – spouštěj přes https. */
-const FB_CFG={apiKey:'AIzaSyBTLI9oy9_Wung1I-r6VWVIC7nC29DjioQ',authDomain:'tadxsystem.firebaseapp.com',projectId:'tadxsystem',appId:'1:781171750037:web:5b433e0b17d42baa48579c'};
+const FB_CFG={apiKey:'DOPLŇ_API_KEY',authDomain:'tadxchemie.firebaseapp.com',projectId:'tadxchemie',appId:'DOPLŇ_APP_ID'};
 const ldS=u=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=u;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
 const GSVG='<svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
 window.gLogin=async function(){
@@ -3618,113 +3611,311 @@ aR=function(d){aR1.apply(this,arguments);try{const s=A.step;if((s!='id'&&s!='u1'
 })();
 </script>
 
-<style>/* ===== v8.2 ===== */
-.lmc{display:none!important}.lw .lh #lmB{display:none}
-.lw.v82{display:grid!important;grid-template-columns:272px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;background:#0c0e24;color:#eef0ff;border-radius:0;border:0}
-html.light .lw.v82{background:#f3f5ff;color:#161a3a}
-.lw.v82>.lh{grid-column:2;grid-row:1;border:0;background:transparent;z-index:2}
-.lw.v82>#lM{grid-column:2;grid-row:2;min-height:0;padding:12px max(18px,9%);z-index:1}
-.lw.v82>.lc{grid-column:2;grid-row:3;padding:4px max(18px,9%) 8px;z-index:1}
-.lw.v82>.lf{grid-column:2;grid-row:4;border:0;padding:6px max(18px,9%) 18px;z-index:1}
-.lw.v82 .la i{opacity:.42;animation-duration:18s}
-.lw.v82 .la i:nth-child(1){background:#7c5cff}.lw.v82 .la i:nth-child(2){background:#2ee6d6}.lw.v82 .la i:nth-child(3){background:#ff5c9d;opacity:.24}
-.lw.v82 .la::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(124,92,255,.25),transparent 60%);animation:g82p 9s ease-in-out infinite alternate}
-@keyframes g82p{from{opacity:.4}to{opacity:1}}
-.lw.v82 .ma .mb{background:transparent;border:0;padding:6px 4px;color:inherit;backdrop-filter:none}
-.lw.v82 .mu .mb{background:rgba(124,92,255,.3);color:inherit;border:1px solid rgba(124,92,255,.5);border-radius:22px 22px 6px 22px}
-.lw.v82 .mb{max-width:min(760px,92%)}
-.lw.v82 .lf{align-items:center}
-.lw.v82 .lf textarea{background:rgba(255,255,255,.08);color:inherit;border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:15px 22px}
-html.light .lw.v82 .lf textarea{background:#fff;border-color:rgba(24,28,70,.18)}
-.lw.v82 .lf .pri{background:linear-gradient(135deg,#7c5cff,#2ee6d6);border:0;color:#fff}
-.lw.v82 .lc button{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:inherit}
-.hero82{margin:6vh 0 4px;animation:lmIn .6s both}.hero82 h2{font-size:clamp(2rem,5vw,3.2rem);margin:0;background:linear-gradient(90deg,#7c5cff,#2ee6d6,#ff5c9d,#7c5cff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h82 8s linear infinite}
-.hero82 p{margin:4px 0 0;font-size:1.4rem;opacity:.55}@keyframes h82{to{background-position:250% 0}}
-#lsb{grid-column:1;grid-row:1/5;position:relative;z-index:3;display:flex;flex-direction:column;gap:8px;padding:14px 10px;background:rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);min-height:0}
-html.light #lsb{background:rgba(255,255,255,.7);border-color:rgba(24,28,70,.1)}
-#lsb button{display:flex;align-items:center;gap:8px;color:inherit}
-#lnew{border-radius:999px;padding:11px 16px;background:linear-gradient(135deg,rgba(124,92,255,.5),rgba(46,230,214,.3));border:1px solid rgba(124,92,255,.5);font-weight:700}
-.lsh{font-size:.75rem;opacity:.55;padding:8px 8px 0;letter-spacing:.06em;text-transform:uppercase}
-#lls{flex:1;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:2px}
-.lci{display:flex;align-items:center;gap:6px;padding:9px 10px;border-radius:12px;cursor:pointer;transition:.2s;animation:lmIn .3s both}.lci:hover{background:rgba(124,92,255,.16)}.lci.on{background:rgba(124,92,255,.3)}
-.lci span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.9rem}
-.lci button{opacity:0;border:0!important;background:none!important;padding:4px!important;transition:.2s}.lci:hover button,.lci.on button{opacity:.7}.lci button:hover{opacity:1}
-.lsn{font-size:.82rem;opacity:.6;padding:8px}
-#lmem{border-radius:12px;padding:10px 12px;font-size:.85rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
-#lmem i{width:8px;height:8px;border-radius:50%;background:#888;display:inline-block}#lmem.on i{background:#38e08a;box-shadow:0 0 8px #38e08a}
-#lmenu{display:none}#lsx{display:none}
-@media(max-width:820px){.lw.v82{grid-template-columns:minmax(0,1fr)}.lw.v82>.lh,.lw.v82>#lM,.lw.v82>.lc,.lw.v82>.lf{grid-column:1}
-#lmenu{display:grid}#lsb{position:absolute;left:0;top:0;bottom:0;width:80%;max-width:300px;transform:translateX(-105%);transition:transform .3s cubic-bezier(.2,.9,.3,1);background:#14173a;z-index:6}html.light #lsb{background:#fff}
-.lw.sbo #lsb{transform:none}.lw.sbo #lsx{display:block;position:absolute;inset:0;z-index:5;background:rgba(0,0,0,.5)}}
-.g82{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:16px;background:rgba(5,7,20,.82);backdrop-filter:blur(12px);animation:fi2 .3s}.g82.out{opacity:0;transition:.28s}
-.g82c{position:relative;width:min(440px,100%);padding:28px 26px;border-radius:28px;background:#14173a;color:#eef0ff;overflow:hidden;box-shadow:0 20px 70px rgba(124,92,255,.35);animation:pop2 .45s cubic-bezier(.2,1.4,.4,1)}
-.g82c::before{content:'';position:absolute;inset:-60%;background:conic-gradient(from 0deg,transparent,rgba(124,92,255,.4),transparent 40%,rgba(46,230,214,.35),transparent);animation:spin 10s linear infinite}
-.g82c::after{content:'';position:absolute;inset:2px;border-radius:26px;background:#14173a}.g82c>*{position:relative;z-index:1}
-.g82c .lmn{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:999px;background:rgba(46,230,214,.18);color:#2ee6d6}
-.g82c h2{margin:14px 0 10px;font-size:1.7rem}.g82c p{opacity:.8;line-height:1.5;margin:0 0 12px}
-.g82c button{display:block;width:100%;border-radius:999px;padding:14px;font-weight:700;margin-top:10px;cursor:pointer;font-size:1rem}
-.g82y{background:linear-gradient(135deg,#7c5cff,#2ee6d6);color:#fff;border:0}.g82n{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.3)}
-.g82b{background:none!important;border:0!important;font-weight:400!important;opacity:.55;font-size:.85rem!important;padding:8px!important}
-.lgd{overflow:hidden}
+<style id="lx82">/* ===== v8.2 ===== */
+/* ---------- changelog: animace rozbalení ---------- */
+.lgd{transition:border-color .3s,background .3s,box-shadow .3s}
+.lgd:hover{border-color:color-mix(in srgb,var(--a) 45%,var(--line))}
+.lgd[open]{background:color-mix(in srgb,var(--a) 4%,transparent)}
+.lgd summary{list-style:none;user-select:none}.lgd summary::-webkit-details-marker{display:none}
+.lgb{overflow:hidden}
+.lgch{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.6;margin-left:4px;transition:transform .45s cubic-bezier(.3,1.5,.4,1),opacity .3s}
+.lgd summary:hover .lgch{opacity:1}
+.lgd[open]:not(.lgcl)>summary .lgch{transform:rotate(180deg)}
+.lgd[open]:not(.lgcl) .lgbi li{animation:lgLi .5s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--i,0)*55ms + 140ms)}
+.lgd[open]:not(.lgcl) .lgi{animation:lgIm .6s cubic-bezier(.2,.9,.3,1) both}
+@keyframes lgLi{from{opacity:0;transform:translateY(10px)}}
+@keyframes lgIm{from{opacity:0;transform:scale(1.05)}}
+html.rm .lgd *{animation:none!important;transition:none!important}
+
+/* ---------- povinné potvrzení paměti ---------- */
+.lxm{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(24,20,44,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:fi2 .35s both}
+.lxm.out{opacity:0;transition:opacity .28s}
+.lxm.out .lxmc{transform:translateY(24px) scale(.97);transition:transform .28s}
+.lxmc{position:relative;width:min(440px,100%);border-radius:30px;padding:28px 24px 22px;background:var(--bg);color:var(--tx);box-shadow:0 30px 90px rgba(0,0,0,.5);overflow:hidden;animation:lxSheet .6s cubic-bezier(.2,1.15,.3,1) both}
+.lxmc::before{content:'';position:absolute;inset:-70%;background:conic-gradient(from 0deg,transparent,rgba(230,19,99,.38),transparent 32%,rgba(66,133,244,.4),transparent 66%,rgba(155,114,203,.35),transparent);animation:spin 9s linear infinite}
+.lxmc::after{content:'';position:absolute;inset:2px;border-radius:28px;background:var(--bg)}
+.lxmc>*{position:relative;z-index:1}
+@keyframes lxSheet{from{opacity:0;transform:translateY(40px) scale(.96)}}
+.lxmo{width:68px!important;height:68px!important;margin:0 0 14px;animation:lxFloat 4.5s ease-in-out infinite}
+.lxmn{display:inline-block;font-size:.82rem;font-weight:700;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,var(--a) 14%,transparent);color:var(--a);margin-left:8px;vertical-align:top;margin-top:4px}
+.lxmc h2{margin:6px 0 12px;font-size:clamp(1.7rem,6vw,2.1rem);line-height:1.15;font-weight:650;letter-spacing:-.01em}
+.lxmc p{margin:0 0 14px;font-size:1.02rem;line-height:1.55;color:var(--mut)}
+.lxA{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--tx);text-decoration:underline;text-underline-offset:3px;cursor:pointer;display:inline}
+.lxA:hover{color:var(--a)}
+.lxmi{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.3,.9,.3,1),opacity .35s;opacity:0}
+.lxmi.on{grid-template-rows:1fr;opacity:1}
+.lxmi>div{overflow:hidden}
+.lxmi ul{margin:0 0 14px;padding:12px 14px 12px 30px;border-radius:16px;background:color-mix(in srgb,var(--tx) 5%,transparent);font-size:.9rem;line-height:1.5;color:var(--mut)}
+.lxmi li{margin:5px 0}.lxmi b{color:var(--tx)}
+.lxmx{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.lxmx button{width:100%;min-height:54px;border-radius:999px;font-size:1.05rem;font-weight:650;cursor:pointer;transition:transform .2s,box-shadow .3s,background .3s}
+.lxmx button:active{transform:scale(.97)}
+.lxY{background:linear-gradient(135deg,var(--a),#9b5cff);color:#fff;border:0;box-shadow:0 8px 26px color-mix(in srgb,var(--a) 38%,transparent)}
+.lxY:hover{box-shadow:0 12px 34px color-mix(in srgb,var(--a) 50%,transparent)}
+.lxN{background:transparent;color:var(--tx);border:1.5px solid color-mix(in srgb,var(--tx) 22%,transparent)}
+.lxN:hover{background:color-mix(in srgb,var(--tx) 6%,transparent)}
+.lxmq{margin:14px 0 0!important;text-align:center;font-size:.82rem!important;opacity:.75}
+@media(max-width:560px){.lxm{align-items:flex-end;padding:0}.lxmc{width:100%;border-radius:30px 30px 0 0;padding-bottom:max(22px,env(safe-area-inset-bottom))}.lxmc::after{border-radius:28px 28px 0 0}}
+html.rm .lxm,html.rm .lxm *{animation:none!important;transition:none!important}
+@keyframes lxFloat{50%{transform:translateY(-7px)}}
+
+/* ---------- Luna ve stylu Gemini ---------- */
+#luna .lw{flex-direction:row;background:var(--bg);isolation:isolate}
+#luna .la{background:radial-gradient(70% 55% at 10% 0%,rgba(66,133,244,.14),transparent 70%),radial-gradient(60% 50% at 100% 100%,rgba(217,101,112,.12),transparent 70%),var(--bg);z-index:0}
+#luna .la i{width:46%;height:46%;filter:blur(72px);opacity:.55;will-change:transform}
+#luna .la i:nth-child(1){background:#8ab4f8;top:-14%;left:-8%;animation:lxA1 17s ease-in-out infinite alternate}
+#luna .la i:nth-child(2){background:#f28b9b;top:auto;left:auto;bottom:-20%;right:-8%;animation:lxA2 21s ease-in-out infinite alternate;animation-delay:0s}
+#luna .la i:nth-child(3){background:#c3a6f0;top:26%;left:38%;opacity:.4;animation:lxA3 24s ease-in-out infinite alternate;animation-delay:0s}
+#luna .la i:nth-child(4){background:#7fe3d8;width:34%;height:34%;top:58%;left:-10%;opacity:.32;animation:lxA4 19s ease-in-out infinite alternate}
+#luna .la i:nth-child(5){background:#ffd08a;width:30%;height:30%;top:-10%;right:6%;opacity:.28;animation:lxA5 23s ease-in-out infinite alternate}
+@keyframes lxA1{to{transform:translate(38%,26%) scale(1.3)}}
+@keyframes lxA2{to{transform:translate(-34%,-30%) scale(1.25)}}
+@keyframes lxA3{50%{transform:translate(-26%,18%) scale(1.35)}to{transform:translate(20%,-22%) scale(.9)}}
+@keyframes lxA4{to{transform:translate(60%,-30%) scale(1.4)}}
+@keyframes lxA5{to{transform:translate(-50%,40%) scale(1.3)}}
+#luna .la::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1.6px 1.6px at 12% 22%,rgba(66,133,244,.75),transparent),radial-gradient(1.4px 1.4px at 78% 14%,rgba(217,101,112,.7),transparent),radial-gradient(1.8px 1.8px at 34% 72%,rgba(155,114,203,.7),transparent),radial-gradient(1.4px 1.4px at 90% 58%,rgba(66,133,244,.6),transparent),radial-gradient(1.6px 1.6px at 56% 38%,rgba(217,101,112,.55),transparent),radial-gradient(1.3px 1.3px at 6% 84%,rgba(155,114,203,.6),transparent),radial-gradient(1.5px 1.5px at 66% 88%,rgba(66,133,244,.6),transparent);animation:lxTw 5s ease-in-out infinite alternate}
+@keyframes lxTw{from{opacity:.25;transform:translateY(0)}to{opacity:1;transform:translateY(-6px)}}
+html.lite #luna .la::after{animation:none;opacity:.6}
+
+#luna .lxs{position:relative;z-index:3;width:272px;flex:none;display:flex;flex-direction:column;padding:12px 10px 10px;border-right:1px solid var(--line);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:margin-left .4s cubic-bezier(.3,.9,.3,1),opacity .3s,transform .4s cubic-bezier(.3,.9,.3,1)}
+#luna .lw.lxc .lxs{margin-left:-272px;opacity:0;pointer-events:none}
+#luna .lxsh{display:flex;gap:8px;align-items:center}
+#luna .lxcx{display:none}
+#luna .lxn{flex:1;display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:999px;border:0;background:color-mix(in srgb,#4285f4 14%,transparent);color:var(--tx);font-weight:650;cursor:pointer;transition:background .25s,transform .2s}
+#luna .lxn:hover{background:color-mix(in srgb,#4285f4 24%,transparent)}#luna .lxn:active{transform:scale(.97)}
+#luna .lxn svg,#luna .lxq svg,#luna .lxbt svg,#luna .lxi svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#luna .lxq{display:flex;align-items:center;gap:8px;margin:12px 2px 4px;padding:0 12px;border-radius:999px;background:color-mix(in srgb,var(--tx) 6%,transparent);color:var(--mut)}
+#luna .lxq input{margin:0;border:0!important;background:transparent!important;box-shadow:none!important;padding:9px 0;font-size:.92rem;min-width:0}
+#luna .lxl{flex:1;overflow:auto;margin-top:6px;scrollbar-width:thin;padding-right:2px}
+#luna .lxg{font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);padding:12px 12px 4px}
+#luna .lxi{display:flex;align-items:center;gap:6px;padding:9px 8px 9px 14px;border-radius:999px;cursor:pointer;margin:1px 0;font-size:.93rem;animation:lxIn .4s both;animation-delay:calc(var(--i,0)*28ms);transition:background .2s}
+#luna .lxi:hover{background:color-mix(in srgb,var(--tx) 7%,transparent)}
+#luna .lxi.on{background:color-mix(in srgb,#4285f4 18%,transparent);font-weight:600}
+#luna .lxt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#luna .lxa{display:flex;gap:2px;opacity:0;transition:opacity .2s}
+#luna .lxi:hover .lxa,#luna .lxi:focus-within .lxa,#luna .lxi.on .lxa{opacity:1}
+#luna .lxa button{width:28px;height:28px;padding:0;border-radius:50%;border:0;background:transparent;display:grid;place-items:center;color:var(--mut);cursor:pointer}
+#luna .lxa button:hover{background:color-mix(in srgb,var(--tx) 10%,transparent);color:var(--tx)}
+#luna .lxa svg{width:15px;height:15px}
+@media(hover:none){#luna .lxa{opacity:1}}
+#luna .lxe0{padding:18px 12px;text-align:center;color:var(--mut);font-size:.9rem}
+#luna .lxf{padding:10px 12px 4px;font-size:.78rem;color:var(--mut);display:flex;gap:8px;align-items:center;border-top:1px solid var(--line)}
+@keyframes lxIn{from{opacity:0;transform:translateX(-10px)}}
+#luna .lxsc{display:none}
+#luna .lxmain{position:relative;z-index:1;flex:1;min-width:0;display:flex;flex-direction:column}
+#luna .lh{border-bottom:0;background:transparent;padding:10px 16px}
+#luna .lxbt{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;padding:0;flex:none}
+#luna .lxd{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aa0a6;flex:none}
+#luna .lxd.on{background:#34a853;box-shadow:0 0 8px #34a853}#luna .lxd.off{background:#d96570}
+#luna .lm{padding:18px clamp(14px,calc((100% - 780px)/2),420px) 8px;gap:22px}
+#luna .lw.lxe .lm{justify-content:center;align-items:center}
+#luna .ma{align-items:flex-start;gap:12px}
+#luna .ma .mb{background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:4px 0 0;max-width:100%;border-radius:0;font-size:1.02rem;line-height:1.7}
+#luna .mu .mb{background:color-mix(in srgb,var(--tx) 7%,transparent);color:var(--tx);border:0;border-radius:24px 24px 6px 24px;padding:12px 18px;max-width:78%}
+#luna .mr.ma .orb.sm{width:32px;height:32px;margin-top:2px}
+#luna .lhero{text-align:center;animation:lxUp .8s cubic-bezier(.2,.9,.3,1) both;padding:10px}
+#luna .lxho{width:84px!important;height:84px!important;margin:0 auto 12px;animation:lxFloat 5s ease-in-out infinite}
+#luna .lhh{margin:0;font-size:clamp(2rem,6.2vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.015em}
+#luna .lhh span{background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570,#9b72cb,#4285f4);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:lxG 9s linear infinite}
+#luna .lhs{margin:8px 0 0;font-size:clamp(1.25rem,4vw,1.9rem);color:var(--mut);font-weight:500}
+@keyframes lxG{to{background-position:300% 0}}
+@keyframes lxUp{from{opacity:0;transform:translateY(22px)}}
+#luna .lc{padding:2px clamp(14px,calc((100% - 780px)/2),420px) 12px}
+#luna .lw:not(.lxe) .lc{display:none}
+#luna .lw.lxe .lc{flex-wrap:wrap;justify-content:center;overflow:visible}
+#luna .lc button{background:color-mix(in srgb,var(--tx) 6%,var(--bg) 60%);border:1px solid var(--line);border-radius:16px;color:var(--tx);transition:transform .2s,background .25s,border-color .25s;animation:lxUp .6s both}
+#luna .lc button:nth-child(2){animation-delay:.05s}#luna .lc button:nth-child(3){animation-delay:.1s}#luna .lc button:nth-child(4){animation-delay:.15s}#luna .lc button:nth-child(5){animation-delay:.2s}
+#luna .lc button:hover{transform:translateY(-2px);background:color-mix(in srgb,#4285f4 13%,transparent);border-color:color-mix(in srgb,#4285f4 40%,transparent)}
+#luna .lf{margin:0 clamp(12px,calc((100% - 780px)/2),420px) 16px;padding:7px 7px 7px 20px;border:1px solid var(--line);border-top:1px solid var(--line);border-radius:32px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 2px 16px rgba(60,64,67,.12);transition:box-shadow .35s,border-color .35s}
+#luna .lf:focus-within{border-color:rgba(66,133,244,.55);box-shadow:0 6px 30px rgba(66,133,244,.26),0 0 0 3px rgba(155,114,203,.12)}
+#luna .lf textarea{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0;padding:12px 4px;font-size:1.02rem}
+#luna .lf .pri{background:linear-gradient(135deg,#4285f4,#9b72cb 55%,#d96570);color:#fff;border:0;transition:transform .2s,opacity .25s,box-shadow .3s}
+#luna .lf .pri:hover:not(:disabled){transform:scale(1.07);box-shadow:0 6px 18px rgba(155,114,203,.45)}
+#luna .lf .pri:disabled{opacity:.45}
+@media(max-width:760px){
+ #luna .lxs{position:absolute;left:0;top:0;bottom:0;z-index:6;width:min(300px,84vw);background:var(--bg);transform:translateX(-104%);box-shadow:none}
+ #luna .lw.lxc .lxs{margin-left:0;opacity:1;pointer-events:auto}
+ #luna .lw.lxo .lxs{transform:none;box-shadow:12px 0 50px rgba(0,0,0,.28)}
+ #luna .lxcx{display:grid}
+ #luna .lw.lxo .lxsc{display:block;position:absolute;inset:0;z-index:5;background:rgba(20,18,40,.38);animation:fi2 .3s both}
+ #luna .lh .tag{display:none}
+ #lmB{font-size:0!important;gap:0!important;padding:0 12px!important}
+}
+html.rm #luna .la i,html.rm #luna .la::after,html.rm #luna .lhh span,html.rm #luna .lxho{animation:none!important}
+#lSet .lxms2{margin:0 0 14px}
+#lSet .lxseg{display:flex;gap:6px;margin-top:6px}
+#lSet .lxseg button{flex:1;border-radius:999px;padding:9px 12px;cursor:pointer}
+#lSet .lxseg button.on{background:var(--a);color:#fff;border-color:transparent}
 </style>
 <script>
 (function(){
-const q=s=>document.querySelector(s),CK='lchats';
-const sv=p=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
-const PL='<path d="M5 12h14"/><path d="M12 5v14"/>',TR='<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',MN='<path d="M4 6h16M4 12h16M4 18h16"/>';
-const mm=()=>{try{return me?(DB.g('lmem',{})[me.name]||null):null}catch(e){return null}};
-const setM=v=>{const o=DB.g('lmem',{});o[me.name]=v;DB.s('lmem',o);ui()};
-const cdb=()=>{const o=DB.g(CK,{});return[o,o[me.name]||(o[me.name]={cur:null,list:[]})]};
-const setL=a=>{const l=DB.g('luna',{});l[me.name]=a;DB.s('luna',l)};
-function ui(){const b=q('#lmem');if(!b)return;const v=mm();b.className=v=='on'?'on':'';b.innerHTML='<i></i>Paměť: '+(v=='on'?'zapnutá':v=='off'?'vypnutá':'nevybráno')}
-function rl(){const L=q('#lls');if(!L||!me)return;const on=mm()=='on',c=on?cdb()[1]:{cur:null,list:[]};
-L.innerHTML=!on?'<p class="lsn">Paměť je vypnutá, chaty se neukládají.</p>':c.list.length?c.list.map(x=>'<div class="lci'+(x.id==c.cur?' on':'')+'" data-id="'+x.id+'">'+sv(MN.replace(/.*/,'<path d="M22 17a2 2 0 0 1-2 2H6.8a2 2 0 0 0-1.4.6l-2.2 2.2A.7.7 0 0 1 2 21.3V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/>'))+'<span>'+esc(x.t)+'</span><button data-d="'+x.id+'" aria-label="Smazat chat">'+sv(TR)+'</button></div>').join(''):'<p class="lsn">Zatím žádné chaty. Napiš Luně první zprávu.</p>'}
-function sync(){try{if(!me||mm()!='on'||!UX().lHist)return;const H=LU();if(!H.some(m=>m.r=='u'))return;const[o,c]=cdb();let ch=c.list.find(x=>x.id==c.cur);
-if(!ch){ch={id:Date.now().toString(36),t:'',ts:0,m:[]};c.list.unshift(ch);c.cur=ch.id}
-ch.m=H;ch.ts=Date.now();if(!ch.t)ch.t=H.find(m=>m.r=='u').t.slice(0,42);c.list=c.list.sort((a,b)=>b.ts-a.ts).slice(0,30);DB.s(CK,o);rl()}catch(e){}}
-function cls(){const w=q('.lw');w&&w.classList.remove('sbo')}
-function nc(){sync();const[o,c]=cdb();c.cur=null;DB.s(CK,o);setL([]);LQ=null;lunaInit();cls()}
-function oc(id){sync();const[o,c]=cdb(),ch=c.list.find(x=>x.id==id);if(!ch)return;c.cur=id;DB.s(CK,o);setL(ch.m);LQ=null;lunaInit();cls()}
-function dc(id){if(!confirm('Smazat tento chat?'))return;const[o,c]=cdb();c.list=c.list.filter(x=>x.id!=id);if(c.cur==id){c.cur=null;setL([])}DB.s(CK,o);lunaInit()}
-function mk(){const w=q('.lw');if(!w||w.classList.contains('v82'))return;w.classList.add('v82');
-w.insertAdjacentHTML('afterbegin','<aside id="lsb"><button id="lnew" type="button">'+sv(PL)+'Nový chat</button><div class="lsh">Chaty</div><div id="lls"></div><button id="lmem" type="button"></button></aside><div id="lsx"></div>');
-const h=q('.lw .lh');h.insertAdjacentHTML('afterbegin','<button class="ib" id="lmenu" type="button" aria-label="Chaty">'+sv(MN)+'</button>');
-q('#lmenu').onclick=()=>w.classList.toggle('sbo');q('#lsx').onclick=cls;q('#lnew').onclick=nc;
-q('#lmem').onclick=()=>{const v=mm();setM(v=='on'?'off':'on');rl();toast(mm()=='on'?'Paměť zapnuta.':'Paměť vypnuta, chaty se neukládají.')};
-q('#lls').onclick=e=>{const d=e.target.closest('[data-d]');if(d){e.stopPropagation();return dc(d.dataset.d)}const c=e.target.closest('.lci');c&&oc(c.dataset.id)}}
-const li0=lunaInit;lunaInit=function(){mk();li0.apply(this,arguments);const M=q('#lM');
-if(M&&!LU().some(m=>m.r=='u'))M.insertAdjacentHTML('afterbegin','<div class="hero82"><h2>Ahoj, '+esc(me.name)+'</h2><p>Čím začneme?</p></div>');sync();rl();ui()};
-const la0=lAdd;lAdd=function(){const x=la0.apply(this,arguments);sync();return x};
-lClear=function(){const c=mm()=='on'?cdb()[1]:null;if(c&&c.cur)dc(c.cur);else nc()};
-/* povinný panel paměti */
-function gate(){return new Promise(res=>{if(q('.g82'))return;const o=document.createElement('div');o.className='g82';
-o.innerHTML='<div class="g82c" role="dialog" aria-modal="true" aria-label="Paměť Luny"><span class="lmn">Nové</span><h2>Luna používá paměť</h2><p>Luna teď může navazovat na tvoje předchozí rozhovory. Paměť zahrnuje historii tvých chatů s Lunou a věci, které si má pamatovat.</p><p>Paměť můžeš kdykoli spravovat v <b>Nastavení LunaAI</b>.</p><button class="g82y" type="button">Použít paměť</button><button class="g82n" type="button">Nepoužívat paměť</button><button class="g82b" type="button">Zpět na úvod</button></div>';
-document.body.appendChild(o);const k=e=>{if(e.key=='Escape'){e.stopPropagation();e.preventDefault()}};document.addEventListener('keydown',k,true);
-const end=(v,r)=>{document.removeEventListener('keydown',k,true);if(v)setM(v);o.classList.add('out');setTimeout(()=>o.remove(),280);res(r)};
-o.querySelector('.g82y').onclick=()=>end('on',true);o.querySelector('.g82n').onclick=()=>end('off',true);o.querySelector('.g82b').onclick=()=>end(0,false);o.querySelector('.g82y').focus()})}
-const g0=go;go=function(id){if(id=='luna'&&me&&!mm()){gate().then(ok=>go(ok?'luna':'home'));return}return g0.apply(this,arguments)};
-document.addEventListener('click',e=>{if(e.target.closest('#lpB')&&me&&!mm()){e.stopPropagation();e.preventDefault();gate()}},true);
-/* animace changelogu */
-document.addEventListener('click',e=>{const s=e.target.closest('.lgd>summary');if(!s)return;e.preventDefault();const d=s.parentElement;if(d._an)return;
-const h0=d.offsetHeight,op=d.open;d.style.overflow='hidden';if(!op)d.open=true;const h1=op?s.offsetHeight+2:d.offsetHeight;
-if(matchMedia('(prefers-reduced-motion:reduce)').matches){if(op)d.open=false;return}
-d._an=d.animate([{height:h0+'px'},{height:h1+'px'}],{duration:340,easing:'cubic-bezier(.2,.9,.3,1)'});
-d._an.onfinish=d._an.oncancel=()=>{if(op)d.open=false;d.style.overflow='';d._an=null}},true);
-try{CL.unshift(['8.2','Luna ve stylu Gemini a více chatů','5. 11. 2026',[
-'Více chatů v Luně: postranní panel s historií, tlačítko Nový chat, přepínání a mazání jednotlivých konverzací (na mobilu jako výsuvné menu)',
-'Povinný panel paměti: před prvním použitím Luny si musíš vybrat Použít / Nepoužívat paměť, stav změníš kdykoli v postranním panelu',
-'Nový vzhled Luny ve stylu Gemini: velký pozdrav, zaoblené pole pro psaní, bubliny bez rámečků a animované barevné pozadí',
-'Plynulé animace rozbalování a sbalování každé verze v Novinkách',
-'Luna běží na celou stránku (tlačítko zpět v hlavičce)','Přidán průvodce nastavením přihlášení přes Google (Firebase)'
+const $q=s=>document.querySelector(s);
+const SV=(p)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+const I={menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',plus:'<path d="M5 12h14M12 5v14"/>',search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+ pen:'<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>',
+ trash:'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+ chev:'<path d="m6 9 6 6 6-6"/>'};
+const lxId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const lxTitle=t=>{t=String(t||'').replace(/\s+/g,' ').trim();return t.length>38?t.slice(0,38)+'…':(t||'Nový chat')};
+const lxMobile=()=>matchMedia('(max-width:760px)').matches;
+const lxMemV=()=>{try{return me?(DB.g('lmem',{})[me.name]||null):null}catch(e){return null}};
+const lxOff=()=>lxMemV()=='off';
+
+/* ---------- úložiště chatů (více chatů na uživatele) ---------- */
+const LXK='lchats';let LXS={};
+function lxLoad(){
+ if(lxOff())return LXS[me.name]||(LXS[me.name]={act:null,list:[]});
+ const all=DB.g(LXK,{});let st=all[me.name];
+ if(!st){st={act:null,list:[]};
+  try{const old=(DB.g('luna',{})[me.name])||[];
+   if(old.length){const id=lxId(),f=old.find(x=>x.r=='u');st.list.push({id,t:lxTitle(f?f.t:'Předchozí chat'),ts:(old[old.length-1]||{}).ts||Date.now(),m:old.slice(-60)});st.act=id}}catch(e){}
+  all[me.name]=st;DB.s(LXK,all)}
+ return st}
+function lxSave(st){if(lxOff()){LXS[me.name]=st;return}const all=DB.g(LXK,{});all[me.name]=st;DB.s(LXK,all)}
+const lxCur=st=>st.list.find(x=>x.id==st.act)||null;
+window.lxMsgs=()=>{const c=lxCur(lxLoad());return c?c.m:[]};
+window.lxSet=a=>{const st=lxLoad();let c=lxCur(st);
+ if(!a.length){st.list=[];st.act=null;lxSave(st);return}
+ if(!c){c={id:lxId(),t:'Nový chat',ts:Date.now(),m:[]};st.list.unshift(c);st.act=c.id}
+ c.m=a.slice(-60);c.ts=Date.now();
+ if(!c.tc){const f=c.m.find(x=>x.r=='u');if(f)c.t=lxTitle(f.t)}
+ if(st.list.length>40){st.list.sort((x,y)=>y.ts-x.ts);st.list=st.list.slice(0,40);if(!lxCur(st))st.act=c.id}
+ lxSave(st)};
+
+/* ---------- stavba rozhraní ---------- */
+function lxBuild(){
+ const W=$q('#luna .lw');if(!W||W.dataset.lx)return;W.dataset.lx=1;
+ const la=W.querySelector('.la');if(la)la.insertAdjacentHTML('beforeend','<i></i><i></i>');
+ const side=document.createElement('aside');side.className='lxs';side.id='lxS';side.setAttribute('aria-label','Chaty s Lunou');
+ side.innerHTML=`<div class="lxsh"><button class="lxn" id="lxN" type="button">${SV(I.plus)}<span>Nový chat</span></button><button class="ib lxcx" id="lxCx" type="button" aria-label="Zavřít panel">✕</button></div><div class="lxq">${SV(I.search)}<input id="lxQ" placeholder="Hledat v chatech" aria-label="Hledat v chatech" autocomplete="off"></div><div class="lxl" id="lxL"></div><div class="lxf" id="lxF"></div>`;
+ const sc=document.createElement('div');sc.className='lxsc';
+ const main=document.createElement('div');main.className='lxmain';
+ ['.lh','.lm','.lc','.lf'].forEach(s=>{const e=W.querySelector(s);if(e)main.appendChild(e)});
+ W.append(side,sc,main);
+ const lh=main.querySelector('.lh');
+ lh.insertAdjacentHTML('afterbegin',`<button class="ib lxbt" id="lxT" type="button" aria-label="Seznam chatů">${SV(I.menu)}</button>`);
+ if(!lxMobile()&&DB.g('lsb',0)==1)W.classList.add('lxc');
+ $q('#lxT').onclick=lxTog;$q('#lxCx').onclick=()=>W.classList.remove('lxo');sc.onclick=()=>W.classList.remove('lxo');
+ $q('#lxN').onclick=lxNew;
+ $q('#lxQ').oninput=()=>lxSide();
+ const L=$q('#lxL');
+ L.onclick=e=>{const it=e.target.closest('.lxi');if(!it)return;const id=it.dataset.id,b=e.target.closest('button[data-a]');
+  if(b){e.stopPropagation();b.dataset.a=='r'?lxRen(id):lxDelId(id);return}lxOpen(id)};
+ L.onkeydown=e=>{if((e.key=='Enter'||e.key==' ')&&e.target.classList.contains('lxi')){e.preventDefault();lxOpen(e.target.dataset.id)}};
+ addEventListener('resize',()=>{if(!lxMobile())W.classList.remove('lxo')})}
+function lxTog(){const W=$q('#luna .lw');if(lxMobile())W.classList.toggle('lxo');else{W.classList.toggle('lxc');DB.s('lsb',W.classList.contains('lxc')?1:0)}}
+function lxGroup(ts){const d0=new Date().setHours(0,0,0,0);return ts>=d0?'Dnes':ts>=d0-864e5?'Včera':ts>=d0-6*864e5?'Posledních 7 dní':'Starší'}
+function lxSide(){
+ const L=$q('#lxL');if(!L||!me)return;const st=lxLoad(),q=(($q('#lxQ')||{}).value||'').toLowerCase().trim();
+ const list=[...st.list].sort((a,b)=>b.ts-a.ts).filter(c=>!q||c.t.toLowerCase().includes(q));
+ let h='',g='',i=0;
+ list.forEach(c=>{const k=lxGroup(c.ts);if(k!=g){g=k;h+=`<div class="lxg">${k}</div>`}
+  h+=`<div class="lxi ${c.id==st.act?'on':''}" data-id="${c.id}" role="button" tabindex="0" style="--i:${Math.min(i++,12)}"><span class="lxt">${esc(c.t)}</span><span class="lxa"><button type="button" data-a="r" aria-label="Přejmenovat chat" title="Přejmenovat">${SV(I.pen)}</button><button type="button" data-a="d" aria-label="Smazat chat" title="Smazat">${SV(I.trash)}</button></span></div>`});
+ if(!list.length)h=`<div class="lxe0">${q?'Nic nenalezeno.':'Zatím žádné chaty. Napiš Luně první zprávu.'}</div>`;
+ L.innerHTML=h;
+ const F=$q('#lxF');if(F){const v=lxMemV();F.innerHTML=`<span class="lxd ${v||''}"></span><span>${v=='off'?'Paměť vypnutá · chaty se neukládají':v=='on'?'Paměť zapnutá · chaty se ukládají':'Paměť není zvolena'}</span>`}}
+function lxBusy(){if(typeof LBUSY!='undefined'&&LBUSY){toast('Počkej, než Luna dopíše odpověď.');return true}return false}
+function lxOpen(id){if(lxBusy())return;const st=lxLoad();if(st.act==id){$q('#luna .lw').classList.remove('lxo');return}
+ st.act=id;lxSave(st);LQ=null;lunaInit()}
+function lxNew(){if(lxBusy())return;const st=lxLoad();if(!st.act){$q('#luna .lw').classList.remove('lxo');const i=$q('#lI');i&&i.focus();return}
+ st.act=null;lxSave(st);LQ=null;lunaInit()}
+function lxRen(id){const st=lxLoad(),c=st.list.find(x=>x.id==id);if(!c)return;
+ const n=prompt('Název chatu:',c.t);if(n==null)return;const t=n.trim().slice(0,40);if(!t)return;c.t=t;c.tc=1;lxSave(st);lxSide()}
+function lxDelId(id){const st=lxLoad(),c=st.list.find(x=>x.id==id);if(!c)return;
+ if(st.act==id&&lxBusy())return;
+ if(!confirm('Smazat chat „'+c.t+'“?'))return;
+ st.list=st.list.filter(x=>x.id!=id);const was=st.act==id;if(was)st.act=null;lxSave(st);
+ if(was){LQ=null;lunaInit()}else lxSide();toast('Chat smazán.')}
+lClear=function(){const c=lxCur(lxLoad());if(!c){toast('Tento chat je prázdný.');return}lxDelId(c.id)};
+
+/* ---------- vykreslení ---------- */
+function lxHero(){const h=new Date().getHours(),g=h<5?'Dobrou noc':h<10?'Dobré ráno':h<18?'Dobrý den':'Dobrý večer';
+ return `<div class="lhero"><div class="orb lxho"></div><h2 class="lhh">${g}, <span>${esc(me.name)}</span></h2><p class="lhs">Čím začneme?</p></div>`}
+function lxRender(){const W=$q('#luna .lw'),M=$q('#lM'),H=LU();M.innerHTML='';W.classList.toggle('lxe',!H.length);
+ if(!H.length)M.innerHTML=lxHero();else H.forEach(m=>lBub(m.r,m.t,0));
+ lChips();M.scrollTop=M.scrollHeight}
+lunaInit=function(){lxBuild();lStat();$q('#lSet').style.display='none';lxRender();lxSide();
+ const W=$q('#luna .lw');W.classList.remove('lxo');setTimeout(()=>{const i=$q('#lI');i&&!lxMobile()&&i.focus()},140)};
+const lAdd0=lAdd;
+lAdd=function(){const M=$q('#lM');if(M){const h=M.querySelector('.lhero');if(h)h.remove()}
+ const W=$q('#luna .lw');W&&W.classList.remove('lxe');const p=lAdd0.apply(this,arguments);lxSide();return p};
+
+/* ---------- povinné potvrzení paměti ---------- */
+let _lxg=0;
+function lxMemShow(){
+ if(document.getElementById('lxmg')||lxMemV())return;
+ const prev=document.activeElement,o=document.createElement('div');o.id='lxmg';o.className='lxm';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-labelledby','lxmT');
+ o.innerHTML=`<div class="lxmc"><div class="orb lxmo"></div><div><span class="lxmn">Nové</span></div><h2 id="lxmT">Luna má paměť</h2><p>Luna teď může navazovat souvislosti napříč tvými chaty. Paměť zahrnuje celou historii tvých chatů s Lunou a věci, které jí řekneš, aby si je pamatovala. <button type="button" class="lxA" id="lxmA" aria-expanded="false" aria-controls="lxmI">O paměti</button></p><div class="lxmi" id="lxmI"><div><ul><li><b>Použít paměť:</b> chaty se ukládají v tomto prohlížeči a Luna z nich může čerpat, včetně „pamatuj si, že…“.</li><li><b>Nepoužívat paměť:</b> nic se neukládá a chaty zůstanou jen do obnovení stránky.</li><li>V online režimu se aktuální konverzace odesílá službě Anthropic přes tvůj API klíč.</li></ul></div></div><p>Paměť spravuješ v Nastavení LunaAI a přepnout ji můžeš kdykoli tlačítkem Paměť v hlavičce chatu.</p><div class="lxmx"><button type="button" class="lxY">Použít paměť</button><button type="button" class="lxN">Nepoužívat paměť</button></div><p class="lxmq">Pro pokračování vyber jednu z možností.</p></div>`;
+ document.body.appendChild(o);
+ const A=o.querySelector('#lxmA'),box=o.querySelector('#lxmI');
+ A.onclick=()=>{const on=box.classList.toggle('on');A.setAttribute('aria-expanded',on)};
+ const kd=e=>{if(!document.getElementById('lxmg'))return;
+  if(e.key=='Escape'){e.preventDefault();e.stopPropagation();return}
+  if(e.key=='Tab'){const f=[...o.querySelectorAll('button')].filter(x=>x.offsetParent!==null);if(!f.length)return;
+   const a=f.indexOf(document.activeElement);if(e.shiftKey&&a<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&(a==f.length-1||a<0)){e.preventDefault();f[0].focus()}}};
+ document.addEventListener('keydown',kd,true);
+ const pick=v=>{if(o._d)return;o._d=1;window.lxMset(v);o.classList.add('out');
+  setTimeout(()=>{o.remove();document.removeEventListener('keydown',kd,true);try{prev&&prev.focus&&prev.focus()}catch(e){}},290);
+  toast(v=='on'?'Luna teď používá paměť.':'Luna paměť nepoužívá.');
+  if((($q('.view.on')||{}).id)=='luna')lunaInit()};
+ o.querySelector('.lxY').onclick=()=>pick('on');o.querySelector('.lxN').onclick=()=>pick('off');
+ setTimeout(()=>{const b=o.querySelector('.lxY');b&&b.focus()},350)}
+window.lxMemGate=function(){
+ if(!me||lxMemV()||document.getElementById('lxmg')||_lxg)return;_lxg=1;let n=0;
+ const t=setInterval(()=>{n++;if(document.querySelector('.tvo')&&n<300)return;
+  clearInterval(t);_lxg=0;if(!me||lxMemV())return;
+  const v=(($q('.view.on')||{}).id),b=document.getElementById('lpP');
+  if(v!='luna'&&!(b&&!b.hidden))return;lxMemShow()},200)};
+const lunaSend0=lunaSend;
+lunaSend=function(){if(!lxMemV()){window.lxMemGate();return}return lunaSend0.apply(this,arguments)};
+
+/* ---------- paměť v Nastavení LunaAI ---------- */
+const lSetT0=lSetT;
+lSetT=function(){lSetT0.apply(this,arguments);const e=$q('#lSet');if(!e||e.style.display=='none'||e.querySelector('.lxms2'))return;
+ const h=e.querySelector('h2');if(!h)return;const v=lxMemV();
+ h.insertAdjacentHTML('afterend',`<div class="lxms2"><label class="m">Paměť Luny</label><div class="lxseg" role="group" aria-label="Paměť Luny"><button type="button" data-v="on" class="${v=='on'?'on':''}">Používat</button><button type="button" data-v="off" class="${v=='off'?'on':''}">Nepoužívat</button></div></div>`);
+ e.querySelectorAll('.lxseg button').forEach(b=>b.onclick=()=>{window.lxMset(b.dataset.v);
+  e.querySelectorAll('.lxseg button').forEach(x=>x.classList.toggle('on',x===b));
+  toast(b.dataset.v=='on'?'Paměť zapnuta.':'Paměť vypnuta – Luna si nic neukládá.');lxRender();lxSide()})};
+
+/* ---------- changelog: animované rozbalení a sbalení ---------- */
+function lgTog(d){
+ const b=d.querySelector('.lgb');if(!b)return;
+ const rm=document.documentElement.classList.contains('rm')||matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const closing=d.open&&!d.classList.contains('lgcl');
+ if(rm){d.classList.remove('lgcl');d.open=!closing;return}
+ const was=d._a?b.getBoundingClientRect().height:null;if(d._a){d._a.onfinish=null;d._a.cancel();d._a=null}
+ if(!closing){
+  d.classList.remove('lgcl');d.open=true;const h=b.scrollHeight;
+  const a=b.animate([{height:(was||0)+'px',opacity:was?1:0},{height:h+'px',opacity:1}],{duration:440,easing:'cubic-bezier(.2,.9,.25,1)'});
+  d._a=a;a.onfinish=()=>{d._a=null}}
+ else{
+  const h=was!=null?was:b.getBoundingClientRect().height;d.classList.add('lgcl');
+  const a=b.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],{duration:340,easing:'cubic-bezier(.4,0,.2,1)'});
+  d._a=a;a.onfinish=()=>{d.open=false;d.classList.remove('lgcl');d._a=null}}}
+function lgEnh(){
+ document.querySelectorAll('.lgo .lgd').forEach(d=>{if(d.dataset.lx)return;d.dataset.lx=1;
+  const sm=d.querySelector('summary');if(!sm)return;
+  const b=document.createElement('div'),inn=document.createElement('div');b.className='lgb';inn.className='lgbi';
+  [...d.children].filter(c=>c!==sm).forEach(c=>inn.appendChild(c));
+  inn.querySelectorAll('li').forEach((li,i)=>li.style.setProperty('--i',Math.min(i,10)));
+  b.appendChild(inn);d.appendChild(b);
+  sm.insertAdjacentHTML('beforeend',`<svg class="lgch" viewBox="0 0 24 24" aria-hidden="true">${I.chev}</svg>`);
+  sm.addEventListener('click',e=>{e.preventDefault();lgTog(d)})})}
+const lp0=TX.logPop;
+TX.logPop=function(){if(document.querySelector('.lgo'))return;lp0.apply(this,arguments);lgEnh()};
+
+/* ---------- záznam o verzi ---------- */
+try{CL.unshift(['8.2','Chaty, povinná paměť a Luna ve stylu Gemini','5. 11. 2026',[
+ 'Novinky: každá verze se plynule rozbaluje a sbaluje, šipka se otáčí a položky naběhnou jedna po druhé',
+ 'Paměť Luny je teď povinné potvrzení: při prvním otevření musíš zvolit Použít paměť, nebo Nepoužívat paměť. Dokud nevybereš, Luna neodpovídá',
+ 'Více chatů: postranní panel se seznamem chatů, nový chat, přejmenování, mazání, hledání a řazení podle data',
+ 'Nový vzhled LunaAI ve stylu Gemini: animované pozadí, uvítací obrazovka, odpovědi bez bublin a zaoblené pole pro psaní',
+ 'Tlačítko Paměť je nově v hlavičce chatu a paměť jde přepnout i v Nastavení LunaAI',
+ 'Opraveno: vypnutá paměť už neodpojí uložený API klíč'
 ]])}catch(e){}
 })();
 </script>
 
-<style>/* v8.2 fullscreen Luna */
-#luna.view,#luna.view.on{animation:none!important;transform:none!important;filter:none!important;perspective:none!important}
-#luna .lw.v82{position:fixed!important;inset:0;width:100vw;height:100vh;height:100dvh;z-index:60;border-radius:0!important;margin:0}
-#lback{display:grid}
-</style>
-<script>(function(){const o=window.lunaInit;if(!o)return;const f=lunaInit;lunaInit=function(){f.apply(this,arguments);const h=document.querySelector('#luna .lh');if(h&&!document.getElementById('lback')){h.insertAdjacentHTML('afterbegin','<button class="ib" id="lback" type="button" aria-label="Zpět na úvod" title="Zpět na úvod"><svg class="ic" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>');document.getElementById('lback').onclick=()=>go('home')}}})();</script>
 </body>
 </html>
