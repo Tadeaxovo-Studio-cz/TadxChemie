@@ -630,7 +630,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='10.5';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie"};let LL=2,CD=null,AC=null,NB=0;
+const VER='11.0';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie"};let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -3418,7 +3418,26 @@ Do poznámek|To notes|До нотаток
 Přeloženo je nově i Nastavení LunaAI, panel chatů, paměť Luny, Poznámky a úkoly, Denní truhla a Prvek dne|Now also translated: LunaAI settings, chat panel, Luna’s memory, Notes and tasks, Daily chest and Element of the day|Тепер перекладено також налаштування LunaAI, панель чатів, пам’ять Луни, нотатки й завдання, щоденну скриню та елемент дня
 Přeloženy jsou i odznaky, hlášky a chyby přihlášení přes Google|Badges, messages and Google sign-in errors are translated too|Перекладено також значки, повідомлення та помилки входу через Google
 Popisky a tipy po najetí myší se nově překládají také|Tooltips and image descriptions are now translated as well|Підказки при наведенні та описи зображень тепер теж перекладаються
-Zbylé texty se dál překládají automaticky, když je Luna online|Remaining texts are still translated automatically when Luna is online|Решта текстів і далі перекладається автоматично, коли Луна онлайн`;
+Zbylé texty se dál překládají automaticky, když je Luna online|Remaining texts are still translated automatically when Luna is online|Решта текстів і далі перекладається автоматично, коли Луна онлайн
+Zkouška nanečisto|Mock exam|Пробний іспит
+Zkouška na čas bez nápovědy. Na konci dostaneš známku a rozbor.|An exam on a timer with no hints. At the end you get a grade and a breakdown.|Іспит на час без підказок. Наприкінці отримаєш оцінку та розбір.
+Časovaná zkouška se známkou a rozborem podle témat|Timed exam with a grade and a breakdown by topic|Іспит на час з оцінкою та розбором за темами
+Kvíz na tabuli|Board quiz|Квіз на дошці
+Promítni kvíz třídě, počítej hlasy a zjisti nejtěžší otázky.|Project a quiz to the class, count votes and find the hardest questions.|Покажи квіз класу, рахуй голоси й дізнайся найскладніші питання.
+Kvíz pro celou třídu s velkým písmem a hlasováním|A whole-class quiz with large type and voting|Квіз для всього класу з великим шрифтом і голосуванням
+Diplomy a osvědčení|Diplomas and certificates|Дипломи та свідоцтва
+Vytiskni si osvědčení, nebo jako učitel diplom pro žáka či celou třídu.|Print your certificate or, as a teacher, a diploma for a student or the whole class.|Надрукуй свідоцтво або, як учитель, диплом для учня чи всього класу.
+Osvědčení k tisku pro žáky a diplomy od učitele|Printable certificates for students and diplomas from teachers|Свідоцтва для друку для учнів і дипломи від учителя
+Dokonči zkoušku nanečisto se známkou 1 nebo 2.|Finish a mock exam with a grade of 1 or 2.|Склади пробний іспит на оцінку 1 або 2.
+Otrlý zkoušený|Seasoned examinee|Загартований екзаменований
+Dokonči 5 zkoušek nanečisto.|Finish 5 mock exams.|Заверши 5 пробних іспитів.
+Hodina chemie: tabule, zkouška a diplomy|Chemistry class: board quiz, mock exam and diplomas|Урок хімії: дошка, іспит і дипломи
+Kvíz na tabuli (pro učitele, Laboratoř): promítni kvíz celé třídě velkým písmem s časomírou a ukázáním správné odpovědi. Klikáním na odpovědi počítáš hlasy žáků a na konci uvidíš, které otázky šly nejhůř. Přehled jde vytisknout|Board quiz (for teachers, Laboratory): project a quiz to the whole class in large type with a timer and answer reveal. Click answers to count students’ votes and at the end see which questions went worst. The overview can be printed|Квіз на дошці (для вчителів, Лабораторія): покажи квіз усьому класу великим шрифтом із таймером і показом правильної відповіді. Клацаючи на відповіді, рахуєш голоси учнів, а наприкінці бачиш, які питання вийшли найгірше. Огляд можна роздрукувати
+Slabá místa třídy (pro učitele, Učebna): nejčastější chyby žáků a nejslabší kvízy. Jedním tlačítkem vytvoříš opakovací kvíz z nejčastějších chyb a zadáš ho třídě s termínem|Class weak spots (for teachers, Classroom): the most common student mistakes and the weakest quizzes. With one button you create a revision quiz from the most common mistakes and assign it to the class with a deadline|Слабкі місця класу (для вчителів, Клас): найчастіші помилки учнів і найслабші квізи. Однією кнопкою створюєш квіз для повторення з найчастіших помилок і задаєш його класу з терміном
+Zkouška nanečisto (pro žáky, Laboratoř): 10 až 30 otázek z různých kvízů na jedné stránce, s časomírou a bez nápovědy. Na konci známka, rozbor podle témat a přehled chyb|Mock exam (for students, Laboratory): 10 to 30 questions from different quizzes on one page, with a timer and no hints. At the end you get a grade, a breakdown by topic and a list of mistakes|Пробний іспит (для учнів, Лабораторія): від 10 до 30 питань із різних квізів на одній сторінці, з таймером і без підказок. Наприкінці оцінка, розбір за темами та список помилок
+Dva nové odznaky za zkoušky nanečisto a XP za každou dokončenou zkoušku|Two new badges for mock exams and XP for every completed exam|Два нові значки за пробні іспити та XP за кожен завершений іспит
+Diplomy a osvědčení (Laboratoř): žák si vytiskne osvědčení s úrovní, hodností a výsledky, učitel diplom pro jednoho žáka nebo celou učebnu s důvodem podle výběru|Diplomas and certificates (Laboratory): students print a certificate with their level, rank and results, teachers print a diploma for one student or the whole class with a reason of their choice|Дипломи та свідоцтва (Лабораторія): учень друкує свідоцтво з рівнем, званням і результатами, учитель друкує диплом для одного учня чи всього класу з обраною причиною
+Vše je přeložené do angličtiny a ukrajinštiny|Everything is translated into English and Ukrainian|Усе перекладено англійською та українською`;
 EXTRA.split('\n').forEach(r=>{const p=r.split('|');if(p.length==3){D.en[p[0]]=p[1];D.uk[p[0]]=p[2]}});
 {const C=DB.g('trc',{});['en','uk'].forEach(L=>Object.assign(D[L],C[L]||{}))}
 const REV=Object.create(null);for(const L in D)for(const k in D[L])REV[D[L][k]]=k;
@@ -6008,6 +6027,184 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
 let S=0;try{new MutationObserver(()=>{if(S)return;S=1;requestAnimationFrame(()=>{S=0;inj()})}).observe(document.body,{childList:true,subtree:true})}catch(e){}
 try{CL.unshift(['10.5','Vše v jednom souboru','9. 11. 2026',['TadxChemie je teď jediný soubor index.html: manifest a ikona jsou přímo uvnitř','Kontrola nové verze už nepotřebuje version.json, čte číslo verze přímo z index.html','Pomocné soubory (workflow pro GitHub Pages, pravidla Firebase, kontrolní skript, service worker) jsou ke stažení v Adminu, Nastavení, Nástroje pro vydání']])}catch(e){}
 })();
+</script>
+<script id="v110js">
+(function(){try{
+const LGc=()=>DB.g('lang','cs');
+const T3=(cs,en,uk)=>{const l=LGc();return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const dk=()=>{const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const isT=()=>!!me&&!me.guest&&me.role!='s';
+const gr=p=>p>=90?1:p>=75?2:p>=55?3:p>=40?4:5;
+const mcOk=y=>!!y&&Array.isArray(y[1])&&y[1].length>=2&&(!y[3]||y[3]=='mc'||y[3]=='tf');
+const mm=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+function pool(all){const l=myLv(),out=[];allQ(1).filter(x=>!x.daily).forEach(x=>{if(!all&&l!='s1'&&x.id=='base')return;(x.q||[]).forEach(y=>{if(mcOk(y))out.push({q:y,t:x.title,id:x.id})})});return out}
+const opts=p=>{const o=p.q[1].map((t,i)=>({t,c:i==p.q[2]}));return p.q[3]=='tf'?o:sh(o)};
+
+/* ---------- statistiky a odznaky ---------- */
+const st0=stats;stats=function(){const s=st0.apply(this,arguments);try{const e=TX.U('exam',{});s.exn=e.n||0;s.exg=e.bg||0}catch(x){}return s};
+BD.push(
+['exam1','clipboard-list','Zkouška nanečisto','Dokonči zkoušku nanečisto se známkou 1 nebo 2.',s=>s.exg>0&&s.exg<=2],
+['exam5','trophy','Otrlý zkoušený','Dokonči 5 zkoušek nanečisto.',s=>s.exn>=5]
+);
+
+/* ============ 1) ZKOUŠKA NANEČISTO (žák) ============ */
+let EX=null;
+TX.exam=()=>{if(EX&&EX.t)clearInterval(EX.t);EX=null;exS()};
+function exS(){const b=TX.U('exam',{best:0,n:0,bg:0,list:[]}),P=pool(),ok=P.length>=5;
+$('#examB').innerHTML=`<div class="card"><h2>${T3('Nastav si zkoušku','Set up your exam','Налаштуй іспит')}</h2>
+<p class="m">${T3('Všechny otázky jsou na jedné stránce, bez nápovědy, s časomírou. Co nestihneš, počítá se jako chyba.','All questions are on one page, with no hints and a timer. Anything you do not finish counts as wrong.','Усі питання на одній сторінці, без підказок, із таймером. Усе, що не встигнеш, зараховується як помилка.')}</p>
+<label class="m" for="exN">${T3('Počet otázek','Number of questions','Кількість питань')}</label><select id="exN"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option></select>
+<label class="m" for="exT">${T3('Čas (minuty)','Time (minutes)','Час (хвилини)')}</label><select id="exT"><option value="10">10</option><option value="20" selected>20</option><option value="30">30</option></select>
+<div class="row" style="gap:10px;flex-wrap:wrap;margin-top:6px"><button class="pri" id="exGo" ${ok?'':'disabled'}>${T3('Začít zkoušku','Start the exam','Почати іспит')}</button><span class="m">${b.n?T3('Zkoušek:','Exams:','Іспитів:')+' <b>'+b.n+'</b> · '+T3('nejlepší výsledek:','best result:','найкращий результат:')+' <b>'+b.best+' %</b>':T3('Zatím žádná zkouška.','No exams yet.','Іспитів ще не було.')}</span></div></div>
+${(b.list||[]).length?`<div class="card"><h2 style="font-size:1.15rem">${T3('Poslední zkoušky','Recent exams','Останні іспити')}</h2><div class="row" style="gap:8px;flex-wrap:wrap">${b.list.slice().reverse().map(x=>`<span class="tag">${esc(x.d)} · ${x.pct} % · ${T3('zn.','grade','оц.')} ${x.g}</span>`).join('')}</div></div>`:''}`;
+const g=$('#exGo');if(g)g.onclick=exGo}
+function exGo(){const n=+$('#exN').value,min=+$('#exT').value,P=sh(pool()).slice(0,n);if(P.length<5)return;
+EX={P:P.map(p=>({q:p.q,t:p.t,o:opts(p)})),a:{},end:Date.now()+min*6e4,min,start:Date.now()};exR();EX.t=setInterval(exTick,1000)}
+function exR(){const P=EX.P;
+$('#examB').innerHTML=`<div class="card" style="position:sticky;top:8px;z-index:5;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between"><b style="font-size:1.5rem" id="exTm">${mm(Math.max(0,Math.round((EX.end-Date.now())/1000)))}</b><span class="m" id="exPr">${T3('Zodpovězeno','Answered','Відповіли')}: <b>0</b> / ${P.length}</span><button class="pri" id="exDone">${T3('Odevzdat','Hand in','Здати')}</button></div>
+${P.map((p,i)=>`<div class="card" id="exq${i}"><b>${i+1}. ${esc(p.q[0])}</b><div style="margin-top:10px">${p.o.map((a,j)=>`<button class="opt" onclick="TX.exPick(${i},${j})">${esc(a.t)}</button>`).join('')}</div></div>`).join('')}
+<div class="card" style="text-align:center"><button class="pri" id="exDone2">${T3('Odevzdat zkoušku','Hand in the exam','Здати іспит')}</button></div>`;
+const d=()=>{const n=Object.keys(EX.a).length;if(n<EX.P.length&&!confirm(T3('Neodpověděl(a) jsi na všechny otázky. Opravdu odevzdat?','You have not answered every question. Hand in anyway?','Ти відповів(ла) не на всі питання. Справді здати?')))return;exEnd()};
+$('#exDone').onclick=d;$('#exDone2').onclick=d;window.scrollTo(0,0)}
+TX.exPick=(i,j)=>{if(!EX||EX.done)return;EX.a[i]=j;document.querySelectorAll('#exq'+i+' .opt').forEach((b,k)=>b.classList.toggle('sel',k==j));const e=$('#exPr');if(e)e.innerHTML=T3('Zodpovězeno','Answered','Відповіли')+': <b>'+Object.keys(EX.a).length+'</b> / '+EX.P.length};
+function exTick(){if(!EX)return;const v=document.getElementById('exam');if(!v||!v.classList.contains('on')){clearInterval(EX.t);EX=null;return}const s=Math.max(0,Math.round((EX.end-Date.now())/1000)),e=$('#exTm');if(e){e.textContent=mm(s);e.style.color=s<60?'var(--no)':''}if(s<=0)exEnd()}
+function exEnd(){if(!EX||EX.done)return;EX.done=true;clearInterval(EX.t);
+let ok=0;const T={},bad=[];EX.P.forEach((p,i)=>{const a=EX.a[i],good=a!=null&&p.o[a].c;if(good)ok++;const t=T[p.t]=T[p.t]||[0,0];t[1]++;if(good)t[0]++;else bad.push({q:p.q[0],you:a==null?null:p.o[a].t,ok:(p.o.find(x=>x.c)||{}).t})});
+const n=EX.P.length,pct=Math.round(ok/n*100),g=gr(pct),used=Math.round((Date.now()-EX.start)/1000);
+const st=TX.U('exam',{best:0,n:0,bg:0,list:[]}),d=dk(),dd=TX.U('examd',{d:'',n:0});if(dd.d!=d){dd.d=d;dd.n=0}
+let xp=0;if(dd.n<3){xp=Math.min(25,Math.round(pct/5))+(g==1?5:0);dd.n++;TX.S('examd',dd)}
+st.n=(st.n||0)+1;st.best=Math.max(st.best||0,pct);st.bg=st.bg?Math.min(st.bg,g):g;st.list=[...(st.list||[]),{d,pct,g,n}].slice(-10);TX.S('exam',st);
+if(xp)addXP(xp);if(g<=2){confetti();snd('win')}else snd(g==5?'no':'ok');
+const col=g<=2?'var(--ok)':g==3?'var(--b)':'var(--no)';
+$('#examB').innerHTML=`<div class="card" style="text-align:center"><p class="m">${T3('Tvoje známka','Your grade','Твоя оцінка')}</p><div style="font-size:4rem;font-weight:800;color:${col}">${g}</div><h2>${pct} % · <b>${ok}</b> / ${n}</h2><p class="m">${T3('Čas','Time','Час')}: ${mm(used)} / ${EX.min}:00 ${xp?' · +'+xp+' XP':' · '+T3('XP za dnešní zkoušky už máš','You already earned the XP for today’s exams','XP за сьогоднішні іспити вже отримано')}</p></div>
+<div class="card"><h2 style="font-size:1.15rem">${T3('Rozbor podle témat','Breakdown by topic','Розбір за темами')}</h2>${Object.entries(T).map(([k,v])=>{const p=Math.round(v[0]/v[1]*100);return`<div style="margin:10px 0"><div class="row" style="justify-content:space-between"><span>${esc(k)}</span><b>${v[0]} / ${v[1]}</b></div><div class="bar" style="margin:4px 0 0"><i style="transform:scaleX(${p/100})"></i></div></div>`}).join('')}</div>
+${bad.length?`<div class="card"><h2 style="font-size:1.15rem">${T3('Co ti nevyšlo','What went wrong','Що не вийшло')}</h2>${bad.map(b=>`<div style="margin:10px 0"><b>${esc(b.q)}</b><p class="m" style="margin:2px 0">${T3('Tvoje odpověď','Your answer','Твоя відповідь')}: ${b.you==null?'–':esc(b.you)}</p><p style="margin:2px 0;color:var(--ok)">${T3('Správně','Correct','Правильно')}: ${esc(b.ok)}</p></div>`).join('')}</div>`:`<div class="card" style="text-align:center"><h2>${T3('Bez jediné chyby!','Not a single mistake!','Жодної помилки!')}</h2></div>`}
+<div class="row" style="gap:10px;flex-wrap:wrap"><button class="pri" onclick="TX.exam()">${T3('Nová zkouška','New exam','Новий іспит')}</button><button onclick="go('lab')">${T3('Laboratoř','Laboratory','Лабораторія')}</button></div>`;window.scrollTo(0,0);EX=null}
+TX.reg('exam','Zkouška nanečisto','Zkouška na čas bez nápovědy. Na konci dostaneš známku a rozbor.',TX.exam);
+TX.lab.push(['clipboard-list','Zkouška nanečisto','Časovaná zkouška se známkou a rozborem podle témat','exam']);
+
+/* ============ 2) KVÍZ NA TABULI (učitel) ============ */
+let BO=null;
+TX.board=()=>{const e=$('#boardB');
+if(!isT()){e.innerHTML=`<div class="card"><p class="m">${T3('Kvíz na tabuli je určený pro učitele.','The board quiz is meant for teachers.','Квіз на дошці призначений для вчителів.')}</p></div>`;return}
+const Z=allQ(1).filter(q=>!q.daily&&(q.q||[]).some(mcOk));
+e.innerHTML=`<div class="card"><h2>${T3('Připrav kvíz pro třídu','Prepare a quiz for the class','Підготуй квіз для класу')}</h2>
+<p class="m">${T3('Otázky se zobrazí velkým písmem. Klikáním na odpovědi můžeš počítat hlasy žáků, na konci uvidíš, které otázky šly nejhůř.','Questions appear in large type. Click the answers to count your students’ votes, and at the end you will see which questions went worst.','Питання показуються великим шрифтом. Клацаючи на відповіді, можна рахувати голоси учнів, а наприкінці побачиш, які питання вийшли найгірше.')}</p>
+<label class="m" for="boQ">${T3('Kvíz','Quiz','Квіз')}</label><select id="boQ">${Z.map(q=>`<option value="${esc(q.id)}">${esc(q.title)} (${(q.q||[]).filter(mcOk).length})</option>`).join('')}</select>
+<label class="m" for="boN">${T3('Počet otázek','Number of questions','Кількість питань')}</label><select id="boN"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option><option value="20">20</option><option value="0">${T3('Všechny','All','Усі')}</option></select>
+<label class="m" for="boS">${T3('Čas na otázku','Time per question','Час на питання')}</label><select id="boS"><option value="0">${T3('Bez limitu','No limit','Без ліміту')}</option><option value="15">15 s</option><option value="30" selected>30 s</option><option value="60">60 s</option></select>
+<label class="ck"><input type="checkbox" id="boM" checked> ${T3('Zamíchat pořadí otázek','Shuffle the questions','Перемішати питання')}</label>
+<div class="row" style="margin-top:12px"><button class="pri" id="boGo" ${Z.length?'':'disabled'}>${T3('Spustit na tabuli','Start on the board','Запустити на дошці')}</button></div></div>`;
+const g=$('#boGo');if(g)g.onclick=boStart};
+function boStart(){const q=allQ(1).find(x=>x.id==$('#boQ').value);if(!q)return;let it=(q.q||[]).filter(mcOk);if($('#boM').checked)it=sh(it);const n=+$('#boN').value;if(n)it=it.slice(0,n);
+BO={title:q.title,sec:+$('#boS').value,I:it.map(y=>({q:y[0],o:opts({q:y}),v:[0,0,0,0,0,0]})),i:0,rev:false,sum:false};
+document.body.insertAdjacentHTML('beforeend','<div id="boV" role="dialog" aria-modal="true"></div>');document.addEventListener('keydown',boKey);boR();boTm()}
+function boTm(){clearInterval(BO.t);BO.left=BO.sec;if(!BO.sec||BO.rev)return;BO.t=setInterval(()=>{if(!BO||BO.rev){return}BO.left--;const e=$('#boT');if(e){e.textContent=BO.left;if(BO.left<=5)e.classList.add('lo')}if(BO.left<=0){boRev()}},1000)}
+function boR(){const V=$('#boV');if(!V||!BO)return;
+if(BO.sum)return boSum();
+const it=BO.I[BO.i],tot=it.v.reduce((a,b)=>a+b,0),cv=it.o.reduce((a,x,j)=>a+(x.c?it.v[j]:0),0);
+V.innerHTML=`<div class="bo-h"><span class="tag">${esc(BO.title)}</span><b>${BO.i+1} / ${BO.I.length}</b>${BO.sec?`<span id="boT" class="bo-t ${BO.left<=5&&!BO.rev?'lo':''}">${BO.rev?'':BO.left}</span>`:''}<span style="flex:1"></span><button id="boF" class="ib" aria-label="${T3('Celá obrazovka','Full screen','На весь екран')}">⛶</button><button id="boX" class="ib" aria-label="${T3('Zavřít','Close','Закрити')}">✕</button></div>
+<h1 class="bo-q">${esc(it.q)}</h1>
+<div class="bo-o">${it.o.map((a,j)=>`<div class="bo-a c${j} ${BO.rev?(a.c?'ok':'dim'):''}" onclick="TX.boV(${j},1)"><b>${'ABCDEF'[j]}</b><span>${esc(a.t)}</span>${it.v[j]?`<em class="bo-v">${it.v[j]}${BO.rev&&tot?' · '+Math.round(it.v[j]/tot*100)+' %':''}</em><i class="bo-m" onclick="event.stopPropagation();TX.boV(${j},-1)" aria-label="−1">−</i>`:''}</div>`).join('')}</div>
+<div class="bo-f"><button id="boP" ${BO.i?'':'disabled'}>${T3('Předchozí','Previous','Назад')}</button><span class="m bo-s">${BO.rev?(tot?T3('Správně','Correct','Правильно')+': <b>'+cv+' / '+tot+' ('+Math.round(cv/tot*100)+' %)</b>':''):T3('Klikáním na odpovědi počítáš hlasy · mezerník ukáže řešení','Click answers to count votes · space bar shows the solution','Клацай на відповіді, щоб рахувати голоси · пробіл показує відповідь')}</span><button class="pri" id="boN2">${BO.rev?(BO.i<BO.I.length-1?T3('Další otázka','Next question','Наступне питання'):T3('Shrnutí','Summary','Підсумок')):T3('Ukázat odpověď','Show the answer','Показати відповідь')}</button></div>`;
+$('#boX').onclick=boClose;$('#boN2').onclick=boNext;$('#boP').onclick=boPrev;$('#boF').onclick=boFs}
+TX.boV=(j,d)=>{if(!BO||BO.sum)return;const it=BO.I[BO.i];it.v[j]=Math.max(0,it.v[j]+d);if(d>0)snd('tick');boR()};
+function boRev(){if(!BO||BO.rev)return;BO.rev=true;clearInterval(BO.t);boR()}
+function boNext(){if(!BO)return;if(BO.sum)return;if(!BO.rev)return boRev();if(BO.i<BO.I.length-1){BO.i++;BO.rev=false;boR();boTm()}else{BO.sum=true;clearInterval(BO.t);boR()}}
+function boPrev(){if(!BO||BO.sum||BO.i==0)return;BO.i--;BO.rev=false;boR();boTm()}
+function boFs(){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}}
+function boKey(e){if(!$('#boV')){document.removeEventListener('keydown',boKey);return}
+if(e.key=='Escape'){boClose();return}if(!BO||BO.sum)return;
+if(e.key==' '||e.key=='Enter'||e.key=='ArrowRight'){e.preventDefault();boNext()}else if(e.key=='ArrowLeft'){e.preventDefault();boPrev()}else if(e.key=='f'||e.key=='F'){boFs()}}
+function boClose(){if(BO)clearInterval(BO.t);BO=null;const v=$('#boV');if(v)v.remove();document.removeEventListener('keydown',boKey);try{document.fullscreenElement&&document.exitFullscreen()}catch(e){}}
+function boStats(){return BO.I.map((it,i)=>{const t=it.v.reduce((a,b)=>a+b,0),c=it.o.reduce((a,x,j)=>a+(x.c?it.v[j]:0),0);return{i:i+1,q:it.q,t,pc:t?Math.round(c/t*100):null}})}
+function boSum(){const S=boStats(),W=S.filter(x=>x.pc!=null),avg=W.length?Math.round(W.reduce((a,x)=>a+x.pc,0)/W.length):null,hard=W.slice().sort((a,b)=>a.pc-b.pc).slice(0,3);
+$('#boV').innerHTML=`<div class="bo-h"><span class="tag">${esc(BO.title)}</span><span style="flex:1"></span><button id="boX" class="ib" aria-label="${T3('Zavřít','Close','Закрити')}">✕</button></div>
+<div class="bo-sm"><h1 class="bo-q" style="text-align:center">${T3('Hotovo','Done','Готово')}</h1>
+<p class="m" style="text-align:center;font-size:1.2rem">${avg==null?T3('Nezapisoval(a) jsi hlasy, přehled úspěšnosti proto není.','You did not record votes, so there is no success overview.','Голоси не записувались, тому огляду успішності немає.'):T3('Průměrná úspěšnost třídy','Average class success','Середня успішність класу')+': <b>'+avg+' %</b>'}</p>
+${hard.length?`<div class="card"><h2 style="font-size:1.15rem">${T3('Nejtěžší otázky','Hardest questions','Найскладніші питання')}</h2>${hard.map(x=>`<p style="margin:8px 0"><b>${x.pc} %</b> · ${esc(x.q)}</p>`).join('')}</div>`:''}
+<div class="row" style="gap:10px;justify-content:center;flex-wrap:wrap"><button id="boPr" ${W.length?'':'disabled'}>${T3('Vytisknout přehled','Print overview','Роздрукувати огляд')}</button><button class="pri" id="boAg">${T3('Znovu','Again','Ще раз')}</button><button id="boX2">${T3('Zavřít','Close','Закрити')}</button></div></div>`;
+$('#boX').onclick=boClose;$('#boX2').onclick=boClose;$('#boAg').onclick=()=>{BO.I.forEach(x=>x.v=[0,0,0,0,0,0]);BO.i=0;BO.rev=false;BO.sum=false;boR();boTm()};
+$('#boPr').onclick=()=>{const rows=S.map(x=>`<tr><td>${x.i}</td><td>${esc(x.q)}</td><td>${x.pc==null?'–':x.pc+' %'}</td><td>${x.t}</td></tr>`).join('');printHTML(`<h2>${T3('Kvíz na tabuli','Board quiz','Квіз на дошці')}: ${esc(BO.title)}</h2><p>${esc(dk())} · ${esc(me.name)}${avg==null?'':' · '+T3('průměr','average','середнє')+' '+avg+' %'}</p><table><tr><th>#</th><th>${T3('Otázka','Question','Питання')}</th><th>${T3('Správně','Correct','Правильно')}</th><th>${T3('Hlasů','Votes','Голосів')}</th></tr>${rows}</table>`)}}
+TX.reg('board','Kvíz na tabuli','Promítni kvíz třídě, počítej hlasy a zjisti nejtěžší otázky.',TX.board);
+TX.lab.push(['school','Kvíz na tabuli','Kvíz pro celou třídu s velkým písmem a hlasováním','board',true]);
+
+/* ============ 3) SLABÁ MÍSTA TŘÍDY (učitel, Učebna) ============ */
+function wkData(c){const R=DB.g('results',[]).filter(r=>!r.dq&&c.members.includes(r.user)),cnt={},qa={};
+R.forEach(r=>{(r.miss||[]).forEach(m=>{cnt[m]=(cnt[m]||0)+1});(qa[r.quiz]=qa[r.quiz]||[]).push(r.pct)});
+return{n:R.length,top:Object.entries(cnt).sort((a,b)=>b[1]-a[1]),qs:Object.entries(qa).map(([k,v])=>[k,Math.round(v.reduce((a,b)=>a+b,0)/v.length),v.length]).sort((a,b)=>a[1]-b[1])}}
+function wkIdx(){const m=new Map();allQ(1).forEach(qz=>(qz.q||[]).forEach(y=>{if(mcOk(y)){const k=String(y[0]).slice(0,70);if(!m.has(k))m.set(k,y)}}));return m}
+function wkPanel(){const o=$('#wkC');if(o)o.remove();if(!isT())return;const c=CLS().find(x=>x.id==CC);if(!c||!(c.owner==me.name||me.role=='a'))return;const e=$('#cdB');if(!e)return;
+const D=wkData(c),top=D.top.slice(0,5),mk=D.top.slice(0,10).filter(x=>wkIdx().has(x[0])).length,due=new Date(Date.now()+7*864e5).toISOString().slice(0,10);
+const h=`<div class="card" id="wkC"><h2>${T3('Slabá místa třídy','Class weak spots','Слабкі місця класу')}</h2>
+${D.n?`<p class="m">${T3('Z výsledků','Based on','З результатів')} <b>${D.n}</b> ${T3('dokončených kvízů žáků této učebny.','completed quizzes by students in this class.','завершених квізів учнів цього класу.')}</p>
+${top.length?`<h3 style="font-size:1rem;margin:12px 0 4px">${T3('Nejčastější chyby','Most common mistakes','Найчастіші помилки')}</h3>${top.map(x=>`<p style="margin:6px 0"><span class="tag" style="background:rgba(255,92,122,.2)">${x[1]}×</span> ${esc(x[0])}</p>`).join('')}`:`<p class="m">${T3('Žáci zatím neudělali žádné chyby. Skvělé!','Students have made no mistakes yet. Great!','Учні ще не робили помилок. Чудово!')}</p>`}
+${D.qs.length?`<h3 style="font-size:1rem;margin:14px 0 4px">${T3('Nejslabší kvízy','Weakest quizzes','Найслабші квізи')}</h3>${D.qs.slice(0,4).map(x=>`<div class="row" style="justify-content:space-between;margin:4px 0"><span>${esc(x[0])}</span><b style="color:${x[1]<55?'var(--no)':x[1]>=75?'var(--ok)':'inherit'}">${x[1]} %</b></div>`).join('')}`:''}`
+:`<p class="m">${T3('Zatím nemám data. Až žáci dokončí kvízy, uvidíš tady, co jim dělá potíže.','No data yet. Once students finish quizzes, you will see here what they struggle with.','Даних ще немає. Коли учні завершать квізи, тут буде видно, що їм дається важко.')}</p>`}
+<div class="row" style="gap:8px;flex-wrap:wrap;margin-top:14px;align-items:flex-end">${mk>=3?`<div style="flex:1;min-width:150px"><label class="m" for="wkD">${T3('Termín opakování','Revision deadline','Термін повторення')}</label><input type="date" id="wkD" value="${due}" style="margin-bottom:0"></div><button class="pri" onclick="TX.wkMk()">${T3('Vytvořit opakovací kvíz a zadat třídě','Create a revision quiz and assign it','Створити квіз для повторення й задати класу')}</button>`:''}<button onclick="go('board')">${T3('Kvíz na tabuli','Board quiz','Квіз на дошці')}</button></div></div>`;
+e.firstElementChild?e.firstElementChild.insertAdjacentHTML('afterend',h):e.insertAdjacentHTML('afterbegin',h)}
+TX.wkMk=()=>{const c=CLS().find(x=>x.id==CC);if(!c)return;const D=wkData(c),idx=wkIdx(),qs=D.top.slice(0,10).map(x=>idx.get(x[0])).filter(Boolean);
+if(qs.length<3)return toast(T3('Zatím je málo chyb na opakovací kvíz (aspoň 3 otázky).','Not enough mistakes yet for a revision quiz (at least 3 questions).','Помилок поки замало для квізу повторення (щонайменше 3 питання).'));
+const id='u'+Date.now(),title=T3('Opakování','Revision','Повторення')+': '+c.name,Z=DB.g('quizzes',[]);Z.push({id,title,q:qs.map(y=>y.slice()),by:me.name,desc:qs.length+' otázek'});DB.s('quizzes',Z);
+const d=($('#wkD')||{}).value||'';gcl(cc=>{cc.asg.push({id:'a'+Date.now(),quiz:id,title,due:d,note:T3('Nejčastější chyby třídy','The most common class mistakes','Найчастіші помилки класу'),date:today()});cc.posts.push({id:'p'+(Date.now()+1),txt:'Nové zadání: '+title+(d?' (do '+d+')':''),by:me.name,date:now16()})});
+toast(T3('Opakovací kvíz je zadaný třídě.','The revision quiz has been assigned to the class.','Квіз для повторення задано класу.'));const cid=CC;setTimeout(()=>{if(CC==cid)cdr()},2700)};
+const cd0=cdr;cdr=function(){cd0.apply(this,arguments);try{wkPanel()}catch(e){console.error('v11.0 wk',e)}};
+
+/* ============ 4) DIPLOMY A OSVĚDČENÍ ============ */
+const WHY=[['Za výborný výsledek v testu','For an excellent test result','За відмінний результат тесту'],['Za aktivitu a zájem o chemii','For activity and interest in chemistry','За активність та інтерес до хімії'],['Za největší pokrok','For the greatest progress','За найбільший прогрес'],['Za vzorné chování v laboratoři','For exemplary behaviour in the lab','За зразкову поведінку в лабораторії'],['Za pomoc spolužákům','For helping classmates','За допомогу однокласникам']];
+function certH(o){const S='border:10px double #4a3fb5;padding:44px 32px;text-align:center;color:#161a3a;font-family:Georgia,\'Times New Roman\',serif;min-height:235mm;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:14px;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact';
+return`<div style="${S}"><div style="font-size:1.1rem;letter-spacing:.3em;color:#4a3fb5">TADXCHEMIE</div><div style="font-size:3rem;font-weight:700;letter-spacing:.12em">${esc(o.title)}</div><div style="font-size:1.1rem">${esc(o.pre)}</div><div style="font-size:2.4rem;font-weight:700;border-bottom:2px solid #4a3fb5;padding:0 24px 8px;align-self:center">${esc(o.name)}</div><div style="font-size:1.4rem">${esc(o.why)}</div>${o.rows&&o.rows.length?`<div style="font-size:1.05rem;color:#444">${o.rows.map(esc).join(' · ')}</div>`:''}<div style="margin-top:36px;display:flex;justify-content:space-around;font-size:1rem"><div>${esc(o.date)}<div style="border-top:1px solid #333;margin-top:4px;padding-top:4px;color:#555">${T3('Datum','Date','Дата')}</div></div><div>${esc(o.by||'')}<div style="border-top:1px solid #333;margin-top:4px;padding-top:4px;color:#555">${T3('Podpis','Signature','Підпис')}</div></div></div></div>`}
+TX.dip=()=>{const L=lvl(PF().xp),s=stats(),p=PF(),rk=(TX.rank||(()=>''))(L),av=(()=>{const R=DB.g('results',[]).filter(r=>r.user==me.name&&!r.dq);return R.length?(R.reduce((a,r)=>a+r.grade,0)/R.length).toFixed(2):'–'})();
+const cl=isT()?CLS().filter(c=>c.owner==me.name||me.role=='a'):[];
+$('#dipB').innerHTML=`<div class="card"><h2>${T3('Moje osvědčení','My certificate','Моє свідоцтво')}</h2><p class="m">${T3('Osvědčení se jménem, úrovní, hodností a výsledky z TadxChemie. Vytiskneš ho nebo uložíš jako PDF.','A certificate with your name, level, rank and results from TadxChemie. Print it or save it as a PDF.','Свідоцтво з твоїм іменем, рівнем, званням і результатами з TadxChemie. Роздрукуй його або збережи як PDF.')}</p>
+<p style="margin:8px 0"><b>${esc(me.name)}</b> · ${T3('Level','Level','Рівень')} <b>${L}</b>${rk?' · '+esc(rk):''} · <b>${p.xp||0}</b> XP · <b>${(p.badges||[]).length}</b> ${T3('odznaků','badges','значків')}</p><button class="pri" id="dpMy">${T3('Vytisknout osvědčení','Print certificate','Роздрукувати свідоцтво')}</button></div>
+${isT()?`<div class="card"><h2>${T3('Diplom pro žáka nebo třídu','Diploma for a student or class','Диплом для учня чи класу')}</h2>
+<label class="m" for="dpC">${T3('Učebna','Class','Клас')}</label><select id="dpC"><option value="">${T3('Bez učebny (napíšu jméno)','No class (I will type a name)','Без класу (впишу ім’я)')}</option>${cl.map(c=>`<option value="${esc(c.id)}">${esc(c.name)} (${c.members.length})</option>`).join('')}</select>
+<label class="m" for="dpS">${T3('Žák','Student','Учень')}</label><select id="dpS" style="display:none"></select><input id="dpN" placeholder="${T3('Jméno žáka','Student’s name','Ім’я учня')}" maxlength="60">
+<label class="m" for="dpW">${T3('Za co','Reason','За що')}</label><select id="dpW">${WHY.map((w,i)=>`<option value="${i}">${esc(T3(w[0],w[1],w[2]))}</option>`).join('')}<option value="x">${T3('Vlastní text…','Custom text…','Власний текст…')}</option></select><input id="dpX" style="display:none" maxlength="90" placeholder="${T3('Vlastní text diplomu','Custom diploma text','Власний текст диплома')}">
+<div class="row" style="gap:8px;flex-wrap:wrap;margin-top:6px"><button class="pri" id="dpOne">${T3('Vytisknout diplom','Print diploma','Роздрукувати диплом')}</button><button id="dpAll" disabled>${T3('Vytisknout celé třídě','Print for the whole class','Роздрукувати всьому класу')}</button></div></div>`:''}`;
+$('#dpMy').onclick=()=>printHTML(certH({title:T3('OSVĚDČENÍ','CERTIFICATE','СВІДОЦТВО'),pre:T3('se uděluje','is awarded to','вручається'),name:me.name,why:T3('za studijní úsilí v chemii','for studying effort in chemistry','за навчальні зусилля з хімії'),rows:[T3('Level','Level','Рівень')+' '+L+(rk?' – '+rk:''),p.xp+' XP',s.n+' '+T3('testů','tests','тестів'),T3('průměrná známka','average grade','середня оцінка')+' '+av,(p.badges||[]).length+' '+T3('odznaků','badges','значків')],date:dk(),by:''}));
+if(isT()){const C=$('#dpC'),S=$('#dpS'),N=$('#dpN'),W=$('#dpW'),X=$('#dpX'),A=$('#dpAll');
+C.onchange=()=>{const c=CLS().find(x=>x.id==C.value);if(c&&c.members.length){S.innerHTML=c.members.map(m=>`<option value="${esc(m)}">${esc(m)}</option>`).join('');S.style.display='';N.style.display='none';A.disabled=false}else{S.style.display='none';N.style.display='';A.disabled=true}};
+W.onchange=()=>{X.style.display=W.value=='x'?'':'none'};
+const why=()=>W.value=='x'?(X.value.trim()||T3(WHY[0][0],WHY[0][1],WHY[0][2])):T3(WHY[+W.value][0],WHY[+W.value][1],WHY[+W.value][2]);
+const mk=n=>certH({title:T3('DIPLOM','DIPLOMA','ДИПЛОМ'),pre:T3('se uděluje','is awarded to','вручається'),name:n,why:why(),rows:[],date:dk(),by:me.name});
+$('#dpOne').onclick=()=>{const n=S.style.display=='none'?N.value.trim():S.value;if(!n)return toast(T3('Napiš jméno žáka.','Enter the student’s name.','Впиши ім’я учня.'));printHTML(mk(n))};
+A.onclick=()=>{const c=CLS().find(x=>x.id==C.value);if(!c||!c.members.length)return;printHTML(c.members.map(mk).join(''))}}};
+TX.reg('dip','Diplomy a osvědčení','Vytiskni si osvědčení, nebo jako učitel diplom pro žáka či celou třídu.',TX.dip);
+TX.lab.push(['award','Diplomy a osvědčení','Osvědčení k tisku pro žáky a diplomy od učitele','dip']);
+
+/* ---------- CSS tabule ---------- */
+document.head.insertAdjacentHTML('beforeend',`<style id="v110css">
+#boV{position:fixed;inset:0;z-index:70;background:var(--bg);color:var(--tx);display:flex;flex-direction:column;gap:16px;padding:18px clamp(14px,3vw,40px);overflow:auto}
+.bo-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.bo-h b{font-size:1.2rem}
+.bo-t{font-size:1.6rem;font-weight:800;min-width:2.6ch;text-align:center;padding:2px 12px;border-radius:12px;border:2px solid var(--line)}.bo-t.lo{color:var(--no);border-color:var(--no)}
+.bo-q{font-size:clamp(1.5rem,4vw,3.1rem);line-height:1.2;margin:8px 0;max-width:34ch}
+.bo-o{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;flex:1;align-content:start}
+.bo-a{position:relative;display:flex;align-items:center;gap:14px;padding:18px 20px;border:2px solid var(--line);border-left:10px solid var(--c,var(--a));border-radius:20px;background:var(--card);font-size:clamp(1.05rem,2.3vw,1.9rem);cursor:pointer;transition:.2s;min-height:84px}
+.bo-a b{font-size:1.3em;color:var(--c,var(--a));flex:none}.bo-a:hover{transform:translateY(-3px)}
+.bo-a.c0{--c:#7c5cff}.bo-a.c1{--c:#10b9aa}.bo-a.c2{--c:#f59e0b}.bo-a.c3{--c:#ec4899}.bo-a.c4{--c:#3b82f6}.bo-a.c5{--c:#84cc16}
+.bo-a.ok{border-color:var(--ok);background:rgba(56,224,138,.2)}.bo-a.dim{opacity:.4}
+.bo-v{position:absolute;right:14px;top:8px;font-style:normal;font-size:.8em;font-weight:700;padding:2px 10px;border-radius:10px;background:var(--c,var(--a));color:#fff}
+.bo-m{position:absolute;right:14px;bottom:8px;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:1rem}
+.bo-f{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}.bo-s{flex:1;text-align:center;min-width:180px}
+.bo-sm{max-width:720px;margin:0 auto;width:100%}
+@media(max-width:700px){.bo-o{grid-template-columns:1fr}}
+#exam .opt.sel{border-color:var(--b)!important;background:rgba(46,230,214,.16)!important;box-shadow:inset 0 0 0 2px var(--b)!important;font-weight:600}
+</style>`);
+
+/* ---------- verze, překlady a changelog ---------- */
+VN9['11.0']='Éclair';
+CL.unshift(['11.0','Hodina chemie: tabule, zkouška a diplomy','9. 11. 2026',[
+'Kvíz na tabuli (pro učitele, Laboratoř): promítni kvíz celé třídě velkým písmem s časomírou a ukázáním správné odpovědi. Klikáním na odpovědi počítáš hlasy žáků a na konci uvidíš, které otázky šly nejhůř. Přehled jde vytisknout',
+'Slabá místa třídy (pro učitele, Učebna): nejčastější chyby žáků a nejslabší kvízy. Jedním tlačítkem vytvoříš opakovací kvíz z nejčastějších chyb a zadáš ho třídě s termínem',
+'Zkouška nanečisto (pro žáky, Laboratoř): 10 až 30 otázek z různých kvízů na jedné stránce, s časomírou a bez nápovědy. Na konci známka, rozbor podle témat a přehled chyb',
+'Dva nové odznaky za zkoušky nanečisto a XP za každou dokončenou zkoušku',
+'Diplomy a osvědčení (Laboratoř): žák si vytiskne osvědčení s úrovní, hodností a výsledky, učitel diplom pro jednoho žáka nebo celou učebnu s důvodem podle výběru',
+'Vše je přeložené do angličtiny a ukrajinštiny'
+]]);
+}catch(e){console.error('v11.0',e)}})();
+
 </script>
 </body>
 </html>
