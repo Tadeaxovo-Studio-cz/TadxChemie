@@ -630,7 +630,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='11.0';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie"};let LL=2,CD=null,AC=null,NB=0;
+const VER='11.1';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie"};let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -6205,6 +6205,253 @@ CL.unshift(['11.0','Hodina chemie: tabule, zkouška a diplomy','9. 11. 2026',[
 ]]);
 }catch(e){console.error('v11.0',e)}})();
 
+</script>
+<script id="v111js">
+/* ===== v11.1 Macaron: generátor dokumentů, materiály od učitele a dashboard třídy ===== */
+(function(){try{
+/*DOCX-START*/
+const CT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc=b=>{let c=-1;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&255]^(c>>>8);return(c^-1)>>>0};
+const u16=n=>[n&255,n>>8&255],u32=n=>[n&255,n>>8&255,n>>16&255,n>>>24&255];
+function zip(files){const en=new TextEncoder(),P=[],C=[];let off=0;
+ files.forEach(([n,t])=>{const nb=en.encode(n),d=en.encode(t),c=crc(d);
+  const h=new Uint8Array([0x50,0x4b,3,4,...u16(20),...u16(0x800),...u16(0),...u16(0),...u16(0x21),...u32(c),...u32(d.length),...u32(d.length),...u16(nb.length),...u16(0)]);
+  P.push(h,nb,d);
+  C.push(new Uint8Array([0x50,0x4b,1,2,...u16(20),...u16(20),...u16(0x800),...u16(0),...u16(0),...u16(0x21),...u32(c),...u32(d.length),...u32(d.length),...u16(nb.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(off)]),nb);
+  off+=h.length+nb.length+d.length});
+ const cs=C.reduce((a,b)=>a+b.length,0);
+ return new Blob([...P,...C,new Uint8Array([0x50,0x4b,5,6,0,0,0,0,...u16(files.length),...u16(files.length),...u32(cs),...u32(off),0,0])],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})}
+const xe=s=>String(s==null?'':s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const LET='abcdefgh';
+const run=(t,o)=>`<w:r><w:rPr>${o||''}</w:rPr><w:t xml:space="preserve">${xe(t)}</w:t></w:r>`;
+const par=(r,pp)=>`<w:p><w:pPr>${pp||''}</w:pPr>${r}</w:p>`;
+const BD='<w:tblBorders>'+['top','left','bottom','right','insideH','insideV'].map(s=>`<w:${s} w:val="single" w:sz="4" w:color="BBBBBB"/>`).join('')+'</w:tblBorders>';
+const cell=(t,fill,b)=>`<w:tc><w:tcPr>${fill?`<w:shd w:val="clear" w:color="auto" w:fill="${fill}"/>`:''}</w:tcPr>${par(run(t,b?'<w:b/>':''))}</w:tc>`;
+const tbl=rows=>`<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/>${BD}</w:tblPr>${rows}</w:tbl>${par('')}`;
+function bx(b){switch(b.t){
+ case'title':return par(run(b.x,'<w:b/><w:sz w:val="40"/>'),'<w:pStyle w:val="Title"/>');
+ case'h1':return par(run(b.x),'<w:pStyle w:val="Heading1"/>');
+ case'h2':return par(run(b.x),'<w:pStyle w:val="Heading2"/>');
+ case'p':return par(run(b.x,b.i?'<w:i/>':''));
+ case'li':return par(run('•  '+b.x),'<w:ind w:left="500" w:hanging="260"/>');
+ case'box':return tbl(`<w:tr>${cell(b.x,'FFF4CC')}</w:tr>`);
+ case'table':return tbl(`<w:tr>${b.h.map(h=>cell(h,'E8F0FB',1)).join('')}</w:tr>`+b.r.map(r=>`<w:tr>${r.map(c=>cell(c)).join('')}</w:tr>`).join(''));
+ case'q':return par(run(b.n+'. '+b.x,'<w:b/>'),'<w:keepNext/><w:spacing w:before="160" w:after="40"/>')+b.o.map((o,i)=>par(run(LET[i]+') '+o),'<w:ind w:left="500"/><w:spacing w:after="0"/>')).join('');
+ case'pb':return'<w:p><w:r><w:br w:type="page"/></w:r></w:p>'}return''}
+const NS='xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"';
+const sty=(id,n,x)=>`<w:style w:type="paragraph" w:styleId="${id}"><w:name w:val="${n}"/><w:basedOn w:val="Normal"/><w:qFormat/>${x}</w:style>`;
+function toDocx(blocks){const H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';return zip([
+ ['[Content_Types].xml',H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'],
+ ['_rels/.rels',H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'],
+ ['word/_rels/document.xml.rels',H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'],
+ ['word/styles.xml',H+`<w:styles ${NS}><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/><w:sz w:val="22"/><w:lang w:val="cs-CZ"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="120" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style>${sty('Title','Title','<w:pPr><w:spacing w:after="160"/></w:pPr><w:rPr><w:b/><w:sz w:val="40"/></w:rPr>')}${sty('Heading1','heading 1','<w:pPr><w:keepNext/><w:spacing w:before="320" w:after="100"/><w:outlineLvl w:val="0"/></w:pPr><w:rPr><w:b/><w:color w:val="2E74B5"/><w:sz w:val="32"/></w:rPr>')}${sty('Heading2','heading 2','<w:pPr><w:keepNext/><w:spacing w:before="220" w:after="80"/><w:outlineLvl w:val="1"/></w:pPr><w:rPr><w:b/><w:color w:val="2E74B5"/><w:sz w:val="26"/></w:rPr>')}</w:styles>`],
+ ['word/document.xml',H+`<w:document ${NS}><w:body>${blocks.map(bx).join('')}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr></w:body></w:document>`]])}
+/*DOCX-END*/
+
+const LGc=()=>DB.g('lang','cs');
+const T3=(cs,en,uk)=>{const l=LGc();return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const isT=()=>!!me&&!me.guest&&me.role!='s';
+const mcOk=y=>!!y&&Array.isArray(y[1])&&y[1].length>=2&&(!y[3]||y[3]=='mc'||y[3]=='tf');
+const sidk=s=>String(s==null?'':s).replace(/[^A-Za-z0-9_-]/g,'').slice(0,60);
+const RU=()=>{try{return String(RELAY).replace(/\/$/,'')}catch(e){return''}};
+const dk=()=>{const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const ZQ=()=>allQ(1).filter(q=>!q.daily&&(q.q||[]).some(mcOk));
+const grd=p=>p>=90?1:p>=75?2:p>=55?3:p>=40?4:5;
+const myCls=()=>CLS().filter(c=>me&&(c.owner==me.name||me.role=='a'));
+const tmo=()=>{try{return AbortSignal.timeout(8000)}catch(e){return undefined}};
+
+/* ---------- HTML náhled dokumentu (vše escapované) ---------- */
+function toHtml(B){return B.map(b=>{const t=esc(b.x||'');switch(b.t){
+ case'title':return`<h1>${t}</h1>`;case'h1':case'h2':return`<h2>${t}</h2>`;
+ case'p':return`<p${b.i?' style="font-style:italic"':''}>${t}</p>`;
+ case'li':return`<ul><li>${t}</li></ul>`;case'box':return`<div class="bx">${t}</div>`;
+ case'table':return`<table><tr>${b.h.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>${b.r.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table>`;
+ case'q':return`<div class="qn">${b.n}. ${t}</div>${b.o.map((o,i)=>`<div class="op">${LET[i]}) ${esc(o)}</div>`).join('')}`;
+ case'pb':return'<hr>'}return''}).join('')}
+function cleanB(a){return(Array.isArray(a)?a:[]).slice(0,400).filter(b=>b&&['title','h1','h2','p','li','box','table','q','pb'].includes(b.t)).map(b=>({t:b.t,x:String(b.x==null?'':b.x).slice(0,2000),i:b.i?1:0,n:+b.n||0,
+ o:Array.isArray(b.o)?b.o.slice(0,8).map(x=>String(x).slice(0,400)):[],h:Array.isArray(b.h)?b.h.slice(0,6).map(x=>String(x).slice(0,200)):[],
+ r:Array.isArray(b.r)?b.r.slice(0,80).map(r=>(Array.isArray(r)?r:[]).slice(0,6).map(x=>String(x).slice(0,400))):[]}))}
+function saveBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},700)}
+const fname=n=>String(n).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'dokument';
+function printDoc(B){printHTML('<div style="background:#fff;color:#111;font-family:Calibri,Segoe UI,sans-serif;line-height:1.45;padding:6px"><style>.dgq h1{font-size:1.6rem;color:#111}.dgq h2{font-size:1.2rem;color:#2e74b5;margin:14px 0 6px}.dgq table{border-collapse:collapse;width:100%;margin:8px 0}.dgq td,.dgq th{border:1px solid #bbb;padding:5px 8px;text-align:left;color:#111}.dgq th{background:#e8f0fb}.dgq .bx{background:#fff4cc;border-left:4px solid #f5b400;padding:8px 12px;margin:10px 0}.dgq .qn{margin:10px 0 2px;font-weight:700}.dgq .op{margin-left:18px}</style><div class="dgq">'+toHtml(B)+'</div></div>')}
+
+/* ---------- tvorba obsahu z banky otázek ---------- */
+const lab=()=>({nm:T3('Jméno','Name','Ім’я'),cl:T3('Třída','Class','Клас'),dt:T3('Datum','Date','Дата')});
+const hdr=()=>{const l=lab();return{t:'p',x:`${l.nm}: ______________________   ${l.cl}: ________   ${l.dt}: ____________`}};
+function qpool(id){let out=[];ZQ().filter(z=>!id||z.id==id).forEach(z=>(z.q||[]).filter(mcOk).forEach(y=>out.push(y)));const seen=new Set();return out.filter(y=>{const k=String(y[0]).slice(0,80);if(seen.has(k))return false;seen.add(k);return true})}
+function mixq(y){const o=y[1].map((t,k)=>[t,k==y[2]]),m=y[3]=='tf'?o:sh(o);return{x:y[0],o:m.map(a=>a[0]),k:LET[m.findIndex(a=>a[1])]}}
+function variant(nm,title,qs){const B=[{t:'title',x:T3('Písemná práce','Written test','Письмова робота')+' – '+title+' – '+nm},hdr(),{t:'p',x:T3('Čas','Time','Час')+': ______ min     '+T3('Body','Points','Бали')+': ____ / '+qs.length,i:1}],key=[];
+ sh(qs).forEach((y,i)=>{const m=mixq(y);key.push(m.k);B.push({t:'q',n:i+1,x:m.x,o:m.o})});return{B,key}}
+function mkExam(id,title,n){const qs=sh(qpool(id)).slice(0,n);if(qs.length<3)return null;
+ const A=variant(T3('Varianta A','Version A','Варіант A'),title,qs),Bv=variant(T3('Varianta B','Version B','Варіант B'),title,qs),
+ kt=k=>({t:'table',h:[T3('Otázka','Question','Питання'),T3('Správně','Correct','Правильно')],r:k.map((x,i)=>[String(i+1),x])}),
+ sc=[['90–100 %','1'],['75–89 %','2'],['55–74 %','3'],['40–54 %','4'],['0–39 %','5']];
+ return[{name:T3('Písemka – varianta A','Test – version A','Письмова – варіант A'),blocks:A.B},{name:T3('Písemka – varianta B','Test – version B','Письмова – варіант B'),blocks:Bv.B},
+ {name:T3('Klíč správných odpovědí','Answer key','Ключ відповідей'),key:1,blocks:[{t:'title',x:T3('Klíč správných odpovědí','Answer key','Ключ відповідей')+' – '+title},{t:'h1',x:T3('Varianta A','Version A','Варіант A')},kt(A.key),{t:'h1',x:T3('Varianta B','Version B','Варіант B')},kt(Bv.key),{t:'h1',x:T3('Hodnocení','Grading','Оцінювання')},{t:'table',h:[T3('Úspěšnost','Success rate','Успішність'),T3('Známka','Grade','Оцінка')],r:sc}]}]}
+function mkWork(id,title,n){const qs=sh(qpool(id)).slice(0,n);if(qs.length<3)return null;
+ const B=[{t:'title',x:T3('Pracovní list','Worksheet','Робочий аркуш')+' – '+title},hdr(),{t:'p',x:T3('Zakroužkuj správnou odpověď.','Circle the correct answer.','Обведи правильну відповідь.'),i:1}],K=[];
+ qs.forEach((y,i)=>{const m=mixq(y);K.push([String(i+1),m.k]);B.push({t:'q',n:i+1,x:m.x,o:m.o})});
+ return[{name:T3('Pracovní list','Worksheet','Робочий аркуш'),share:1,blocks:B},{name:T3('Řešení pracovního listu','Worksheet solutions','Розв’язки робочого аркуша'),key:1,blocks:[{t:'title',x:T3('Řešení','Solutions','Розв’язки')+' – '+title},{t:'table',h:[T3('Otázka','Question','Питання'),T3('Správně','Correct','Правильно')],r:K}]}]}
+function noteBank(id,title,n){const qs=sh(qpool(id)).slice(0,Math.min(n,15));if(qs.length<3)return null;
+ const B=[{t:'title',x:T3('Studijní zápis','Study notes','Навчальний конспект')+' – '+title},{t:'p',x:T3('Zápis do chemie – základ pro učení','Chemistry notes – the basics for studying','Конспект з хімії – основа для навчання'),i:1},
+ {t:'h1',x:'📌 '+T3('Co bych měl/a po hodině umět?','What should I be able to do after the lesson?','Що я маю вміти після уроку?')},{t:'li',x:T3('odpovědět na kontrolní otázky níže','answer the review questions below','відповісти на контрольні питання нижче')},
+ {t:'h1',x:'1. '+T3('Zapamatuj si','Remember this','Запам’ятай')}];
+ qs.forEach(y=>{const c=(y[3]=='tf'?y[1][y[2]]:y[1][y[2]]);B.push({t:'li',x:y[0]+' → '+c})});
+ B.push({t:'box',x:'⭐ '+T3('Důležité: fakty vycházejí z otázek v bance TadxChemie k tématu.','Important: the facts come from the TadxChemie question bank for this topic.','Важливо: факти взято з банку запитань TadxChemie до цієї теми.')});
+ return[{name:T3('Výukový zápis','Study notes','Навчальний конспект'),share:1,blocks:B}]}
+function fromAI(j,topic){const B=[{t:'title',x:String(j.title||topic)},{t:'p',x:T3('Zápis do chemie – základ pro učení','Chemistry notes – the basics for studying','Конспект з хімії – основа для навчання'),i:1},{t:'h1',x:'📌 '+T3('Co bych měl/a po hodině umět?','What should I be able to do after the lesson?','Що я маю вміти після уроку?')}];
+ (j.goals||[]).slice(0,8).forEach(g=>B.push({t:'li',x:String(g)}));
+ (j.sections||[]).slice(0,6).forEach((s,i)=>{B.push({t:'h1',x:(i+1)+'. '+String(s.h||'')});(s.p||[]).slice(0,6).forEach(p=>B.push({t:'p',x:String(p)}));(s.b||[]).slice(0,10).forEach(p=>B.push({t:'li',x:String(p)}))});
+ if(j.table&&Array.isArray(j.table.h)&&Array.isArray(j.table.r))B.push({t:'table',h:j.table.h.slice(0,6).map(String),r:j.table.r.slice(0,12).map(r=>(Array.isArray(r)?r:[]).slice(0,6).map(String))});
+ if(j.important)B.push({t:'box',x:'⭐ '+T3('Důležité','Important','Важливо')+': '+j.important});
+ if((j.questions||[]).length){B.push({t:'h1',x:'✅ '+T3('Kontrolní otázky','Review questions','Контрольні питання')});j.questions.slice(0,8).forEach(q=>B.push({t:'li',x:String(q)}))}
+ B.push({t:'p',x:T3('Obsah vygenerovala umělá inteligence, před použitím ho prosím zkontroluj.','This content was generated by AI, please check it before use.','Вміст створив штучний інтелект, будь ласка, перевір його перед використанням.'),i:1});return B}
+async function mkNote(id,title,topic,n){
+ if(topic&&typeof lunaOnline=='function'&&lunaOnline()&&typeof lApi=='function'){
+  try{const t=await lApi([{role:'user',content:`Vytvoř studijní zápis pro 1. ročník střední školy k tématu "${topic}". Vrať POUZE JSON: {"title":"…","goals":["4 až 6 krátkých cílů"],"sections":[{"h":"nadpis","p":["odstavec"],"b":["odrážka"]}],"table":{"h":["Pojem","Jednoduše"],"r":[["…","…"]]},"important":"nejdůležitější poznatek","questions":["5 kontrolních otázek"]}. 3 až 5 sekcí, tabulka 5 až 8 řádků. Piš česky, věcně správně a jednoduše.`}],1800);
+   const s=String(typeof t=='string'?t:(t&&t.text)||''),j=JSON.parse(s.slice(s.indexOf('{'),s.lastIndexOf('}')+1));
+   if(j&&Array.isArray(j.sections)&&j.sections.length)return{docs:[{name:T3('Výukový zápis','Study notes','Навчальний конспект'),share:1,blocks:fromAI(j,topic)}],ai:1}}catch(e){}}
+ const d=noteBank(id,title||topic||'chemie',n);return{docs:d,ai:0}}
+
+/* ---------- Generátor dokumentů (učitel) ---------- */
+let DOCS=[];
+TX.docgen=()=>{const e=$('#docgenB');
+ if(!isT()){e.innerHTML=`<div class="card"><p class="m">${T3('Generátor dokumentů je určený pro učitele.','The document generator is meant for teachers.','Генератор документів призначений для вчителів.')}</p></div>`;return}
+ const Z=ZQ();
+ e.innerHTML=`<div class="card"><h2>${T3('Nový dokument','New document','Новий документ')}</h2>
+<p class="m">${T3('Vytvoř výukový zápis jako zápis do hodiny, pracovní list nebo písemku A/B s klíčem. Stáhneš je jako Word (.docx), vytiskneš nebo sdílíš třídě.','Create study notes, a worksheet or an A/B test with an answer key. Download them as Word (.docx), print them or share them with a class.','Створи конспект уроку, робочий аркуш або письмову роботу A/B з ключем. Завантаж їх як Word (.docx), роздрукуй або поділися з класом.')}</p>
+<label class="m" for="dgT">${T3('Typ dokumentu','Document type','Тип документа')}</label><select id="dgT"><option value="note">${T3('Výukový zápis','Study notes','Навчальний конспект')}</option><option value="work">${T3('Pracovní list','Worksheet','Робочий аркуш')}</option><option value="exam">${T3('Písemka A/B s klíčem','A/B test with key','Письмова A/B з ключем')}</option></select>
+<label class="m" for="dgQ">${T3('Zdroj otázek (kvíz)','Question source (quiz)','Джерело питань (квіз)')}</label><select id="dgQ"><option value="">${T3('Mix všech kvízů','Mix of all quizzes','Мікс усіх квізів')}</option>${Z.map(q=>`<option value="${esc(q.id)}">${esc(q.title)} (${(q.q||[]).filter(mcOk).length})</option>`).join('')}</select>
+<div id="dgTW"><label class="m" for="dgI">${T3('Téma pro Lunu (volitelné)','Topic for Luna (optional)','Тема для Луни (необов’язково)')}</label><input id="dgI" maxlength="80" placeholder="${T3('Např. Směsi a jejich oddělování','E.g. Mixtures and how to separate them','Напр. Суміші та їх розділення')}"></div>
+<label class="m" for="dgN">${T3('Počet otázek','Number of questions','Кількість питань')}</label><select id="dgN"><option>5</option><option selected>10</option><option>15</option><option>20</option><option>30</option></select>
+<div class="row" style="margin-top:10px;gap:10px;flex-wrap:wrap"><button class="pri" id="dgG">${T3('Vygenerovat','Generate','Створити')}</button></div>
+<p class="m" style="font-size:.82rem;margin-top:8px">${T3('Zápis s tématem napíše Luna, když je online. Jinak se zápis, list i písemka sestaví z otázek v bance.','When Luna is online she writes study notes for the topic. Otherwise notes, worksheet and test are built from the question bank.','Якщо Луна онлайн, вона напише конспект на задану тему. Інакше конспект, аркуш і письмова збираються з банку питань.')}</p></div><div id="dgR"></div>`;
+ const ty=$('#dgT'),tw=$('#dgTW');ty.onchange=()=>{tw.style.display=ty.value=='note'?'':'none'};
+ $('#dgG').onclick=async ev=>{const b=ev.currentTarget,t=ty.value,id=$('#dgQ').value,n=+$('#dgN').value||10,topic=$('#dgI').value.trim().slice(0,80),zq=Z.find(x=>x.id==id),title=topic||(zq?zq.title:T3('chemie','chemistry','хімія'));
+  b.disabled=true;const o=b.textContent;b.textContent='…';let r=null,ai=0;
+  try{if(t=='exam')r=mkExam(id,title,n);else if(t=='work')r=mkWork(id,title,n);else{const x=await mkNote(id,zq?zq.title:'',topic,n);r=x.docs;ai=x.ai}}catch(x){console.error(x)}
+  b.disabled=false;b.textContent=o;
+  if(!r){toast(T3('Pro tento výběr je v bance málo otázek (aspoň 3).','There are too few questions for this choice (at least 3).','Для цього вибору замало питань (щонайменше 3).'));return}
+  DOCS=r;docR(ai)}};
+function docR(ai){const r=$('#dgR');if(!r)return;const cl=myCls();
+ r.innerHTML=(ai?`<p class="m" style="margin:0 0 8px">${T3('Zápis napsala Luna. Před použitím ho prosím zkontroluj.','Luna wrote these notes. Please check them before use.','Конспект написала Луна. Будь ласка, перевір його перед використанням.')}</p>`:'')+DOCS.map((d,i)=>`<div class="card"><h2>${esc(d.name)}</h2><div class="dgc"><button class="pri" onclick="TX.dgDl(${i})">${T3('Stáhnout .docx','Download .docx','Завантажити .docx')}</button><button onclick="TX.dgPr(${i})">${T3('Tisk / PDF','Print / PDF','Друк / PDF')}</button>${d.share&&cl.length?`<select id="dgC${i}" aria-label="${T3('Učebna','Class','Клас')}">${cl.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('')}</select><button onclick="TX.dgSh(${i})">${T3('Sdílet třídě','Share with class','Поділитися з класом')}</button>`:''}</div><div class="dgp">${toHtml(d.blocks)}</div></div>`).join('')}
+TX.dgDl=i=>{const d=DOCS[i];if(d)saveBlob(toDocx(d.blocks),fname(d.name)+'.docx')};
+TX.dgPr=i=>{const d=DOCS[i];if(d)printDoc(d.blocks)};
+TX.dgSh=async i=>{const d=DOCS[i],cid=($('#dgC'+i)||{}).value,c=CLS().find(x=>x.id==cid);if(!d||!c)return;
+ const key=sidk(c.id)+'_'+sidk(c.code),id='d'+Date.now().toString(36),doc={name:d.name,blocks:d.blocks,at:Date.now(),by:me.name};
+ if(JSON.stringify(doc).length>150000)return toast(T3('Dokument je příliš velký ke sdílení.','The document is too large to share.','Документ завеликий для поширення.'));
+ let ok=false;if(RU()){try{const r=await fetch(`${RU()}/docs/${key}/${id}.json`,{method:'PUT',body:JSON.stringify(doc),signal:tmo()});ok=r.ok}catch(e){}}
+ if(!ok){const o=DB.g('cdocs',{});(o[key]=o[key]||[]).push({id,...doc});o[key]=o[key].slice(-20);DB.s('cdocs',o)}
+ try{const a=CLS(),cc=a.find(x=>x.id==cid);if(cc){cc.posts.push({id:'p'+Date.now(),txt:'Nový materiál: '+d.name,by:me.name,date:now16()});SC(a)}}catch(e){}
+ toast(ok?T3('Materiál je sdílený třídě.','The material is shared with the class.','Матеріал поширено в класі.'):T3('Server nedostupný: materiál vidí jen tento prohlížeč.','Server unavailable: only this browser can see the material.','Сервер недоступний: матеріал бачить лише цей браузер.'))};
+TX.reg('docgen','Generátor dokumentů','Zápis do hodiny, pracovní list nebo písemka A/B ke stažení do Wordu nebo k tisku.',TX.docgen);
+TX.lab.push(['file-text','Generátor dokumentů','Zápisy, pracovní listy a písemky pro třídu ve Wordu','docgen',true]);TX.noGuest.push('docgen');
+
+/* ---------- Materiály od učitele (žák i učitel) ---------- */
+const MATS={};
+async function fetchMat(c){const key=sidk(c.id)+'_'+sidk(c.code),loc=(DB.g('cdocs',{})[key]||[]);let rem=[];
+ if(RU()){try{const r=await fetch(`${RU()}/docs/${key}.json`,{signal:tmo()}),j=await r.json();
+  if(j&&typeof j=='object')rem=Object.entries(j).filter(([id,v])=>v&&Array.isArray(v.blocks)&&JSON.stringify(v).length<200000).map(([id,v])=>({id:sidk(id),key,name:String(v.name||'Materiál').slice(0,80),at:+v.at||0,by:String(v.by||'').slice(0,60),blocks:cleanB(v.blocks)}))}catch(e){}}
+ const seen=new Set(rem.map(x=>x.id));return rem.concat(loc.filter(x=>x&&Array.isArray(x.blocks)&&!seen.has(x.id)).map(x=>({id:sidk(x.id),key,name:String(x.name||'Materiál').slice(0,80),at:+x.at||0,by:String(x.by||'').slice(0,60),blocks:cleanB(x.blocks)}))).sort((a,b)=>b.at-a.at)}
+async function fillMat(el,c){el.innerHTML=`<p class="m">${T3('Načítám…','Loading…','Завантажую…')}</p>`;const can=me&&(c.owner==me.name||me.role=='a'),L=await fetchMat(c);if(!el.isConnected)return;
+ el.innerHTML=L.length?L.map(d=>{const k=d.key+'/'+d.id;MATS[k]=d;return`<div class="dsm"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:6px"><b>${esc(d.name)}</b><span class="m" style="font-size:.8rem">${d.at?esc(new Date(d.at).toLocaleDateString()):''}${d.by?' · '+esc(d.by):''}</span></div><div class="dgc"><button data-ma="v" data-mk="${esc(k)}">${T3('Zobrazit','View','Переглянути')}</button><button data-ma="d" data-mk="${esc(k)}">.docx</button><button data-ma="p" data-mk="${esc(k)}">${T3('Tisk / PDF','Print / PDF','Друк / PDF')}</button>${can?`<button class="dng" data-ma="x" data-mk="${esc(k)}" aria-label="${T3('Smazat','Delete','Видалити')}">${ic('trash-2')}</button>`:''}</div></div>`}).join(''):`<p class="m">${T3('Učitel zatím nesdílel žádný materiál.','The teacher has not shared any material yet.','Учитель ще не поділився жодним матеріалом.')}</p>`}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-ma]');if(!b)return;const k=b.dataset.mk,d=MATS[k];if(!d)return;const a=b.dataset.ma;
+ if(a=='d')return saveBlob(toDocx(d.blocks),fname(d.name)+'.docx');if(a=='p')return printDoc(d.blocks);
+ if(a=='v'){const box=b.closest('.dsm');let p=box.querySelector('.dgp');if(p){p.remove();return}box.insertAdjacentHTML('beforeend',`<div class="dgp">${toHtml(d.blocks)}</div>`);return}
+ if(a=='x'){if(!confirm(T3('Smazat materiál?','Delete the material?','Видалити матеріал?')))return;
+  if(RU()){try{await fetch(`${RU()}/docs/${d.key}/${d.id}.json`,{method:'DELETE',signal:tmo()})}catch(x){}}
+  const o=DB.g('cdocs',{});if(o[d.key]){o[d.key]=o[d.key].filter(x=>sidk(x.id)!=d.id);DB.s('cdocs',o)}
+  const l=b.closest('[data-mfor]');box:{const bx=b.closest('.dsm');if(bx)bx.remove()}}});
+const cd9=cdr;cdr=function(){cd9.apply(this,arguments);try{const c=CLS().find(x=>x.id==CC),e=$('#cdB');if(!c||!e)return;const o=$('#matC');if(o)o.remove();
+ const h=`<div class="card" id="matC"><h2>${T3('Materiály od učitele','Materials from the teacher','Матеріали від учителя')}</h2><div id="matL"></div></div>`;
+ e.firstElementChild?e.firstElementChild.insertAdjacentHTML('afterend',h):e.insertAdjacentHTML('afterbegin',h);fillMat($('#matL'),c);
+ if(isT()&&(c.owner==me.name||me.role=='a')){$('#matC').insertAdjacentHTML('afterbegin',`<div class="row" style="gap:8px;flex-wrap:wrap;float:right"><button onclick="DSH.cid='${esc(c.id)}';go('dash')">${T3('Dashboard třídy','Class dashboard','Дашборд класу')}</button><button onclick="go('docgen')">${T3('Generátor dokumentů','Document generator','Генератор документів')}</button></div>`)}}catch(x){console.error('v11.1 mat',x)}};
+TX.mat=()=>{const cl=CLS().filter(c=>me&&(c.members.includes(me.name)||c.owner==me.name||me.role=='a'));
+ $('#matB').innerHTML=cl.length?cl.map((c,i)=>`<div class="card"><h2>${esc(c.name)}</h2><div id="matX${i}"></div></div>`).join(''):`<div class="card"><p class="m">${T3('Nejsi v žádné učebně. Zadej kód od učitele v Učebně.','You are not in any class. Enter the teacher’s code in Classes.','Ти не в жодному класі. Введи код від учителя в розділі «Клас».')}</p><button class="pri" onclick="go('cls')">${T3('Učebna','Classes','Клас')}</button></div>`;
+ cl.forEach((c,i)=>fillMat($('#matX'+i),c))};
+TX.reg('mat','Materiály od učitele','Zápisy a pracovní listy, které ti sdílel učitel. Můžeš je číst, stáhnout i vytisknout.',TX.mat);
+TX.lab.push(['book-open','Materiály od učitele','Zápisy a pracovní listy sdílené ve tvých učebnách','mat']);TX.noGuest.push('mat');
+
+/* ---------- Dashboard třídy (učitel) ---------- */
+window.DSH={cid:'',sort:'weak'};
+const TIER=a=>a==null?'n':a>=75?'g':a>=55?'y':'r';
+function dData(c){const R=DB.g('results',[]).filter(r=>!r.dq),cut=Date.now()-14*864e5;
+ const rows=c.members.map(m=>{const rr=R.filter(r=>r.user==m),done=c.asg.filter(a=>rr.some(r=>r.asg==a.id)).length,
+  avg=rr.length?Math.round(rr.reduce((s,r)=>s+(+r.pct||0),0)/rr.length):null,gr=rr.length?rr.reduce((s,r)=>s+(+r.grade||grd(+r.pct||0)),0)/rr.length:null,
+  low=rr.filter(r=>(+r.pct||0)<55).length,act=rr.filter(r=>{const t=Date.parse(String(r.date||'').replace(' ','T'));return t&&t>=cut}).length;
+  return{m,done,avg,gr,low,act,n:rr.length,tier:TIER(avg)}}),W=rows.filter(r=>r.avg!=null),
+  all=R.filter(r=>c.members.includes(r.user)),cls=all.length?Math.round(all.reduce((s,r)=>s+(+r.pct||0),0)/all.length):null,
+  asg=c.asg.map(a=>{const d=c.members.filter(m=>R.some(r=>r.asg==a.id&&r.user==m)).length;return{t:a.title,p:c.members.length?Math.round(d/c.members.length*100):0,d}}),
+  tot=c.members.length*c.asg.length,td=rows.reduce((s,r)=>s+r.done,0);
+ return{rows,W,cls,asg,n:all.length,comp:tot?Math.round(td/tot*100):null,t:{g:W.filter(r=>r.tier=='g').length,y:W.filter(r=>r.tier=='y').length,r:W.filter(r=>r.tier=='r').length},none:rows.length-W.length}}
+const dsc=t=>t=='g'?'var(--ok)':t=='y'?'#ffb02e':t=='r'?'var(--no)':'var(--mut)';
+const bub=(n,txt,col,min,k)=>{const s=Math.round(min+Math.min(n,10)*k);return`<span class="dsh-c" style="width:${s}px;height:${s}px;background:${col}">${txt}</span>`};
+function dRing(p){const r=54,C=2*Math.PI*r,v=p==null?0:p;return`<svg viewBox="0 0 140 140" class="dsh-ring" role="img" aria-label="${p==null?'–':p+' %'}"><defs><linearGradient id="dshg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2ee6d6"/></linearGradient></defs><circle cx="70" cy="70" r="${r}" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="70" cy="70" r="${r}" fill="none" stroke="url(#dshg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${(C*v/100).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 70 70)"/></svg>`}
+TX.dash=()=>{const e=$('#dashB');
+ if(!isT()){e.innerHTML=`<div class="card"><p class="m">${T3('Dashboard je určený pro učitele.','The dashboard is meant for teachers.','Дашборд призначений для вчителів.')}</p></div>`;return}
+ const cl=myCls();if(!cl.length){e.innerHTML=`<div class="card"><p class="m">${T3('Zatím nemáš žádnou učebnu. Vytvoř ji a pozvi žáky kódem.','You have no class yet. Create one and invite students with a code.','У тебе ще немає класу. Створи його та запроси учнів кодом.')}</p><button class="pri" onclick="go('cls')">${T3('Učebna','Classes','Клас')}</button></div>`;return}
+ if(!cl.some(c=>c.id==DSH.cid))DSH.cid=(cl.find(c=>c.id==CC)||cl[0]).id;
+ const c=cl.find(x=>x.id==DSH.cid),D=dData(c),N=c.members.length,pc=k=>N?Math.round(D.t[k]/N*100):0;
+ let rows=D.rows.slice();const so=DSH.sort;
+ rows.sort((a,b)=>so=='name'?a.m.localeCompare(b.m):so=='top'?(b.avg??-1)-(a.avg??-1):(a.avg==null)-(b.avg==null)||(a.avg??0)-(b.avg??0));
+ const tile=(k,cls,n,lab)=>`<div class="dsh-tile ${cls}"><div class="dsh-av">${D.W.filter(r=>r.tier==k).slice(0,3).map(r=>avh(r.m,30)).join('')}</div><div><div class="dsh-num">${n}</div><div class="dsh-tl">${lab}</div></div><div class="dsh-ts">${pc(k)} % ${T3('třídy','of class','класу')}</div></div>`;
+ e.innerHTML=`<div class="dsh">
+<div class="row dsh-bar"><div class="row" style="gap:10px;flex-wrap:wrap"><label class="m" for="dsC" style="margin:0">${T3('Učebna','Class','Клас')}</label><select id="dsC" style="width:auto;margin:0">${cl.map(x=>`<option value="${esc(x.id)}" ${x.id==c.id?'selected':''}>${esc(x.name)} (${x.members.length})</option>`).join('')}</select>
+<label class="m" for="dsS" style="margin:0">${T3('Řadit','Sort','Сортувати')}</label><select id="dsS" style="width:auto;margin:0"><option value="weak" ${so=='weak'?'selected':''}>${T3('Nejslabší první','Weakest first','Спершу найслабші')}</option><option value="top" ${so=='top'?'selected':''}>${T3('Nejlepší první','Best first','Спершу найкращі')}</option><option value="name" ${so=='name'?'selected':''}>${T3('Podle jména','By name','За іменем')}</option></select></div>
+<button id="dsP">${T3('Vytisknout','Print','Роздрукувати')}</button></div>
+<div class="dsh-top"><div class="card dsh-hero"><div class="dsh-gr"><div class="dsh-rw">${dRing(D.cls)}<span class="dsh-tr">${ic('trophy')}</span></div><div><div class="dsh-k">${T3('Celková úspěšnost třídy','Overall class score','Загальна успішність класу')}</div><div class="dsh-big">${D.cls==null?'–':D.cls+' %'}</div><div class="dsh-k">${D.n} ${T3('dokončených kvízů','completed quizzes','завершених квізів')}</div></div></div>
+<div class="dsh-gr"><div><div class="dsh-k">${T3('Zadané úkoly','Work assigned','Задані завдання')}</div><div class="dsh-big">${c.asg.length}</div><div class="dsh-k">${D.comp==null?T3('Zatím nic nezadáno','Nothing assigned yet','Поки нічого не задано'):D.comp+' % '+T3('splněno','completed','виконано')}</div></div><div class="dsh-bb" role="list">${D.asg.slice(-14).map(a=>`<span role="listitem" title="${esc(a.t)}: ${a.p} %" aria-label="${esc(a.t)}: ${a.p} %" class="dsh-c" style="width:${20+Math.round(a.p*.3)}px;height:${20+Math.round(a.p*.3)}px;background:${a.p>=75?'var(--ok)':a.p>=40?'#ffb02e':'var(--no)'}"></span>`).join('')||'<span class="m">–</span>'}</div></div></div>
+<div class="dsh-tiles">${tile('g','g',D.t.g,T3('výborných žáků','top students','відмінників'))}${tile('y','y',D.t.y,T3('v pohodě','on track','у нормі'))}${tile('r','r',D.t.r,T3('potřebuje pomoc','need help','потребують допомоги'))}</div></div>
+<div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><h2 style="margin:0">${T3('Prospěch žáků','Student proficiency','Успішність учнів')}</h2><span class="m" style="font-size:.85rem">${D.none?D.none+' '+T3('bez výsledků','without results','без результатів'):''}</span></div>
+${N?`<div class="dsh-sc"><table class="dsh-tb"><thead><tr><th>${T3('Žák','Student','Учень')}</th><th>${T3('Splněno','Completed','Виконано')}</th><th>${T3('Průměr','Average','Середнє')}</th><th>${T3('Pozornost','Attention','Увага')}</th><th>${T3('Aktivita','Activity','Активність')}</th><th>${T3('Známka','Grade','Оцінка')}</th></tr></thead><tbody>${rows.map(r=>`<tr class="t${r.tier}"><td><span class="row" style="gap:10px;flex-wrap:nowrap">${avh(r.m,34)}<b>${esc(r.m)}</b></span></td><td><b>${r.done}</b> / ${c.asg.length}</td><td>${r.avg==null?'<span class="m">–</span>':`<span class="dsh-pv"><i style="width:${r.avg}%;background:${dsc(r.tier)}"></i><b>${r.avg} %</b></span>`}</td><td>${r.n?bub(r.low,r.low,r.low?'var(--no)':'rgba(128,128,160,.35)',28,3):'<span class="m">–</span>'}</td><td>${bub(r.act,r.act,'var(--b)',28,3)}</td><td>${r.gr==null?'<span class="m">–</span>':bub(0,r.gr.toFixed(1),dsc(r.gr<=2.4?'g':r.gr<=3.4?'y':'r'),38,0)}</td></tr>`).join('')}</tbody></table></div><p class="m" style="font-size:.8rem;margin-top:8px">${T3('Pozornost = počet kvízů pod 55 %. Aktivita = kvízy za posledních 14 dní.','Attention = quizzes below 55%. Activity = quizzes in the last 14 days.','Увага = кількість квізів нижче 55 %. Активність = квізи за останні 14 днів.')}</p>`:`<p class="m">${T3('V učebně zatím nejsou žádní žáci.','There are no students in this class yet.','У класі ще немає учнів.')}</p>`}</div></div>`;
+ $('#dsC').onchange=ev=>{DSH.cid=ev.target.value;TX.dash()};$('#dsS').onchange=ev=>{DSH.sort=ev.target.value;TX.dash()};
+ $('#dsP').onclick=()=>printHTML(`<h2 style="color:#111">${esc(c.name)} · ${esc(today())}</h2><p style="color:#111">${T3('Celková úspěšnost','Overall score','Загальна успішність')}: <b>${D.cls==null?'–':D.cls+' %'}</b> · ${T3('Zadané úkoly','Assignments','Завдання')}: <b>${c.asg.length}</b></p><table><tr><th>${T3('Žák','Student','Учень')}</th><th>${T3('Splněno','Completed','Виконано')}</th><th>${T3('Průměr','Average','Середнє')}</th><th>${T3('Pozornost','Attention','Увага')}</th><th>${T3('Známka','Grade','Оцінка')}</th></tr>${rows.map(r=>`<tr><td>${esc(r.m)}</td><td>${r.done} / ${c.asg.length}</td><td>${r.avg==null?'–':r.avg+' %'}</td><td>${r.n?r.low:'–'}</td><td>${r.gr==null?'–':r.gr.toFixed(1)}</td></tr>`).join('')}</table>`)};
+TX.reg('dash','Dashboard třídy','Přehled úspěšnosti učebny: kdo je výborný, kdo potřebuje pomoc a jak se plní zadání.',TX.dash);
+TX.lab.push(['users','Dashboard třídy','Úspěšnost učebny, žáci podle prospěchu a plnění zadání','dash',true]);TX.noGuest.push('dash');
+TX.home.push(()=>{if(!isT())return'';return`<div class="card qc" onclick="go('dash')" style="display:flex;gap:14px;align-items:center;cursor:pointer"><span style="font-size:2.2rem;color:var(--b)">${ic('users')}</span><div><b>${T3('Dashboard třídy','Class dashboard','Дашборд класу')}</b><p class="m" style="margin:2px 0 0">${T3('Úspěšnost učebny a žáci, kteří potřebují pomoc.','Class success and the students who need help.','Успішність класу та учні, яким потрібна допомога.')}</p></div></div>`});
+
+/* ---------- CSS ---------- */
+document.head.insertAdjacentHTML('beforeend',`<style id="v111css">
+.dgp{background:#fff;color:#161616;border-radius:12px;padding:18px 20px;max-height:420px;overflow:auto;font-family:Calibri,"Segoe UI",system-ui,sans-serif;line-height:1.45;margin:10px 0}
+.dgp h1{font-size:1.5rem;margin:0 0 6px;color:#161616;letter-spacing:0}.dgp h2{font-size:1.15rem;color:#2e74b5;margin:16px 0 6px}
+.dgp ul{margin:4px 0 8px 18px;padding:0}.dgp li,.dgp p,.dgp td,.dgp th,.dgp .qn,.dgp .op{color:#161616}.dgp table{border-collapse:collapse;width:100%;margin:8px 0}.dgp td,.dgp th{border:1px solid #bbb;padding:5px 8px;text-align:left}.dgp th{background:#e8f0fb}
+.dgp .bx{background:#fff4cc;border-left:4px solid #f5b400;padding:8px 12px;margin:10px 0;border-radius:4px;color:#161616}.dgp .qn{margin:8px 0 2px;font-weight:700}.dgp .op{margin-left:18px}
+.dgc{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.dgc select{width:auto;margin:0}
+.dsm{border-top:1px solid var(--line);padding:12px 0}.dsm:first-child{border-top:0;padding-top:0}
+.dsh-bar{justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.dsh-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-bottom:0}
+.dsh-hero{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.dsh-gr{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.dsh-rw{position:relative;width:128px;height:128px;flex:none}.dsh-ring{width:100%;height:100%;display:block}
+.dsh-tr{position:absolute;inset:0;display:grid;place-items:center;color:var(--ok)}.dsh-tr svg{width:52px;height:52px}
+.dsh-k{font-size:.82rem;color:var(--mut)}.dsh-big{font-size:clamp(2rem,6vw,2.9rem);font-weight:800;letter-spacing:-1px;line-height:1.05}
+.dsh-bb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;max-width:210px}
+.dsh-c{display:inline-grid;place-items:center;border-radius:50%;font-weight:700;color:#10142b;font-size:.85rem}
+.dsh-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.dsh-tile{border-radius:22px;padding:14px;color:#10142b;display:flex;flex-direction:column;justify-content:space-between;gap:8px;min-height:170px}
+.dsh-tile.g{background:linear-gradient(160deg,#8af7a8,#38e08a)}.dsh-tile.y{background:linear-gradient(160deg,#ffe07a,#ffb02e)}.dsh-tile.r{background:linear-gradient(160deg,#ffa99b,#ff5c7a)}
+.dsh-av{display:flex;gap:-6px;min-height:30px}.dsh-av .av{border:2px solid rgba(255,255,255,.8);margin-right:-8px}
+.dsh-num{font-size:2.6rem;font-weight:800;line-height:1}.dsh-tl{font-size:.82rem;font-weight:600}.dsh-ts{font-size:.76rem;opacity:.8}
+.dsh-sc{overflow-x:auto;margin-top:6px}.dsh-tb{width:100%;border-collapse:separate;border-spacing:0 8px;min-width:560px}
+.dsh-tb th{font-size:.78rem;color:var(--mut);text-align:left;font-weight:600;padding:0 12px}
+.dsh-tb td{padding:10px 12px;background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dsh-tb td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}.dsh-tb td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}
+.dsh-tb tr.tg td{background:rgba(56,224,138,.13)}.dsh-tb tr.ty td{background:rgba(255,176,46,.14)}.dsh-tb tr.tr td{background:rgba(255,92,122,.14)}
+.dsh-pv{position:relative;display:block;min-width:96px;height:26px;border-radius:13px;background:var(--line);overflow:hidden}.dsh-pv i{position:absolute;left:0;top:0;bottom:0;opacity:.85;border-radius:13px}.dsh-pv b{position:relative;display:block;text-align:center;line-height:26px;font-size:.82rem;color:#10142b}
+@media(max-width:900px){.dsh-top{grid-template-columns:1fr}.dsh-tile{min-height:140px}}
+@media(max-width:520px){.dsh-hero{grid-template-columns:1fr}.dsh-tiles{gap:8px}.dsh-num{font-size:2rem}}
+</style>`);
+
+/* ---------- verze a changelog ---------- */
+VN9['11.1']='Macaron';
+CL.unshift(['11.1','Generátor dokumentů a dashboard třídy','9. 11. 2026',[
+'Generátor dokumentů (pro učitele, Laboratoř): vytvoří výukový zápis jako zápis do hodiny (cíle, výklad, tabulka pojmů, rámeček Důležité, kontrolní otázky), pracovní list nebo písemku A/B s klíčem a hodnocením. Dokumenty se stáhnou jako Word (.docx) nebo se vytisknou do PDF',
+'Zápis k libovolnému tématu napíše Luna, když je online. Jinak se dokumenty sestaví z otázek v bance TadxChemie',
+'Materiály od učitele (pro žáky i učitele): učitel dokument sdílí vybrané učebně a žáci ho najdou v Laboratoři i v detailu učebny. Mohou ho přečíst, stáhnout do Wordu nebo vytisknout',
+'Dashboard třídy (pro učitele, Úvod a Laboratoř): celková úspěšnost učebny, počet zadaných úkolů, rozdělení žáků na výborné, v pohodě a ty, kteří potřebují pomoc, a tabulka prospěchu s průměrem, pozorností, aktivitou a známkou. Jde seřadit i vytisknout',
+'Oprava: název verze se už nikdy nezobrazí jako undefined (patička, úvodní obrazovka)'
+]]);
+}catch(e){console.error('v11.1',e)}})();
 </script>
 </body>
 </html>
