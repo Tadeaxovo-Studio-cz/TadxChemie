@@ -630,7 +630,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='11.3';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie", "11.0": "Éclair", "11.1": "Macaron"};let LL=2,CD=null,AC=null,NB=0;
+const VER='11.4';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie", "11.0": "Éclair", "11.1": "Macaron"};let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -795,8 +795,8 @@ const bars=(v,l)=>{const m=Math.max(1,...v);return`<div class="bars">${v.map((x,
 const tb=(h,r)=>`<table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.join('')||`<tr><td colspan="${h.length}" class="m">Nic tu není.</td></tr>`}</table>`;
 function atab(i){AT=i;admin()}
 function admin(){if(me.role!=='a')return go('home');
-$('#adTabs').innerHTML=['Přehled','Uživatelé','Učebny','Kvízy','Bezpečnost','Nastavení','Podpora'].map((x,i)=>`<button class="${i==AT?'on':''}" onclick="atab(${i})">${x}</button>`).join('');
-$('#adC').innerHTML=[adO,adU,adC,adQ,adS,adN2,adSup][AT]()}
+$('#adTabs').innerHTML=['Přehled','Uživatelé','Učebny','Kvízy','Bezpečnost','Nastavení','Podpora','Zpětná vazba','Hlášení'].map((x,i)=>`<button class="${i==AT?'on':''}" onclick="atab(${i})">${x}</button>`).join('');
+$('#adC').innerHTML=[adO,adU,adC,adQ,adS,adN2,adSup,()=>window.adFb4(),()=>window.adRp4()][AT]()}
 function adO(){const U=DB.g('users',[]),A0=DB.g('results',[]),R=A0.filter(r=>!r.dq),avg=R.length?(R.reduce((a,r)=>a+r.grade,0)/R.length).toFixed(2):'–',bad=A0.filter(r=>r.sig&&sig(r)!=r.sig).length;
 const K=[['users','Uživatelů',U.length],['award','Učitelů',U.filter(u=>u.role=='t').length],['star','Testů',R.length],['trophy','Průměrná známka',avg],['users','Učeben',CLS().length],['book-open','Vlastních kvízů',DB.g('quizzes',[]).length],['circle-alert','Zablokovaných',U.filter(u=>u.ban).length],['shield-check','Podezřelých výsledků',bad]];
 const days=[...Array(7)].map((_,i)=>new Date(Date.now()-(6-i)*864e5).toISOString().slice(0,10));
@@ -7226,5 +7226,376 @@ CL.unshift(['11.3','Písmo štětcem, nová bublina Luny a menu „+“','11. 11
 }catch(e){console.error('v11.3',e)}})();
 </script>
 
+
+<style id="v114css">
+/* ===== v11.4 Tiramisu ===== */
+:root{--e4:cubic-bezier(.16,1,.3,1)}
+/* --- plynulé přechody stránek (stejný pohyb jako u Luny) --- */
+html:root .view.on:not(#luna):not(#home){animation:rb4V .55s var(--e4) backwards}
+@keyframes rb4V{from{opacity:0;transform:translate3d(56px,0,0) scale(.985)}to{opacity:1;transform:none}}
+html:root .view.on:not(#luna):not(#quiz):not(#home)>*{animation:rb4C .6s var(--e4) backwards}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(2){animation-delay:.05s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(3){animation-delay:.1s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(4){animation-delay:.15s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(5){animation-delay:.2s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(6){animation-delay:.25s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(7){animation-delay:.3s}
+html:root .view.on:not(#luna):not(#home)>*:nth-child(n+8){animation-delay:.35s}
+html:root .view.on:not(#luna):not(#home) .grid>*{animation:rb4C .55s var(--e4) backwards}
+html:root .view.on .grid>*:nth-child(1){animation-delay:.12s}html:root .view.on .grid>*:nth-child(2){animation-delay:.17s}
+html:root .view.on .grid>*:nth-child(3){animation-delay:.22s}html:root .view.on .grid>*:nth-child(4){animation-delay:.27s}
+html:root .view.on .grid>*:nth-child(5){animation-delay:.32s}html:root .view.on .grid>*:nth-child(6){animation-delay:.37s}
+html:root .view.on .grid>*:nth-child(7){animation-delay:.42s}html:root .view.on .grid>*:nth-child(8){animation-delay:.47s}
+html:root .view.on .grid>*:nth-child(n+9){animation-delay:.5s}
+@keyframes rb4C{from{opacity:0;transform:translate3d(0,22px,0) scale(.98)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){html:root .view.on,html:root .view.on>*,html:root .view.on .grid>*{animation:none!important}}
+html.eco .view.on,html.eco .view.on>*,html.eco .view.on .grid>*{animation:none!important}
+html:root button:active:not(:disabled){transform:scale(.97)}
+html:root #set[data-tab] [data-p]{animation:rb4C .5s var(--e4) backwards}
+
+/* --- hlavičky podstránek --- */
+.pg3.sm{min-height:96px;padding:18px 24px}.pg3.sm img{height:84px}.pg3.sm p{margin-bottom:10px}
+.view.has4>.rw4{justify-content:flex-end;margin-bottom:0}
+.view.has4 .h4x,.view.has4 .bk4,.view.has4 .sb4{display:none!important}
+.view.has4>.rw4:not(:has(button:not(.bk4))){display:none}
+
+/* --- karty, záložky, tabulky --- */
+html:root .view.has3 .card,html:root #quiz .card,html:root #res .card,html:root #admin .card{border-radius:24px;background:linear-gradient(160deg,color-mix(in srgb,var(--tx) 7%,transparent),color-mix(in srgb,var(--tx) 3%,transparent));box-shadow:0 22px 50px -34px rgba(0,0,0,.7),inset 0 1px 0 color-mix(in srgb,var(--tx) 10%,transparent)}
+html:root .tabs{gap:4px;padding:5px;border-radius:999px;background:color-mix(in srgb,var(--tx) 6%,transparent);border:1px solid var(--line);width:fit-content;max-width:100%;overflow-x:auto;scrollbar-width:none}
+html:root #adTabs{border-radius:22px}
+html:root .tabs button{border:0;background:transparent;border-radius:999px;padding:8px 16px;white-space:nowrap;box-shadow:none}
+html:root .tabs button:hover{transform:none;box-shadow:none;background:color-mix(in srgb,var(--tx) 8%,transparent)}
+html:root .tabs button.on{background:linear-gradient(120deg,var(--a),var(--b));color:#fff;box-shadow:0 10px 22px -12px var(--a)}
+html:root #admin tbody tr{transition:background .2s}html:root #admin tbody tr:hover{background:color-mix(in srgb,var(--tx) 6%,transparent)}
+html:root #admin .grid>.card{transition:transform .3s var(--e4),box-shadow .3s}
+html:root #admin .grid>.card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px var(--a)}
+
+/* --- kvíz --- */
+html:root #quiz .card{padding:26px 28px}
+html:root #qt{font-size:clamp(1.25rem,3.2vw,1.7rem);line-height:1.25;margin:8px 0 18px}
+html:root #quiz .bar{height:9px;border-radius:9px}html:root #quiz .bar i{box-shadow:0 0 14px var(--b)}
+#qo{counter-reset:o4}
+html:root .opt{position:relative;display:flex;align-items:center;gap:14px;border-radius:16px;padding:14px 16px;transition:transform .3s var(--e4),background .3s,border-color .3s,box-shadow .3s}
+html:root .opt::before{counter-increment:o4;content:counter(o4,upper-alpha);flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:.9rem;background:color-mix(in srgb,var(--tx) 10%,transparent);transition:.3s}
+html:root .opt:hover{transform:translateX(6px)}
+html:root .opt.sel{box-shadow:0 0 0 3px color-mix(in srgb,var(--b) 22%,transparent)}html:root .opt.sel::before{background:var(--b);color:#062a2a}
+html:root .opt.ok{animation:rb4Ok .55s var(--e4)}html:root .opt.ok::before{background:var(--ok);color:#06301a}html:root .opt.no::before{background:var(--no);color:#fff}
+@keyframes rb4Ok{40%{transform:scale(1.025)}}
+html:root #res .grade{font-size:8rem;filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--a) 55%,transparent))}
+
+/* --- novinky jako časová osa --- */
+html:root #lgL .card{position:relative;margin-left:14px;border-left:3px solid var(--a)}
+html:root #lgL .card::before{content:"";position:absolute;left:-11px;top:26px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--b)}
+html:root #lgL .card:first-child{box-shadow:0 26px 50px -30px var(--a)}
+
+/* --- přepínače místo zaškrtávacích políček --- */
+#sett input[type=checkbox],#adC input[type=checkbox],#lSet input[type=checkbox],.sw4{-webkit-appearance:none;appearance:none;position:relative;flex:none;width:48px;height:28px;min-width:48px;min-height:28px;margin:0;padding:0;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--tx) 16%,transparent);cursor:pointer;transition:background .35s,box-shadow .35s,border-color .35s;outline-offset:3px}
+#sett input[type=checkbox]::before,#adC input[type=checkbox]::before,#lSet input[type=checkbox]::before,.sw4::before{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.3,1.5,.4,1),width .2s}
+#sett input[type=checkbox]:checked,#adC input[type=checkbox]:checked,#lSet input[type=checkbox]:checked,.sw4[aria-checked=true]{background:linear-gradient(120deg,var(--a),var(--b));border-color:transparent;box-shadow:0 8px 20px -10px var(--a)}
+#sett input[type=checkbox]:checked::before,#adC input[type=checkbox]:checked::before,#lSet input[type=checkbox]:checked::before,.sw4[aria-checked=true]::before{transform:translateX(20px)}
+#sett input[type=checkbox]:active::before,#adC input[type=checkbox]:active::before,.sw4:active::before{width:28px}
+#sett input[type=checkbox]:checked:active::before,#adC input[type=checkbox]:checked:active::before,.sw4[aria-checked=true]:active::before{transform:translateX(14px)}
+html:root .sw4:hover{transform:none;box-shadow:none}
+#sett label.ck,#adC label.ck,#lSet label.ck{justify-content:space-between;gap:14px;padding:12px 16px;border-radius:16px;border:1px solid var(--line);background:color-mix(in srgb,var(--tx) 4%,transparent);color:var(--tx);transition:background .25s,border-color .25s}
+#sett label.ck:hover,#adC label.ck:hover,#lSet label.ck:hover{background:color-mix(in srgb,var(--tx) 8%,transparent);border-color:color-mix(in srgb,var(--b) 40%,var(--line))}
+#sett label.ck input,#adC label.ck input,#lSet label.ck input{order:2;margin-left:auto}
+html:root #sett .sst{border-radius:16px;transition:background .25s}
+
+/* --- okna: hodnocení Luny a hlášení --- */
+.fb4o{position:fixed;inset:0;z-index:10060;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(14,10,36,.62);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);animation:fi2 .3s both;transition:opacity .3s}
+.fb4o.out{opacity:0}.fb4o.out .fb4c{transform:translateY(18px) scale(.97);opacity:0}
+.fb4c{position:relative;width:min(470px,100%);max-height:94dvh;overflow:auto;border-radius:28px;padding:28px 24px 22px;background:var(--bg);color:var(--tx);border:1px solid var(--line);box-shadow:0 40px 90px -20px rgba(0,0,0,.65),0 0 0 1px color-mix(in srgb,var(--a) 25%,transparent);animation:fb4In .6s var(--e4) both;transition:transform .3s,opacity .3s}
+.fb4c::before{content:"";position:absolute;left:0;right:0;top:0;height:120px;border-radius:28px 28px 0 0;background:radial-gradient(120% 100% at 50% 0,color-mix(in srgb,var(--a) 30%,transparent),transparent 70%);pointer-events:none}
+@keyframes fb4In{from{opacity:0;transform:translateY(28px) scale(.95)}to{opacity:1;transform:none}}
+.fb4s{position:relative;animation:fb4S .55s var(--e4) both}.fb4s[hidden]{display:none}
+.fb4s.out{animation:fb4O .25s ease-in both}
+@keyframes fb4S{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fb4O{to{opacity:0;transform:translateY(-12px)}}
+html:root .fb4x{position:absolute;right:12px;top:12px;z-index:3;width:36px;height:36px;min-height:36px;padding:0;display:grid;place-items:center;border-radius:50%;background:transparent;border:0;color:var(--mut)}
+.fb4h{text-align:center;margin-bottom:6px}.fb4h h3{font-size:1.4rem;margin:10px 0 4px;line-height:1.15}.fb4h p{color:var(--mut);margin:0;font-size:.92rem}
+.fb4av{width:64px;height:64px;margin:0 auto;display:grid;place-items:center;border-radius:20px;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;box-shadow:0 14px 30px -14px var(--a);animation:pgFl 5s ease-in-out infinite}
+.fb4av img{width:54px;height:54px;object-fit:contain}
+.fb4stars{display:flex;justify-content:center;gap:4px;margin:16px 0 2px}
+html:root .fb4st{width:52px;height:52px;min-height:52px;padding:0;border:0;background:none;border-radius:14px;display:grid;place-items:center;color:color-mix(in srgb,var(--tx) 26%,transparent);transition:color .25s,transform .4s cubic-bezier(.3,1.6,.4,1);box-shadow:none}
+html:root .fb4st:hover{box-shadow:none;transform:scale(1.12)}
+.fb4st svg{width:40px;height:40px;fill:transparent;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;transition:fill .3s}
+.fb4st.pv{color:#ffc94d}.fb4st.on{color:#ffb800}.fb4st.on svg{fill:currentColor}
+.fb4st.pop{animation:fb4Pop .6s cubic-bezier(.3,1.7,.4,1) both;animation-delay:calc(var(--i)*60ms)}
+@keyframes fb4Pop{0%{transform:scale(.6)}55%{transform:scale(1.35) rotate(8deg)}100%{transform:scale(1)}}
+.fb4lb{text-align:center;min-height:1.7em;font-weight:700;color:#ffb800;transition:opacity .25s,transform .25s}.fb4lb.sw{opacity:0;transform:translateY(6px)}
+.fb4r{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .6s var(--e4),opacity .5s}
+.fb4r.open{grid-template-rows:1fr;opacity:1}.fb4r>div{overflow:hidden;min-height:0;padding:0 4px}
+.fb4l{display:block;font-size:.88rem;color:var(--mut);margin:12px 0 0}
+html:root .fb4ta{width:100%;min-height:104px;resize:none;margin:8px 0 4px;border-radius:16px}
+.fb4cn{display:flex;justify-content:space-between;gap:10px;font-size:.76rem;color:var(--mut);margin-bottom:6px}
+.fb4a{display:flex;gap:10px;margin-top:14px}
+html:root .fb4skip{min-height:46px;border-radius:14px;background:transparent;color:var(--mut)}
+html:root .fb4send{flex:1;min-height:46px;border-radius:14px;border:0;font-weight:700;color:#fff;background:linear-gradient(120deg,var(--a),#4f8cff 60%,var(--b));opacity:.36;filter:saturate(.4);transition:opacity .5s,filter .5s,transform .3s,box-shadow .5s}
+html:root .fb4send.rdy{opacity:1;filter:none;box-shadow:0 16px 32px -14px var(--a);animation:fb4Rdy 1.6s ease-in-out .4s 2}
+html:root .fb4send.nope{animation:sh .4s}
+@keyframes fb4Rdy{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--b) 25%,transparent),0 16px 32px -14px var(--a)}}
+.fb4w{text-align:center;padding:14px 0 6px}.fb4w h3{margin:0 0 4px;font-size:1.25rem}.fb4w p{margin:0;color:var(--mut)}
+.fb4spin{width:84px;height:84px;margin:0 auto 14px;display:block;animation:rb4Spin 1.1s linear infinite}
+.fb4spin circle{fill:none;stroke-width:4;stroke-linecap:round}.fb4spin .tr{stroke:var(--line)}.fb4spin .ar{stroke:var(--b);stroke-dasharray:44 120}
+@keyframes rb4Spin{to{transform:rotate(360deg)}}
+.fb4ck{width:104px;height:104px;margin:4px auto 10px;display:block;overflow:visible}
+.fb4ck circle{fill:color-mix(in srgb,var(--ok) 14%,transparent);stroke:var(--ok);stroke-width:2.5;stroke-dasharray:151;stroke-dashoffset:151;transform-origin:center;transform:rotate(-90deg);animation:fb4D .7s var(--e4) forwards,fb4Pu 1s .9s ease-out}
+.fb4ck path{fill:none;stroke:var(--ok);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:fb4D .5s .5s var(--e4) forwards}
+@keyframes fb4D{to{stroke-dashoffset:0}}
+@keyframes fb4Pu{40%{filter:drop-shadow(0 0 14px var(--ok))}}
+.fb4ok{text-align:center}.fb4ok h3{margin:0 0 6px;font-size:1.35rem;animation:fb4S .6s .7s var(--e4) both}
+.fb4cap{color:var(--mut);line-height:1.5;margin:0 0 14px;animation:fb4S .6s .85s var(--e4) both}
+.fb4ok .fb4done{animation:fb4S .6s 1s var(--e4) both;min-width:140px}
+.rp4t{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 4px}
+html:root .rp4t button{display:flex;align-items:center;gap:10px;text-align:left;border-radius:14px;padding:10px 12px;min-height:48px;font-size:.88rem;line-height:1.2}
+.rp4t button svg{flex:none;opacity:.8}
+html:root .rp4t button.on{border-color:var(--b);background:color-mix(in srgb,var(--b) 14%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--b) 20%,transparent)}
+.rp4t button:last-child:nth-child(odd){grid-column:1/-1}
+.rp4n{font-size:.76rem;color:var(--mut);margin:4px 0 0}
+.rp4s{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:10px 0 0;padding:10px 14px;border-radius:14px;border:1px solid var(--line);font-size:.88rem;animation:fb4S .4s both}
+@media(max-width:420px){.rp4t{grid-template-columns:1fr}}
+
+/* --- Luna: nová tlačítka v hlavičce --- */
+#luna .lh .lx4e{color:var(--ok)}
+@media(max-width:520px){#luna .lh>.ib[onclick^="lTerms"]{display:none}}
+
+/* --- rychlé hledání --- */
+.pal4o{position:fixed;inset:0;z-index:10070;display:flex;justify-content:center;align-items:flex-start;padding:12vh 14px 14px;background:rgba(14,10,36,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:fi2 .25s both;transition:opacity .22s}
+.pal4o.out{opacity:0}
+.pal4c{width:min(560px,100%);border-radius:22px;background:var(--bg);border:1px solid var(--line);box-shadow:0 40px 90px -20px rgba(0,0,0,.7);overflow:hidden;animation:fb4In .45s var(--e4) both}
+.pal4q{display:flex;align-items:center;gap:10px;padding:6px 16px;border-bottom:1px solid var(--line)}
+.pal4q input{border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;margin:0!important;min-height:46px;flex:1}
+.pal4q kbd,.pal4f kbd{font-size:.7rem;padding:2px 7px;border-radius:7px;border:1px solid var(--line);color:var(--mut)}
+.pal4l{max-height:min(360px,50dvh);overflow:auto;padding:6px}
+html:root .pal4i{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;border-radius:12px;padding:9px 12px;min-height:44px;text-align:left;box-shadow:none}
+html:root .pal4i:hover{transform:none;box-shadow:none}.pal4i.on{background:color-mix(in srgb,var(--a) 22%,transparent)}
+.pal4i small{margin-left:auto;color:var(--mut);font-size:.74rem}
+.pal4e{padding:16px;color:var(--mut);text-align:center;margin:0}
+.pal4f{display:flex;gap:14px;padding:8px 16px;border-top:1px solid var(--line);font-size:.74rem;color:var(--mut)}
+</style>
+<script id="v114js">
+/* ===== v11.4 Tiramisu ===== */
+(function(){try{
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+const T=(cs,en,uk)=>{let l='cs';try{l=DB.g('lang','cs')}catch(e){}return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe=(f,d)=>{try{return f()}catch(e){console.error('v11.4',e);return d===undefined?'':d}};
+const gS=(k,d)=>safe(()=>DB.g(k,d),d),sS=(k,v)=>safe(()=>DB.s(k,v));
+const me0=()=>safe(()=>me,null);
+const K=()=>safe(()=>(me&&me.name)||'host','host');
+const tst=m=>safe(()=>toast(m));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const IC={
+ star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+ flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
+ x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+ done:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/>',
+ search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+ bug:'<path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3 3 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/><path d="M12 20v-9"/><path d="M6 13H2"/><path d="M22 13h-4"/>',
+ warn:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v4"/><path d="M12 15h.01"/>',
+ help:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
+ file:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>',
+ more:'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+ go:'<path d="m9 18 6-6-6-6"/>',
+ atom:'<circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>'};
+const ic4=(p,s)=>`<svg viewBox="0 0 24 24" width="${s||18}" height="${s||18}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const D4=ts=>{try{return new Date(ts).toLocaleString(T('cs-CZ','en-GB','uk-UA'),{day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}};
+const chatId=()=>safe(()=>{const st=gS('lchats',{})[K()];return st&&st.act||''},'');
+const lunaMsgs=()=>safe(()=>window.lxMsgs?window.lxMsgs():[],[]);
+
+/* ---------- 1) Společný rámec oken (formulář → odesílání → fajfka) ---------- */
+function flow(cfg){
+ if($('#fb4'))return;
+ let fin=false,sending=false;
+ const o=document.createElement('div');o.id='fb4';o.className='fb4o';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',cfg.label);
+ o.innerHTML=`<div class="fb4c"><button type="button" class="fb4x" aria-label="${T('Zavřít','Close','Закрити')}">${ic4(IC.x,18)}</button>
+ <div class="fb4s" data-s="1">${cfg.body}</div>
+ <div class="fb4s fb4w" data-s="2" hidden><svg class="fb4spin" viewBox="0 0 50 50" aria-hidden="true"><circle class="tr" cx="25" cy="25" r="21"/><circle class="ar" cx="25" cy="25" r="21"/></svg><h3>${cfg.sendT}</h3><p>${T('Chvilku strpení…','Just a moment…','Хвилинку…')}</p></div>
+ <div class="fb4s fb4ok" data-s="3" hidden aria-live="polite"><svg class="fb4ck" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 15-17"/></svg><h3>${cfg.okT}</h3><p class="fb4cap">${cfg.okD}</p><button type="button" class="pri fb4done">${T('Hotovo','Done','Готово')}</button></div></div>`;
+ document.body.appendChild(o);
+ const send=$('.fb4send',o),upd=()=>send.classList.toggle('rdy',!!cfg.ready());
+ const close=()=>{if(sending&&!fin)return;if(o.dataset.c)return;o.dataset.c=1;o.classList.add('out');setTimeout(()=>{o.remove();safe(cfg.done)},300)};
+ const show=n=>{$$('.fb4s',o).forEach(s=>{if(s.dataset.s==n){s.hidden=false}else if(!s.hidden){s.classList.add('out');setTimeout(()=>{s.hidden=true;s.classList.remove('out')},240)}})};
+ cfg.init&&cfg.init(o,upd);
+ o.addEventListener('input',upd);o.addEventListener('click',()=>setTimeout(upd,0));
+ $('.fb4x',o).onclick=close;const sk=$('.fb4skip',o);if(sk)sk.onclick=close;$('.fb4done',o).onclick=close;
+ o.addEventListener('mousedown',e=>{if(e.target===o&&!sending)close()});
+ o.addEventListener('keydown',e=>{if(e.key=='Escape'){e.stopPropagation();close()}});
+ send.onclick=()=>{
+  if(!cfg.ready()){send.classList.remove('nope');void send.offsetWidth;send.classList.add('nope');safe(()=>cfg.nope&&cfg.nope(o));return}
+  if(sending)return;sending=true;$('.fb4x',o).style.visibility='hidden';
+  safe(cfg.save);show(2);
+  setTimeout(()=>{fin=true;sending=false;show(3);setTimeout(()=>{const b=$('.fb4done',o);b&&b.focus()},900);setTimeout(()=>{if(o.isConnected)close()},6500)},1600)};
+ upd();return o}
+
+/* ---------- 2) Hodnocení Luny ---------- */
+function openFb(done){
+ const S={n:0};
+ const im=$('#lOrb img')||$('.orb img'),av=im&&im.src?`<img alt="" src="${E(im.src)}">`:ic4(IC.atom,34);
+ const LB=['',T('Moc se to nepovedlo','That went badly','Зовсім невдало'),T('Mohlo to být lepší','Could be better','Могло бути краще'),T('Docela dobré','Pretty good','Непогано'),T('Dobré','Good','Добре'),T('Skvělé!','Great!','Чудово!')];
+ const body=`<div class="fb4h"><div class="fb4av">${av}</div><h3>${T('Jak se ti povídalo s Lunou?','How was your chat with Luna?','Як тобі спілкування з Луною?')}</h3><p>${T('Ohodnoť konverzaci. Zabere to jen pár vteřin.','Rate the conversation. It only takes a few seconds.','Оціни розмову. Це займе кілька секунд.')}</p></div>
+ <div class="fb4stars" role="radiogroup" aria-label="${T('Počet hvězdiček','Stars','Зірки')}">${[1,2,3,4,5].map(n=>`<button type="button" class="fb4st" role="radio" aria-checked="false" data-n="${n}" style="--i:${n-1}" aria-label="${n}/5"><svg viewBox="0 0 24 24" aria-hidden="true">${IC.star}</svg></button>`).join('')}</div>
+ <div class="fb4lb" id="fb4lb" aria-live="polite">&nbsp;</div>
+ <div class="fb4r" id="fb4r"><div><label class="fb4l" for="fb4t">${T('Chceš nám k tomu něco napsat?','Want to tell us more?','Хочеш щось додати?')}</label><textarea id="fb4t" class="fb4ta" maxlength="500" placeholder="${T('Co se ti líbilo, nebo co můžeme zlepšit?','What did you like, or what can we improve?','Що сподобалось або що покращити?')}"></textarea><div class="fb4cn"><span id="fb4h">${T('Napiš aspoň pár slov, pak se tlačítko Odeslat rozsvítí.','Write a few words and the Send button lights up.','Напиши кілька слів, і кнопка стане яскравою.')}</span><span id="fb4c">0/500</span></div></div></div>
+ <div class="fb4a"><button type="button" class="fb4skip">${T('Přeskočit','Skip','Пропустити')}</button><button type="button" class="fb4send">${T('Odeslat','Send','Надіслати')}</button></div>`;
+ flow({label:T('Ohodnoť Lunu','Rate Luna','Оціни Луну'),body,sendT:T('Odesílám zpětnou vazbu…','Sending feedback…','Надсилаємо відгук…'),
+  okT:T('Odesláno','Sent','Надіслано'),
+  okD:T('Děkujeme za zpětnou vazbu, vaše zpětná vazba nám pomáhá vylepšovat Lunu i TadxChemii.','Thank you for your feedback. It helps us improve Luna and TadxChemie.','Дякуємо за відгук. Він допомагає нам покращувати Луну та TadxChemie.'),
+  ready:()=>S.n>0&&($('#fb4t')||{value:''}).value.trim().length>=3,
+  nope:o=>{const h=$('#fb4h',o);h&&(h.style.color='var(--no)');setTimeout(()=>h&&(h.style.color=''),1200);if(S.n&&$('#fb4t'))$('#fb4t').focus()},
+  save:()=>{const L=gS('lfb',[]);L.unshift({id:uid(),user:K(),stars:S.n,text:$('#fb4t').value.trim(),chat:chatId(),ts:Date.now(),ver:safe(()=>VER)});sS('lfb',L.slice(0,500))},
+  done,
+  init:(o,upd)=>{
+   const st=$$('.fb4st',o),lb=$('#fb4lb',o),ta=$('#fb4t',o),grp=$('.fb4stars',o);
+   const pick=n=>{S.n=n;st.forEach((b,i)=>{const on=i<n;b.classList.toggle('on',on);b.setAttribute('aria-checked',String(i+1==n));b.classList.remove('pop');if(on){void b.offsetWidth;b.classList.add('pop')}});
+    lb.classList.add('sw');setTimeout(()=>{lb.textContent=LB[n];lb.classList.remove('sw')},160);
+    $('#fb4r',o).classList.add('open');if(!matchMedia('(pointer:coarse)').matches)setTimeout(()=>ta.focus(),520);upd()};
+   st.forEach(b=>{b.onclick=()=>pick(+b.dataset.n);b.onmouseenter=()=>st.forEach((x,i)=>x.classList.toggle('pv',i<+b.dataset.n))});
+   grp.onmouseleave=()=>st.forEach(x=>x.classList.remove('pv'));
+   grp.onkeydown=e=>{if(/Arrow(Right|Up)/.test(e.key)){e.preventDefault();pick(Math.min(5,S.n+1));st[Math.min(4,S.n-1)].focus()}else if(/Arrow(Left|Down)/.test(e.key)){e.preventDefault();pick(Math.max(1,S.n-1));st[Math.max(0,S.n-1)].focus()}};
+   ta.addEventListener('input',()=>{$('#fb4c',o).textContent=ta.value.length+'/500';const h=$('#fb4h',o);h.textContent=ta.value.trim().length>=3&&S.n?T('Hotovo, můžeš odeslat.','All set, you can send it.','Готово, можна надсилати.'):T('Napiš aspoň pár slov, pak se tlačítko Odeslat rozsvítí.','Write a few words and the Send button lights up.','Напиши кілька слів, і кнопка стане яскравою.')});
+   setTimeout(()=>{const f=st[0];f&&f.focus()},450)}})}
+
+function fbAsk(done,force){
+ if(!me0()||K()=='host')return false;
+ if(!force&&gS('fb4on',true)===false)return false;
+ const m=lunaMsgs();
+ if(!m.some(x=>x.r=='u')&&!force)return false;
+ const id=chatId()||('t'+((m[0]||{}).ts||0)),A=gS('fb4ask',{});
+ if(!force&&A[id])return false;
+ A[id]=Date.now();const ks=Object.keys(A);if(ks.length>100)delete A[ks[0]];sS('fb4ask',A);
+ openFb(done);return true}
+
+/* ---------- 3) Nahlásit problém ---------- */
+function rpOpen(o0){
+ o0=o0||{};const S={t:o0.type||'',att:false};
+ const RT=[['bug',IC.bug,T('Chyba v aplikaci','App bug','Помилка в застосунку')],['bad',IC.warn,T('Nevhodné vyjadřování','Inappropriate language','Недоречні вислови')],['ans',IC.help,T('Špatná odpověď Luny','Wrong answer from Luna','Неправильна відповідь Луни')],['quiz',IC.file,T('Chyba v kvízu','Quiz mistake','Помилка в квізі')],['oth',IC.more,T('Něco jiného','Something else','Інше')]];
+ const hasM=lunaMsgs().length>0;
+ const body=`<div class="fb4h"><div class="fb4av">${ic4(IC.flag,30)}</div><h3>${T('Nahlásit problém','Report a problem','Повідомити про проблему')}</h3><p>${T('Chyba, bug nebo nevhodné vyjadřování? Dej nám vědět.','A bug, a mistake or inappropriate language? Let us know.','Помилка, баг чи недоречні вислови? Повідом нам.')}</p></div>
+ <div class="rp4t" role="radiogroup" aria-label="${T('Druh problému','Type of problem','Тип проблеми')}">${RT.map(r=>`<button type="button" role="radio" aria-checked="false" data-t="${r[0]}">${ic4(r[1],18)}<span>${r[2]}</span></button>`).join('')}</div>
+ <label class="fb4l" for="rp4d">${T('Popiš, co se stalo','Describe what happened','Опиши, що сталося')}</label><textarea id="rp4d" class="fb4ta" maxlength="800" placeholder="${T('Co jsi dělal(a) a co se stalo?','What were you doing and what happened?','Що ти робив(ла) і що сталося?')}">${E(o0.text||'')}</textarea>
+ ${hasM?`<div class="rp4s"><span>${T('Přiložit poslední zprávy z chatu s Lunou','Attach the latest messages from the Luna chat','Додати останні повідомлення з чату')}</span><button type="button" class="sw4" role="switch" aria-checked="false" id="rp4a" aria-label="${T('Přiložit zprávy','Attach messages','Додати')}"></button></div>`:''}
+ <p class="rp4n">${T('Hlášení uvidí administrátoři TadxChemie. Nepiš sem hesla ani osobní údaje.','TadxChemie admins will see this report. Do not include passwords or personal data.','Звіт побачать адміністратори. Не пиши паролі чи особисті дані.')}</p>
+ <div class="fb4a"><button type="button" class="fb4skip">${T('Zrušit','Cancel','Скасувати')}</button><button type="button" class="fb4send">${T('Odeslat','Send','Надіслати')}</button></div>`;
+ flow({label:T('Nahlásit problém','Report a problem','Повідомити про проблему'),body,sendT:T('Odesílám hlášení…','Sending report…','Надсилаємо звіт…'),
+  okT:T('Hlášení odesláno','Report sent','Звіт надіслано'),okD:T('Děkujeme! Hlášení jsme přijali a podíváme se na něj.','Thank you! We received your report and will look into it.','Дякуємо! Ми отримали звіт і розглянемо його.'),
+  ready:()=>!!S.t&&($('#rp4d')||{value:''}).value.trim().length>=5,
+  nope:o=>{(!S.t?$('.rp4t button',o):$('#rp4d',o)).focus()},
+  save:()=>{const L=gS('rep',[]),att=S.att?lunaMsgs().slice(-4).map(m=>({r:m.r=='u'?'u':'a',t:String(m.t||'').slice(0,300)})):[];
+   L.unshift({id:uid(),user:K(),type:S.t,text:$('#rp4d').value.trim(),page:o0.ctx||(($('.view.on')||{}).id)||'',att,ts:Date.now(),st:'new',ver:safe(()=>VER)});sS('rep',L.slice(0,500));safe(adBadge)},
+  init:(o,upd)=>{const bs=$$('.rp4t button',o);
+   const pick=t=>{S.t=t;bs.forEach(b=>{b.classList.toggle('on',b.dataset.t==t);b.setAttribute('aria-checked',String(b.dataset.t==t))});upd()};
+   bs.forEach(b=>b.onclick=()=>pick(b.dataset.t));if(S.t)pick(S.t);
+   const a=$('#rp4a',o);if(a){a.onclick=()=>{S.att=!S.att;a.setAttribute('aria-checked',String(S.att))};if(o0.ctx=='luna'){S.att=true;a.setAttribute('aria-checked','true')}}
+   setTimeout(()=>{const f=bs[0];f&&f.focus()},450)}})}
+window.rpOpen=rpOpen;window.fbOpen=()=>{if(!lunaMsgs().some(x=>x.r=='u')){tst(T('Nejdřív si s Lunou chvilku popovídej.','Chat with Luna first.','Спочатку поспілкуйся з Луною.'));return}fbAsk(null,true)};
+
+/* ---------- 4) Ukončení konverzace: zachycení „Nový chat“, zavření bubliny, nové tlačítko ---------- */
+let byp=0,bubN=0;
+window.addEventListener('click',e=>{const t=e.target&&e.target.closest?e.target:null;if(!t||byp)return;
+ const x=t.closest('#lpX');
+ if(x){const P=$('#lpP');if(P&&!P.hidden&&me0()&&K()!='host'&&gS('fb4on',true)!==false){const n=$$('.lr.lu',P).length;if(n>0&&n!==bubN){bubN=n;e.stopImmediatePropagation();e.preventDefault();openFb(()=>{byp=1;x.click();byp=0})}}return}
+ const nb=t.closest('#lxN');
+ if(nb&&fbAsk(()=>{byp=1;nb.click();byp=0})){e.stopImmediatePropagation();e.preventDefault()}},true);
+function endConv(){if(!lunaMsgs().some(x=>x.r=='u')){tst(T('Zatím tu není žádná konverzace k ukončení.','There is no conversation to end yet.','Ще немає розмови для завершення.'));return}
+ fbAsk(()=>{const n=$('#lxN');if(n){byp=1;n.click();byp=0}},true)}
+function lunaMount4(){const h=$('#luna .lh');if(!h||$('#lx4E',h))return;
+ h.insertAdjacentHTML('beforeend',`<button class="ib" id="lx4R" type="button" aria-label="${T('Nahlásit problém','Report a problem','Повідомити')}" title="${T('Nahlásit problém','Report a problem','Повідомити')}">${ic4(IC.flag,18)}</button><button class="ib lx4e" id="lx4E" type="button" aria-label="${T('Ukončit konverzaci','End conversation','Завершити розмову')}" title="${T('Ukončit konverzaci a ohodnotit Lunu','End the conversation and rate Luna','Завершити та оцінити Луну')}">${ic4(IC.done,18)}</button>`);
+ $('#lx4R',h).onclick=()=>rpOpen({ctx:'luna'});$('#lx4E',h).onclick=endConv}
+
+/* ---------- 5) Hlavičky všech ostatních stránek ---------- */
+const SKIP=new Set(['home','kviz','lab','prof','cls','notif','log','set','sett','quiz','res','luna','onb','auth','cards']);
+const SUB4={admin:()=>T('Uživatelé, učebny, kvízy, bezpečnost a zpětná vazba na jednom místě.','Users, classes, quizzes, security and feedback in one place.','Користувачі, класи, квізи й відгуки в одному місці.'),
+ teach:()=>T('Výsledky žáků a tvoje kvízy.','Your students’ results and quizzes.','Результати учнів і твої квізи.'),
+ studio:()=>T('Vytvoř vlastní kvíz.','Create your own quiz.','Створи власний квіз.'),
+ cd:()=>T('Nástěnka, zadání a chat učebny.','Board, assignments and class chat.','Дошка, завдання й чат класу.')};
+const heroHTML=(t,s,chips,back)=>`<div class="pg3 sm" data-t="${E(t)}"><span class="pgb" style="width:14px;height:14px;left:46%;bottom:-8px"></span><span class="pgb" style="width:10px;height:10px;left:60%;bottom:-8px;animation-delay:2.4s"></span><svg class="pgm" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="50" cy="50" r="9" fill="currentColor" stroke="none"/><circle cx="18" cy="28" r="6"/><circle cx="82" cy="30" r="6"/><circle cx="50" cy="90" r="6"/><path d="M24 31l20 14M76 33L56 46M50 59v25" stroke-width="2.5"/></svg><div class="pg3t"><h2>${E(t)}</h2>${s?`<p>${E(s)}</p>`:''}${chips.length?`<div class="pg3c">${chips.map(x=>`<span>${E(x)}</span>`).join('')}</div>`:''}${back?`<div class="pg3b"><button type="button" class="g" data-bk="1">${E(back)}</button></div>`:''}</div>${window.TDX_CHAR?`<img alt="" src="${window.TDX_CHAR}">`:''}</div>`;
+function pg4Sync(){const v=$('.view.on');if(!v||!me0())return;const id=v.id;if(SKIP.has(id))return;
+ const h1=$('h1',v);if(!h1)return;const title=h1.textContent.trim();if(!title)return;
+ const ex=$(':scope>.pg3.sm',v);
+ if(ex){if(ex.dataset.t!==title){ex.dataset.t=title;const h=$('h2',ex);h&&(h.textContent=title)}return}
+ if($(':scope>.pg3',v))return;
+ const row=h1.parentElement&&h1.parentElement.parentElement===v&&h1.parentElement.classList.contains('row')?h1.parentElement:null;
+ if(row){row.classList.add('rw4');h1.classList.add('h4x')}
+ const bk=row?$$('button',row).find(b=>/^(Zpět|Back|Назад)$/i.test(b.textContent.trim())):null;
+ if(bk)bk.classList.add('bk4');
+ const sp=$$(':scope>p.m',v)[0]||null;let sub=sp?sp.textContent.trim():'';if(sp)sp.classList.add('sb4');if(!sub&&SUB4[id])sub=SUB4[id]();
+ const chips=[];if(id=='admin'){chips.push(safe(()=>DB.g('users',[]).length,0)+' '+T('uživatelů','users','користувачів'),safe(()=>DB.g('results',[]).length,0)+' '+T('testů','tests','тестів'));const n=newReports();if(n)chips.push(n+' '+T('nových hlášení','new reports','нових звітів'))}
+ v.classList.add('has3','has4');
+ v.insertAdjacentHTML('afterbegin',heroHTML(title,sub,chips,bk?T('Zpět','Back','Назад'):''));
+ const b=$('.pg3 [data-bk]',v);if(b&&bk)b.onclick=()=>bk.click()}
+
+/* ---------- 6) Admin: Zpětná vazba a Hlášení ---------- */
+const newReports=()=>gS('rep',[]).filter(r=>r.st=='new').length;
+const starsT=n=>'<span style="color:#ffb800;letter-spacing:2px">'+'★'.repeat(n)+'</span><span style="opacity:.3;letter-spacing:2px">'+'★'.repeat(5-n)+'</span>';
+window.adFb4=()=>{const L=gS('lfb',[]),avg=L.length?(L.reduce((s,x)=>s+x.stars,0)/L.length).toFixed(1):'–';
+ const dist=[5,4,3,2,1].map(n=>[n,L.filter(x=>x.stars==n).length]),mx=Math.max(1,...dist.map(d=>d[1]));
+ return `<div class="card"><div class="row" style="gap:20px;flex-wrap:wrap"><div style="text-align:center;min-width:120px"><div style="font-size:3rem;font-weight:800;line-height:1">${avg}</div><div>${starsT(Math.round(+avg||0))}</div><span class="m">${L.length} ${T('hodnocení','ratings','оцінок')}</span></div><div style="flex:1;min-width:220px">${dist.map(d=>`<div class="row" style="gap:10px;margin:4px 0"><span style="width:24px">${d[0]}★</span><div class="bar" style="flex:1;margin:0"><i style="transform:scaleX(${d[1]/mx})"></i></div><span class="m" style="width:28px;text-align:right">${d[1]}</span></div>`).join('')}</div></div></div>
+ ${L.length?L.map(x=>`<div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><span>${starsT(x.stars)} <b>${E(x.user)}</b></span><span class="m">${D4(x.ts)}${x.ver?' · v'+E(x.ver):''}</span></div><p style="margin:8px 0 10px;white-space:pre-wrap">${E(x.text)}</p><button class="dng" type="button" onclick="fb4Del('${E(x.id)}')">${T('Smazat','Delete','Видалити')}</button></div>`).join(''):`<div class="card"><p class="m">${T('Zatím žádná zpětná vazba k Luně.','No feedback on Luna yet.','Поки немає відгуків.')}</p></div>`}`};
+window.fb4Del=id=>{sS('lfb',gS('lfb',[]).filter(x=>x.id!=id));safe(()=>admin())};
+const RTN={bug:T('Chyba v aplikaci','App bug','Помилка'),bad:T('Nevhodné vyjadřování','Inappropriate language','Недоречні вислови'),ans:T('Špatná odpověď Luny','Wrong answer from Luna','Погана відповідь'),quiz:T('Chyba v kvízu','Quiz mistake','Помилка в квізі'),oth:T('Jiné','Other','Інше')};
+window.adRp4=()=>{const L=gS('rep',[]);
+ return L.length?L.map(x=>`<div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><span><span class="tag">${E(RTN[x.type]||x.type)}</span> <b>${E(x.user)}</b>${x.page?` <span class="m">(${E(x.page)})</span>`:''}</span><span class="m">${D4(x.ts)}${x.ver?' · v'+E(x.ver):''}</span></div><p style="margin:8px 0;white-space:pre-wrap">${E(x.text)}</p>${(x.att&&x.att.length)?`<details style="margin:6px 0 10px"><summary class="m" style="cursor:pointer">${T('Přiložené zprávy','Attached messages','Додані повідомлення')} (${x.att.length})</summary>${x.att.map(a=>`<p class="m" style="margin:4px 0"><b>${a.r=='u'?T('Žák','User','Учень'):'Luna'}:</b> ${E(a.t)}</p>`).join('')}</details>`:''}<div class="row" style="gap:8px"><button type="button" class="${x.st=='new'?'pri':''}" onclick="rp4St('${E(x.id)}')">${x.st=='new'?T('Označit jako vyřešené','Mark as resolved','Позначити як вирішене'):T('Vyřešeno · znovu otevřít','Resolved · reopen','Вирішено · відкрити')}</button><button class="dng" type="button" onclick="rp4Del('${E(x.id)}')">${T('Smazat','Delete','Видалити')}</button></div></div>`).join(''):`<div class="card"><p class="m">${T('Žádná hlášení.','No reports.','Немає звітів.')}</p></div>`};
+window.rp4St=id=>{const L=gS('rep',[]);L.forEach(x=>{if(x.id==id)x.st=x.st=='new'?'done':'new'});sS('rep',L);safe(()=>admin())};
+window.rp4Del=id=>{sS('rep',gS('rep',[]).filter(x=>x.id!=id));safe(()=>admin())};
+function adBadge(){const n=newReports();$$('#adTabs button').forEach(b=>{if(/^(Hlášení|Reports|Звіти)/.test(b.textContent)){const o=b.querySelector('.bdg');o&&o.remove();if(n)b.insertAdjacentHTML('beforeend',`<b class="bdg">${n}</b>`)}})}
+try{const a4=admin;admin=function(){const r=a4.apply(this,arguments);safe(adBadge);return r}}catch(e){}
+
+/* ---------- 7) Nastavení: karta Zpětná vazba a pomoc ---------- */
+function setCards4(){const b=$('#setB');if(!b)return;const old=$('#v114set',b);if(old)old.remove();const on=gS('fb4on',true)!==false;
+ b.insertAdjacentHTML('beforeend',`<div class="card" id="v114set" data-p="acc"><h2 style="font-size:1.15rem">${T('Zpětná vazba a pomoc','Feedback and help','Відгуки та допомога')}</h2>
+ <div class="sst"><div class="sl"><b>${T('Hodnocení Luny po konverzaci','Rate Luna after a chat','Оцінка Луни після розмови')}</b><span>${T('Po ukončení chatu se zeptáme, jak se ti povídalo.','When a chat ends, we ask how it went.','Після завершення чату запитаємо про враження.')}</span></div><button type="button" class="sw4" role="switch" id="sw4fb" aria-checked="${on}" aria-label="${T('Hodnocení Luny','Rate Luna','Оцінка Луни')}"></button></div>
+ <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:12px"><button type="button" id="v114rp">${ic4(IC.flag,16)} ${T('Nahlásit problém','Report a problem','Повідомити про проблему')}</button><button type="button" id="v114pl">${ic4(IC.search,16)} ${T('Rychlé hledání (Ctrl+K)','Quick search (Ctrl+K)','Швидкий пошук (Ctrl+K)')}</button></div></div>`);
+ const s=$('#sw4fb',b);s.onclick=()=>{const v=s.getAttribute('aria-checked')!='true';s.setAttribute('aria-checked',String(v));sS('fb4on',v);tst(v?T('Hodnocení Luny zapnuto.','Rating enabled.','Оцінку увімкнено.'):T('Hodnocení Luny vypnuto.','Rating disabled.','Оцінку вимкнено.'))};
+ $('#v114rp',b).onclick=()=>rpOpen({});$('#v114pl',b).onclick=palOpen}
+try{const s4=TX.set;TX.set=function(){const r=s4.apply(this,arguments);safe(setCards4);return r};try{TX.VW.set=TX.set}catch(e){}}catch(e){}
+
+/* ---------- 8) Něco navíc: rychlé hledání (Ctrl+K nebo /) ---------- */
+function palItems(){const role=safe(()=>me.role,'');const nav=(id,l,k)=>({l,k:k||'',h:T('Stránka','Page','Сторінка'),i:IC.go,f:()=>go(id)});
+ const L=[nav('home',T('Úvod','Home','Головна')),nav('kviz',T('Kvízy','Quizzes','Квізи'),'kvizy test'),nav('lab',T('Laboratoř','Laboratory','Лабораторія'),'nastroje hry'),nav('luna','LunaAI','chat ai'),nav('cls',T('Učebna','Classroom','Клас')),nav('notif',T('Upozornění','Notifications','Сповіщення')),nav('prof',T('Profil','Profile','Профіль')),nav('log',T('Novinky','What’s new','Новини'),'changelog'),nav('set',T('Nastavení','Settings','Налаштування')),nav('gl',T('Slovníček pojmů','Glossary','Словник')),nav('pt',T('Periodická tabulka','Periodic table','Періодична таблиця')),nav('eq',T('Vyvažování rovnic','Balancing equations','Рівняння')),nav('calc',T('Chemická kalkulačka','Chemistry calculator','Калькулятор')),nav('pr',T('Početní příklady','Calculations','Задачі')),nav('studio','QuizStudio'),nav('status',T('Stav služby','Service status','Стан сервісу')),nav('partners',T('Partneři','Partners','Партнери'))];
+ if(role=='a'||role=='t')L.push(nav('teach',T('Sekce učitele','Teacher section','Розділ вчителя')));if(role=='a')L.push(nav('admin','Admin'));
+ L.push({l:T('Nahlásit problém','Report a problem','Повідомити про проблему'),k:'chyba bug nahlasit',h:T('Akce','Action','Дія'),i:IC.flag,f:()=>rpOpen({})},{l:T('Ukončit konverzaci s Lunou a ohodnotit','End chat with Luna and rate','Завершити чат і оцінити'),k:'hodnoceni hvezdicky',h:T('Akce','Action','Дія'),i:IC.star,f:()=>window.fbOpen()});return L}
+const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+function palOpen(){if(!me0()||$('#pal4'))return;
+ if($('#quiz.on')){tst(T('Během testu není rychlé hledání dostupné.','Quick search is not available during a test.','Під час тесту недоступно.'));return}
+ const o=document.createElement('div');o.id='pal4';o.className='pal4o';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',T('Rychlé hledání','Quick search','Швидкий пошук'));
+ o.innerHTML=`<div class="pal4c"><div class="pal4q">${ic4(IC.search,18)}<input id="pal4i" autocomplete="off" spellcheck="false" placeholder="${T('Kam chceš jít nebo co udělat?','Where to, or what to do?','Куди перейти або що зробити?')}" aria-label="${T('Rychlé hledání','Quick search','Швидкий пошук')}"><kbd>Esc</kbd></div><div class="pal4l" id="pal4l" role="listbox"></div><div class="pal4f"><span><kbd>↑</kbd><kbd>↓</kbd> ${T('výběr','select','вибір')}</span><span><kbd>Enter</kbd> ${T('otevřít','open','відкрити')}</span></div></div>`;
+ document.body.appendChild(o);const inp=$('#pal4i',o),Lb=$('#pal4l',o);let sel=0,list=[];
+ const draw=()=>{const q=norm(inp.value.trim());list=palItems().filter(x=>!q||norm(x.l).includes(q)||norm(x.k).includes(q));sel=Math.min(sel,Math.max(0,list.length-1));
+  Lb.innerHTML=list.map((x,i)=>`<button type="button" role="option" class="pal4i ${i==sel?'on':''}" data-i="${i}">${ic4(x.i,18)}<span>${E(x.l)}</span><small>${E(x.h)}</small></button>`).join('')||`<p class="pal4e">${T('Nic nenalezeno.','Nothing found.','Нічого не знайдено.')}</p>`;const on=$('.pal4i.on',Lb);on&&on.scrollIntoView({block:'nearest'})};
+ const close=()=>{o.classList.add('out');setTimeout(()=>o.remove(),230)};
+ const run=x=>{if(!x)return;close();setTimeout(()=>safe(x.f),150)};
+ inp.oninput=()=>{sel=0;draw()};
+ o.onkeydown=e=>{if(e.key=='Escape'){e.stopPropagation();close()}else if(e.key=='ArrowDown'){e.preventDefault();sel=Math.min(list.length-1,sel+1);draw()}else if(e.key=='ArrowUp'){e.preventDefault();sel=Math.max(0,sel-1);draw()}else if(e.key=='Enter'){e.preventDefault();run(list[sel])}};
+ o.addEventListener('mousedown',e=>{if(e.target===o)close()});Lb.onclick=e=>{const b=e.target.closest('.pal4i');if(b)run(list[+b.dataset.i])};
+ draw();inp.focus()}
+window.palOpen=palOpen;
+document.addEventListener('keydown',e=>{if(!me0())return;const t=e.target,typing=t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable);
+ if((e.ctrlKey||e.metaKey)&&String(e.key).toLowerCase()=='k'){e.preventDefault();palOpen();return}
+ if(e.key=='/'&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!$('.fb4o')&&!$('#quiz.on')){e.preventDefault();palOpen()}});
+function palBtn(){const n=$('#nav');if(!n)return;const b=$('#pal4b');if(!me0()){b&&b.remove();return}if(b)return;
+ n.insertAdjacentHTML('afterbegin',`<button class="ib" id="pal4b" type="button" aria-label="${T('Rychlé hledání (Ctrl+K)','Quick search (Ctrl+K)','Швидкий пошук (Ctrl+K)')}" title="${T('Rychlé hledání (Ctrl+K)','Quick search (Ctrl+K)','Швидкий пошук (Ctrl+K)')}">${ic4(IC.search,18)}</button>`);$('#pal4b').onclick=palOpen}
+
+/* ---------- napojení ---------- */
+const sync4=()=>{safe(pg4Sync);safe(lunaMount4);safe(palBtn)};
+const g4=go;go=function(id){const r=g4.apply(this,arguments);safe(sync4);[140,720].forEach(t=>setTimeout(sync4,t));return r};
+let S4=0;try{new MutationObserver(()=>{if(S4)return;S4=1;requestAnimationFrame(()=>{S4=0;sync4()})}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+sync4();
+
+/* ---------- verze a changelog ---------- */
+VN9['11.4']='Tiramisu';
+CL.unshift(['11.4','Přebudované stránky, hodnocení Luny a hlášení problémů','11. 11. 2026',[
+ 'Všechny stránky kromě Úvodu mají vzhled ve stylu Úvodu: Admin, QuizStudio, Sekce učitele, detail Učebny, Periodická tabulka, Vyvažování rovnic, Kalkulačka, Souboj, Reflect, Čas a soustředění, Početní příklady, Slovníček, Stav služby i Partneři dostaly hlavičku s postavičkou a animovanými bublinkami',
+ 'Plynulé animace jako u Luny: stránky vjíždějí ze strany, karty a dlaždice se objevují postupně a tlačítka reagují na stisk. Jde vypnout přes Omezit animace nebo Úsporný režim',
+ 'Přebudovaný kvíz: možnosti mají písmena A, B, C…, plynulé zvýraznění vybrané, správné i špatné odpovědi a výraznější výsledek',
+ 'Novinky jsou časová osa, záložky v Adminu a Nastavení jsou plynulé pilulky a tabulky v Adminu zvýrazňují řádek pod myší',
+ 'LunaAI: po ukončení konverzace (Nový chat, zavření bubliny nebo nové tlačítko Ukončit konverzaci) se plynule zobrazí hodnocení. Vybereš hvězdičky, napíšeš zpětnou vazbu, tlačítko Odeslat se rozsvítí, následuje animace odesílání a fajfka s poděkováním',
+ 'Nahlásit problém: chyba, bug, nevhodné vyjadřování, špatná odpověď Luny, chyba v kvízu nebo cokoli jiného, volitelně s přiloženými posledními zprávami z chatu. Najdeš to v hlavičce chatu Luny, v Nastavení i v rychlém hledání',
+ 'Admin má nové záložky Zpětná vazba (průměr, rozložení hvězdiček, texty) a Hlášení (stav nové / vyřešeno, odznak s počtem nových)',
+ 'Nastavení: všechna zaškrtávací políčka jsou nahrazena plynulými přepínači (také v Adminu a v nastavení Luny). Nově jde vypnout dotaz na hodnocení Luny',
+ 'Novinka navíc: Rychlé hledání (Ctrl+K nebo /) pro okamžitý přechod na kteroukoli stránku nebo akci. Během testu je vypnuté'
+]]);
+}catch(e){console.error('v11.4',e)}})();
+</script>
 </body>
 </html>
