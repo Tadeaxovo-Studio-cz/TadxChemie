@@ -630,7 +630,7 @@ function csv(){const R=DB.g('results',[]),h='datum,zak,kviz,body,pocet,procenta,
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+h+b],{type:'text/csv'}));a.download='tadxchemie-vysledky.csv';a.click()}
 
 /* V2.0 */
-const VER='11.4';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie", "11.0": "Éclair", "11.1": "Macaron"};let LL=2,CD=null,AC=null,NB=0;
+const VER='11.6';const VN9={"1.0": "Popcorn", "1.1": "Muffin", "1.2": "Milkshake", "1.3": "Ibalgin", "2.0": "Chocolate", "3.0": "Latté", "4.0": "Cinnamon Bun", "5.0": "Donut", "5.1": "Marshmallow", "6.0": "Caramel", "7.0": "Cheesecake", "7.1": "Pistachio", "7.2": "Waffle", "7.3": "Pancake", "7.4": "Espresso", "7.5": "Lemonade", "7.6": "Brownie", "7.7": "Cappuccino", "8.0": "Tiramisu", "8.1": "Gingerbread", "8.2": "Smoothie", "8.3": "Croissant", "8.4": "Macaron", "8.5": "Iced Tea", "8.6": "Vanilla", "9.0": "Bubble Tea", "9.1": "Strawberry", "9.2": "Mochi", "9.3": "Matcha", "9.4": "Pudding", "9.5": "Baklava", "9.6": "Aurora", "9.7": "Strudel", "9.8": "Gelato", "9.9": "Pretzel", "10.0": "Sorbet", "10.1": "Mojito", "10.2": "Cocoa", "10.3": "Chai", "10.4": "Scone", "10.5": "Cookie", "11.0": "Éclair", "11.1": "Macaron"};let LL=2,CD=null,AC=null,NB=0;
 const CL=[['6.0','Luna aktualizace','23. 10. 2026',['LunaAI: přátelská AI asistentka v sekci Domů s plynulými animacemi','Online režim s tvým vlastním API klíčem a offline režim bez klíče (přes 80 témat, vzorce, rovnice, výpočty, zkoušení)','Podmínky používání s potvrzením a animovaným podpisem jménem účtu','Nový onboarding pro počítače: rozdělený panel, orbitální animace, kroky a klávesové zkratky','Zabezpečení: Content Security Policy, hesla s 210 000 iteracemi PBKDF2, změna hesla, kontrola účtu za běhu, API klíč mimo zálohy','Výkon: úsporný režim, plynulejší pozadí, cache denní výzvy a rychlejší vykreslování seznamů']],
 ['5.1','Bezpečnostní aktualizace','23. 10. 2026',['TadxVerify je teď viditelnou součástí přihlášení i registrace (políčko „Nejsem robot“)','Při přihlášení se ověření vyžaduje vždy a po každém špatném hesle znovu','Ověření platí 5 minut a po přihlášení nebo registraci se zruší']],
 ['5.0','Mistrovská aktualizace','23. 10. 2026',['Periodická tabulka všech 118 prvků včetně lanthanoidů a aktinoidů','9 nových kvízů: názvosloví oxidů, kyselin, hydroxidů a solí, oxidační čísla, typy reakcí a základy organiky (celkem 34 kvízů)','Početní příklady: generátor úloh na molární hmotnost, látkové množství, objem plynu, koncentraci, hustotu a hmotnostní zlomek s postupem řešení','Slovníček pojmů s hledáním','Týdenní cíl s ukazatelem postupu a 6 nových odznaků','Žebříček za tento týden a oblíbené kvízy s hvězdičkou','Rozbor nejčastějších chyb pro učitele (ve třídě) i admina (celkově)']],
@@ -5394,7 +5394,7 @@ function set9(){const v=$i('set');if(!v||!me)return;mvProf();
 if(R9){R9=0;try{pEd();pUi();pSecR();pCol()}catch(e){console.error('set9 render',e)}}
 if(!$i('set9t'))$i('setB').insertAdjacentHTML('beforebegin','<div class="tabs set9t" id="set9t"></div>');
 $i('set9t').innerHTML=SK.map(k=>`<button class="${ST==k[0]?'on':''}" onclick="st9('${k[0]}')">${k[1]}</button>`).join('');
-[...$i('setB').children].forEach(c=>{const t=((c.querySelector('summary,h2')||c).textContent||'').toLowerCase();c.dataset.p=/luna/.test(t)?'luna':/oznám|zvuk|notif|sound|сповіщ|звук/.test(t)?'ntf':/přístup|úvodní|access|home|start|доступ|головн/.test(t)?'look':'perf';if(c.tagName=='DETAILS')c.open=true});
+[...$i('setB').children].forEach(c=>{const t=((c.querySelector('summary,h2')||c).textContent||'').toLowerCase();c.dataset.p=c.dataset.pf||(/luna/.test(t)?'luna':/oznám|zvuk|notif|sound|сповіщ|звук/.test(t)?'ntf':/přístup|úvodní|access|home|start|доступ|головн/.test(t)?'look':'perf');if(c.tagName=='DETAILS')c.open=true});
 v.dataset.tab=ST}
 window.st9=k=>{ST=k;R9=1;set9()};
 const s9=TX.set;TX.set=function(){const r=s9.apply(this,arguments);try{set9()}catch(e){console.error('set9',e)}return r};TX.VW.set=TX.set;
@@ -7113,7 +7113,7 @@ function lx3Toggle(){if($('#lx3M')){lx3Close();return}const b=$('#lx3B');if(!b)r
  document.body.appendChild(m);b.setAttribute('aria-expanded','true');lx3Pos();
  m.addEventListener('click',e=>{const it=e.target.closest('[data-k]');if(it){lx3Main(it.dataset.k,it);return}const a=e.target.closest('[data-a]');if(a)lx3Act(a.dataset.a,a)});
  m.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.q)lx3Fill(e.target.dataset.q,e.target.value)})}
-document.addEventListener('click',e=>{if($('#lx3M')&&!e.target.closest('#lx3M')&&!e.target.closest('#lx3B'))lx3Close()});
+document.addEventListener('click',e=>{if(!$('#lx3M'))return;const pth=e.composedPath?e.composedPath():[];const inside=pth.some(n=>n&&n.nodeType===1&&(n.id=='lx3M'||n.id=='lx3B'))||e.target.closest('#lx3M')||e.target.closest('#lx3B');if(!inside)lx3Close()});
 document.addEventListener('keydown',e=>{if(e.key=='Escape'&&$('#lx3M')){e.stopImmediatePropagation();lx3Close()}},true);
 addEventListener('resize',lx3Pos);
 function sub(k,html){const m=$('#lx3M');if(!m)return;let s=$('.lx3s',m);if(!s){s=document.createElement('div');s.className='lx3s';m.appendChild(s)}s.innerHTML=html;m.classList.add('sub');s.dataset.sub=k;$$('.lx3p .lx3i',m).forEach(x=>x.classList.toggle('on',x.dataset.k==k));
@@ -7228,7 +7228,7 @@ CL.unshift(['11.3','Písmo štětcem, nová bublina Luny a menu „+“','11. 11
 
 
 <style id="v114css">
-/* ===== v11.4 Tiramisu ===== */
+/* ===== v11.4 Dumpling ===== */
 :root{--e4:cubic-bezier(.16,1,.3,1)}
 /* --- plynulé přechody stránek (stejný pohyb jako u Luny) --- */
 html:root .view.on:not(#luna):not(#home){animation:rb4V .55s var(--e4) backwards}
@@ -7374,7 +7374,7 @@ html:root .pal4i:hover{transform:none;box-shadow:none}.pal4i.on{background:color
 .pal4f{display:flex;gap:14px;padding:8px 16px;border-top:1px solid var(--line);font-size:.74rem;color:var(--mut)}
 </style>
 <script id="v114js">
-/* ===== v11.4 Tiramisu ===== */
+/* ===== v11.4 Dumpling ===== */
 (function(){try{
 const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
 const T=(cs,en,uk)=>{let l='cs';try{l=DB.g('lang','cs')}catch(e){}return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
@@ -7543,7 +7543,7 @@ try{const a4=admin;admin=function(){const r=a4.apply(this,arguments);safe(adBadg
 
 /* ---------- 7) Nastavení: karta Zpětná vazba a pomoc ---------- */
 function setCards4(){const b=$('#setB');if(!b)return;const old=$('#v114set',b);if(old)old.remove();const on=gS('fb4on',true)!==false;
- b.insertAdjacentHTML('beforeend',`<div class="card" id="v114set" data-p="acc"><h2 style="font-size:1.15rem">${T('Zpětná vazba a pomoc','Feedback and help','Відгуки та допомога')}</h2>
+ b.insertAdjacentHTML('beforeend',`<div class="card" id="v114set" data-p="acc" data-pf="acc"><h2 style="font-size:1.15rem">${T('Zpětná vazba a pomoc','Feedback and help','Відгуки та допомога')}</h2>
  <div class="sst"><div class="sl"><b>${T('Hodnocení Luny po konverzaci','Rate Luna after a chat','Оцінка Луни після розмови')}</b><span>${T('Po ukončení chatu se zeptáme, jak se ti povídalo.','When a chat ends, we ask how it went.','Після завершення чату запитаємо про враження.')}</span></div><button type="button" class="sw4" role="switch" id="sw4fb" aria-checked="${on}" aria-label="${T('Hodnocení Luny','Rate Luna','Оцінка Луни')}"></button></div>
  <div class="row" style="gap:10px;flex-wrap:wrap;margin-top:12px"><button type="button" id="v114rp">${ic4(IC.flag,16)} ${T('Nahlásit problém','Report a problem','Повідомити про проблему')}</button><button type="button" id="v114pl">${ic4(IC.search,16)} ${T('Rychlé hledání (Ctrl+K)','Quick search (Ctrl+K)','Швидкий пошук (Ctrl+K)')}</button></div></div>`);
  const s=$('#sw4fb',b);s.onclick=()=>{const v=s.getAttribute('aria-checked')!='true';s.setAttribute('aria-checked',String(v));sS('fb4on',v);tst(v?T('Hodnocení Luny zapnuto.','Rating enabled.','Оцінку увімкнено.'):T('Hodnocení Luny vypnuto.','Rating disabled.','Оцінку вимкнено.'))};
@@ -7551,17 +7551,17 @@ function setCards4(){const b=$('#setB');if(!b)return;const old=$('#v114set',b);i
 try{const s4=TX.set;TX.set=function(){const r=s4.apply(this,arguments);safe(setCards4);return r};try{TX.VW.set=TX.set}catch(e){}}catch(e){}
 
 /* ---------- 8) Něco navíc: rychlé hledání (Ctrl+K nebo /) ---------- */
-function palItems(){const role=safe(()=>me.role,'');const nav=(id,l,k)=>({l,k:k||'',h:T('Stránka','Page','Сторінка'),i:IC.go,f:()=>go(id)});
+function palItems(q){const role=safe(()=>me.role,'');const nav=(id,l,k)=>({l,k:k||'',h:T('Stránka','Page','Сторінка'),i:IC.go,f:()=>go(id)});
  const L=[nav('home',T('Úvod','Home','Головна')),nav('kviz',T('Kvízy','Quizzes','Квізи'),'kvizy test'),nav('lab',T('Laboratoř','Laboratory','Лабораторія'),'nastroje hry'),nav('luna','LunaAI','chat ai'),nav('cls',T('Učebna','Classroom','Клас')),nav('notif',T('Upozornění','Notifications','Сповіщення')),nav('prof',T('Profil','Profile','Профіль')),nav('log',T('Novinky','What’s new','Новини'),'changelog'),nav('set',T('Nastavení','Settings','Налаштування')),nav('gl',T('Slovníček pojmů','Glossary','Словник')),nav('pt',T('Periodická tabulka','Periodic table','Періодична таблиця')),nav('eq',T('Vyvažování rovnic','Balancing equations','Рівняння')),nav('calc',T('Chemická kalkulačka','Chemistry calculator','Калькулятор')),nav('pr',T('Početní příklady','Calculations','Задачі')),nav('studio','QuizStudio'),nav('status',T('Stav služby','Service status','Стан сервісу')),nav('partners',T('Partneři','Partners','Партнери'))];
  if(role=='a'||role=='t')L.push(nav('teach',T('Sekce učitele','Teacher section','Розділ вчителя')));if(role=='a')L.push(nav('admin','Admin'));
- L.push({l:T('Nahlásit problém','Report a problem','Повідомити про проблему'),k:'chyba bug nahlasit',h:T('Akce','Action','Дія'),i:IC.flag,f:()=>rpOpen({})},{l:T('Ukončit konverzaci s Lunou a ohodnotit','End chat with Luna and rate','Завершити чат і оцінити'),k:'hodnoceni hvezdicky',h:T('Akce','Action','Дія'),i:IC.star,f:()=>window.fbOpen()});return L}
+ L.push({l:T('Nahlásit problém','Report a problem','Повідомити про проблему'),k:'chyba bug nahlasit',h:T('Akce','Action','Дія'),i:IC.flag,f:()=>rpOpen({})},{l:T('Ukončit konverzaci s Lunou a ohodnotit','End chat with Luna and rate','Завершити чат і оцінити'),k:'hodnoceni hvezdicky',h:T('Akce','Action','Дія'),i:IC.star,f:()=>window.fbOpen()});if(window.palExtra)L.push(...safe(()=>window.palExtra(q),[]));return L}
 const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 function palOpen(){if(!me0()||$('#pal4'))return;
  if($('#quiz.on')){tst(T('Během testu není rychlé hledání dostupné.','Quick search is not available during a test.','Під час тесту недоступно.'));return}
  const o=document.createElement('div');o.id='pal4';o.className='pal4o';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');o.setAttribute('aria-label',T('Rychlé hledání','Quick search','Швидкий пошук'));
  o.innerHTML=`<div class="pal4c"><div class="pal4q">${ic4(IC.search,18)}<input id="pal4i" autocomplete="off" spellcheck="false" placeholder="${T('Kam chceš jít nebo co udělat?','Where to, or what to do?','Куди перейти або що зробити?')}" aria-label="${T('Rychlé hledání','Quick search','Швидкий пошук')}"><kbd>Esc</kbd></div><div class="pal4l" id="pal4l" role="listbox"></div><div class="pal4f"><span><kbd>↑</kbd><kbd>↓</kbd> ${T('výběr','select','вибір')}</span><span><kbd>Enter</kbd> ${T('otevřít','open','відкрити')}</span></div></div>`;
  document.body.appendChild(o);const inp=$('#pal4i',o),Lb=$('#pal4l',o);let sel=0,list=[];
- const draw=()=>{const q=norm(inp.value.trim());list=palItems().filter(x=>!q||norm(x.l).includes(q)||norm(x.k).includes(q));sel=Math.min(sel,Math.max(0,list.length-1));
+ const draw=()=>{const q=norm(inp.value.trim());list=palItems(q).filter(x=>x.m||!q||norm(x.l).includes(q)||norm(x.k||'').includes(q));sel=Math.min(sel,Math.max(0,list.length-1));
   Lb.innerHTML=list.map((x,i)=>`<button type="button" role="option" class="pal4i ${i==sel?'on':''}" data-i="${i}">${ic4(x.i,18)}<span>${E(x.l)}</span><small>${E(x.h)}</small></button>`).join('')||`<p class="pal4e">${T('Nic nenalezeno.','Nothing found.','Нічого не знайдено.')}</p>`;const on=$('.pal4i.on',Lb);on&&on.scrollIntoView({block:'nearest'})};
  const close=()=>{o.classList.add('out');setTimeout(()=>o.remove(),230)};
  const run=x=>{if(!x)return;close();setTimeout(()=>safe(x.f),150)};
@@ -7583,7 +7583,7 @@ let S4=0;try{new MutationObserver(()=>{if(S4)return;S4=1;requestAnimationFrame((
 sync4();
 
 /* ---------- verze a changelog ---------- */
-VN9['11.4']='Tiramisu';
+VN9['11.4']='Dumpling';
 CL.unshift(['11.4','Přebudované stránky, hodnocení Luny a hlášení problémů','11. 11. 2026',[
  'Všechny stránky kromě Úvodu mají vzhled ve stylu Úvodu: Admin, QuizStudio, Sekce učitele, detail Učebny, Periodická tabulka, Vyvažování rovnic, Kalkulačka, Souboj, Reflect, Čas a soustředění, Početní příklady, Slovníček, Stav služby i Partneři dostaly hlavičku s postavičkou a animovanými bublinkami',
  'Plynulé animace jako u Luny: stránky vjíždějí ze strany, karty a dlaždice se objevují postupně a tlačítka reagují na stisk. Jde vypnout přes Omezit animace nebo Úsporný režim',
@@ -7596,6 +7596,535 @@ CL.unshift(['11.4','Přebudované stránky, hodnocení Luny a hlášení problé
  'Novinka navíc: Rychlé hledání (Ctrl+K nebo /) pro okamžitý přechod na kteroukoli stránku nebo akci. Během testu je vypnuté'
 ]]);
 }catch(e){console.error('v11.4',e)}})();
+</script>
+
+<style id="v115css">
+/* ===== v11.5 Onigiri ===== */
+/* mapa pojmů */
+.cg5{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--mut)}.cg5 i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+#cs5{display:block;min-width:760px;width:100%;height:auto}
+.ce5{stroke:color-mix(in srgb,var(--tx) 22%,transparent);stroke-width:1.5;transition:stroke .3s,opacity .35s,stroke-width .3s}
+.ce5.on{stroke:var(--b);stroke-width:2.6}
+#cs5[data-sel] .ce5:not(.on){opacity:.1}
+.cl5{font-size:11px;fill:var(--mut);opacity:0;transition:opacity .3s;pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:4px}.cl5.on{opacity:1}
+.cn5{cursor:pointer;outline:none;animation:cnIn .6s var(--e4) backwards;animation-delay:calc(var(--i)*28ms);transition:opacity .35s}
+@keyframes cnIn{from{opacity:0}}
+.cn5 rect{stroke-width:1.8;transition:stroke-width .25s,filter .3s}
+.cn5 text{font-size:14px;font-weight:600;fill:var(--tx);pointer-events:none}
+.cn5:hover rect,.cn5:focus-visible rect{stroke-width:3.2}
+.cn5.on rect{stroke-width:4;filter:drop-shadow(0 0 10px var(--b))}
+.cn5.nb rect{stroke-width:3}
+#cs5[data-sel] .cn5:not(.on):not(.nb){opacity:.22}
+#cs5[data-q] .cn5:not(.hit){opacity:.28}#cs5 .cn5.hit rect{stroke-width:4;filter:drop-shadow(0 0 8px var(--a))}
+.cr5{display:flex;flex-wrap:wrap;gap:8px}.cr5 button{border-radius:999px;padding:6px 14px;min-height:36px;font-size:.88rem}
+.flash5{animation:fb4S .5s var(--e4) both}
+/* export chatu */
+.ex5b{display:flex;gap:8px;flex-wrap:wrap}.ex5b button{flex:1;min-width:90px;display:flex;align-items:center;justify-content:center;gap:6px}
+@media(max-width:520px){#luna .lh>.ib{min-width:36px;padding:8px}}
+/* týdenní souhrn */
+.wk5g{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.wk5k{display:flex;flex-direction:column;gap:4px;margin:0}.wk5k b{font-size:1.5rem;line-height:1.15;overflow-wrap:anywhere}
+.dl5{font-size:.8rem;font-weight:700;color:var(--mut)}.dl5.up{color:var(--ok)}.dl5.dn{color:var(--no)}
+.wk5b{display:flex;align-items:flex-end;gap:10px;height:150px;margin-top:10px}
+.wk5b>div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;min-width:0}
+.wk5b i{display:block;width:100%;max-width:44px;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--b),var(--a));transform-origin:bottom;animation:wkUp .8s var(--e4) backwards;animation-delay:var(--d)}
+@keyframes wkUp{from{transform:scaleY(0)}}
+.wk5b span{font-weight:700;font-size:.85rem;min-height:1.2em}.wk5b em{font-style:normal;font-size:.7rem;color:var(--mut)}
+.wk5m{margin:8px 0 0;padding:0;list-style:none;counter-reset:m}.wk5m li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);counter-increment:m}
+.wk5m li::before{content:counter(m);flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:.8rem;background:color-mix(in srgb,var(--a) 25%,transparent)}
+.wk5m li span{flex:1;min-width:0;overflow-wrap:anywhere}
+/* titrace */
+.tt5{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:14px;align-items:start}
+.tt5r{display:flex;flex-direction:column;gap:14px;min-width:0}.tt5r>.card,.tt5a{margin:0}
+.tt5a{position:sticky;top:76px;padding:10px}.tt5a svg{display:block;width:100%;height:auto;max-height:70dvh}
+@media(max-width:760px){.tt5{grid-template-columns:1fr}.tt5a{position:static}.tt5a svg{max-height:340px}}
+.tt5a .bu{fill:color-mix(in srgb,var(--tx) 6%,transparent);stroke:var(--mut);stroke-width:2}
+.tt5a .tk{stroke:var(--mut);stroke-width:1.5}.tt5a .tl{font-size:10px;fill:var(--mut)}
+.tt5a .bl{fill:#7cc4ff;opacity:.7}.tt5a .sc{fill:var(--mut)}
+.tt5a .fg{fill:none;stroke:var(--mut);stroke-width:2.5;stroke-linejoin:round}
+.tt5a .fl{transition:fill .5s}
+.tt5a .dp{fill:#7cc4ff;opacity:0}.tt5a .dp.fall{animation:ttDrop .55s ease-in}
+@keyframes ttDrop{0%{opacity:1;transform:translateY(0)}85%{opacity:1;transform:translateY(120px)}100%{opacity:0;transform:translateY(128px)}}
+.tt5a .fl.rip{animation:ttRip .6s ease-out}@keyframes ttRip{40%{transform:translateY(-3px)}}
+.tt5bt{display:flex;flex-wrap:wrap;gap:8px}.tt5bt button{flex:1;min-width:80px}
+.tt5n{font-size:1.9rem;font-variant-numeric:tabular-nums}
+.tt5c{width:100%;height:auto;display:block}.tt5c text{font-size:10px;fill:var(--mut)}.tt5c .ax{font-size:11px}
+.tt5c .gr{stroke:var(--line);stroke-width:1}.tt5c .cv{fill:none;stroke:var(--b);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.tt5c .th{fill:none;stroke:var(--a);stroke-width:2;stroke-dasharray:5 4;opacity:.8}.tt5c .eq{stroke:var(--ok);stroke-width:1.5;stroke-dasharray:4 4}.tt5c .eqt{fill:var(--ok);font-weight:700}
+.tt5c .pt{fill:var(--b);stroke:var(--bg);stroke-width:2;transition:cx .3s,cy .3s}
+.tt5o{display:flex;gap:8px;align-items:center;color:var(--ok);font-weight:700;margin:0;animation:fb4S .4s var(--e4) both}.tt5w{color:var(--no);margin:0 0 8px;animation:fb4S .4s var(--e4) both}
+html.eco .tt5a .dp.fall,html.rm .tt5a .dp.fall{animation:none}
+
+
+/* přihlášení: animované siluety laboratoře */
+.tp9{overflow:hidden}
+.tp9>*:not(.sil9){position:relative;z-index:1}
+.sil9{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.tl9 .sil9{transform:scaleX(-1)}
+.sil9 .g{fill:#fff;opacity:.13}
+.sil9 .gl{fill:none;stroke:#fff;stroke-width:3;stroke-linejoin:round;opacity:.34}
+.sil9 .lq{fill:#fff;opacity:.2}
+.sil9 .lq2{fill:#fff;opacity:.26}
+.sil9 .bb{fill:#fff;opacity:0;transform-box:fill-box;transform-origin:center;animation:silUp 5.5s ease-in infinite;animation-delay:var(--d)}
+@keyframes silUp{0%{opacity:0;transform:translate(0,0) scale(.5)}15%{opacity:.55}100%{opacity:0;transform:translate(var(--x,0),-130px) scale(1.15)}}
+.sil9 .wv{animation:silWave 5s linear infinite}.sil9 .wv.s{animation-duration:7s;animation-direction:reverse}
+@keyframes silWave{to{transform:translateX(-300px)}}
+.sil9 .spin{transform-box:fill-box;transform-origin:center;animation:silSpin 22s linear infinite}.sil9 .spin.r{animation-duration:34s;animation-direction:reverse}
+@keyframes silSpin{to{transform:rotate(360deg)}}
+.sil9 .fl{animation:silBob 7s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes silBob{50%{transform:translateY(-12px)}}
+.sil9 .tb{animation:silPulse 3.6s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes silPulse{50%{opacity:.4}}
+html.rm .sil9 *,html.eco .sil9 *{animation:none!important}
+@media(prefers-reduced-motion:reduce){.sil9 *{animation:none!important}}
+</style>
+<script id="v115js">
+/* ===== v11.5 Onigiri ===== */
+(function(){try{
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+const T=(cs,en,uk)=>{let l='cs';try{l=DB.g('lang','cs')}catch(e){}return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe=(f,d)=>{try{return f()}catch(e){console.error('v11.5',e);return d===undefined?'':d}};
+const gS=(k,d)=>safe(()=>DB.g(k,d),d);
+const me0=()=>safe(()=>me,null);
+const K=()=>safe(()=>(me&&me.name)||'host','host');
+const tst=m=>safe(()=>toast(m));
+const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const cl=(x,a,b)=>Math.max(a,Math.min(b,x));
+const f1=x=>x.toFixed(1).replace('.',','),f2=x=>x.toFixed(2).replace('.',',');
+const ic5=(p,s)=>`<svg viewBox="0 0 24 24" width="${s||18}" height="${s||18}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const P5={dl:'<path d="M12 15V3"/><path d="m7 10 5 5 5-5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>',
+ book:'<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+ atom:'<circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>',
+ quiz:'<path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/>',
+ spark:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>',
+ net:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',
+ cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+ flask:'<path d="M10 2v7.5L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 2h7"/>'};
+const dlf=(blob,name)=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},700)};
+const lunaMsgs=()=>safe(()=>window.lxMsgs?window.lxMsgs():[],[]);
+const askLuna=txt=>{go('luna');setTimeout(()=>{const i=$('#lI');if(i){i.value=txt;i.dispatchEvent(new Event('input'));i.focus()}},380)};
+
+/* ================= 1) MAPA POJMŮ ================= */
+const CG={st:[T('Stavba látek','Matter','Будова речовин'),'#4f8cff'],vz:[T('Chemická vazba','Chemical bond','Хімічний зв’язок'),'#7c5cff'],re:[T('Reakce','Reactions','Реакції'),'#ff9f43'],ro:[T('Roztoky','Solutions','Розчини'),'#2ee6d6'],or:[T('Organická chemie','Organic chemistry','Органічна хімія'),'#38e08a']};
+const CN=[
+['atom','atom',80,60,'st','Nejmenší částice prvku. Tvoří ho kladné jádro (protony a neutrony) a elektronový obal. Počet protonů určuje, o jaký prvek jde.'],
+['molekula','molekula',230,60,'st','Skupina atomů spojených kovalentními vazbami, např. H₂O nebo CO₂.'],
+['prvek','prvek',380,60,'st','Látka složená z atomů se stejným protonovým číslem. Prvky jsou seřazené v periodické soustavě.'],
+['slouc','sloučenina',530,60,'st','Čistá látka z atomů různých prvků v pevném poměru. Jde ji rozložit chemicky.'],
+['smes','směs',680,60,'st','Dvě nebo více látek, které jde oddělit fyzikálně (filtrace, destilace…). Je homogenní nebo heterogenní.'],
+['ion','ion',830,60,'st','Atom nebo skupina atomů s nábojem. Kation je kladný (ztratil elektrony), anion záporný (elektrony získal).'],
+['en','elektronegativita',120,190,'vz','Míra schopnosti atomu přitahovat vazebné elektrony. Nejvyšší má fluor (4,0).'],
+['kov','kovalentní vazba',340,190,'vz','Vzniká sdílením elektronového páru mezi atomy nekovů. Může být nepolární nebo polární.'],
+['ion_v','iontová vazba',560,190,'vz','Vzniká přenosem elektronů a přitažlivostí opačně nabitých iontů, např. v NaCl.'],
+['vod','vodíková vazba',780,190,'vz','Slabá přitažlivost mezi vodíkem navázaným na F, O nebo N a volným elektronovým párem jiné molekuly. Vysvětluje vysoký bod varu vody.'],
+['rea','chemická reakce',70,320,'re','Děj, při kterém z výchozích látek vznikají nové látky s jinými vlastnostmi. Počet atomů každého prvku se zachovává.'],
+['redox','redoxní reakce',200,320,'re','Reakce, při které se přenáší elektrony. Současně probíhá oxidace a redukce.'],
+['oxid','oxidace',330,320,'re','Ztráta elektronů, oxidační číslo roste. Atom nebo látka se oxiduje.'],
+['red','redukce',460,320,'re','Zisk elektronů, oxidační číslo klesá.'],
+['kat','katalyzátor',590,320,'re','Látka, která urychluje reakci snížením aktivační energie a sama se nespotřebuje.'],
+['rov','chemická rovnováha',720,320,'re','Stav, kdy je rychlost přímé i zpětné reakce stejná. Soustava reaguje na změny podle Le Chatelierova principu.'],
+['neu','neutralizace',850,320,'re','Reakce kyseliny se zásadou: kyselina + zásada → sůl + voda.'],
+['kys','kyselina',70,450,'ro','Donor protonů H⁺, ve vodě zvyšuje koncentraci H₃O⁺. pH je menší než 7. Např. HCl, H₂SO₄.'],
+['zas','zásada',200,450,'ro','Akceptor protonů, hydroxidy uvolňují OH⁻. pH je větší než 7. Např. NaOH, KOH.'],
+['sul','sůl',330,450,'ro','Iontová sloučenina kationtu (kov) a aniontu (zbytek kyseliny), např. NaCl.'],
+['ph','pH',460,450,'ro','Záporný dekadický logaritmus koncentrace H₃O⁺. Neutrální roztok má pH 7.'],
+['ind','indikátor',590,450,'ro','Látka, která mění barvu podle pH, např. fenolftalein, lakmus nebo methyloranž.'],
+['roz','roztok',720,450,'ro','Homogenní směs rozpuštěné látky a rozpouštědla.'],
+['kon','koncentrace',850,450,'ro','Kolik látky je v roztoku. Molární koncentrace c = n / V (mol/dm³), hmotnostní zlomek w = m(látky) / m(roztoku).'],
+['uhl','uhlovodík',150,580,'or','Organická sloučenina složená jen z uhlíku a vodíku (alkany, alkeny, alkyny, areny).'],
+['alk','alkohol',370,580,'or','Organická sloučenina se skupinou –OH, např. ethanol.'],
+['kk','karboxylová kyselina',600,580,'or','Organická sloučenina se skupinou –COOH, např. kyselina octová.'],
+['est','ester',820,580,'or','Vzniká reakcí karboxylové kyseliny s alkoholem (esterifikace). Mnohé voní po ovoci.']];
+const CE=[['atom','ion','ztráta / zisk e⁻'],['atom','molekula','spojení vazbou'],['atom','prvek','stejné atomy'],['molekula','slouc','různé atomy'],['prvek','slouc','reakcí vznikají'],['slouc','smes','tvoří směsi'],['kov','molekula','drží atomy'],['ion_v','ion','přitažlivost iontů'],['en','kov','malý rozdíl EN'],['en','ion_v','velký rozdíl EN'],['vod','molekula','mezi molekulami'],['vod','en','F, O, N'],['rea','slouc','mění látky'],['rea','redox','přenos e⁻'],['redox','oxid','ztráta e⁻'],['redox','red','zisk e⁻'],['rea','kat','urychluje'],['rea','rov','vratná reakce'],['rea','neu','typ reakce'],['neu','kys','reaguje'],['neu','zas','reaguje'],['neu','sul','vzniká'],['kys','ph','pH < 7'],['zas','ph','pH > 7'],['ph','ind','ukazuje'],['roz','kon','udává'],['kys','roz','vodný roztok'],['sul','ion_v','iontová sloučenina'],['uhl','alk','+ –OH'],['alk','kk','oxidací'],['kk','est','+ alkohol'],['alk','est','+ kyselina'],['uhl','kov','kovalentní vazby']];
+const cn=id=>CN.find(x=>x[0]==id);
+const cw=n=>Math.max(104,n[1].length*8.4+30);
+function glFind(label){const L=safe(()=>GL,[]);const q=norm(label);return L.find(x=>norm(x[0])==q)||L.find(x=>norm(x[0]).startsWith(q.split(' ')[0]))||null}
+TX.conc=()=>{
+ const B=$('#concB');
+ const edges=CE.map(e=>{const a=cn(e[0]),b=cn(e[1]);return `<line class="ce5" data-a="${e[0]}" data-b="${e[1]}" x1="${a[2]}" y1="${a[3]}" x2="${b[2]}" y2="${b[3]}"/>`}).join('');
+ const labels=CE.map(e=>{const a=cn(e[0]),b=cn(e[1]);return `<text class="cl5" data-a="${e[0]}" data-b="${e[1]}" x="${(a[2]+b[2])/2}" y="${(a[3]+b[3])/2-6}" text-anchor="middle">${E(e[2])}</text>`}).join('');
+ const nodes=CN.map((n,i)=>{const w=cw(n),c=CG[n[4]][1];return `<g class="cn5" data-id="${n[0]}" tabindex="0" role="button" aria-label="${E(n[1])}" transform="translate(${n[2]} ${n[3]})" style="--i:${i}"><rect x="${-w/2}" y="-19" width="${w}" height="38" rx="19" style="fill:color-mix(in srgb,${c} 24%,var(--bg));stroke:${c}"/><text text-anchor="middle" dy=".35em">${E(n[1])}</text></g>`}).join('');
+ B.innerHTML=`<div class="card"><input id="cq5" autocomplete="off" placeholder="${T('Hledat pojem…','Search a concept…','Шукати поняття…')}" aria-label="${T('Hledat pojem','Search a concept','Шукати поняття')}" style="margin:0 0 10px"><div class="cg5">${Object.values(CG).map(g=>`<span><i style="background:${g[1]}"></i>${g[0]}</span>`).join('')}</div></div>
+ <div class="card wrap" style="padding:10px"><svg id="cs5" viewBox="0 0 920 640" role="group" aria-label="${T('Mapa pojmů','Concept map','Мапа понять')}">${edges}${labels}${nodes}</svg></div>
+ <div class="card" id="cd5"><p class="m">${T('Klikni na pojem a uvidíš, s čím souvisí. Mapu můžeš na menší obrazovce posouvat do stran.','Click a concept to see what it relates to. On a small screen you can scroll the map sideways.','Натисни на поняття, щоб побачити зв’язки.')}</p></div>`;
+ const svg=$('#cs5',B),det=$('#cd5',B);
+ const sel=id=>{const n=cn(id);if(!n)return;svg.dataset.sel=id;const nb=new Set([id]);
+  $$('.ce5,.cl5',svg).forEach(x=>{const on=x.dataset.a==id||x.dataset.b==id;x.classList.toggle('on',on);if(on){nb.add(x.dataset.a);nb.add(x.dataset.b)}});
+  $$('.cn5',svg).forEach(g=>{g.classList.toggle('on',g.dataset.id==id);g.classList.toggle('nb',g.dataset.id!=id&&nb.has(g.dataset.id))});
+  const rel=[...nb].filter(x=>x!=id).map(cn),gl=glFind(n[1]);
+  det.innerHTML=`<div class="row" style="justify-content:space-between;gap:10px;flex-wrap:wrap"><h2 style="margin:0">${E(n[1])}</h2><span class="tag" style="background:color-mix(in srgb,${CG[n[4]][1]} 30%,transparent)">${CG[n[4]][0]}</span></div><p style="margin:10px 0">${E(n[5])}</p><p class="m" style="margin:0 0 6px">${T('Souvisí s:','Related to:','Пов’язано з:')}</p><div class="cr5">${rel.map(r=>`<button type="button" data-go="${r[0]}">${E(r[1])}</button>`).join('')}</div><div class="row" style="gap:8px;margin-top:12px;flex-wrap:wrap">${gl?`<button type="button" id="cg5">${ic5(P5.book,16)} ${T('Ve Slovníčku','In the glossary','У словнику')}</button>`:''}<button type="button" id="cl5b">${ic5(P5.spark,16)} ${T('Zeptat se Luny','Ask Luna','Запитати Луну')}</button></div>`;
+  $$('[data-go]',det).forEach(b=>b.onclick=()=>sel(b.dataset.go));
+  const g=$('#cg5',det);if(g)g.onclick=()=>{go('gl');setTimeout(()=>{const i=$('#glq');if(i){i.value=gl[0];safe(()=>glF())}},260)};
+  $('#cl5b',det).onclick=()=>askLuna(T('Vysvětli mi pojem ','Explain the concept ','Поясни поняття ')+n[1]);
+  det.classList.remove('flash5');void det.offsetWidth;det.classList.add('flash5')};
+ $$('.cn5',svg).forEach(g=>{g.onclick=()=>sel(g.dataset.id);g.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();sel(g.dataset.id)}}});
+ $('#cq5',B).oninput=e=>{const q=norm(e.target.value.trim());let first=null;$$('.cn5',svg).forEach(g=>{const n=cn(g.dataset.id),hit=!!q&&norm(n[1]).includes(q);g.classList.toggle('hit',hit);if(hit&&!first)first=n[0]});svg.dataset.q=q?'1':'';e.target.dataset.first=first||''};
+ $('#cq5',B).onkeydown=e=>{if(e.key=='Enter'&&e.target.dataset.first)sel(e.target.dataset.first)};
+ window.concSel=sel};
+TX.reg('conc',T('Mapa pojmů','Concept map','Мапа понять'),T('Interaktivní schéma, jak spolu souvisí pojmy z chemie.','An interactive map of how chemistry concepts connect.','Інтерактивна схема зв’язків між поняттями.'),TX.conc);
+TX.lab.push(['sparkles',T('Mapa pojmů','Concept map','Мапа понять'),T('Jak spolu souvisí atomy, vazby, reakce a roztoky','How atoms, bonds, reactions and solutions connect','Як пов’язані атоми, зв’язки та реакції'),'conc']);
+
+/* ================= 2) EXPORT CHATU S LUNOU ================= */
+function chatInfo(){const st=gS('lchats',{})[K()]||{},c=(st.list||[]).find(x=>x.id==st.act);return{title:(c&&c.t)||T('Chat s Lunou','Chat with Luna','Чат з Луною'),m:lunaMsgs()}}
+const dt5=ts=>{try{return new Date(ts||Date.now()).toLocaleString(T('cs-CZ','en-GB','uk-UA'),{day:'numeric',month:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return''}};
+function chatText(kind){const {title,m}=chatInfo(),name=K(),ver=safe(()=>VER,'');
+ if(kind=='md'){return `# ${title}\n\n*LunaAI · TadxChemie v${ver} · ${name} · ${dt5()}*\n\n`+m.map(x=>`**${x.r=='u'?name:'Luna'}**${x.ts?' · '+dt5(x.ts):''}\n\n${String(x.t||'')}\n`).join('\n---\n\n')}
+ return `LunaAI · TadxChemie v${ver}\n${T('Chat','Chat','Чат')}: ${title}\n${T('Uživatel','User','Користувач')}: ${name}\n${T('Exportováno','Exported','Експортовано')}: ${dt5()}\n${'-'.repeat(40)}\n\n`+m.map(x=>`[${dt5(x.ts)}] ${x.r=='u'?name:'Luna'}:\n${String(x.t||'')}\n`).join('\n')}
+function chatExport(){const {m}=chatInfo();if(!m.length){tst(T('Chat je prázdný, není co exportovat.','The chat is empty, nothing to export.','Чат порожній.'));return}
+ if($('#ex5'))return;const o=document.createElement('div');o.id='ex5';o.className='lx3o';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');
+ o.innerHTML=`<div class="lx3c"><h3>${T('Exportovat chat','Export chat','Експортувати чат')}</h3><p class="m" style="margin:0 0 14px">${m.length} ${T('zpráv. Soubor se uloží jen do tvého zařízení.','messages. The file is saved only to your device.','повідомлень. Файл зберігається лише на пристрої.')}</p><div class="ex5b"><button type="button" class="pri" data-k="txt">${ic5(P5.dl,16)} .txt</button><button type="button" data-k="md">${ic5(P5.dl,16)} .md</button><button type="button" data-k="cp">${T('Kopírovat','Copy','Копіювати')}</button></div><div class="row" style="justify-content:flex-end;margin-top:14px"><button type="button" id="ex5x">${T('Zavřít','Close','Закрити')}</button></div></div>`;
+ document.body.appendChild(o);const close=()=>o.remove(),fn=()=>'luna-chat-'+new Date().toISOString().slice(0,10);
+ $('#ex5x',o).onclick=close;o.addEventListener('click',e=>{if(e.target===o)close()});o.addEventListener('keydown',e=>{if(e.key=='Escape'){e.stopPropagation();close()}});
+ $$('[data-k]',o).forEach(b=>b.onclick=()=>{const k=b.dataset.k;
+  if(k=='cp'){const t=chatText('txt');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{tst(T('Zkopírováno do schránky.','Copied to clipboard.','Скопійовано.'));close()}).catch(()=>tst(T('Kopírování se nepovedlo.','Copy failed.','Не вдалося копіювати.')));return}
+  dlf(new Blob(['\ufeff'+chatText(k)],{type:'text/'+(k=='md'?'markdown':'plain')+';charset=utf-8'}),fn()+'.'+k);tst(T('Chat uložen.','Chat saved.','Чат збережено.'));close()});
+ const f=$('.pri',o);f&&f.focus()}
+window.chatExport=chatExport;
+function lunaMount5(){const h=$('#luna .lh');if(!h||$('#lx5X',h))return;
+ const anchor=$('#lx4R',h);const html=`<button class="ib" id="lx5X" type="button" aria-label="${T('Exportovat chat','Export chat','Експортувати чат')}" title="${T('Exportovat chat (.txt, .md)','Export chat (.txt, .md)','Експорт чату')}">${ic5(P5.dl,18)}</button>`;
+ if(anchor)anchor.insertAdjacentHTML('beforebegin',html);else h.insertAdjacentHTML('beforeend',html);$('#lx5X',h).onclick=chatExport}
+
+/* ================= 3) TÝDENNÍ SOUHRN ================= */
+function wkData(){const now=Date.now(),DAY=864e5;
+ const R=gS('results',[]).filter(r=>r.user==K()&&!r.dq).map(r=>({...r,t:+new Date(String(r.date||'').replace(' ','T')+':00Z')})).filter(r=>!isNaN(r.t));
+ const cur=R.filter(r=>r.t>now-7*DAY),prev=R.filter(r=>r.t<=now-7*DAY&&r.t>now-14*DAY);
+ const avg=a=>a.length?Math.round(a.reduce((s,r)=>s+(r.pct||0),0)/a.length):null;
+ const by={};cur.forEach(r=>{(by[r.quiz]=by[r.quiz]||[]).push(r.pct||0)});
+ const q=Object.entries(by).map(([k,v])=>[k,Math.round(v.reduce((a,b)=>a+b,0)/v.length),v.length]).sort((a,b)=>b[1]-a[1]);
+ const miss={};cur.forEach(r=>(r.miss||[]).forEach(m=>{miss[m]=(miss[m]||0)+1}));
+ const mt=Object.entries(miss).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ const days=[...Array(7)].map((_,i)=>{const d=new Date(now-(6-i)*DAY),k=d.toDateString();return{l:d.getDate()+'.'+(d.getMonth()+1)+'.',n:cur.filter(r=>new Date(r.t).toDateString()==k).length}});
+ return{cur,prev,a:avg(cur),pa:avg(prev),q,mt,days}}
+const dlt=(a,b,unit)=>{if(a==null||b==null)return'';const d=a-b;return d==0?`<span class="dl5">= ${T('beze změny','no change','без змін')}</span>`:`<span class="dl5 ${d>0?'up':'dn'}">${d>0?'▲':'▼'} ${Math.abs(d)}${unit||''}</span>`};
+function wkText(D){const P=safe(()=>PF(),{xp:0,streak:0});
+ return `TadxChemie · ${T('týdenní souhrn','weekly summary','тижневий підсумок')}\n${K()} · ${dt5()}\n${'-'.repeat(36)}\n${T('Testů','Tests','Тестів')}: ${D.cur.length} (${T('minulý týden','last week','минулого тижня')}: ${D.prev.length})\n${T('Průměr','Average','Середнє')}: ${D.a==null?'–':D.a+' %'}\n${T('Série','Streak','Серія')}: ${P.streak||0}\nXP: ${P.xp||0}\n${D.q.length?'\n'+T('Kvízy','Quizzes','Квізи')+':\n'+D.q.map(x=>` - ${x[0]}: ${x[1]} % (${x[2]}×)`).join('\n'):''}${D.mt.length?'\n\n'+T('Nejčastější chyby','Most common mistakes','Найчастіші помилки')+':\n'+D.mt.map(x=>` - ${x[0]} (${x[1]}×)`).join('\n'):''}\n`}
+TX.wk=()=>{const D=wkData(),B=$('#wkB'),P=safe(()=>PF(),{xp:0,streak:0}),mx=Math.max(1,...D.days.map(d=>d.n));
+ if(!D.cur.length){B.innerHTML=`<div class="card" style="text-align:center;padding:34px 20px"><div style="font-size:2.4rem;color:var(--b)">${ic5(P5.cal,44)}</div><h2 style="margin-top:10px">${T('Tento týden zatím žádný test','No tests this week yet','Цього тижня ще немає тестів')}</h2><p class="m" style="margin-bottom:14px">${T('Dokonči aspoň jeden kvíz a tady se objeví tvůj souhrn.','Finish at least one quiz and your summary will appear here.','Заверши хоча б один квіз.')}</p><button class="pri" onclick="go('kviz')">${T('Vybrat kvíz','Pick a quiz','Обрати квіз')}</button></div>`;return}
+ const best=D.q[0],worst=D.q.length>1?D.q[D.q.length-1]:null;
+ const kp=(l,v,d)=>`<div class="card wk5k"><span class="m">${l}</span><b>${v}</b>${d||''}</div>`;
+ const tip=D.a!=null&&D.pa!=null&&D.a<D.pa?T('Průměr je o něco níž než minulý týden. Projdi si nejčastější chyby níž a zkus je s Lunou.','Your average dipped a bit. Review the common mistakes below and practise them with Luna.','Середнє трохи впало. Перегляньте помилки нижче.'):D.mt.length?T('Dobrá práce. Na nejčastějších chybách si můžeš ověřit, co ještě drhne.','Nice work. The common mistakes below show what still needs practice.','Гарна робота. Перевір помилки нижче.'):T('Skvělý týden, žádné opakující se chyby.','Great week, no repeated mistakes.','Чудовий тиждень, без повторюваних помилок.');
+ B.innerHTML=`<div class="grid wk5g">${kp(T('Testů za 7 dní','Tests in 7 days','Тестів за 7 днів'),D.cur.length,dlt(D.cur.length,D.prev.length,'×'))}${kp(T('Průměr','Average','Середнє'),D.a+' %',dlt(D.a,D.pa,' %'))}${kp(T('Nejlepší kvíz','Best quiz','Найкращий квіз'),best?E(best[0]):'–',best?`<span class="m">${best[1]} %</span>`:'')}${kp(T('Nejslabší kvíz','Weakest quiz','Найслабший квіз'),worst?E(worst[0]):'–',worst?`<span class="m">${worst[1]} %</span>`:'')}${kp(T('Série dní','Day streak','Серія днів'),P.streak||0,'')}${kp('XP',P.xp||0,'')}</div>
+ <div class="card"><h2 style="font-size:1.15rem">${T('Testy po dnech','Tests by day','Тести по днях')}</h2><div class="wk5b">${D.days.map((d,i)=>`<div><i style="height:${d.n?Math.max(8,d.n/mx*100):3}%;--d:${i*60}ms" title="${d.n}"></i><span>${d.n||''}</span><em>${d.l}</em></div>`).join('')}</div></div>
+ <div class="card"><h2 style="font-size:1.15rem">${T('Nejčastější chyby','Most common mistakes','Найчастіші помилки')}</h2>${D.mt.length?`<ol class="wk5m">${D.mt.map(x=>`<li><span>${E(x[0])}</span><b>${x[1]}×</b></li>`).join('')}</ol>`:`<p class="m">${T('Tento týden žádné opakované chyby.','No repeated mistakes this week.','Немає повторюваних помилок.')}</p>`}</div>
+ <div class="card"><p style="margin:0 0 12px">${tip}</p><div class="row" style="gap:8px;flex-wrap:wrap">${D.mt.length?`<button class="pri" id="wk5l">${ic5(P5.spark,16)} ${T('Procvičit s Lunou','Practise with Luna','Тренуватись з Луною')}</button>`:''}<button id="wk5d">${ic5(P5.dl,16)} ${T('Stáhnout souhrn (.txt)','Download summary (.txt)','Завантажити (.txt)')}</button></div></div>`;
+ const l=$('#wk5l',B);if(l)l.onclick=()=>askLuna(T('Pomoz mi s tím, v čem dělám chyby: ','Help me with what I get wrong: ','Допоможи з моїми помилками: ')+D.mt.slice(0,3).map(x=>x[0]).join('; '));
+ $('#wk5d',B).onclick=()=>{dlf(new Blob(['\ufeff'+wkText(D)],{type:'text/plain;charset=utf-8'}),'tydenni-souhrn-'+new Date().toISOString().slice(0,10)+'.txt');tst(T('Souhrn uložen.','Summary saved.','Збережено.'))}};
+TX.reg('wk',T('Týdenní souhrn','Weekly summary','Тижневий підсумок'),T('Jak ti šlo za posledních 7 dní a co si zopakovat.','How the last 7 days went and what to review.','Як минули останні 7 днів.'),TX.wk,'prof');
+TX.lab.push(['calendar',T('Týdenní souhrn','Weekly summary','Тижневий підсумок'),T('Testy, průměr a chyby za 7 dní','Tests, average and mistakes for 7 days','Тести, середнє й помилки за 7 днів'),'wk']);
+function profCard(){const v=$('#prof.on');if(!v||!me0()||$('#wk5c',v))return;const D=wkData();
+ const html=`<div class="card wk5c" id="wk5c"><div class="row" style="justify-content:space-between;gap:12px;flex-wrap:wrap"><div><b>${T('Tento týden','This week','Цього тижня')}</b><p class="m" style="margin:2px 0 0">${D.cur.length?D.cur.length+' '+T('testů','tests','тестів')+' · '+T('průměr','average','середнє')+' '+D.a+' % '+dlt(D.a,D.pa,' %'):T('Zatím žádný test.','No tests yet.','Ще немає тестів.')}</p></div><button type="button" class="pri" onclick="go('wk')">${T('Týdenní souhrn','Weekly summary','Тижневий підсумок')}</button></div></div>`;
+ const h=$(':scope>.pg3',v);if(h)h.insertAdjacentHTML('afterend',html);else v.insertAdjacentHTML('afterbegin',html)}
+
+/* ================= 4) TITRAČNÍ LABORATOŘ ================= */
+const IND={phph:{n:T('Fenolftalein','Phenolphthalein','Фенолфталеїн'),lo:8.2,hi:10,a:'#cfe6ff',b:'#ff2d92',d:T('bezbarvý → růžový (pH 8,2–10)','colourless → pink (pH 8.2–10)','безбарвний → рожевий (pH 8,2–10)')},
+ mo:{n:T('Methyloranž','Methyl orange','Метилоранж'),lo:3.1,hi:4.4,a:'#ff3b3b',b:'#ffd23f',d:T('červený → žlutý (pH 3,1–4,4)','red → yellow (pH 3.1–4.4)','червоний → жовтий (pH 3,1–4,4)')},
+ btb:{n:T('Bromthymolová modř','Bromothymol blue','Бромтимоловий синій'),lo:6,hi:7.6,a:'#ffe14d',b:'#2f6bff',d:T('žlutá → modrá (pH 6–7,6)','yellow → blue (pH 6–7.6)','жовтий → синій (pH 6–7,6)')}};
+const hx=c=>[1,3,5].map(i=>parseInt(c.substr(i,2),16));
+const mixc=(a,b,t)=>{const A=hx(a),B=hx(b);return 'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')'};
+const KA=1.8e-5,CB=0.1;
+let ts={type:'strong',ind:'phph',ca:0.1,Va:25,Vb:0,pts:[],stack:[],tries:0,shown:false};
+function phAt(Vb){const na=ts.ca*ts.Va,nb=CB*Vb,Vt=ts.Va+Vb;let ph;
+ if(ts.type=='strong'){const d=na-nb;ph=Math.abs(d)<1e-9?7:d>0?-Math.log10(d/Vt):14+Math.log10(-d/Vt)}
+ else{if(Vb<=0){ph=-Math.log10((-KA+Math.sqrt(KA*KA+4*KA*ts.ca))/2)}
+  else if(nb<na-1e-9){ph=-Math.log10(KA)+Math.log10(nb/(na-nb))}
+  else{const Kb=1e-14/KA,OH=Math.max(0,(nb-na)/Vt)+Math.sqrt(Kb*na/Vt);ph=14+Math.log10(OH)}}
+ return cl(ph,0,14)}
+const veq=()=>ts.ca*ts.Va/CB;
+function ttNew(){ts.ca=[.05,.08,.1,.12,.15,.18][Math.floor(Math.random()*6)];ts.Vb=0;ts.pts=[[0,phAt(0)]];ts.stack=[];ts.tries=0;ts.shown=false}
+function ttChart(){const X=v=>40+v/50*370,Y=p=>232-p/14*222;let g='';
+ for(let p=0;p<=14;p+=2)g+=`<line x1="40" y1="${Y(p)}" x2="410" y2="${Y(p)}" class="gr"/><text x="34" y="${Y(p)+4}" text-anchor="end">${p}</text>`;
+ for(let v=0;v<=50;v+=10)g+=`<line x1="${X(v)}" y1="10" x2="${X(v)}" y2="232" class="gr"/><text x="${X(v)}" y="250" text-anchor="middle">${v}</text>`;
+ let th='';if(ts.shown){const pts=[];for(let v=0;v<=50;v+=.25)pts.push(X(v).toFixed(1)+','+Y(phAt(v)).toFixed(1));th=`<polyline points="${pts.join(' ')}" class="th"/><line x1="${X(veq())}" y1="10" x2="${X(veq())}" y2="232" class="eq"/><text x="${X(veq())+4}" y="24" class="eqt">V<tspan dy="3" font-size="8">ekv</tspan> = ${f1(veq())} mL</text>`}
+ const line=ts.pts.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ');const last=ts.pts[ts.pts.length-1];
+ return `<svg viewBox="0 0 420 262" class="tt5c" role="img" aria-label="${T('Titrační křivka','Titration curve','Крива титрування')}">${g}${th}<polyline points="${line}" class="cv"/><circle cx="${X(last[0])}" cy="${Y(last[1])}" r="5" class="pt"/><text x="225" y="260" text-anchor="middle" class="ax">${T('objem NaOH (mL)','NaOH volume (mL)','об’єм NaOH (мл)')}</text><text x="10" y="120" transform="rotate(-90 10 120)" text-anchor="middle" class="ax">pH</text></svg>`}
+function ttUpd(){const B=$('#titB');if(!B)return;const Vb=ts.Vb,ph=phAt(Vb),I=IND[ts.ind],t=cl((ph-I.lo)/(I.hi-I.lo),0,1);
+ const y=14+Vb*3.4,L=$('#tt5L',B),F=$('#tt5F',B),lv=372-Vb*.6;
+ L.setAttribute('y',y);L.setAttribute('height',186-y);F.setAttribute('fill',mixc(I.a,I.b,t));F.setAttribute('y',lv);F.setAttribute('height',440-lv);
+ $('#tt5v',B).textContent=f1(Vb)+' mL';$('#tt5p',B).textContent=f2(ph);$('#tt5g',B).innerHTML=ttChart();
+ $('#tt5u',B).disabled=!ts.stack.length}
+function ttAdd(dv){if(ts.Vb+dv>50+1e-9){tst(T('Byreta je prázdná (50 mL).','The burette is empty (50 mL).','Бюретка порожня (50 мл).'));return}
+ ts.stack.push({Vb:ts.Vb,n:ts.pts.length});const n=Math.round(dv/.1);for(let i=1;i<=n;i++){const v=+(ts.Vb+.1*i).toFixed(2);ts.pts.push([v,phAt(v)])}ts.Vb=+(ts.Vb+dv).toFixed(2);
+ const d=$('#tt5D');if(d){d.classList.remove('fall');void d.getBoundingClientRect();d.classList.add('fall')}const f=$('#tt5F');if(f){f.classList.remove('rip');void f.getBoundingClientRect();f.classList.add('rip')}ttUpd()}
+function ttUndo(){const s=ts.stack.pop();if(!s)return;ts.Vb=s.Vb;ts.pts=ts.pts.slice(0,s.n);ttUpd()}
+function ttReset(newTask){if(newTask)ttNew();else{ts.Vb=0;ts.pts=[[0,phAt(0)]];ts.stack=[]}const B=$('#titB');if(B){const r=$('#tt5r',B);if(r)r.innerHTML='';$('#tt5V',B)&&($('#tt5V',B).value='');$('#tt5C',B)&&($('#tt5C',B).value='');$('#tt5ca',B)&&($('#tt5ca',B).textContent=T('neznámá','unknown','невідома'))}ttUpd()}
+const num=v=>parseFloat(String(v).replace(',','.').trim());
+function ttCheck(){const B=$('#titB'),vE=num($('#tt5V').value),cA=num($('#tt5C').value),r=$('#tt5r');
+ if(isNaN(vE)||isNaN(cA)){r.innerHTML=`<p class="tt5w">${T('Vyplň oba údaje.','Fill in both values.','Заповни обидва поля.')}</p>`;return}
+ const okV=Math.abs(vE-veq())<=.5,okC=Math.abs(cA-ts.ca)/ts.ca<=.05,peq=phAt(veq()),I=IND[ts.ind],indOk=I.lo<=peq+1.2&&I.hi>=peq-1.2;
+ const indT=`<p class="m" style="margin:8px 0 0">${T('Indikátor','Indicator','Індикатор')} <b>${I.n}</b> ${indOk?T('je pro tuto titraci vhodný','suits this titration','підходить'):T('pro tuto titraci nevhodný: mění barvu daleko od bodu ekvivalence','does not suit this titration: it changes colour far from the equivalence point','не підходить')} (pH ${T('v bodě ekvivalence','at the equivalence point','в точці еквівалентності')} ≈ ${f1(peq)}).</p>`;
+ if(okV&&okC){ts.shown=true;r.innerHTML=`<p class="tt5o">${ic5('<path d="M20 6 9 17l-5-5"/>',18)} ${T('Správně!','Correct!','Правильно!')} c = ${f2(ts.ca)} mol/dm³, V<sub>ekv</sub> = ${f1(veq())} mL.</p><p class="m" style="margin:6px 0 0">c(${ts.type=='strong'?'HCl':'CH₃COOH'}) = c(NaOH) · V(NaOH) / V(${ts.type=='strong'?'HCl':'CH₃COOH'}) = ${f2(CB)} · ${f1(veq())} / ${f1(ts.Va)}</p>${indT}`;ttUpd()}
+ else{ts.tries++;r.innerHTML=`<p class="tt5w">${okV?T('Spotřeba sedí, ale zkontroluj výpočet koncentrace: c(kys.) = c(NaOH) · V(NaOH) / V(kys.).','The volume is right, but check the concentration: c(acid) = c(NaOH) · V(NaOH) / V(acid).','Об’єм правильний, перевір розрахунок концентрації.'):T('Bod ekvivalence je v nejstrmější části křivky. Přikapávej po 0,1 mL v jejím okolí.','The equivalence point is on the steepest part of the curve. Add 0.1 mL steps around it.','Точка еквівалентності на найкрутішій частині кривої.')}</p>${ts.tries>=3?`<button type="button" id="tt5s">${T('Ukázat řešení','Show the solution','Показати розв’язок')}</button>`:''}`;const s=$('#tt5s',r);if(s)s.onclick=()=>{ts.shown=true;r.innerHTML=`<p class="tt5o">V<sub>ekv</sub> = ${f1(veq())} mL, c = ${f2(ts.ca)} mol/dm³.</p>${indT}`;ttUpd()}}}
+TX.tit=()=>{const B=$('#titB');if(!ts.pts.length)ttNew();
+ B.innerHTML=`<div class="tt5"><div class="card tt5a"><svg id="tt5s0" viewBox="0 0 320 440" role="img" aria-label="${T('Byreta a Erlenmeyerova baňka','Burette and Erlenmeyer flask','Бюретка і колба')}"><defs><clipPath id="tt5cp"><path d="M148 250V300L92 396Q84 418 106 418H214Q236 418 228 396L172 300V250Z"/></clipPath></defs>
+ <rect x="146" y="14" width="28" height="172" rx="5" class="bu"/>${[0,10,20,30,40,50].map(v=>`<line x1="138" y1="${14+v*3.4}" x2="146" y2="${14+v*3.4}" class="tk"/><text x="132" y="${18+v*3.4}" text-anchor="end" class="tl">${v}</text>`).join('')}
+ <rect id="tt5L" x="148" y="14" width="24" height="172" class="bl"/><rect x="154" y="186" width="12" height="14" rx="2" class="sc"/><polygon points="156,200 164,200 162,218 158,218" class="sc"/><circle id="tt5D" cx="160" cy="222" r="3.6" class="dp"/>
+ <g clip-path="url(#tt5cp)"><rect id="tt5F" x="80" y="372" width="160" height="68" fill="#cfe6ff" class="fl"/></g><path d="M148 250V300L92 396Q84 418 106 418H214Q236 418 228 396L172 300V250Z" class="fg"/><rect x="142" y="244" width="36" height="8" rx="3" class="fg"/></svg></div>
+ <div class="tt5r"><div class="card"><div class="tabs" role="tablist"><button type="button" data-t="strong" class="${ts.type=='strong'?'on':''}">${T('Silná kyselina (HCl)','Strong acid (HCl)','Сильна кислота (HCl)')}</button><button type="button" data-t="weak" class="${ts.type=='weak'?'on':''}">${T('Slabá kyselina (CH₃COOH)','Weak acid (CH₃COOH)','Слабка кислота (CH₃COOH)')}</button></div>
+ <p style="margin:0 0 10px">${T('V baňce je','The flask contains','У колбі')} <b>${f1(ts.Va)} mL</b> ${ts.type=='strong'?'HCl':'CH₃COOH'} ${T('o','with','з')} c = <b id="tt5ca">${ts.shown?f2(ts.ca):T('neznámá','unknown','невідома')}</b>. ${T('Titruješ roztokem NaOH o c = 0,100 mol/dm³.','You titrate with NaOH, c = 0.100 mol/dm³.','Титруєш NaOH, c = 0,100 моль/дм³.')}</p>
+ <label class="m" for="tt5i">${T('Indikátor','Indicator','Індикатор')}</label><select id="tt5i" style="margin:4px 0 4px">${Object.keys(IND).map(k=>`<option value="${k}" ${k==ts.ind?'selected':''}>${IND[k].n}</option>`).join('')}</select><p class="m" id="tt5id" style="margin:0 0 10px;font-size:.84rem">${IND[ts.ind].d}</p>
+ <div class="tt5bt"><button type="button" data-a=".1">+0,1 mL</button><button type="button" data-a="1">+1 mL</button><button type="button" data-a="5">+5 mL</button><button type="button" id="tt5u">${T('Zpět','Undo','Назад')}</button><button type="button" id="tt5n">${T('Nová úloha','New task','Нова задача')}</button></div></div>
+ <div class="card"><div class="row" style="gap:22px;flex-wrap:wrap;margin-bottom:6px"><div><span class="m">${T('Přidáno','Added','Додано')}</span><br><b id="tt5v" class="tt5n">0,0 mL</b></div><div><span class="m">pH</span><br><b id="tt5p" class="tt5n">–</b></div></div><div id="tt5g"></div><p class="m" style="margin:6px 0 0;font-size:.8rem">${T('Zjednodušený model (25 °C). Slabá kyselina: Ka = 1,8·10⁻⁵.','Simplified model (25 °C). Weak acid: Ka = 1.8·10⁻⁵.','Спрощена модель (25 °C). Слабка кислота: Ka = 1,8·10⁻⁵.')}</p></div>
+ <div class="card"><h2 style="font-size:1.1rem">${T('Vyhodnocení','Evaluation','Оцінка')}</h2><div class="row" style="gap:10px;flex-wrap:wrap"><div style="flex:1;min-width:150px"><label class="m" for="tt5V">${T('Spotřeba NaOH v bodě ekvivalence (mL)','NaOH volume at the equivalence point (mL)','Об’єм NaOH в точці еквівалентності (мл)')}</label><input id="tt5V" inputmode="decimal" placeholder="0,0"></div><div style="flex:1;min-width:150px"><label class="m" for="tt5C">${T('Koncentrace kyseliny (mol/dm³)','Acid concentration (mol/dm³)','Концентрація кислоти (моль/дм³)')}</label><input id="tt5C" inputmode="decimal" placeholder="0,000"></div></div><div class="row" style="gap:8px"><button type="button" class="pri" id="tt5k">${T('Zkontrolovat','Check','Перевірити')}</button></div><div id="tt5r" aria-live="polite" style="margin-top:10px"></div></div></div></div>`;
+ $$('.tt5bt [data-a]',B).forEach(b=>b.onclick=()=>ttAdd(+b.dataset.a));$('#tt5u',B).onclick=ttUndo;$('#tt5n',B).onclick=()=>{ttReset(true);TX.tit()};
+ $$('.tabs [data-t]',B).forEach(b=>b.onclick=()=>{ts.type=b.dataset.t;ttNew();TX.tit()});
+ $('#tt5i',B).onchange=e=>{ts.ind=e.target.value;$('#tt5id',B).textContent=IND[ts.ind].d;ttUpd()};
+ $('#tt5k',B).onclick=ttCheck;$('#tt5C',B).onkeydown=$('#tt5V',B).onkeydown=e=>{if(e.key=='Enter')ttCheck()};ttUpd()};
+TX.reg('tit',T('Titrační laboratoř','Titration lab','Лабораторія титрування'),T('Přikapávej NaOH ke kyselině, sleduj pH a najdi bod ekvivalence.','Add NaOH to an acid, watch the pH and find the equivalence point.','Додавай NaOH до кислоти й знайди точку еквівалентності.'),TX.tit);
+TX.lab.push(['test-tube-diagonal',T('Titrační laboratoř','Titration lab','Лабораторія титрування'),T('Byreta, indikátor a titrační křivka','Burette, indicator and titration curve','Бюретка, індикатор і крива')]);TX.lab[TX.lab.length-1].push('tit');
+
+/* ================= 5) HLEDÁNÍ V OBSAHU (napojení na rychlé hledání) ================= */
+window.palExtra=q=>{const A=T('Akce','Action','Дія'),N=T('Stránka','Page','Сторінка');
+ const out=[{l:T('Mapa pojmů','Concept map','Мапа понять'),k:'mapa pojmu schema',h:N,i:P5.net,f:()=>go('conc')},{l:T('Titrační laboratoř','Titration lab','Лабораторія титрування'),k:'titrace byreta',h:N,i:P5.flask,f:()=>go('tit')},{l:T('Týdenní souhrn','Weekly summary','Тижневий підсумок'),k:'tyden souhrn statistiky',h:N,i:P5.cal,f:()=>go('wk')},{l:T('Exportovat chat s Lunou','Export chat with Luna','Експорт чату'),k:'export stahnout ulozit chat',h:A,i:P5.dl,f:()=>chatExport()}];
+ if(!q||q.length<2)return out;const c=[];
+ safe(()=>CN.filter(n=>norm(n[1]).includes(q)).slice(0,3).forEach(n=>c.push({m:1,l:n[1],h:T('Mapa pojmů','Concept map','Мапа понять'),i:P5.net,f:()=>{go('conc');setTimeout(()=>window.concSel&&window.concSel(n[0]),420)}})));
+ safe(()=>GL.filter(x=>norm(x[0]).includes(q)).slice(0,4).forEach(x=>c.push({m:1,l:x[0],h:T('Pojem','Term','Термін'),i:P5.book,f:()=>{go('gl');setTimeout(()=>{const i=$('#glq');if(i){i.value=x[0];glF()}},280)}})));
+ safe(()=>ELS.filter(e=>norm(e.n).includes(q)||norm(e.s)==q).slice(0,4).forEach(e=>c.push({m:1,l:e.n+' ('+e.s+')',h:T('Prvek','Element','Елемент')+' '+e.z,i:P5.atom,f:()=>{go('pt');setTimeout(()=>safe(()=>ptD(e.z)),420)}})));
+ safe(()=>allQ().filter(x=>!x.daily&&norm(x.title).includes(q)).slice(0,4).forEach(x=>c.push({m:1,l:x.title,h:T('Kvíz','Quiz','Квіз'),i:P5.quiz,f:()=>start(x.id)})));
+ safe(()=>LXKB.filter(x=>norm(x[1]).includes(q)).slice(0,3).forEach(x=>c.push({m:1,l:x[1],h:T('Zeptat se Luny','Ask Luna','Запитати Луну'),i:P5.spark,f:()=>askLuna(T('Vysvětli mi: ','Explain: ','Поясни: ')+x[1])})));
+ return c.concat(out)};
+
+/* ================= napojení ================= */
+/* ---------- přihlášení: animované siluety laboratoře ---------- */
+function silSVG(k){
+ const wave=y=>{let d='M-100 '+y+' q25 -10 50 0';for(let i=0;i<11;i++)d+=' t50 0';return d+' V700 H-100Z'};
+ const fl='M92 470H118V525L168 628Q174 650 152 650H58Q36 650 42 628L92 525Z',bk='M212 520H308V640Q308 650 298 650H222Q212 650 212 640Z';
+ const bub=(x,y,r,d,dx)=>`<circle class="bb" cx="${x}" cy="${y}" r="${r}" style="--d:${d}s;--x:${dx}px"/>`;
+ const tube=(x,top,d)=>`<clipPath id="st${k}${x}"><path d="M${x} 540V630Q${x+11} 652 ${x+22} 630V540Z"/></clipPath><g clip-path="url(#st${k}${x})"><rect class="lq2 tb" x="${x}" y="${top}" width="22" height="120" style="--d:${d}s"/></g><path class="gl" d="M${x} 540V630Q${x+11} 652 ${x+22} 630V540"/>`;
+ return `<svg class="sil9" viewBox="0 0 450 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+ <defs><clipPath id="sf${k}"><path d="${fl}"/></clipPath><clipPath id="sb${k}"><path d="${bk}"/></clipPath></defs>
+ <g class="spin" style="transform-origin:80px 112px"><polygon class="gl" points="80,76 111,94 111,130 80,148 49,130 49,94" style="opacity:.26"/><circle class="gl" cx="80" cy="112" r="17" style="opacity:.22"/></g>
+ <g class="spin r"><g style="opacity:1"><ellipse class="gl" cx="372" cy="132" rx="50" ry="17" style="opacity:.28"/><ellipse class="gl" cx="372" cy="132" rx="50" ry="17" transform="rotate(60 372 132)" style="opacity:.28"/><ellipse class="gl" cx="372" cy="132" rx="50" ry="17" transform="rotate(120 372 132)" style="opacity:.28"/><circle class="g" cx="422" cy="132" r="5" style="opacity:.5"/><circle class="g" cx="347" cy="175" r="5" style="opacity:.5"/><circle class="g" cx="347" cy="89" r="5" style="opacity:.5"/></g></g>
+ <circle class="g" cx="372" cy="132" r="9" style="opacity:.4"/>
+ <circle class="g fl" cx="230" cy="60" r="5" style="--d:.5s"/><circle class="g fl" cx="160" cy="210" r="4" style="--d:1.6s"/><circle class="g fl" cx="300" cy="230" r="6" style="--d:2.4s"/><circle class="g fl" cx="40" cy="260" r="4" style="--d:3.2s"/><circle class="g fl" cx="415" cy="300" r="5" style="--d:1s"/>
+ <rect class="g" x="20" y="652" width="410" height="6" rx="3"/>
+ <g clip-path="url(#sf${k})"><path class="lq wv" d="${wave(588)}"/><path class="lq wv s" d="${wave(596)}" style="opacity:.12"/></g><path class="gl" d="${fl}"/><rect class="gl" x="86" y="464" width="38" height="8" rx="3"/>
+ ${bub(80,620,5,0,-6)}${bub(108,612,4,1.3,8)}${bub(130,624,6,2.6,-4)}${bub(98,630,3,3.6,10)}
+ <g clip-path="url(#sb${k})"><path class="lq wv" d="${wave(572)}" style="animation-duration:6s"/><path class="lq wv s" d="${wave(580)}" style="opacity:.12"/></g><path class="gl" d="${bk}"/><path class="gl" d="M206 520H214M306 520H314"/>
+ ${bub(240,622,5,.6,6)}${bub(268,616,4,2,-8)}${bub(290,626,6,3.1,4)}
+ <rect class="g" x="333" y="590" width="104" height="7" rx="3"/>${tube(345,590,0)}${tube(375,570,1.2)}${tube(405,604,2.4)}
+ ${bub(356,586,3,.9,5)}${bub(386,566,3,2.2,-5)}
+ </svg>`}
+function silMount(){$$('.tp9').forEach((p,i)=>{if(p.dataset.sil)return;p.dataset.sil=1;p.insertAdjacentHTML('afterbegin',silSVG(i?'r':'l'))})}
+
+const sync5=()=>{safe(lunaMount5);safe(profCard);safe(silMount)};
+const g5=go;go=function(id){const r=g5.apply(this,arguments);safe(sync5);[160,740].forEach(t=>setTimeout(sync5,t));return r};
+let S5=0;try{new MutationObserver(()=>{if(S5)return;S5=1;requestAnimationFrame(()=>{S5=0;sync5()})}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+sync5();
+
+VN9['11.5']='Onigiri';
+CL.unshift(['11.5','Mapa pojmů, titrační laboratoř, týdenní souhrn a hledání v obsahu','11. 11. 2026',[
+ 'Mapa pojmů v Laboratoři: interaktivní schéma 28 pojmů (stavba látek, vazby, reakce, roztoky, organická chemie). Po kliknutí se zvýrazní souvislosti, uvidíš vysvětlení a můžeš skočit do Slovníčku nebo se zeptat Luny',
+ 'Titrační laboratoř: přikapáváš NaOH z byrety ke kyselině (silné HCl nebo slabé CH₃COOH), sleduješ barvu indikátoru i živou titrační křivku a hledáš bod ekvivalence. Na konci spočítáš neznámou koncentraci a dozvíš se, jestli byl indikátor vhodný',
+ 'Týdenní souhrn: počet testů a průměr za posledních 7 dní proti minulému týdnu, nejlepší a nejslabší kvíz, graf po dnech, nejčastější chyby a tlačítko Procvičit s Lunou. Krátká karta je i v Profilu, souhrn jde stáhnout jako .txt',
+ 'Export chatu s Lunou: nové tlačítko v hlavičce chatu uloží konverzaci jako .txt nebo .md, případně ji zkopíruje do schránky',
+ 'Rychlé hledání (Ctrl+K nebo /) nově hledá i v obsahu: pojmy ze Slovníčku a Mapy pojmů, prvky periodické tabulky, kvízy a témata, která zná Luna',
+ 'Přihlášení: barevné panely „Ahoj, kamaráde!“ a „Vítej zpět!“ mají animované siluety laboratoře (bublající baňka a kádinka, zkumavky, rotující atom a benzenové jádro)',
+ 'Oprava: v menu „+“ u Luny se po rozkliknutí podmenu (Generovat obrázky, Molekula, Importovat z kvízu…) menu hned zavíralo, takže se nic nestalo'
+]]);
+}catch(e){console.error('v11.5',e)}})();
+</script>
+
+<style id="v116css">
+/* ===== v11.6 Cotton Candy ===== */
+::selection{background:color-mix(in srgb,var(--a) 45%,transparent);color:inherit}
+html{scrollbar-color:color-mix(in srgb,var(--a) 55%,transparent) transparent;scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--a) 45%,transparent);border-radius:10px;border:2px solid transparent;background-clip:padding-box}
+:is(button,a,summary,[tabindex]):focus-visible{outline:2px solid var(--b);outline-offset:3px}
+html.tx6 *,html.tx6 *::before,html.tx6 *::after{transition:background-color .55s ease,color .55s ease,border-color .55s ease,fill .55s ease,stroke .55s ease,box-shadow .55s ease!important}
+/* ukazatel posunu a světlo za kurzorem */
+#sp6{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--a),var(--b));z-index:10050;pointer-events:none;opacity:0;transition:opacity .3s}
+#sp6.on{opacity:1}html[data-bar="0"] #sp6{display:none}
+#gl6{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--a) 24%,transparent),transparent 66%);filter:blur(12px);pointer-events:none;z-index:-1;opacity:0;transition:opacity .5s;will-change:transform}
+#gl6.on{opacity:1}html.light #gl6{opacity:0!important}html[data-glow="0"] #gl6,html.eco #gl6,html.rm #gl6{display:none}
+/* pozadí aplikace */
+#bg6{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden;opacity:.45}
+html.light #bg6{opacity:.32}
+#bg6 svg{display:block;width:100%;height:100%}
+#bg6 .mo{transform-box:fill-box;transform-origin:center;animation:moD var(--t) ease-in-out infinite alternate}
+@keyframes moD{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rt))}}
+#bg6 .mo line{stroke:var(--a);stroke-width:2.2;opacity:.55}#bg6 .mo circle{fill:var(--b);opacity:.6}#bg6 .mo circle.c{fill:var(--a)}
+#bg6 i{position:absolute;bottom:-60px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--b) 55%,transparent);background:radial-gradient(circle at 30% 28%,color-mix(in srgb,var(--b) 35%,transparent),transparent 62%);animation:bbU linear infinite}
+@keyframes bbU{0%{transform:translate(0,0);opacity:0}10%{opacity:.9}50%{transform:translate(18px,-55vh)}100%{transform:translate(-14px,-115vh);opacity:0}}
+#bg6 .hx{color:var(--tx);opacity:.14;animation:hxP 80s linear infinite}
+@keyframes hxP{to{transform:translate(56px,100px)}}
+html[data-bg=paper] #bg6{background-image:linear-gradient(color-mix(in srgb,var(--tx) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--tx) 7%,transparent) 1px,transparent 1px),linear-gradient(color-mix(in srgb,var(--a) 22%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--a) 22%,transparent) 1px,transparent 1px);background-size:24px 24px,24px 24px,120px 120px,120px 120px;-webkit-mask-image:radial-gradient(ellipse at 50% 28%,#000 25%,transparent 85%);mask-image:radial-gradient(ellipse at 50% 28%,#000 25%,transparent 85%);animation:ppP 90s linear infinite;opacity:.9}
+@keyframes ppP{to{background-position:240px 120px,240px 120px,240px 120px,240px 120px}}
+html.eco #bg6 *,html.rm #bg6 *,html.eco #bg6,html.rm #bg6{animation:none!important}
+@media(prefers-reduced-motion:reduce){#bg6 *,#bg6{animation:none!important}}
+/* styl karet */
+html:root[data-cs=solid] .card,html:root[data-cs=solid] .qc{background:color-mix(in srgb,var(--bg) 86%,var(--tx) 7%)!important;border-color:var(--line)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:0 14px 30px -22px rgba(0,0,0,.6)!important}
+html:root[data-cs=line] .card,html:root[data-cs=line] .qc{background:transparent!important;border:1.5px solid color-mix(in srgb,var(--a) 42%,var(--line))!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+html:root[data-cs=tint] .card,html:root[data-cs=tint] .qc{background:linear-gradient(150deg,color-mix(in srgb,var(--a) 22%,transparent),color-mix(in srgb,var(--b) 8%,transparent))!important;border-color:color-mix(in srgb,var(--a) 35%,var(--line))!important}
+/* zaoblení, šířka, písmo */
+html[data-rd=sharp] :is(.card,.qc,.pg3,.opt,.fb4c,input:not([type=checkbox]):not([type=radio]),select,textarea){border-radius:8px!important}
+html[data-rd=round] :is(.card,.qc,.pg3,.fb4c){border-radius:32px!important}
+html[data-rd=round] :is(.opt,input:not([type=checkbox]):not([type=radio]),select,textarea){border-radius:20px!important}
+html[data-w=wide] main{max-width:1120px}html[data-w=full] main{max-width:min(1500px,100%)}
+html[data-ff=round] body,html[data-ff=round] :is(button,input,select,textarea){font-family:ui-rounded,"SF Pro Rounded","Nunito","Varela Round","Segoe UI Variable",system-ui,sans-serif}
+html[data-ff=modern] body,html[data-ff=modern] :is(button,input,select,textarea){font-family:Inter,"Segoe UI Variable Text",system-ui,-apple-system,Roboto,sans-serif}
+html[data-ff=book] body,html[data-ff=book] :is(button,input,select,textarea){font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+html[data-ff=mono] body,html[data-ff=mono] :is(button,input,select,textarea){font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace}
+/* Studio vzhledu v Nastavení */
+#v116set h3{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:18px 0 8px;font-weight:700}
+#v116set h3:first-of-type{margin-top:10px}
+.pr6{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+html:root .pr6 button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;border-radius:16px;padding:10px;min-height:0}
+.pr6 i{display:block;width:100%;height:34px;border-radius:10px}
+.sw6{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px}
+html:root .sw6 button{height:44px;min-height:44px;padding:0;border-radius:50%;border:2px solid transparent;box-shadow:inset 0 0 0 2px rgba(255,255,255,.15)}
+html:root .sw6 button.on{border-color:var(--tx);transform:scale(1.08)}
+html:root .sw6 button:hover{transform:scale(1.1)}
+#v116set input[type=range]{width:100%;height:10px;padding:0;margin:12px 0 2px;-webkit-appearance:none;appearance:none;border-radius:10px;border:0;background:linear-gradient(90deg,hsl(0 85% 62%),hsl(60 85% 62%),hsl(120 85% 62%),hsl(180 85% 62%),hsl(240 85% 62%),hsl(300 85% 62%),hsl(360 85% 62%))}
+#v116set input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--a);box-shadow:0 2px 8px rgba(0,0,0,.4);cursor:pointer}
+#v116set input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--a);cursor:pointer}
+#v116set .tabs{margin-bottom:0}
+
+
+/* ===== Podmínky Luny (v11.6) ===== */
+html:root .tv.t6{width:min(580px,94vw)!important;max-height:92dvh;overflow:auto;padding:0;border-radius:28px;background:linear-gradient(180deg,#171a45,#10133a 46%);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 0 1px color-mix(in srgb,var(--a) 30%,transparent);animation:fb4In .6s var(--e4) both;position:relative}
+.t6h{position:relative;padding:26px 26px 14px;overflow:hidden}
+.t6h::before{content:"";position:absolute;inset:0 0 auto 0;height:150px;background:radial-gradient(120% 100% at 50% 0,color-mix(in srgb,var(--a) 38%,transparent),transparent 70%);pointer-events:none}
+.t6h>*{position:relative}
+.t6b{width:58px;height:58px;border-radius:19px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 16px 30px -14px var(--a);animation:pgFl 5s ease-in-out infinite}
+.t6h h3{margin:14px 0 4px;font-size:1.45rem;line-height:1.15;color:#fff}
+.t6h p{margin:0;color:#a9b0d6;font-size:.92rem}
+.t6s{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 26px 6px}
+.t6s>div{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);font-size:.78rem;line-height:1.25;color:#d8dcf7;animation:fb4S .6s var(--e4) both}
+.t6s>div:nth-child(2){animation-delay:.07s}.t6s>div:nth-child(3){animation-delay:.14s}
+.t6s svg{color:var(--b)}
+.tv.t6 #tcB{padding:6px 26px 0}
+.t6p{height:4px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden;margin:10px 0 10px;position:relative}
+.t6p i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--a),var(--b));transition:transform .2s}
+.t6r{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:#a9b0d6;margin:-2px 0 8px}
+.t6r b{display:inline-flex;align-items:center;gap:5px;color:var(--ok);opacity:0;transform:translateY(4px);transition:.4s var(--e4)}.t6r.ok b{opacity:1;transform:none}
+.tv.t6 ol.terms{list-style:none;margin:0;padding:0 6px 0 0;max-height:min(40dvh,330px);overflow:auto;display:flex;flex-direction:column;gap:8px;scrollbar-width:thin}
+.tv.t6 ol.terms li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#e8ebff;line-height:1.45;font-size:.9rem;animation:fb4S .55s var(--e4) both;animation-delay:calc(var(--i)*55ms+.15s);transition:background .25s,border-color .25s}
+.tv.t6 ol.terms li:hover{background:rgba(255,255,255,.08);border-color:color-mix(in srgb,var(--b) 45%,transparent)}
+.t6i{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:var(--b);background:color-mix(in srgb,var(--b) 14%,transparent)}
+.tv.t6 ol.terms li b{display:block;color:#fff;font-size:.95rem;margin-bottom:2px}
+.tv.t6 .t6c{margin:14px 26px 0!important;padding:12px 14px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);justify-content:space-between;gap:14px;color:#eef0ff!important;transition:border-color .3s,background .3s}
+.tv.t6 .t6c:has(input:checked){border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.tv.t6 .t6c input{order:2;margin-left:auto;-webkit-appearance:none;appearance:none;position:relative;flex:none;width:48px;height:28px;min-width:48px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.14);cursor:pointer;transition:background .35s,border-color .35s}
+.tv.t6 .t6c input::before{content:"";position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.3,1.5,.4,1)}
+.tv.t6 .t6c input:checked{background:linear-gradient(120deg,var(--a),var(--b));border-color:transparent}.tv.t6 .t6c input:checked::before{transform:translateX(20px)}
+.tv.t6>.m,.tv.t6 #tcB~.m{padding:0 26px}
+.tv.t6 .row:last-child{padding:4px 26px 24px}
+.tv.t6 #tcG{transition:opacity .4s,filter .4s,transform .3s,box-shadow .4s}
+.tv.t6 #tcG:disabled{opacity:.38;filter:saturate(.4)}
+.tv.t6 #tcG:not(:disabled){box-shadow:0 14px 30px -14px var(--a)}
+@media(max-width:520px){.t6s{grid-template-columns:1fr}.t6s>div{flex-direction:row;align-items:center}.t6h{padding:22px 20px 12px}.t6s,.tv.t6 #tcB{padding-left:20px;padding-right:20px}.tv.t6 .t6c{margin-left:20px!important;margin-right:20px!important}.tv.t6 .row:last-child{padding:4px 20px 22px}}
+html.eco .tv.t6 *,html.rm .tv.t6 *{animation:none!important}
+</style>
+<script id="v116js">
+/* ===== v11.6 Cotton Candy ===== */
+(function(){try{
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+const T=(cs,en,uk)=>{let l='cs';try{l=DB.g('lang','cs')}catch(e){}return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const safe=(f,d)=>{try{return f()}catch(e){console.error('v11.6',e);return d===undefined?'':d}};
+const gS=(k,d)=>safe(()=>DB.g(k,d),d),sS=(k,v)=>safe(()=>DB.s(k,v));
+const tst=m=>safe(()=>toast(m));
+const R=document.documentElement;
+const PAL=[['ocean',T('Oceán','Ocean','Океан'),'#2f7bff','#18d6c9'],['sunset',T('Západ slunce','Sunset','Захід'),'#ff7a3d','#ff3d8b'],['forest',T('Les','Forest','Ліс'),'#2fbf71','#a3e635'],['sakura','Sakura','#ff6fa5','#ffc2d9'],['gold',T('Zlato','Gold','Золото'),'#f5b301','#ff8a00'],['frost',T('Mráz','Frost','Мороз'),'#6cc5ff','#b8f1ff'],['lava',T('Láva','Lava','Лава'),'#ff3b30','#ff9500'],['mint',T('Máta','Mint','М’ята'),'#19d3a2','#5ef2d6'],['night',T('Noc','Night','Ніч'),'#5b4bff','#9a5bff'],['graphite',T('Grafit','Graphite','Графіт'),'#8b93a7','#c4cbdc'],['caramel',T('Karamel','Caramel','Карамель'),'#c77d3a','#f2b369'],['neon','Neon','#d4ff3a','#2effd0']];
+const D6={pal:'',hue:null,bg:'def',cs:'glass',rd:'mid',w:'std',ff:'def',auto:false,glow:true,bar:true};
+const U6=()=>({...D6,...gS('ui6',{})});
+const save6=u=>sS('ui6',u);
+let th0=null;
+const txAnim=()=>{R.classList.add('tx6');clearTimeout(txAnim.t);txAnim.t=setTimeout(()=>R.classList.remove('tx6'),700)};
+function setCols(a,b){R.style.setProperty('--a',a);R.style.setProperty('--b',b);try{CA=a;CB=b}catch(e){}}
+function apply6(anim){const u=U6();if(anim)txAnim();
+ if(u.pal){const p=PAL.find(x=>x[0]==u.pal);if(p)setCols(p[2],p[3])}
+ else if(u.hue!=null)setCols(`hsl(${u.hue} 85% 62%)`,`hsl(${(u.hue+45)%360} 80% 58%)`);
+ R.dataset.bg=u.bg;R.dataset.cs=u.cs;R.dataset.rd=u.rd;R.dataset.w=u.w;R.dataset.ff=u.ff;R.dataset.glow=u.glow?'1':'0';R.dataset.bar=u.bar?'1':'0';
+ safe(bg6);if(u.auto)autoMode()}
+function resetCols(){const i=gS('theme',0);try{(th0||theme)(i)}catch(e){}}
+function autoMode(){R.classList.toggle('light',!matchMedia('(prefers-color-scheme:dark)').matches)}
+/* pozadí */
+const rnd=s=>()=>(s=s*16807%2147483647,(s-1)/2147483646);
+const BG={
+ mol:()=>{const r=rnd(7);let g='';for(let i=0;i<13;i++){const cx=r()*1500+50,cy=r()*800+50,n=3+Math.floor(r()*3),P=[[0,0,-1]];for(let k=1;k<n;k++){const a=r()*6.28,d=36+r()*34,pi=Math.floor(r()*P.length),p=P[pi];P.push([p[0]+Math.cos(a)*d,p[1]+Math.sin(a)*d,pi])}
+  let s='';P.forEach((p,k)=>{if(p[2]>=0){const q=P[p[2]];s+=`<line x1="${q[0].toFixed(0)}" y1="${q[1].toFixed(0)}" x2="${p[0].toFixed(0)}" y2="${p[1].toFixed(0)}"/>`}});
+  P.forEach((p,k)=>{s+=`<circle class="${k%2?'':'c'}" cx="${p[0].toFixed(0)}" cy="${p[1].toFixed(0)}" r="${(5+r()*5).toFixed(1)}"/>`});
+  g+=`<g transform="translate(${cx.toFixed(0)} ${cy.toFixed(0)})"><g class="mo" style="--t:${(28+r()*30).toFixed(0)}s;--dx:${(r()*140-70).toFixed(0)}px;--dy:${(r()*120-60).toFixed(0)}px;--rt:${(r()*80-40).toFixed(0)}deg">${s}</g></g>`}
+  return `<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">${g}</svg>`},
+ bubbles:()=>{const r=rnd(11);let s='';for(let i=0;i<22;i++){const z=10+r()*34;s+=`<i style="left:${(r()*100).toFixed(1)}%;width:${z.toFixed(0)}px;height:${z.toFixed(0)}px;animation-duration:${(14+r()*18).toFixed(1)}s;animation-delay:-${(r()*30).toFixed(1)}s"></i>`}return s},
+ hex:()=>`<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;left:-60px;top:-100px;width:calc(100% + 120px);height:calc(100% + 200px)"><defs><pattern id="hx6" width="56" height="100" patternUnits="userSpaceOnUse"><path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34" fill="none" stroke="currentColor" stroke-width="1.2"/></pattern></defs><rect class="hx" width="100%" height="100%" fill="url(#hx6)"/></svg>`};
+function bg6(){let el=$('#bg6');if(!el){el=document.createElement('div');el.id='bg6';el.setAttribute('aria-hidden','true');document.body.insertAdjacentElement('afterbegin',el)}
+ const t=U6().bg;if(el.dataset.t===t)return;el.dataset.t=t;el.innerHTML=BG[t]?BG[t]():''}
+/* ukazatel posunu + světlo za kurzorem */
+function fx6(){if($('#sp6'))return;document.body.insertAdjacentHTML('beforeend','<div id="sp6" aria-hidden="true"></div><div id="gl6" aria-hidden="true"></div>');
+ const sp=$('#sp6'),gl=$('#gl6');let tk=0,gx=0,gy=0,gt=0;
+ addEventListener('scroll',()=>{if(tk)return;tk=1;requestAnimationFrame(()=>{tk=0;const h=document.documentElement,m=h.scrollHeight-innerHeight,p=m>40?Math.min(1,scrollY/m):0;sp.style.transform=`scaleX(${p})`;sp.classList.toggle('on',p>.005)})},{passive:true});
+ addEventListener('pointermove',e=>{if(e.pointerType!='mouse')return;gx=e.clientX;gy=e.clientY;if(gt)return;gt=1;requestAnimationFrame(()=>{gt=0;gl.style.transform=`translate(${gx}px,${gy}px)`;gl.classList.add('on')})},{passive:true});
+ document.addEventListener('pointerleave',()=>gl.classList.remove('on'))}
+/* Studio vzhledu */
+const SEG=(k,arr,u)=>`<div class="tabs" role="radiogroup">${arr.map(a=>`<button type="button" role="radio" aria-checked="${u[k]==a[0]}" data-k="${k}" data-v="${a[0]}" class="${u[k]==a[0]?'on':''}">${a[1]}</button>`).join('')}</div>`;
+const SWI=(k,l,d,on)=>`<div class="sst"><div class="sl"><b>${l}</b><span>${d}</span></div><button type="button" class="sw4" role="switch" data-sw="${k}" aria-checked="${on}" aria-label="${l}"></button></div>`;
+const PRE=[['lab',T('Laboratoř','Laboratory','Лабораторія'),{pal:'ocean',bg:'mol',cs:'glass',rd:'mid',ff:'def'}],['min',T('Minimal','Minimal','Мінімал'),{pal:'graphite',bg:'def',cs:'solid',rd:'sharp',ff:'modern'}],['neon','Neon',{pal:'neon',bg:'paper',cs:'line',rd:'mid',ff:'mono'}],['sun',T('Západ slunce','Sunset','Захід'),{pal:'sunset',bg:'bubbles',cs:'tint',rd:'round',ff:'round'}]];
+const grad=(a,b)=>`linear-gradient(135deg,${a},${b})`;
+function card6(){const b=$('#setB');if(!b)return;const old=$('#v116set',b);if(old)old.remove();const u=U6(),hue=u.hue==null?265:u.hue;
+ b.insertAdjacentHTML('beforeend',`<div class="card" id="v116set" data-p="look" data-pf="look"><h2 style="font-size:1.15rem">${T('Studio vzhledu','Look studio','Студія вигляду')}</h2><p class="m" style="margin:0">${T('Poskládej si TadxChemii podle sebe. Změny se projeví hned a uloží se jen v tomto zařízení.','Make TadxChemie your own. Changes apply instantly and are saved only on this device.','Налаштуй TadxChemie під себе. Зміни застосовуються одразу.')}</p>
+ <h3>${T('Rychlé předvolby','Quick presets','Швидкі набори')}</h3><div class="pr6">${PRE.map(p=>{const pl=PAL.find(x=>x[0]==p[2].pal);return `<button type="button" data-pre="${p[0]}"><i style="background:${grad(pl[2],pl[3])}"></i>${p[1]}</button>`}).join('')}<button type="button" data-pre="reset"><i style="background:linear-gradient(135deg,#7c5cff,#2ee6d6)"></i>${T('Výchozí','Default','Типовий')}</button></div>
+ <h3>${T('Barva','Colour','Колір')}</h3><div class="sw6">${PAL.map(p=>`<button type="button" data-pal="${p[0]}" class="${u.pal==p[0]?'on':''}" title="${p[1]}" aria-label="${p[1]}" style="background:${grad(p[2],p[3])}"></button>`).join('')}</div>
+ <label class="m" for="h6" style="display:block;margin-top:12px">${T('Vlastní odstín','Custom hue','Власний відтінок')}</label><input type="range" id="h6" min="0" max="360" value="${hue}" aria-label="${T('Vlastní odstín','Custom hue','Власний відтінок')}">
+ <h3>${T('Pozadí','Background','Фон')}</h3>${SEG('bg',[['def',T('Výchozí','Default','Типове')],['mol',T('Molekuly','Molecules','Молекули')],['bubbles',T('Bublinky','Bubbles','Бульбашки')],['hex',T('Šestiúhelníky','Hexagons','Шестикутники')],['paper',T('Papír','Paper','Папір')]],u)}
+ <h3>${T('Styl karet','Card style','Стиль карток')}</h3>${SEG('cs',[['glass',T('Sklo','Glass','Скло')],['solid',T('Plné','Solid','Суцільні')],['line',T('Obrys','Outline','Контур')],['tint',T('Barevné','Tinted','Кольорові')]],u)}
+ <h3>${T('Zaoblení','Corners','Кути')}</h3>${SEG('rd',[['sharp',T('Ostré','Sharp','Гострі')],['mid',T('Střední','Medium','Середні')],['round',T('Kulaté','Round','Круглі')]],u)}
+ <h3>${T('Šířka obsahu','Content width','Ширина')}</h3>${SEG('w',[['std',T('Standardní','Standard','Стандартна')],['wide',T('Široká','Wide','Широка')],['full',T('Velmi široká','Extra wide','Дуже широка')]],u)}
+ <h3>${T('Písmo','Font','Шрифт')}</h3>${SEG('ff',[['def',T('Výchozí','Default','Типовий')],['modern',T('Moderní','Modern','Сучасний')],['round',T('Zaoblené','Rounded','Округлий')],['book',T('Knižní','Book','Книжний')],['mono',T('Strojopis','Mono','Моно')]],u)}
+ <h3>${T('Další','More','Інше')}</h3>${SWI('auto',T('Režim podle systému','Follow system theme','Тема системи'),T('Světlý nebo tmavý vzhled podle nastavení zařízení.','Light or dark, following your device.','Світла чи темна, як на пристрої.'),u.auto)}${SWI('glow',T('Světlo za kurzorem','Cursor glow','Світло за курсором'),T('Jemná záře, která sleduje myš (jen na počítači).','A soft glow that follows the mouse (desktop only).','М’яке сяйво за мишею.'),u.glow)}${SWI('bar',T('Ukazatel posunu','Scroll progress','Індикатор прокрутки'),T('Tenký pruh nahoře ukazuje, jak daleko jsi na stránce.','A thin bar at the top shows how far you scrolled.','Тонка смужка вгорі.'),u.bar)}</div>`);
+ const c=$('#v116set',b);
+ const sync=()=>{const u=U6();$$('[data-k]',c).forEach(x=>{const on=u[x.dataset.k]==x.dataset.v;x.classList.toggle('on',on);x.setAttribute('aria-checked',String(on))});$$('[data-pal]',c).forEach(x=>x.classList.toggle('on',u.pal==x.dataset.pal));$$('[data-sw]',c).forEach(x=>x.setAttribute('aria-checked',String(!!u[x.dataset.sw])))};
+ c.onclick=e=>{const t=e.target.closest('button');if(!t)return;const u=U6();
+  if(t.dataset.k){u[t.dataset.k]=t.dataset.v;save6(u);apply6(1);sync()}
+  else if(t.dataset.pal){u.pal=t.dataset.pal;u.hue=null;save6(u);apply6(1);sync()}
+  else if(t.dataset.sw){const k=t.dataset.sw;u[k]=!u[k];save6(u);apply6(1);sync();if(k=='auto'&&!u.auto){const m=gS('ui',{}).mode||'dark';R.classList.toggle('light',m=='light')}}
+  else if(t.dataset.pre){if(t.dataset.pre=='reset'){const was=u.pal||u.hue!=null;Object.assign(u,D6);save6(u);if(was)resetCols();apply6(1)}else{const p=PRE.find(x=>x[0]==t.dataset.pre);Object.assign(u,p[2],{hue:null});save6(u);apply6(1)}sync();$('#h6',c).value=U6().hue==null?265:U6().hue;tst(T('Vzhled změněn.','Look changed.','Вигляд змінено.'))}};
+ $('#h6',c).oninput=e=>{const u=U6();u.hue=+e.target.value;u.pal='';save6(u);apply6(0);sync()}}
+/* napojení na staré funkce */
+try{th0=theme;theme=function(i){const r=th0.apply(this,arguments);const u=U6(),ev=window.event,usr=ev&&ev.type=='click'&&ev.target&&ev.target.closest&&ev.target.closest('#pC');if(u.pal||u.hue!=null){if(usr){u.pal='';u.hue=null;save6(u);const c=$('#v116set');if(c){$$('[data-pal]',c).forEach(x=>x.classList.remove('on'))}txAnim()}else apply6(0)}else if(usr)txAnim();return r}}catch(e){}
+try{const su=setUI;setUI=function(){txAnim();return su.apply(this,arguments)}}catch(e){}
+try{const au=applyUI;applyUI=function(){const r=au.apply(this,arguments);if(U6().auto)autoMode();return r}}catch(e){}
+try{matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(U6().auto){txAnim();autoMode()}})}catch(e){}
+try{const s6=TX.set;TX.set=function(){const r=s6.apply(this,arguments);safe(card6);return r};TX.VW.set=TX.set}catch(e){}
+const pe=window.palExtra;window.palExtra=q=>{const a=safe(()=>pe?pe(q):[],[]);return a.concat([{l:T('Studio vzhledu','Look studio','Студія вигляду'),k:'vzhled motiv barva pozadi tema',h:T('Stránka','Page','Сторінка'),i:'<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H16c3 0 6-2.7 6-6 0-4.9-4.5-8.4-10-8.4z"/>',f:()=>{go('set');setTimeout(()=>safe(()=>st9('look')),320)}}])};
+fx6();apply6(0);
+VN9['11.6']='Cotton Candy';
+CL.unshift(['11.6','Studio vzhledu: barvy, pozadí, styl karet a písmo','12. 11. 2026',[
+ 'Studio vzhledu v Nastavení (záložka Vzhled): rychlé předvolby (Laboratoř, Minimal, Neon, Západ slunce), 12 nových barevných schémat a plynulý posuvník vlastního odstínu',
+ 'Nová animovaná pozadí: Molekuly, Bublinky, Šestiúhelníky a Laboratorní papír. Vypínají se přes Omezit animace a Úsporný režim',
+ 'Styl karet (Sklo, Plné, Obrys, Barevné), zaoblení rohů (Ostré, Střední, Kulaté), šířka obsahu až pro velké monitory a výběr písma (Moderní, Zaoblené, Knižní, Strojopis)',
+ 'Režim podle systému: světlý nebo tmavý vzhled se přepíná podle zařízení',
+ 'Plynulé přebarvení při změně motivu nebo režimu, tenký ukazatel posunu nahoře, jemné světlo za kurzorem na počítači, barevné posuvníky a výběr textu v barvě motivu',
+ 'Podmínky Luny: nový vzhled s rychlým přehledem (offline, online, data), ikonami u jednotlivých bodů, ukazatelem čtení a plynulým přepínačem souhlasu',
+ 'Oprava: karty v Nastavení se při přepínání záložek už nepřesouvají do špatné záložky'
+]]);
+
+}catch(e){console.error('v11.6',e)}})();
+</script>
+<script id="t6js">
+/* ---------- Podmínky Luny: nový vzhled ---------- */
+(function(){try{
+const T=(cs,en,uk)=>{let l='cs';try{l=DB.g('lang','cs')}catch(e){}return l=='en'?(en!=null?en:cs):l=='uk'?(uk!=null?uk:(en!=null?en:cs)):cs};
+const ic=(p,s)=>`<svg viewBox="0 0 24 24" width="${s||18}" height="${s||18}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const I={moon:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',book:'<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',lock:'<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',db:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>',shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',warn:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',ok:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/>',key:'<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/>',dev:'<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>'};
+const TT=[[T('Studijní pomocník','Study helper','Навчальний помічник'),I.book],[T('Osobní údaje','Personal data','Особисті дані'),I.lock],[T('Offline a online','Offline and online','Офлайн і онлайн'),I.cloud],[T('Uložená data','Stored data','Збережені дані'),I.db],[T('Bezpečný obsah','Safe content','Безпечний вміст'),I.shield],[T('Odpovědnost','Responsibility','Відповідальність'),I.warn],[T('Tvůj souhlas','Your consent','Твоя згода'),I.ok]];
+function terms6(){const o=[...document.querySelectorAll('.tvo')].find(x=>x.querySelector('#tcB .terms')&&!x.dataset.t6);if(!o)return;o.dataset.t6=1;
+ const tv=o.querySelector('.tv'),B=o.querySelector('#tcB'),ol=B.querySelector('.terms');tv.classList.add('t6');tv.setAttribute('role','dialog');tv.setAttribute('aria-modal','true');tv.setAttribute('aria-label',T('Podmínky používání LunaAI','LunaAI terms of use','Умови використання LunaAI'));
+ const old=tv.firstElementChild;if(old&&old.classList.contains('row'))old.remove();
+ tv.insertAdjacentHTML('afterbegin',`<div class="t6h"><div class="t6b">${ic(I.moon,28)}</div><h3>${T('Podmínky používání LunaAI','LunaAI terms of use','Умови використання LunaAI')}</h3><p>${T('Pár pravidel, aby bylo učení s Lunou bezpečné a příjemné.','A few rules to keep learning with Luna safe and pleasant.','Кілька правил, щоб навчання з Луною було безпечним.')}</p></div>
+ <div class="t6s"><div>${ic(I.dev,20)}<span>${T('Offline zůstává jen v tvém zařízení','Offline stays on your device','Офлайн лише на пристрої')}</span></div><div>${ic(I.key,20)}<span>${T('Online jen přes tvůj API klíč','Online only via your API key','Онлайн лише через твій ключ API')}</span></div><div>${ic(I.db,20)}<span>${T('Chaty a klíč jen v prohlížeči','Chats and key only in the browser','Чати й ключ лише в браузері')}</span></div></div>`);
+ [...ol.children].forEach((li,i)=>{const t=TT[i]||['',I.ok],txt=li.innerHTML;li.style.setProperty('--i',i);li.innerHTML=`<span class="t6i">${ic(t[1],18)}</span><div>${t[0]?`<b>${t[0]}</b>`:''}${txt}</div>`});
+ ol.insertAdjacentHTML('beforebegin',`<div class="t6p" aria-hidden="true"><i></i></div><div class="t6r" id="t6r"><span>${T('Posuň se na konec podmínek','Scroll to the end','Прокрути до кінця')}</span><b>${ic(I.ok,14)} ${T('Přečteno','Read','Прочитано')}</b></div>`);
+ const bar=B.querySelector('.t6p i'),rd=B.querySelector('#t6r'),upd=()=>{const m=ol.scrollHeight-ol.clientHeight,p=m>4?Math.min(1,ol.scrollTop/m):1;bar.style.transform=`scaleX(${p})`;rd.classList.toggle('ok',p>.96)};
+ ol.addEventListener('scroll',upd,{passive:true});setTimeout(upd,60);
+ const ck=B.querySelector('.ck');if(ck)ck.classList.add('t6c');
+ const g=o.querySelector('#tcG');if(g)g.addEventListener('click',()=>{const s=tv.querySelector('.t6s');if(s)s.style.display='none'});
+ o.addEventListener('keydown',e=>{if(e.key=='Escape'){const x=o.querySelector('#tcX');if(x){e.stopPropagation();x.click()}}});
+ setTimeout(()=>{ol.focus({preventScroll:true})},350)}
+const lt1=lunaTerms;lunaTerms=function(){const p=lt1.apply(this,arguments);setTimeout(()=>{try{terms6()}catch(e){console.error('terms6',e)}},0);return p};
+}catch(e){console.error('terms6',e)}})();
 </script>
 </body>
 </html>
