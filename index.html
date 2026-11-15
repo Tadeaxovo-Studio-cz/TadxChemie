@@ -9160,5 +9160,243 @@ html:root label.ck input[type=checkbox]:not(#rcK):not(#tcK):not(#agK):not(#lmOk)
  setup();
 }catch(e){console.error('lunaMob',e)}})();
 </script>
+<style id="hl121css">
+/* v12.1 Hatsune-Lite */
+.hls{position:fixed;inset:0;z-index:9999;background:rgba(5,6,18,.62);backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+@media(min-width:700px){.hls{align-items:center}}
+.hls-box{width:100%;max-width:480px;height:min(640px,88vh);display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden}
+.hls-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.hls-h>div{flex:1;min-width:0;display:flex;flex-direction:column}
+.hls-h small{color:var(--mut);display:flex;align-items:center;gap:6px}
+.hls-lun{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--card)}
+.hls-x{font-size:1.4rem;line-height:1}
+.hls-dot{width:8px;height:8px;border-radius:50%;background:var(--mut);display:inline-block}
+.hls-dot.on{background:var(--ok)}.hls-dot.err{background:var(--no)}
+.hls-m{flex:1;min-height:0;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.hls-b{max-width:82%;padding:9px 12px;border-radius:16px;background:var(--card);border:1px solid var(--line);color:var(--tx);white-space:pre-wrap;word-break:break-word;align-self:flex-start}
+.hls-b small{display:block;margin-top:4px;font-size:.7rem;color:var(--mut)}
+.hls-b.me{align-self:flex-end;background:linear-gradient(120deg,var(--a),#4f8cff);border:0;color:#fff}
+.hls-b.me small{color:rgba(255,255,255,.75)}
+.hls-b.ad{border-color:var(--b)}
+.hls-b.lu{border-color:var(--a)}
+.hls-s{align-self:center;text-align:center;font-size:.78rem;color:var(--mut);padding:2px 8px}
+.hls-f{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);align-items:flex-end}
+.hls-f textarea{flex:1;resize:none;max-height:120px;border-radius:14px;padding:9px 12px;background:var(--card);border:1px solid var(--line);color:var(--tx);font:inherit}
+.hls-n{margin:0;padding:0 14px 10px;font-size:.72rem;color:var(--mut)}
+.hls-l{padding:12px 14px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;flex:1}
+.hls-t{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;width:100%;padding:10px 12px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:var(--tx)}
+.hls-t>span:first-child{display:flex;flex-direction:column;min-width:0}
+.hls-t .m{color:var(--mut);font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hls-t.nw{border-color:var(--b)}
+.hls-t i{font-style:normal;font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--b);color:#06121a;font-weight:700}
+.hlc{position:fixed;right:14px;bottom:14px;z-index:9998;display:flex;align-items:center;gap:10px;max-width:min(420px,calc(100vw - 28px));padding:10px 12px;background:var(--bg);border:1px solid var(--a);border-radius:var(--r);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.hlc p{margin:0;flex:1;min-width:0;display:flex;flex-direction:column}
+.hlc p span{color:var(--mut);font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hlc .ic{width:22px;height:22px;flex:none}
+.hlchip{cursor:pointer}
+#hlSupBtn .ic{width:20px;height:20px}
+.hlset pre{white-space:pre-wrap;font-size:.8rem;padding:10px;border-radius:12px;background:var(--card);border:1px solid var(--line);margin-top:10px}
+.hlset .gr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0}
+.hlset h3{margin:16px 0 6px;font-size:1rem}
+/* pohyb Luny */
+@keyframes hlBreath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.015)}}
+#luna img{animation:hlBreath 4.5s ease-in-out infinite}
+.hl-nomo #luna img,.hl-nomo .hls-lun{animation:none!important}
+@media(prefers-reduced-motion:reduce){#luna img{animation:none}}
+</style>
+<script id="hl121js">
+/* ===== v12.1 Hatsune-Lite ===== */
+(function(){'use strict';
+const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+const E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sec=(n,f)=>{try{return f()}catch(e){console.error('HL/'+n,e);try{LMlog('hl '+n+': '+(e&&e.message))}catch(x){}}};
+const dkey=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const RU=()=>{let u='https://tadxchemie-default-rtdb.europe-west1.firebasedatabase.app';try{if(typeof RELAY=='string'&&RELAY)u=RELAY}catch(e){}return u.replace(/\/$/,'')};
+const SU=()=>RU()+'/support';
+const sk=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'_').slice(0,40)||'x';
+async function hjf(url,opt,tries){tries=tries||2;let err;for(let i=0;i<tries;i++){try{const r=await fetch(url,Object.assign({},opt,{signal:window.AbortSignal&&AbortSignal.timeout?AbortSignal.timeout(8000):undefined}));if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}catch(e){err=e;if(i<tries-1)await new Promise(r=>setTimeout(r,500*(i+1)))}}throw err}
+const badges=()=>{try{_nb=[0,0]}catch(e){}try{nav()}catch(e){}};
+const snd=()=>{try{if(DB.g('hlsnd',1))sfx.test('notification')}catch(e){}};
+try{IC.headset='<path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/>'}catch(e){}
+const HSVG='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>';
+
+/* stav podpory */
+const U={open:false,t:0,sig:'',n:0,lt:'',la:0,busy:false,unseen:null};
+const A={open:false,key:null,built:null,t:0,tick:0,sig:'',list:[],unread:[],alerted:0};
+const fmt=ts=>{const d=new Date(ts),n=new Date(),hm=d.toLocaleTimeString('cs-CZ',{hour:'2-digit',minute:'2-digit'});return d.toDateString()==n.toDateString()?hm:d.toLocaleDateString('cs-CZ',{day:'numeric',month:'numeric'})+' '+hm};
+const CONN='[Luna] Uživatel se připojil přes Luna podporu.';
+const norm=j=>Object.values(j||{}).filter(v=>v&&v.txt!=null).map(v=>({by:v.by,txt:String(v.txt||'').slice(0,500),ts:+v.ts||0})).sort((a,b)=>a.ts-b.ts);
+const getT=async k=>norm(await hjf(SU()+'/'+k+'/m.json'));
+async function post(k,by,txt,n){const ts=Date.now();await hjf(SU()+'/'+k+'/m.json',{method:'POST',body:JSON.stringify({by,txt,ts})},1);await hjf(SU()+'/'+k+'/meta.json',{method:'PATCH',body:JSON.stringify(by=='u'?{n,by,last:ts,t:String(txt).slice(0,60)}:{by,last:ts,t:String(txt).slice(0,60)})},2)}
+const bub=(m,viewer)=>{if(String(m.txt).startsWith('[Luna]'))return`<div class="hls-s">${E(m.txt.replace('[Luna] ',''))} · ${fmt(m.ts)}</div>`;const mine=m.by==viewer;return`<div class="hls-b ${mine?'me':m.by=='a'?'ad':''}">${E(m.txt)}<small>${m.by=='a'&&!mine?'Admin · ':''}${fmt(m.ts)}</small></div>`};
+const ovEl=(id)=>{const o0=document.getElementById(id);if(o0)o0.remove();const o=document.createElement('div');o.id=id;o.className='hls';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');document.body.appendChild(o);return o};
+const atBottom=m=>m.scrollHeight-m.scrollTop-m.clientHeight<80;
+
+/* ======= 1) Oznámení: přečtené, bez zvonku nahoře ======= */
+const n0=notes,isSup=n=>/^sup/.test(String(n[3])),nk=n=>dkey()+'|'+n[1]+'|'+n[3];
+const rd=()=>{try{return(DB.g('nread',{})[me.name])||{}}catch(e){return{}}};
+function supNotes(){const L=[];if(!me||me.guest)return L;
+ if(me.role=='a'&&A.unread.length){const n=A.unread.length;L.push(['headset','Podpora: '+(n==1?'nová zpráva':n<5?n+' nové zprávy':n+' nových zpráv'),A.unread.slice(0,3).map(x=>x.meta.n||x.k).join(', '),'sup:'+A.unread[0].k,1])}
+ if(U.unseen)L.push(['headset','Admin ti odpověděl',String(U.unseen.t||'').slice(0,80),'supu',1]);
+ return L}
+function markAll(){if(!me)return;const o=DB.g('nread',{}),r={};let L=[];try{L=n0()}catch(e){}L.forEach(n=>{if(n[4]&&!isSup(n))r[nk(n)]=1});o[me.name]=r;try{DB.s('nread',o)}catch(e){}qa('.bd7,.bd9').forEach(i=>{i.hidden=true;i.textContent=''});badges()}
+sec('notif',()=>{
+ const first=()=>{try{const f=DB.g('nr121',{});if(me&&!f[me.name]){f[me.name]=1;DB.s('nr121',f);return true}}catch(e){}return false};
+ notes=function(){let L=n0.apply(this,arguments);if(!me)return L;if(first())setTimeout(markAll,0);const r=rd();L=L.map(n=>(n[4]&&!isSup(n)&&r[nk(n)])?[n[0],n[1],n[2],n[3],0]:n);return supNotes().concat(L)};
+ const r0=ntR;ntR=function(){const x=r0.apply(this,arguments);try{const h=q('#ntL');if(h&&!q('#hlNr')){h.insertAdjacentHTML('beforebegin','<div class="row" style="margin:0 0 12px"><button type="button" id="hlNr">Označit vše jako přečtené</button></div>');q('#hlNr').onclick=()=>{markAll();r0.call(window);toast('Hotovo, vše je přečtené.')}}}catch(e){}setTimeout(markAll,1200);return x};
+ const g0=ntGo;ntGo=function(t){if(t=='supu')return uOpen();if(typeof t=='string'&&t.startsWith('sup:'))return aOpen(t.slice(4));return g0.apply(this,arguments)};
+ try{nav()}catch(e){}});
+
+/* ======= 2) Infrastruktura: ochrana před plným úložištěm ======= */
+sec('store',()=>{const s0=DB.s;DB.s=function(k,v){try{return s0.call(DB,k,v)}catch(e){if(e&&(e.name=='QuotaExceededError'||e.code==22||e.code==1014)){try{pruneStore()}catch(x){}try{return s0.call(DB,k,v)}catch(x2){try{LMlog('storage full: '+k)}catch(y){}try{toast('Úložiště prohlížeče je plné, část dat se neuložila. Smaž stará data v Nastavení → Výkon a účet.')}catch(y){}return}}throw e}}});
+
+/* ======= 3) Luna: vlastní GIF / animovaný WebP ======= */
+const GK={h:'Odpovídá',t:'Přemýšlí',l:'Načítá se'},GU={};
+const idb=()=>new Promise((res,rej)=>{try{const r=indexedDB.open('tc_hl',1);r.onupgradeneeded=()=>r.result.createObjectStore('g');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}});
+const gTx=async(mode,fn)=>{const d=await idb();return new Promise((res,rej)=>{const t=d.transaction('g',mode),st=t.objectStore('g');let out;const rq=fn(st);if(rq)rq.onsuccess=()=>{out=rq.result};t.oncomplete=()=>{d.close();res(out)};t.onerror=()=>rej(t.error)})};
+function gApply(root){if(!Object.keys(GU).length||!window.IM0||!root)return;(root.tagName=='IMG'?[root]:[...root.querySelectorAll('img')]).forEach(i=>{const s=i.getAttribute('src')||'';for(const k in GU){if(IM0[k]&&s===IM0[k]){i.dataset.hlk=k;i.setAttribute('src',GU[k]);break}}})}
+async function gLoad(){qa('img[data-hlk]').forEach(i=>{const k=i.dataset.hlk;if(window.IM0&&IM0[k])i.setAttribute('src',IM0[k]);delete i.dataset.hlk});
+ for(const k of ['h','t','l']){try{const b=await gTx('readonly',st=>st.get(k));if(GU[k]){URL.revokeObjectURL(GU[k]);delete GU[k]}if(b)GU[k]=URL.createObjectURL(b)}catch(e){}}gApply(document.body)}
+sec('gif',()=>{document.documentElement.classList.toggle('hl-nomo',DB.g('hlmo',1)==0);
+ new MutationObserver(m=>{if(!Object.keys(GU).length)return;m.forEach(r=>{if(r.type=='attributes'){if(r.target.tagName=='IMG')gApply(r.target)}else r.addedNodes.forEach(n=>{if(n.nodeType==1)gApply(n)})})}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});
+ if(window.indexedDB)gLoad()});
+
+/* ======= 4) Luna podpora: uživatel ======= */
+function setSt(t,s){const e=q('#hlSt'),d=q('#hlD');if(e)e.textContent=t;if(d)d.className='hls-dot'+(s==1?' on':s==2?' err':'')}
+function uClose(){clearInterval(U.t);U.open=false;const o=q('#hlS');if(o)o.remove()}
+function uRender(a,first,err){const m=q('#hlM');if(!m)return;const stick=first||atBottom(m);
+ m.innerHTML=`<div class="hls-b lu">Ahoj, ${E(me.name)}! Jsem Luna a spojuju tě s adminem. Napiš, s čím potřebuješ pomoct. Admin dostal upozornění a odpoví, jakmile to půjde. 💜<small>Luna</small></div>`+a.map(x=>bub(x,'u')).join('')+(err?`<div class="hls-s">${E(err)}</div>`:'');
+ if(stick)m.scrollTop=m.scrollHeight}
+async function uRefresh(force){if(!U.open||!me)return;try{const a=await getT(sk(me.name));setSt('Spojeno s adminem',1);const sig=a.length+':'+(a.length?a[a.length-1].ts:0);
+  if(sig!==U.sig||force){const had=U.n;U.sig=sig;U.n=a.length;uRender(a);if(had&&a.some((x,i)=>i>=had&&x.by=='a'))snd()}
+  const la=a.filter(x=>x.by=='a').pop();if(la){const o=DB.g('supSeen',{});if((o[me.name]||0)<la.ts){o[me.name]=Date.now();DB.s('supSeen',o);if(U.unseen){U.unseen=null;badges()}}}
+ }catch(e){setSt('Podpora je dočasně nedostupná',2)}}
+async function uConnect(){const k=sk(me.name);setSt('Připojuji k adminovi…');
+ try{const a=await getT(k);U.sig='';U.n=a.length;uRender(a,true);
+  const c=DB.g('hlConn',{});if(Date.now()-(c[me.name]||0)>600000){await post(k,'u',CONN,me.name);c[me.name]=Date.now();DB.s('hlConn',c);await uRefresh(true)}
+  setSt('Spojeno s adminem',1)}
+ catch(e){setSt('Podpora je dočasně nedostupná',2);uRender([],true,'Nepodařilo se připojit. Zkontroluj internet, zkusím to znovu.')}
+ U.t=setInterval(()=>{if(!document.hidden)uRefresh()},4000)}
+async function uSend(){const i=q('#hlI'),t=(i&&i.value||'').trim();if(!t||U.busy)return;
+ const c=DB.g('supCnt',{});if(c.d!=dkey()){c.d=dkey();c.n=0}
+ if(c.n>=30)return toast('Dnešní limit zpráv je vyčerpán.');
+ if(t==U.lt&&Date.now()-U.la<60000)return toast('Stejnou zprávu už jsi poslal.');
+ if(/(.)\1{9,}/.test(t)||(t.match(/https?:\/\//gi)||[]).length>=2)return toast('Zpráva vypadá jako spam.');
+ U.busy=true;i.value='';i.style.height='auto';
+ try{await post(sk(me.name),'u',t,me.name);c.n++;DB.s('supCnt',c);U.lt=t;U.la=Date.now();await uRefresh(true)}
+ catch(e){i.value=t;toast('Nepodařilo se odeslat, zkus to prosím znovu.')}finally{U.busy=false}}
+function uOpen(){
+ if(!me||me.guest)return toast('Podpora je dostupná po přihlášení s účtem (host ji nemá).');
+ if(me.role=='a'){toast('Jsi admin, vlákna uživatelů najdeš tady.');return aOpen()}
+ if(location.protocol=='file:')return toast('Podpora funguje jen na stránce otevřené přes https.');
+ const o=ovEl('hlS');
+ o.innerHTML=`<div class="hls-box"><div class="hls-h"><img class="hls-lun" alt="" src="${E(window.LUNA_AV||'')}"><div><b>Luna · Podpora</b><small><i class="hls-dot" id="hlD"></i><span id="hlSt">Připojuji k adminovi…</span></small></div><button type="button" class="ib hls-x" id="hlX" aria-label="Zavřít">×</button></div><div class="hls-m" id="hlM" aria-live="polite"></div><div class="hls-f"><textarea id="hlI" rows="1" maxlength="500" placeholder="Napiš zprávu adminovi…"></textarea><button type="button" class="pri" id="hlSend">Odeslat</button></div><p class="hls-n">Chat je jen pro pomoc a zpětnou vazbu k TadxChemii. Nepiš hesla ani osobní údaje.</p></div>`;
+ U.open=true;U.sig='';U.n=0;clearInterval(U.t);
+ q('#hlX').onclick=uClose;q('#hlSend').onclick=uSend;
+ o.addEventListener('mousedown',e=>{if(e.target===o)uClose()});
+ const i=q('#hlI');i.addEventListener('keydown',e=>{if(e.key=='Enter'&&!e.shiftKey){e.preventDefault();uSend()}});i.addEventListener('input',()=>{i.style.height='auto';i.style.height=Math.min(i.scrollHeight,120)+'px'});
+ uRender([],true);uConnect();setTimeout(()=>{try{i.focus()}catch(e){}},200);try{gApply(o)}catch(e){}}
+
+/* ======= 5) Luna podpora: admin (živý chat + oznámení) ======= */
+function aClose(){clearInterval(A.t);A.open=false;A.built=null;const o=q('#hlA');if(o)o.remove()}
+async function loadList(){const j=(await hjf(SU()+'.json'))||{},seen=DB.g('supASeen',{});
+ const L=Object.entries(j).filter(([k,v])=>v&&v.meta).map(([k,v])=>({k,meta:v.meta})).sort((x,y)=>(y.meta.last||0)-(x.meta.last||0));
+ A.list=L;A.unread=L.filter(x=>x.meta.by=='u'&&(x.meta.last||0)>(seen[x.k]||0));return L}
+function seenA(k){const o=DB.g('supASeen',{});o[k]=Date.now();DB.s('supASeen',o);A.unread=A.unread.filter(x=>x.k!=k);badges()}
+async function aRender(force){if(!A.open)return;const B=q('#hlAB'),T=q('#hlAT');if(!B)return;
+ try{
+  if(!A.key){A.built=null;if(T)T.textContent='Podpora · uživatelé';
+   const L=await loadList();
+   B.innerHTML=`<div class="hls-l">${L.length?L.map(x=>{const nw=A.unread.some(u=>u.k==x.k);return`<button type="button" class="hls-t ${nw?'nw':''}" data-k="${E(x.k)}"><span><b>${E(x.meta.n||x.k)}</b><span class="m">${E(x.meta.t||'')}</span></span>${nw?'<i>nové</i>':`<span class="m">${fmt(x.meta.last||0)}</span>`}</button>`}).join(''):'<p class="m">Zatím žádné zprávy.</p>'}</div>`;
+   B.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{A.key=b.dataset.k;A.sig='';aRender(true)});return}
+  const k=A.key,li=A.list.find(x=>x.k==k),name=(li&&li.meta.n)||k;
+  if(A.built!==k){A.built=k;A.sig='';if(T)T.textContent=name;
+   B.innerHTML=`<div style="padding:10px 14px 0"><button type="button" id="hlBack">← Všechna vlákna</button></div><div class="hls-m" id="hlAM"></div><div class="hls-f"><textarea id="hlAI" rows="1" maxlength="500" placeholder="Odpověď uživateli ${E(name)}…"></textarea><button type="button" class="pri" id="hlAS2">Odeslat</button></div>`;
+   q('#hlBack').onclick=()=>{A.key=null;A.built=null;aRender(true)};
+   const send=async()=>{const i=q('#hlAI'),t=(i.value||'').trim();if(!t)return;i.value='';try{await post(k,'a',t);A.sig='';await aRender(true)}catch(e){i.value=t;toast('Nepodařilo se odeslat.')}};
+   q('#hlAS2').onclick=send;const i=q('#hlAI');i.addEventListener('keydown',e=>{if(e.key=='Enter'&&!e.shiftKey){e.preventDefault();send()}});i.addEventListener('input',()=>{i.style.height='auto';i.style.height=Math.min(i.scrollHeight,120)+'px'});setTimeout(()=>{try{i.focus()}catch(e){}},150)}
+  const a=await getT(k),sig=a.length+':'+(a.length?a[a.length-1].ts:0);
+  if(sig!==A.sig||force){const m=q('#hlAM');if(m){const st=atBottom(m)||!A.sig;A.sig=sig;m.innerHTML=a.length?a.map(x=>bub(x,'a')).join(''):'<div class="hls-s">Zatím žádné zprávy.</div>';if(st)m.scrollTop=m.scrollHeight}}
+  if(a.some(x=>x.by=='u'))seenA(k)
+ }catch(e){const s=q('#hlAS');if(s)s.textContent='Nepodařilo se načíst, zkouším znovu…'}}
+function aOpen(key){if(!me||me.role!='a')return;
+ const o=ovEl('hlA');
+ o.innerHTML=`<div class="hls-box"><div class="hls-h"><img class="hls-lun" alt="" src="${E(window.LUNA_AV||'')}"><div><b id="hlAT">Podpora · uživatelé</b><small><i class="hls-dot on"></i><span id="hlAS">Živý chat</span></small></div><button type="button" class="ib hls-x" id="hlX" aria-label="Zavřít">×</button></div><div id="hlAB" style="display:flex;flex-direction:column;flex:1;min-height:0"></div></div>`;
+ clearInterval(A.t);A.open=true;A.key=key||null;A.built=null;A.sig='';A.tick=0;
+ q('#hlX').onclick=aClose;o.addEventListener('mousedown',e=>{if(e.target===o)aClose()});
+ const c=q('#hlc');if(c)c.remove();try{document.title=document.title.replace(/^\(\d+\)\s*/,'')}catch(e){}
+ (async()=>{try{if(A.key&&!A.list.length)await loadList()}catch(e){}aRender(true)})();
+ A.t=setInterval(()=>{if(document.hidden)return;A.tick++;if(A.key||A.tick%3==0)aRender()},4000);try{gApply(o)}catch(e){}}
+function card(x,n){const c0=q('#hlc');if(c0)c0.remove();const nm=x.meta.n||x.k;
+ document.body.insertAdjacentHTML('beforeend',`<div class="hlc" id="hlc" role="status">${HSVG}<p><b>${n>1?n+' nové zprávy v podpoře':'Nová zpráva v podpoře'}</b><span>${E(nm)}: ${E(x.meta.t||'')}</span></p><button type="button" class="pri" id="hlco">Otevřít</button><button type="button" id="hlcx" aria-label="Zavřít">×</button></div>`);
+ q('#hlco').onclick=()=>{q('#hlc').remove();aOpen(x.k)};q('#hlcx').onclick=()=>q('#hlc').remove();setTimeout(()=>{const c=q('#hlc');if(c)c.remove()},25000);snd();
+ try{document.title=document.title.replace(/^\(\d+\)\s*/,'');document.title='('+n+') '+document.title}catch(e){}}
+async function aPoll(){if(document.hidden||!me||me.role!='a'||location.protocol=='file:')return;
+ try{const had=A.unread.length;await loadList();const nw=A.unread.reduce((m,x)=>Math.max(m,x.meta.last||0),0);
+  if(nw>A.alerted){A.alerted=nw;if(!(A.open&&A.key&&A.unread.every(x=>x.k==A.key)))card(A.unread[0],A.unread.length)}
+  if(had!==A.unread.length)badges()}catch(e){}}
+async function uPollBg(){if(document.hidden||!me||me.guest||me.role=='a'||U.open||location.protocol=='file:')return;
+ try{const m=await hjf(SU()+'/'+sk(me.name)+'/meta.json',{},1),o=DB.g('supSeen',{}),was=!!U.unseen;U.unseen=(m&&m.by=='a'&&(m.last||0)>(o[me.name]||0))?m:null;if(U.unseen&&!was)snd();if(!!U.unseen!==was)badges()}catch(e){}}
+sec('poll',()=>{if(location.protocol=='file:')return;let n=0;setTimeout(()=>{aPoll();uPollBg()},7000);setInterval(()=>{n++;aPoll();if(n%2==0)uPollBg()},20000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){aPoll();uPollBg()}})});
+document.addEventListener('keydown',e=>{if(e.key=='Escape'){if(q('#hlS'))uClose();if(q('#hlA'))aClose()}});
+
+/* ======= 6) Luna: tlačítko Podpora, nabídka a zkratka ======= */
+sec('lunaSup',()=>{
+ const addBtn=()=>{const h=q('#luna .lh');if(!h||q('#hlSupBtn'))return;const b=document.createElement('button');b.id='hlSupBtn';b.type='button';b.className='ib';b.setAttribute('aria-label','Podpora – spojit s adminem');b.innerHTML=HSVG;b.onclick=()=>uOpen();h.appendChild(b)};
+ addBtn();{const g=go;go=function(id){const r=g.apply(this,arguments);if(id=='luna')setTimeout(addBtn,60);return r}}
+ {const c0=lChips;lChips=function(){const r=c0.apply(this,arguments);try{const c=q('#lC');if(c&&!c.querySelector('.hlchip'))c.insertAdjacentHTML('beforeend','<button type="button" class="hlchip" onclick="HL.sup()">🛟 Spojit s adminem</button>')}catch(e){}return r}}
+ {const ls0=lunaSend;lunaSend=function(t){try{if(typeof t=='string'&&/^\s*(spoj(it)?\s*(mě|me)?\s*s\s*adminem|chci\s+(mluvit|psát|napsat)\s+(s\s+)?admin(em|ovi)?|napsat\s+adminovi|(podpora|support|admin)\s*[.!?]*)\s*$/i.test(t)){const i=q('#lI');if(i)i.value='';uOpen();return}}catch(e){}return ls0.apply(this,arguments)}}
+ {const as0=window.adSup;if(typeof as0=='function')window.adSup=function(){const h=as0.apply(this,arguments);setTimeout(()=>{const c=q('#a94c');if(c&&!q('#hlOpenA'))c.insertAdjacentHTML('beforebegin','<div class="row" style="margin-bottom:12px"><button type="button" class="pri" id="hlOpenA">Otevřít živý chat</button></div>');const b=q('#hlOpenA');if(b)b.onclick=()=>aOpen()},60);return h}}
+});
+
+/* ======= 7) Nastavení: podpora, Luna, diagnostika ======= */
+async function diag(){const R=[];R.push(['Verze','v'+VER+' „'+(VN9[VER]||'')+'“']);R.push(['Internet',navigator.onLine?'online':'offline']);
+ try{let u=0;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);u+=k.length+(localStorage.getItem(k)||'').length}R.push(['Úložiště prohlížeče',Math.round(u*2/1024)+' kB z cca 5 000 kB'])}catch(e){R.push(['Úložiště prohlížeče','nedostupné'])}
+ const ping=async(u)=>{const t=performance.now();try{const r=await fetch(u,{signal:window.AbortSignal&&AbortSignal.timeout?AbortSignal.timeout(7000):undefined});return{ok:r.ok||r.status==401||r.status==403,ms:Math.round(performance.now()-t),st:r.status}}catch(e){return{ok:false,err:String(e&&e.message)}}};
+ const f=await ping(RU()+'/.json?shallow=true&limitToFirst=1');R.push(['Podpora (Firebase)',f.ok?'dostupná ('+f.ms+' ms)':'nedostupná'+(f.err?' – '+f.err:'')]);
+ const d=await ping('https://discord.com/api/v10/gateway');R.push(['Discord API',d.ok?'dostupné ('+d.ms+' ms)':'nedostupné nebo blokované'+(d.err?' – '+d.err:'')]);
+ R.push(['Discord redirect URL',location.origin+location.pathname]);
+ R.push(['Offline režim',(navigator.serviceWorker&&navigator.serviceWorker.controller)?'aktivní':'neaktivní']);
+ try{R.push(['Zaznamenané chyby',JSON.parse(localStorage.getItem('tc_errlog')||'[]').length+''])}catch(e){}
+ return R.map(x=>x[0]+': '+x[1]).join('\n')}
+sec('settings',()=>{
+ const tg=(id,on)=>`<button type="button" class="tg ${on?'on':''}" id="${id}" role="switch" aria-checked="${!!on}"></button>`;
+ const html=()=>{const adm=me&&me.role=='a';
+  const gi=['h','t','l'].map(k=>`<div class="gr"><span><b>${GK[k]}</b><br><small class="m">${GU[k]?'vlastní animace nahrána':'výchozí obrázek'}</small></span><span class="row" style="gap:6px;flex-wrap:nowrap"><input type="file" id="hlF_${k}" accept="image/gif,image/webp,image/png,image/apng" hidden><button type="button" data-up="${k}">Nahrát</button>${GU[k]?`<button type="button" data-del="${k}">Smazat</button>`:''}</span></div>`).join('');
+  return`<div class="card hlset" id="hlSet" data-pf="ntf" data-p="ntf"><h2 style="font-size:1.15rem">Podpora, Luna a diagnostika</h2><p class="m" style="margin-bottom:10px">Spojení s adminem, zvuky podpory, pohyb Luny a kontrola připojení.</p>
+  <div class="row"><button type="button" class="pri" id="hlSupO">${adm?'Otevřít podporu (admin)':'Spojit s adminem přes Lunu'}</button><button type="button" id="hlNr2">Označit oznámení jako přečtená</button></div>
+  <div class="gr"><span><b>Zvuk u zpráv z podpory</b><br><small class="m">Přehraje se, když přijde nová zpráva.</small></span>${tg('hlTs',DB.g('hlsnd',1))}</div>
+  <div class="gr"><span><b>Pohyb Luny</b><br><small class="m">Luna se jemně hýbe podle toho, co dělá.</small></span>${tg('hlTm',DB.g('hlmo',1))}</div>
+  <h3>Vlastní animace Luny</h3><p class="m">Nahraj GIF nebo animovaný WebP (max. 1,5 MB). Uloží se jen v tomto prohlížeči.</p>${gi}
+  <h3>Diagnostika</h3><div class="row"><button type="button" id="hlDg">Zkontrolovat připojení</button></div><pre id="hlDo" hidden></pre></div>`};
+ const wire=()=>{const c=q('#hlSet');if(!c)return;
+  q('#hlSupO').onclick=()=>me&&me.role=='a'?aOpen():uOpen();
+  q('#hlNr2').onclick=()=>{markAll();toast('Hotovo, vše je přečtené.')};
+  const t1=q('#hlTs');t1.onclick=()=>{const v=!t1.classList.contains('on');t1.classList.toggle('on',v);t1.setAttribute('aria-checked',v);DB.s('hlsnd',v?1:0);if(v)snd()};
+  const t2=q('#hlTm');t2.onclick=()=>{const v=!t2.classList.contains('on');t2.classList.toggle('on',v);t2.setAttribute('aria-checked',v);DB.s('hlmo',v?1:0);document.documentElement.classList.toggle('hl-nomo',!v)};
+  c.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>q('#hlF_'+b.dataset.up).click());
+  c.querySelectorAll('input[type=file]').forEach(i=>i.onchange=async()=>{const f=i.files[0],k=i.id.slice(4);i.value='';if(!f)return;if(f.size>1500000)return toast('Soubor je moc velký (max. 1,5 MB).');if(!/^image\//.test(f.type))return toast('Vyber obrázek (GIF nebo WebP).');
+   try{await gTx('readwrite',st=>st.put(f,k));await gLoad();toast('Animace nahrána.');inj(1)}catch(e){toast('Animaci se nepodařilo uložit.')}});
+  c.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{try{await gTx('readwrite',st=>st.delete(b.dataset.del));await gLoad();toast('Animace smazána.');inj(1)}catch(e){toast('Nepodařilo se smazat.')}});
+  q('#hlDg').onclick=async()=>{const o=q('#hlDo');o.hidden=false;o.textContent='Zjišťuji…';o.textContent=await diag()}};
+ const inj=force=>{const h=q('#setB');if(!h||!me)return;if(force){const o=q('#hlSet');if(o)o.remove()}if(q('#hlSet'))return;h.insertAdjacentHTML('beforeend',html());wire()};
+ {const g=go;go=function(id){const r=g.apply(this,arguments);if(id=='set'){inj();setTimeout(inj,80)}return r}}
+ {const s0=TX.set;if(typeof s0=='function'){TX.set=function(){const r=s0.apply(this,arguments);inj();setTimeout(inj,60);return r};try{TX.VW.set=TX.set}catch(e){}}}});
+
+/* ======= 8) Verze a changelog ======= */
+sec('ver',()=>{VN9['12.1']='Hatsune-Lite';
+ CL.unshift(['12.1','Drobné úpravy: Discord, Luna podpora a čistší oznámení','15. 11. 2026',[
+ 'Přihlášení přes Discord opraveno: aplikace po návratu z Discordu nemohla ověřit účet (blokoval to bezpečnostní filtr), a tak se stránka jen znovu načetla. Teď se ukáže obrazovka „Přihlašuji přes Discord“, případná chyba je vidět a návrat funguje i při ztrátě dočasných dat prohlížeče',
+ 'Luna jako podpora: v Luně je tlačítko Podpora (sluchátka), které tě rovnou spojí s adminem. Admin dostane upozornění v Oznámeních, kartu s tlačítkem Otevřít a může si s tebou živě psát. Stačí napsat Luně „podpora“',
+ 'Oznámení: po otevření se vše označí jako přečtené (nebo tlačítkem Označit vše jako přečtené), takže odznak v Více už nesvítí pořád. Zvoneček vpravo nahoře i položka v horní navigaci zmizely, Oznámení jsou jen v menu Více',
+ 'Luna je živější: obrázky se pohybují podle toho, co Luna dělá (dýchá, přemýšlí, mluví). Vlastní GIF nebo animovaný WebP si nahraješ v Nastavení',
+ 'Laboratoř: Discord je pryč, zůstaly jen věci do chemie. Discord najdeš v menu Více',
+ 'Nastavení: nová karta Podpora, Luna a diagnostika (zvuk podpory, pohyb Luny, GIFy, kontrola připojení). Přepínač jazyka je pryč, aplikace je česky',
+ 'Infrastruktura: opakování při výpadku sítě u podpory, ochrana před plným úložištěm prohlížeče, rychlejší dohledání chyb přes diagnostiku (Firebase, Discord, úložiště)'
+ ],null])});
+
+window.HL={sup:uOpen,adm:aOpen,markAll,diag};
+})();
+</script>
 </body>
 </html>
