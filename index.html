@@ -9858,5 +9858,14 @@ const mk=(cls,h)=>`<span class="lg12 ${cls||''}"${h?` style="height:${Math.max(h
 const lg=document.querySelector('header .logo');if(lg)lg.innerHTML=mk('hd12');
 if(window.TX)TX.logo=h=>mk('',h);
 }catch(e){console.error(e)}})();
-</script><style>html:root #auth .lgf3{display:none!important}</style></body>
+</script><style>html:root #auth .lgf3{display:none!important}</style><script>(function(){const d0=window.lmDc;if(!d0)return;
+const ru=()=>{let p=location.pathname;return location.origin+p};
+window.lmDc=function(mode){if(location.protocol=='file:'||DB.g('dcnm',false))return d0(mode);
+ const o=document.createElement('div');o.className='lmo';
+ o.innerHTML=`<div class="lmd" role="dialog" aria-modal="true"><div class="hd"><h2>Přihlášení přes Discord</h2></div><div class="bd"><p class="m">Discord pustí přihlášení jen na adresu, kterou máš zadanou v Developer Portalu (OAuth2 → Redirects). Musí být přesně tahle, včetně lomítka na konci:</p><input id="dcU" readonly value="${ru().replace(/"/g,'&quot;')}" style="width:100%;margin:10px 0;font-size:.85rem"><div class="row" style="gap:8px;flex-wrap:wrap"><button class="lkb" id="dcC">Kopírovat adresu</button></div><label class="row" style="gap:8px;margin-top:12px;align-items:center"><input type="checkbox" id="dcN"><span class="m">Příště už nezobrazovat</span></label><div class="ft" style="gap:8px;display:flex;justify-content:flex-end;margin-top:12px"><button class="lkb" id="dcX">Zrušit</button><button class="go" id="dcG">Pokračovat</button></div></div></div>`;
+ document.body.appendChild(o);const q=s=>o.querySelector(s);q('#dcU').onfocus=e=>e.target.select();
+ q('#dcC').onclick=async()=>{try{await navigator.clipboard.writeText(ru());toast('Adresa zkopírována.')}catch(e){q('#dcU').select();toast('Označeno, zkopíruj ručně.')}};
+ q('#dcX').onclick=()=>o.remove();o.onclick=e=>{if(e.target==o)o.remove()};
+ q('#dcG').onclick=()=>{if(q('#dcN').checked)DB.s('dcnm',true);o.remove();d0(mode)}}})();
+</script></body>
 </html>
