@@ -9027,7 +9027,7 @@ sec('discord',()=>{
  window.lmDc=mode=>{const id=cid();if(!id)return help();
   if(location.protocol=='file:')return toast('Discord funguje jen na stránce otevřené přes https (ne ze souboru).');
   const st=rnd();try{sessionStorage.setItem('lm_dcs',JSON.stringify({s:st,m:mode,t:Date.now()}))}catch(e){return toast('Prohlížeč blokuje úložiště.')}
-  const ru=location.origin+location.pathname;
+  const ru=location.origin+location.pathname.replace(/index\.html$/i,'').replace(/([^/])$/,'$1/');
   const du='https://discord.com/oauth2/authorize?response_type=token&client_id='+encodeURIComponent(id)+'&scope='+encodeURIComponent('identify email')+'&state='+st+'&redirect_uri='+encodeURIComponent(ru);const w=window.open(du,'lmdc','popup=yes,width=480,height=740');if(!w)location.href=du;else toast('Dokonči přihlášení v okně Discordu.')};
  const aR1=aR;aR=function(d){const r=aR1.apply(this,arguments);try{if(A&&(A.step=='id'||A.step=='u1')){const B=q('#gB');if(B&&!B.querySelector('.lmdc'))B.insertAdjacentHTML('beforeend',`<div class="lmsep">nebo</div><button type="button" class="lmdc" onclick="lmDc('login')">${ico}Pokračovat přes Discord</button>`)}}catch(e){}return r};
  const clean=s=>{let n=String(s||'').replace(/[^\p{L}\d ._-]/gu,'').trim().slice(0,24);if(n.length<3)n=(n+'_dc').slice(0,24);if(n.length<3)n='discord_user';return n};
@@ -9859,10 +9859,10 @@ const lg=document.querySelector('header .logo');if(lg)lg.innerHTML=mk('hd12');
 if(window.TX)TX.logo=h=>mk('',h);
 }catch(e){console.error(e)}})();
 </script><style>html:root #auth .lgf3{display:none!important}</style><script>(function(){const d0=window.lmDc;if(!d0)return;
-const ru=()=>{let p=location.pathname;return location.origin+p};
+const ru=()=>location.origin+location.pathname.replace(/index\.html$/i,'').replace(/([^/])$/,'$1/');
 window.lmDc=function(mode){if(location.protocol=='file:'||DB.g('dcnm',false))return d0(mode);
  const o=document.createElement('div');o.className='lmo';
- o.innerHTML=`<div class="lmd" role="dialog" aria-modal="true"><div class="hd"><h2>Přihlášení přes Discord</h2></div><div class="bd"><p class="m">Discord pustí přihlášení jen na adresu, kterou máš zadanou v Developer Portalu (OAuth2 → Redirects). Musí být přesně tahle, včetně lomítka na konci:</p><input id="dcU" readonly value="${ru().replace(/"/g,'&quot;')}" style="width:100%;margin:10px 0;font-size:.85rem"><div class="row" style="gap:8px;flex-wrap:wrap"><button class="lkb" id="dcC">Kopírovat adresu</button></div><label class="row" style="gap:8px;margin-top:12px;align-items:center"><input type="checkbox" id="dcN"><span class="m">Příště už nezobrazovat</span></label><div class="ft" style="gap:8px;display:flex;justify-content:flex-end;margin-top:12px"><button class="lkb" id="dcX">Zrušit</button><button class="go" id="dcG">Pokračovat</button></div></div></div>`;
+ o.innerHTML=`<div class="lmd" role="dialog" aria-modal="true"><div class="hd"><h2>Přihlášení přes Discord</h2></div><div class="bd"><p class="m">Discord pustí přihlášení jen na adresu, kterou máš zadanou v Developer Portalu (OAuth2 → Redirects). Musí být přesně tahle, včetně lomítka na konci:</p><input id="dcU" readonly value="${ru().replace(/"/g,'&quot;')}" style="width:100%;margin:10px 0;font-size:.85rem"><p class="m" style="margin:0 0 8px">Application ID, který aplikace používá: <b>${(DB.g('dcid','')||'1571269303251247114')}</b></p><div class="row" style="gap:8px;flex-wrap:wrap"><button class="lkb" id="dcC">Kopírovat adresu</button></div><label class="row" style="gap:8px;margin-top:12px;align-items:center"><input type="checkbox" id="dcN"><span class="m">Příště už nezobrazovat</span></label><div class="ft" style="gap:8px;display:flex;justify-content:flex-end;margin-top:12px"><button class="lkb" id="dcX">Zrušit</button><button class="go" id="dcG">Pokračovat</button></div></div></div>`;
  document.body.appendChild(o);const q=s=>o.querySelector(s);q('#dcU').onfocus=e=>e.target.select();
  q('#dcC').onclick=async()=>{try{await navigator.clipboard.writeText(ru());toast('Adresa zkopírována.')}catch(e){q('#dcU').select();toast('Označeno, zkopíruj ručně.')}};
  q('#dcX').onclick=()=>o.remove();o.onclick=e=>{if(e.target==o)o.remove()};
