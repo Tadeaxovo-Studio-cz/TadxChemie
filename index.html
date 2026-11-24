@@ -10894,5 +10894,132 @@ TX.reg('len','Lenora Lab','Nové nástroje do chemie: prvky, elektrony, pH, výp
 }catch(e){console.error('lx126',e)}})();
 
 </script>
+<script id="adm128js">
+/* ===== 12.8: vylepšený Admin panel ===== */
+(function(){try{
+const q=(s,r)=>(r||document).querySelector(s),qa=(s,r)=>[...(r||document).querySelectorAll(s)];
+const sf=(f,d)=>{try{return f()}catch(e){console.error('adm128',e);return d}};
+const ES=s=>esc(String(s==null?'':s));
+const csv=rows=>'\ufeff'+rows.map(r=>r.map(c=>{c=String(c==null?'':c);if(/^[=+\-@\t\r]/.test(c))c="'"+c;return /[;"\n\r]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c}).join(';')).join('\r\n');
+const dlCsv=(rows,name)=>dl(new Blob([csv(rows)],{type:'text/csv;charset=utf-8'}),name);
+const day=()=>new Date().toISOString().slice(0,10);
+const RL={s:'Žák',t:'Učitel',a:'Admin'};
+const F={f:'all',q:''};let dirty=false;
+
+const st=document.createElement('style');st.textContent=`
+.ad128 ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.ad128 li{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:color-mix(in srgb,var(--tx) 4%,transparent)}
+.ad128 li.w{border-color:color-mix(in srgb,#ffb020 55%,var(--line))}
+.ad128 li.e{border-color:color-mix(in srgb,var(--no) 60%,var(--line))}
+.ad128 li.g{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.ad128 .ad128k{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ad128 .ad128k span{padding:6px 12px;border-radius:99px;border:1px solid var(--line);font-size:.85rem}
+.ad128tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ad128tb button.on{background:var(--a);color:#fff;border-color:transparent}
+.ad128tb .ad128n{margin-left:auto}
+.ad128d{color:#ffb020;font-size:.85rem}
+.ad128 .ad128l{display:grid;gap:6px;margin-top:10px}
+`;document.head.appendChild(st);
+
+/* --- data pro přehled --- */
+function info(){
+ const U=DB.g('users',[]),Rs=DB.g('results',[]),now=Date.now(),wk=new Date(now-6*864e5).toISOString().slice(0,10),td=day();
+ const rs=DB.g('resets',[]).filter(r=>r.st=='pending').length,
+  rep=DB.g('rep',[]).filter(r=>r.st=='new').length,
+  pend=U.filter(u=>u.pend).length,
+  lk=Object.values(DB.g('lock',{})).filter(v=>v&&v.until>now).length,
+  bad=Rs.filter(r=>r.sig&&sig(r)!=r.sig).length,
+  pc=Math.round(stUse()/5242880*100),S=SET();
+ return{U,Rs,rs,rep,pend,lk,bad,pc,S,
+  act:new Set(Rs.filter(r=>(r.date||'').slice(0,10)>=wk).map(r=>r.user)).size,
+  today:Rs.filter(r=>(r.date||'').slice(0,10)==td).length};
+}
+function attn(){
+ const I=info(),L=[];
+ const add=(c,t,tab,b)=>L.push(`<li class="${c}"><span>${t}</span>${tab!=null?`<button type="button" onclick="atab(${tab})">${b||'Otevřít'}</button>`:''}</li>`);
+ if(I.pend)add('w',`Čeká na schválení: <b>${I.pend}</b> ${I.pend==1?'učitel':'učitelů'}`,1,'Schválit');
+ if(I.rs)add('w',`Žádostí o reset hesla: <b>${I.rs}</b>`,4,'Vyřídit');
+ if(I.rep)add('w',`Nových hlášení od uživatelů: <b>${I.rep}</b>`,8,'Zobrazit');
+ if(I.bad)add('e',`Podezřelých výsledků (nesedí podpis): <b>${I.bad}</b>`,4,'Zkontrolovat');
+ if(I.lk)add('w',`Zamčených účtů: <b>${I.lk}</b>`,4,'Odemknout');
+ if(I.pc>=80)add('e',`Úložiště v prohlížeči je zaplněné na <b>${I.pc} %</b>`,5,'Vyčistit');
+ if(I.S.maint)add('e','Režim údržby je <b>zapnutý</b>, přihlásí se jen admin',5,'Nastavení');
+ if(!I.S.reg)add('w','Registrace nových uživatelů je <b>vypnutá</b>',5,'Nastavení');
+ if(!L.length)add('g',`${ic('shield-check')} Vše v pořádku, nic nečeká na tvoji pozornost.`);
+ const A=DB.g('audit',[]).slice(0,5);
+ return`<div class="card ad128" id="ad128a"><h2 style="margin:0">Vyžaduje pozornost</h2><ul>${L.join('')}</ul>
+ <div class="ad128k"><span>Aktivních za 7 dní: <b>${I.act}</b></span><span>Testů dnes: <b>${I.today}</b></span><span>Registrace: <b>${I.S.reg?'zapnutá':'vypnutá'}</b></span><span>Úložiště: <b>${I.pc} %</b></span></div></div>
+ <div class="card ad128"><h2 style="margin:0 0 8px">Rychlé akce</h2><div class="row" style="flex-wrap:wrap;gap:8px">
+ <button type="button" onclick="ad128Users()">Export uživatelů (CSV)</button>
+ <button type="button" onclick="ad128Res()">Export výsledků (CSV)</button>
+ <button type="button" onclick="exp()">Záloha databáze</button>
+ <button type="button" onclick="atab(1)">Spravovat uživatele</button></div></div>
+ <div class="card ad128"><div class="row" style="justify-content:space-between;flex-wrap:wrap"><h2 style="margin:0">Poslední akce</h2><button type="button" onclick="atab(4)">Celý audit log</button></div>
+ <div class="ad128l">${A.length?A.map(a=>`<span class="m">${ES(a.t)} · <b>${ES(a.a)}</b>${a.who?' · '+ES(a.who):''}${a.x?' · '+ES(a.x):''}${a.by?' (provedl '+ES(a.by)+')':''}</span>`).join(''):'<span class="m">Zatím žádné záznamy.</span>'}</div></div>`;
+}
+window.ad128Users=function(){const U=DB.g('users',[]),R=DB.g('results',[]);
+ dlCsv([['Jméno','E-mail','Role','Stav','Počet testů']].concat(U.map(u=>[u.name,u.email||'',RL[u.role]||u.role,u.ban?'zablokován':u.pend?'čeká na schválení':'aktivní',R.filter(r=>r.user==u.name).length])),'tadxchemie-uzivatele-'+day()+'.csv');
+ audit('export','uživatelé');toast('Export uživatelů stažen.')};
+window.ad128Res=function(){const R=DB.g('results',[]);
+ dlCsv([['Datum','Uživatel','Kvíz','Skóre','Otázek','Známka','Mimo žebříček']].concat(R.map(r=>[r.date||'',r.user,r.quiz,r.score,r.n,r.grade,r.dq?'ano':''])),'tadxchemie-vysledky-'+day()+'.csv');
+ audit('export','výsledky');toast('Export výsledků stažen.')};
+window.ad128Audit=function(){const A=DB.g('audit',[]);
+ dlCsv([['Čas','Akce','Koho','Provedl','Detail']].concat(A.map(a=>[a.t,a.a,a.who,a.by,a.x])),'tadxchemie-audit-'+day()+'.csv')};
+
+/* --- uživatelé: filtry, počty, export --- */
+function usersTab(){
+ const c=q('#adC'),inp=q('#aus');if(!c||!inp)return;
+ const U=DB.g('users',[]),R=DB.g('results',[]),cnt={};R.forEach(r=>cnt[r.user]=(cnt[r.user]||0)+1);
+ qa('#adC tr[data-t]').forEach(tr=>{const m=/ban\((\d+)\)/.exec(tr.innerHTML),u=m&&U[+m[1]];if(!u)return;
+  tr.dataset.r=u.role;tr.dataset.s=u.ban?'ban':u.pend?'pend':'ok';
+  const b=tr.querySelector('td b');if(b&&!tr.querySelector('.ad128c'))b.insertAdjacentHTML('afterend',`<small class="m ad128c" style="margin-left:6px">${cnt[u.name]||0} testů</small>`)});
+ if(!q('#ad128f')){const n=(f)=>U.filter(f).length,
+  ch=[['all','Vše',U.length],['s','Žáci',n(u=>u.role=='s')],['t','Učitelé',n(u=>u.role=='t')],['a','Admini',n(u=>u.role=='a')],['pend','Čeká',n(u=>u.pend)],['ban','Zablokovaní',n(u=>u.ban)]];
+  inp.insertAdjacentHTML('afterend',`<div class="ad128tb" id="ad128f">${ch.map(x=>`<button type="button" data-f="${x[0]}" class="${F.f==x[0]?'on':''}">${x[1]} (${x[2]})</button>`).join('')}<span class="m ad128n" id="ad128n"></span><button type="button" onclick="ad128Users()">Export CSV</button></div>`);
+  q('#ad128f').onclick=e=>{const b=e.target.closest('button[data-f]');if(!b)return;F.f=b.dataset.f;qa('#ad128f button[data-f]').forEach(x=>x.classList.toggle('on',x==b));auf()}}
+ inp.value=F.q;inp.setAttribute('autocomplete','off');auf();
+}
+window.auf=function(){const i=q('#aus'),v=(i?i.value:'').toLowerCase().trim(),f=F.f;F.q=i?i.value:'';let n=0,t=0;
+ qa('#adC tr[data-t]').forEach(r=>{t++;const ok=r.dataset.t.includes(v)&&(f=='all'||(f=='ban'?r.dataset.s=='ban':f=='pend'?r.dataset.s=='pend':r.dataset.r==f));r.style.display=ok?'':'none';if(ok)n++});
+ const c=q('#ad128n');if(c)c.textContent=`Zobrazeno ${n} z ${t}`};
+
+/* --- bezpečnost: hledání v audit logu --- */
+function secTab(){
+ const card=qa('#adC .card').find(c=>{const h=c.querySelector('h2');return h&&h.textContent.trim()=='Audit log'});
+ if(!card||q('#ad128s'))return;const t=card.querySelector('table');if(!t)return;
+ t.insertAdjacentHTML('beforebegin',`<div class="ad128tb"><input id="ad128s" placeholder="Filtrovat audit log (akce, uživatel, detail)…" style="flex:1;min-width:200px;margin:0" autocomplete="off"><button type="button" onclick="ad128Audit()">Export CSV</button><span class="m" id="ad128sn"></span></div>`);
+ const rows=qa('tr',t).slice(1),tot=DB.g('audit',[]).length,
+ run=()=>{const v=q('#ad128s').value.toLowerCase().trim();let n=0;rows.forEach(r=>{const ok=!v||r.textContent.toLowerCase().includes(v);r.style.display=ok?'':'none';if(ok)n++});q('#ad128sn').textContent=`Zobrazeno ${n} z ${rows.length} (celkem uloženo ${tot})`};
+ q('#ad128s').oninput=run;run();
+}
+
+/* --- nastavení: neuložené změny + Ctrl+S --- */
+function setTab(){
+ const b=qa('#adC button.pri').find(x=>/saveAd\(/.test(x.getAttribute('onclick')||''));if(!b||q('#ad128d'))return;
+ b.insertAdjacentHTML('afterend','<span class="ad128d" id="ad128d" style="margin-left:12px;display:none">Neuložené změny (Ctrl+S uloží)</span>');
+ const card=b.closest('.card'),mark=()=>{dirty=true;const d=q('#ad128d');if(d)d.style.display=''};
+ card.addEventListener('input',mark);card.addEventListener('change',mark);
+}
+const sv=window.saveAd;window.saveAd=function(){const r=sv.apply(this,arguments);dirty=false;const d=q('#ad128d');if(d)d.style.display='none';return r};
+const at0=window.atab;window.atab=function(i){if(dirty&&i!==AT&&!confirm('Máš neuložené změny v nastavení. Opravdu odejít bez uložení?'))return;dirty=false;return at0.apply(this,arguments)};
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='s'&&me&&me.role=='a'&&AT==5&&q('#admin.on,#admin.view.on')&&q('#sk')){e.preventDefault();saveAd()}});
+
+/* --- odznaky u záložek --- */
+function badges(I){
+ const bt=qa('#adTabs button'),set=(i,n)=>{const b=bt[i];if(!b)return;const o=b.querySelector('.ad128b');o&&o.remove();if(n)b.insertAdjacentHTML('beforeend',`<b class="bdg ad128b">${n}</b>`)};
+ set(1,I.pend);set(4,I.rs+I.bad);
+}
+
+/* --- hlavní wrapper --- */
+const a0=admin;admin=function(){dirty=false;const r=a0.apply(this,arguments);
+ if(!me||me.role!=='a')return r;
+ sf(()=>{if(AT==0)q('#adC').insertAdjacentHTML('afterbegin',attn())});
+ sf(()=>{if(AT==1)usersTab()});
+ sf(()=>{if(AT==4)secTab()});
+ sf(()=>{if(AT==5)setTab()});
+ sf(()=>badges(info()));
+ return r};
+}catch(e){console.error('adm128',e)}})();
+</script>
 </body>
 </html>
