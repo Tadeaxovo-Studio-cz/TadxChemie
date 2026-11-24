@@ -5794,14 +5794,6 @@ h1,h2,h3{letter-spacing:-.01em;font-weight:800}
 #splash::before{content:"";position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(124,92,255,.35),rgba(46,230,214,.3),rgba(255,92,157,.25),rgba(124,92,255,.35));filter:blur(70px);animation:ldspin 20s linear infinite;z-index:0;pointer-events:none}
 #splash>*{position:relative;z-index:1}
 /* uvítání */
-#wel94{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:24px;background:var(--bg);overflow:hidden;animation:wIn .6s ease-out}
-#wel94 .wa{position:absolute;inset:-25%;background:conic-gradient(from 0deg,rgba(124,92,255,.5),rgba(46,230,214,.45),rgba(255,92,157,.4),rgba(124,92,255,.5));filter:blur(80px);animation:ldspin 16s linear infinite}
-#wel94 .wc{position:relative;text-align:center;max-width:420px}
-#wel94 h1{font-size:2.2rem;margin:6px 0 10px;background:linear-gradient(90deg,var(--tx),var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
-#wel94 small{letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
-#wel94 .wch{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:16px 0 22px}
-#wel94 .wch span{padding:6px 13px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:.85rem;animation:wUp .6s both}
-#wel94 .cf{position:absolute;top:-10px;width:8px;height:14px;border-radius:2px;animation:wCf 3.6s linear infinite}
 @keyframes wIn{from{opacity:0}}@keyframes wUp{from{opacity:0;transform:translateY(14px)}}
 @keyframes wCf{to{transform:translateY(105vh) rotate(540deg)}}
 /* měkká aktualizace */
@@ -5849,12 +5841,8 @@ setInterval(()=>{if(document.hidden)return;if(document.getElementById('s94m'))uS
 boot=function(){if(booted)return;booted=true;clearTimeout(t1);clearTimeout(t2);sp.classList.add('hide');setTimeout(()=>sp.remove(),800);const s2=$('#splash2');if(s2){s2.classList.add('out');setTimeout(()=>s2.remove(),800)}chkMe();nav();go(me?'home':'auth')};
 let inOb=0;const g95=go;
 go=function(a){if(a=='home'&&me&&!DB.g('ob',0)&&!inOb){inOb=1;try{obR();show('onb');return}catch(e){}}
- const r=g95.apply(this,arguments);if(a=='home'&&me&&DB.g('ob',0))setTimeout(wel,700);return r};
-function wel(){if(!me||me.guest||document.getElementById('wel94'))return;const o=DB.g('wel',{});if(o[me.name]==VER)return;o[me.name]=VER;DB.s('wel',o);
- const cf=Array.from({length:28},(_,i)=>`<i class="cf" style="left:${Math.random()*100}%;background:hsl(${i*37%360} 90% 60%);animation-delay:${(Math.random()*3).toFixed(2)}s"></i>`).join('');
- const ch=['LunaAI','Opakování chyb','Denní cíl',X('Podpora s Adminem','Admin support','Підтримка'),X('Banner profilu','Profile banner','Банер профілю')].map((t,i)=>`<span style="animation-delay:${.4+i*.12}s">${t}</span>`).join('');
- const d=document.createElement('div');d.id='wel94';d.innerHTML=`<div class="wa"></div>${cf}<div class="wc"><small>TadxChemie ${VER}</small><h1>${X('Vítej','Welcome','Вітаємо')}, ${E(me.name)}</h1><p class="m">${X('Chemie, která tě chytne. Nový vzhled, nová Luna a podpora na dosah.','Chemistry that hooks you. A new look, a new Luna and support at hand.','Хімія, що захоплює.')}</p><div class="wch">${ch}</div><button class="pri" id="welB" type="button">${X('Začít','Start','Почати')}</button></div>`;
- document.body.appendChild(d);d.querySelector('#welB').onclick=()=>{d.style.transition='opacity .4s';d.style.opacity=0;setTimeout(()=>d.remove(),420)}}
+ const r=g95.apply(this,arguments);return r};
+
 /* --- síla hesla při registraci --- */
 const COM=['password','12345678','123456789','heslo123','qwerty123','11111111','tadxchemie'];
 const sc=p=>{if(COM.includes(p.toLowerCase()))return 0;let n=0;if(p.length>=8)n++;if(/[a-z]/.test(p)&&/[A-Z]/.test(p))n++;if(/\d/.test(p))n++;if(/[^A-Za-z0-9]/.test(p))n++;if(p.length>=12)n++;return n};
